@@ -218,8 +218,7 @@
     display: block;
     margin: auto 0;
     padding: 10px;
-    background-color: black;
-    color: white;
+    color: var(--gray);
     border-radius: var(--radius);
     overflow-x: auto;
     word-break: break-all;

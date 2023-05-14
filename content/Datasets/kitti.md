@@ -90,7 +90,7 @@ pip install matplotlib
 <h2 id="load-the-dataset">Load the Dataset</h2>
 <p>The KITTI Odometry dataset consists of multiple sequences, each containing a set of stereo image pairs and corresponding ground truth poses. We will load the data using the <code class="language-plaintext highlighter-rouge">cv2</code> library in Python.</p>
 
-```
+```python
 import cv2
 import numpy as np
 
