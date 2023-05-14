@@ -218,7 +218,8 @@
     display: block;
     margin: auto 0;
     padding: 10px;
-    color: var(--gray);
+    background-color: black;
+    color: white;
     border-radius: var(--radius);
     overflow-x: auto;
     word-break: break-all;

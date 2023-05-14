@@ -79,27 +79,18 @@ output:
 OpenCV: for image and video processing
 Matplotlib: for data visualization
 You can install these libraries using pip, the Python package manager, by running the following commands in your terminal:</p>
-<div class="code-block python">
-<div class="code-header">
-<span class="language">Python</span>
-<button class="copy-button" onclick="copyCode(event)"><i style="font-size:15px" class="fa">&#xf0c5;</i> Copy Code</button>
-</div>
-<pre><code id="code" class="language-python">
+
+
+```
 pip install numpy
 pip install opencv-python
 pip install matplotlib
-</code></pre>
-</div>
+```
 
 <h2 id="load-the-dataset">Load the Dataset</h2>
 <p>The KITTI Odometry dataset consists of multiple sequences, each containing a set of stereo image pairs and corresponding ground truth poses. We will load the data using the <code class="language-plaintext highlighter-rouge">cv2</code> library in Python.</p>
 
-<div class="code-block python">
-<div class="code-header">
-<span class="language">Python</span>
-<button class="copy-button" onclick="copyCode(event)"><i style="font-size:15px" class="fa">&#xf0c5;</i> Copy Code</button>
-</div>
-<pre><code id="code" class="language-python">
+```
 import cv2
 import numpy as np
 
@@ -120,11 +111,7 @@ def load_data(sequence_num):
     calib_data = load_calib_file(calib_path)
 
     return left_image_files, right_image_files, poses, calib_data
-
-
-</code></pre>
-
-</div>
+```
 <p>some other</p>
 
 

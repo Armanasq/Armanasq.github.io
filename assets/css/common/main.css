@@ -71,11 +71,13 @@
 
 code {
     direction: ltr;
+    background-color:black;
 }
 
 div.highlight,
 pre {
     position: relative;
+    
 }
 
 .copy-code {
