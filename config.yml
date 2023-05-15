@@ -44,7 +44,7 @@ menu:
 params:
     description: "I have recently graduated with an MSc in Space Engineering from the University of Tehran, where I had the privilege of working under the guidance of [Dr. M. H. Sabour](https://scholar.google.com/citations?user=R86XDtUAAAAJ&hl=en). My Master's thesis focused on the utilization of deep learning in state estimation, specifically the Intelligent Filters, for Inertial Attitude Estimation."
     author: Arman Asgharpoor Golroudbari
-    googleAnalyticsID: "376058559"
+    googleAnalyticsID: "G-55GQYC5GYC"
     DateFormat: "January 2006"
     defaultTheme: light
     hideFooter: true
