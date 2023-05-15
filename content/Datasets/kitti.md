@@ -80,8 +80,14 @@ OpenCV: for image and video processing
 Matplotlib: for data visualization
 You can install these libraries using pip, the Python package manager, by running the following commands in your terminal:</p>
 
+<pre><code class="language-python">
+pip install numpy
+pip install opencv-python
+pip install matplotlib
+</code></pre>
 
-```python
+
+```shell
 pip install numpy
 pip install opencv-python
 pip install matplotlib
