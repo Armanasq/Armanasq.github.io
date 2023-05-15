@@ -80,18 +80,12 @@ OpenCV: for image and video processing
 Matplotlib: for data visualization
 You can install these libraries using pip, the Python package manager, by running the following commands in your terminal:</p>
 
-<pre><code class="language-python">
-pip install numpy
-pip install opencv-python
-pip install matplotlib
-</code></pre>
-
-
 ```shell
 pip install numpy
 pip install opencv-python
-pip install matplotlib
+pip install matplotli
 ```
+
 
 <h2 id="load-the-dataset">Load the Dataset</h2>
 <p>The KITTI Odometry dataset consists of multiple sequences, each containing a set of stereo image pairs and corresponding ground truth poses. We will load the data using the <code class="language-plaintext highlighter-rouge">cv2</code> library in Python.</p>

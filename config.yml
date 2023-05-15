@@ -114,14 +114,14 @@ markup:
         renderer:
             unsafe: true
     highlight:
-        guessSyntax: true
-        style: xcode
+        guessSyntax: false
     tableOfContents:
         endLevel: 2
         ordered: false
         startLevel: 2
     extensions:
       - "github.com/mohd-akram/remark-math"
+    
 
 
 
