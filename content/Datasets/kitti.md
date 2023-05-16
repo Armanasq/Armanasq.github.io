@@ -84,6 +84,8 @@ You can install these libraries using pip, the Python package manager, by runnin
 pip install numpy
 pip install opencv-python
 pip install matplotli
+pip install plotly
+pip install glob
 ```
 
 
@@ -91,26 +93,103 @@ pip install matplotli
 <p>The KITTI Odometry dataset consists of multiple sequences, each containing a set of stereo image pairs and corresponding ground truth poses. We will load the data using the <code class="language-plaintext highlighter-rouge">cv2</code> library in Python.</p>
 
 ```python
-import cv2
+# Import the libraries
 import numpy as np
+import cv2
+import os
+import glob
+import pandas as pd
+import matplotlib.pyplot as plt
+import plotly.graph_objects as go
 
-def load_data(sequence_num):
-    # Load left and right stereo image paths
-    left_image_path = f'path/to/KITTI/dataset/sequences/{sequence_num}/image_2/'
-    right_image_path = f'path/to/KITTI/dataset/sequences/{sequence_num}/image_3/'
+# Define the paths to the data
+path_img = "./data_odometry_gray/dataset/sequences/"
+path_pose = "./data_odometry_poses/dataset/poses/"
 
-    left_image_files = sorted(glob.glob(left_image_path + '*.png'))
-    right_image_files = sorted(glob.glob(right_image_path + '*.png'))
+# Load the pose data using pandas
+num = "00"
+poses = pd.read_csv(path_pose + ("%s.txt" % num), delimiter=' ', header=None)
 
-    # Load ground truth poses
-    poses_path = f'path/to/KITTI/dataset/poses/{sequence_num}.txt'
-    poses = np.loadtxt(poses_path)
+# Extract the ground truth coordinates from the pose data
+gt = np.array([np.array(poses.iloc[i]).reshape((3, 4)) for i in range(len(poses))])
 
-    # Load calibration data
-    calib_path = f'path/to/KITTI/dataset/calib/{sequence_num}.txt'
-    calib_data = load_calib_file(calib_path)
+# Extracting spatial coordinates from the gt tensor
+z = gt[:, :, 3][:, 2]
+y = gt[:, :, 3][:, 1]
+x = gt[:, :, 3][:, 0]
 
-    return left_image_files, right_image_files, poses, calib_data
+# Creating a 3D scatter plot using Plotly
+fig = go.Figure(data=[go.Scatter3d(
+    x=x,
+    y=y,
+    z=z,
+    mode='lines',
+    line=dict(color='red', width=2)
+)])
+
+# Customize the layout of the plot
+fig.update_layout(scene=dict(
+    xaxis_title='X',
+    yaxis_title='Y',
+    zaxis_title='Z',
+    camera=dict(
+        eye=dict(x=1.5, y=1.5, z=0.6),
+        projection=dict(type='perspective')
+    ),
+    bgcolor='whitesmoke',
+    xaxis=dict(showgrid=True, gridwidth=0.8, gridcolor='lightgray'),
+    yaxis=dict(showgrid=True, gridwidth=0.8, gridcolor='lightgray'),
+    zaxis=dict(showgrid=True, gridwidth=0.8, gridcolor='lightgray')
+))
+
+# Add a title to the plot for better context
+fig.update_layout(title='Spatial Trajectory', title_font=dict(size=16, color='black'))
+
+# Display the spatial trajectory plot
+fig.show()
 ```
 
 <iframe src="/kitti-gt-00.html" width="800" height="600" frameborder="0"></iframe>
+
+
+
+```python
+# Load and display a test image
+test_img = cv2.imread(path_img + num + '/image_0/000000.png')
+plt.figure(figsize=(12, 6))
+plt.imshow(test_img)
+plt.axis('off')
+plt.title('Test Image')
+plt.show()
+```
+
+<img id="myImg" src="/kitti/00.png">
+
+<h2>Understanding Calibration and Timestamp Data in 3D Vision Applications</h2>
+
+In 3D vision applications, accurate calibration and synchronized timestamps play a crucial role in aligning and mapping data from multiple sensors. In following, we will explore the contents of two important files: calib.txt and times.txt. These files provide essential information for camera calibration and synchronization of image pairs. Understanding these concepts is vital for accurately transforming and processing data in 3D vision applications.
+
+### Calibration Data (calib.txt):
+The calib.txt file contains calibration data for the cameras used in the system. Specifically, it provides the projection matrices and transformation matrices necessary for mapping points between different coordinate systems. Let's break down the contents of the calib.txt file:
+
+* Projection Matrices ($P_0$ and $P_1$):
+The projection matrices, $P_0$ and $P_1$, are $3 \times 4$ matrices that represent the transformation from 3D world coordinates to 2D image plane coordinates. $P_0$ corresponds to the left camera, while $P_1$ corresponds to the right camera. These matrices are crucial for rectifying and projecting the 3D point clouds onto the image planes.
+
+* Transformation Matrix (Tr):
+The transformation matrix, Tr, converts points from the Velodyne scanner's coordinate system to the left rectified camera's coordinate system. This transformation is necessary to map a point from the Velodyne scanner to a corresponding point in the left image plane.
+
+* Mapping a Point:
+To map a point $X$ from the Velodyne scanner to a point $x$ in the $i_{th}$ image plane, you need to perform the following transformation:
+
+$$
+\begin{equation}
+x = P_i * Tr * X
+\end{equation}
+$$
+
+Here, $P_i$ represents the projection matrix of the $i_{th}$ camera.
+
+### Timestamp Data (times.txt):
+The times.txt file provides timestamps for synchronized image pairs. These timestamps are expressed in seconds and are valuable when considering the dynamics of the vehicle. Understanding the timing of image acquisition is crucial for analyzing the relationships between different sensor data.
+
+By utilizing the timestamps in times.txt, you can accurately associate images from different cameras, Lidar scans, or other sensors that are synchronized with the image acquisition system.
