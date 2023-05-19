@@ -59,21 +59,20 @@
 
 .post-content h4 {
     font-size: 15px;    
-    font-weight: var(--semibold);
-    text-transform: uppercase;
-    color: var(--gray);
+    font-weight: bold;
+    text-transform: capitalize
 }
 
 .post-content h5 {
     font-size: 14px;
-    font-weight: var(--semibold);
-    text-transform: uppercase;
-    color: var(--gray);
+    font-weight: bold;
+    text-transform: capitalize
 }
 
 .post-content h6 {
     font-size: var(--footersize);
-    color: var(--secondary);
+    font-weight: bold;
+    text-transform: capitalize
 }
 
 .post-content a,

@@ -23,7 +23,15 @@ permalink: /robotic/
     </a>
   </div>
 
-  
+  <div class="section">
+    <a href="/orbital-mechanics/">
+      <div class="section-content">
+        <img src="/orbital-mechanics.png" style="width:120px; margin:0 Auto;" alt="Orbital Mechanics">
+        <h2>Orbital Mechanics</h2>
+      </div>
+    </a>
+  </div>
+
   <div class="section">
     <a href="/attitude-estimation/">
       <div class="section-content">

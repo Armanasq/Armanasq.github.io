@@ -114,7 +114,7 @@ markup:
         renderer:
             unsafe: true
     highlight:
-        guessSyntax: false
+        guessSyntax: true
     tableOfContents:
         endLevel: 2
         ordered: false
