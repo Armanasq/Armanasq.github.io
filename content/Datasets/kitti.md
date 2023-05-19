@@ -193,3 +193,8 @@ Here, $P_i$ represents the projection matrix of the $i_{th}$ camera.
 The times.txt file provides timestamps for synchronized image pairs. These timestamps are expressed in seconds and are valuable when considering the dynamics of the vehicle. Understanding the timing of image acquisition is crucial for analyzing the relationships between different sensor data.
 
 By utilizing the timestamps in times.txt, you can accurately associate images from different cameras, Lidar scans, or other sensors that are synchronized with the image acquisition system.
+
+
+times = pd.read_csv('../dataset/sequences/00/times.txt', delimiter=' ', header=None)
+times.head()
+d
