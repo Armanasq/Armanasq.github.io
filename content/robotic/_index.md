@@ -53,7 +53,7 @@ permalink: /robotic/
   <div class="section">
     <a href="/datasets/">
       <div class="section-content">
-        <img src="/datasets.svg" alt="Datasets">
+        <img src="/datasets.png" alt="Datasets">
         <h2>Datasets</h2>
       </div>
     </a>
