@@ -949,10 +949,211 @@ plt.show()
 <img id="myImg" src="/kitti/real_depth_img_sgbm.png">
 
 
+## Feature Extraction
+
+Feature extraction plays a critical role in computer vision tasks by capturing and representing distinct patterns or characteristics of images or image regions. These features serve as meaningful representations that enable higher-level analysis and interpretation of visual data. In this section, we will explore some advanced techniques for feature extraction in computer vision.
+
+
+### 1. Harris Corner Detection
+
+Harris Corner Detection, proposed by  [<a id="Harris" href="#HarrisRef">Harris and Stephens</a>] in 1988. It is a widely used algorithm for detecting corners in images. Corner points represent the junctions of two or more edges, which are highly informative for image matching and tracking. The Harris Corner Detection algorithm consists of the following steps:
+
+1. **Image Gradient Calculation:** Compute the gradients of the image in the x and y directions using techniques such as Sobel or Prewitt operators.
+
+2. **Structure Tensor Computation:** Based on the gradients, construct the structure tensor for each pixel. The structure tensor is a matrix that represents the local image structure at a given point.
+
+3. **Corner Response Function:** Compute the corner response function using the structure tensor. The corner response function measures the likelihood of a pixel being a corner based on the eigenvalues of the structure tensor.
+
+4. **Non-maximum Suppression:** Apply non-maximum suppression to the corner response function to select the most prominent corners while suppressing weaker nearby corners.
+
+The Harris Corner Detection algorithm can be described using the following equations:
+
+- Gradient calculation:
+  $$ \begin{equation} I_x = \frac{{\partial I}}{{\partial x}} \quad \text{and} \quad I_y = \frac{{\partial I}}{{\partial y}} \end{equation} $$
+
+- Structure tensor computation:
+  $$ \begin{equation} M = \begin{bmatrix} I_x^2 & I_xI_y \\ I_xI_y & I_y^2 \end{bmatrix} \end{equation} $$
+
+- Corner response function:
+  $$ \begin{equation} R = \text{det}(M) - k \cdot \text{trace}(M)^2 \end{equation} $$
+
+- Non-maximum suppression:
+  - Select local maxima of R by comparing R with a threshold and considering neighboring pixels.
+
+where, $I_x$  and $I_y$ are image derivatives in x and y directions respectively, $det(M)=λ1λ2$ $\text{trace}(M)=λ1+λ2$, $λ1$ and $λ2$ are the eigenvalues of $M$
+
+Harris Corner Detection is a fundamental technique in many computer vision applications, including feature matching, image alignment, and camera calibration. The detected corners serve as robust landmarks that can be used for subsequent analysis and understanding of image content.
+
+```python
+img = handler.first_image_left
+```
+
+```python
+# Load the input image
+Image = handler.first_image_left
+# Harris Corner Detection
+gray = cv2.cvtColor(Image, cv2.COLOR_BGR2GRAY)
+gray = np.float32(gray)
+dst = cv2.cornerHarris(gray, 2, 3, 0.04)
+
+# Dilate the result for marking the corners
+dst = cv2.dilate(dst, None)
+
+# Create a copy of the image to display the detected corners
+image = Image.copy()
+
+# Threshold for an optimal value, it may vary depending on the image.
+image[dst>0.01*dst.max()]=[0,0,255]
+
+# Display the image with detected corners
+plt.figure(figsize=(11, 6))
+plt.imshow(image, cmap='gray')
+plt.title('Harris Corner Detection')
+plt.axis('off')
+plt.show()
+```
+<img id="myImg" src="/kitti/Harris.png">
+
+### 2. Shi-Tomasi Corner Detector & Good Features to Track
+
+The Shi-Tomasi Corner Detector, also known as the [<a id="Shi" href="#ShiRef">Good Features to Track</a>] algorithm, is an improvement over the Harris Corner Detection algorithm. It provides a more robust and accurate method for detecting corners in an image. This algorithm selects the most distinctive corners based on a corner response measure. The steps involved in the Shi-Tomasi Corner Detection algorithm are as follows:
+
+1. **Image Gradient Calculation:** Compute the gradients of the image in the x and y directions using techniques such as Sobel or Prewitt operators.
+
+2. **Structure Tensor Computation:** Based on the gradients, construct the structure tensor for each pixel.
+
+3. **Eigenvalue Calculation:** Compute the eigenvalues of the structure tensor for each pixel. The eigenvalues represent the principal curvatures of the local image structure.
+
+4. **Corner Response Calculation:** Calculate the corner response measure using the eigenvalues. The corner response measure is defined as the minimum eigenvalue or a combination of the eigenvalues.
+
+5. **Non-maximum Suppression:** Apply non-maximum suppression to select the most significant corners while suppressing weaker nearby corners.
+
+The Shi-Tomasi Corner Detector algorithm can be described using the following equations:
+
+- Gradient calculation:
+  $$ \begin{equation} I_x = \frac{{\partial I}}{{\partial x}} \quad \text{and} \quad I_y = \frac{{\partial I}}{{\partial y}} \end{equation} $$
+
+- Structure tensor computation:
+  $$ \begin{equation} M = \begin{bmatrix} I_x^2 & I_xI_y \\ I_xI_y & I_y^2 \end{bmatrix} \end{equation} $$
+
+- Eigenvalue calculation:
+  $$ \begin{equation} \lambda_1, \lambda_2 = \text{eigenvalues}(M) \end{equation} $$
+
+- Corner response calculation:
+  $$ \begin{equation} R = \min(\lambda_1, \lambda_2) \end{equation} $$
+
+- Non-maximum suppression:
+  - Select local maxima of R by comparing R with a threshold and considering neighboring pixels.
+
+The Shi-Tomasi Corner Detector algorithm is widely used in feature tracking, motion estimation, and image registration tasks. It provides more accurate and reliable corner detection compared to the Harris Corner Detector.
+
+Here's an example code snippet for implementing the Shi-Tomasi Corner Detector using OpenCV:
+
+```python
+import cv2
+import numpy as np
+
+# Load the input image
+Image = handler.first_image_left
+
+# Create a copy of the image to display the detected corners
+image = Image.copy()
+
+# Set the maximum number of corners to detect
+max_corners = 100
+
+# Set the quality level for corner detection
+quality_level = 0.01
+
+# Set the minimum Euclidean distance between corners
+min_distance = 10
+
+# Apply Shi-Tomasi Corner Detector
+corners = cv2.goodFeaturesToTrack(gray, max_corners, quality_level, min_distance)
+
+# Convert corners to integer coordinates
+corners = np.int0(corners)
+
+# Draw detected corners on the image
+for corner in corners:
+    x, y = corner.ravel()
+    cv2.circle(image, (x, y), 3, 255, -1)
+
+# Display the image with detected corners using matplotlib
+plt.figure(figsize=(11, 6))
+plt.imshow(image, cmap='gray')
+plt.title('Shi-Tomasi Corner Detection')
+plt.axis('off')
+plt.show()
+```
+
+In this code, we use the `cv2.goodFeaturesToTrack()` function in OpenCV to apply the Shi-Tomasi Corner Detector. It takes the image, maximum number of corners, quality level, and minimum distance as parameters. The function returns the detected corners as a NumPy array. We then convert the corners to integers and draw them on the image using circles. Finally, we display the image with the detected corners.
+
+<img id="myImg" src="/kitti/Shi-Tomasi.png">
+
+### 1. Scale-Invariant Feature Transform (SIFT)
+
+The Scale-Invariant Feature Transform (SIFT) algorithm, introduced by Lowe in 1999, is widely used for robust feature extraction. SIFT extracts distinctive features invariant to scale, rotation, and affine transformations. It consists of the following key steps:
+
+1. **Scale-space Extrema Detection:** SIFT applies a Difference of Gaussian (DoG) algorithm to detect potential keypoints in different scales and locations. The DoG is obtained by subtracting blurred versions of an image at multiple scales.
+
+2. **Keypoint Localization:** Keypoints are refined by eliminating low-contrast and poorly localized points based on the local extrema in the DoG scale space.
+
+3. **Orientation Assignment:** Each keypoint is assigned a dominant orientation based on local image gradients. This orientation provides invariance to image rotation.
+
+4. **Descriptor Generation:** SIFT computes a descriptor for each keypoint by considering the local image gradients and orientations. The descriptor captures the distinctive local image properties.
+
+The SIFT algorithm is characterized by the following equations:
+
+- Difference of Gaussian (DoG):
+  $$  \begin{equation} D(x, y, \sigma) = (G(x, y, k\sigma) - G(x, y, \sigma)) \ast I(x, y)  \end{equation} $$
+
+- Gaussian function:
+  $$ \begin{equation}  G(x, y, \sigma) = \frac{1}{{2\pi\sigma^2}} \exp\left(-\frac{{x^2 + y^2}}{{2\sigma^2}}\right)  \end{equation} $$
+
+- Keypoint orientation assignment:
+  $$  \begin{equation} \theta = \text{atan2}(M_y, M_x)  \end{equation} $$
+
+- Descriptor generation:
+  - Divide the region around the keypoint into sub-regions.
+  - Compute gradient magnitude and orientation for each pixel in each sub-region.
+  - Construct a histogram of gradient orientations in each sub-region.
+  - Concatenate the histograms to form the final descriptor.
+
+### 2. Speeded-Up Robust Features (SURF)
+
+The Speeded-Up Robust Features (SURF) algorithm, introduced by Bay et al. in 2006, provides an efficient alternative to SIFT. SURF extracts robust and distinctive features while achieving faster computation. The main steps of SURF are as follows:
+
+1. **Scale-space Extrema Detection:** SURF applies a Hessian matrix-based approach to detect keypoints at multiple scales. The determinant of the Hessian matrix is used to identify potential interest points.
+
+2. **Orientation Assignment:** Similar to SIFT, SURF assigns a dominant orientation to each keypoint using the sum of Haar wavelet responses.
+
+3. **Descriptor Generation:** SURF computes a descriptor based on the distribution of Haar wavelet responses in the neighborhood of each keypoint. The wavelet responses capture the local image properties.
+
+The SURF algorithm involves the following equations:
+
+- Hessian matrix:
+  $$ \begin{equation}
+  H(x, y, \sigma) = \begin{bmatrix} L_{xx}(x, y, \sigma) & L_{xy}(x, y, \sigma) \\ L_{xy}(x, y, \sigma) & L_{yy}(x, y, \sigma) \end{bmatrix} \end{equation}  $$
+
+- Determinant of the Hessian matrix:
+  $$ \begin{equation}\text{Det}(H(x, y, \sigma)) = L_{xx}(x, y, \sigma) \cdot L_{yy}(x, y, \sigma) - (L_{xy}(x, y, \sigma))^2  \end{equation} $$
+
+- Keypoint orientation assignment:
+  $$ \begin{equation}\theta = \text{atan2}\left(\sum w \cdot M_y, \sum w \cdot M_x\right) \end{equation} $$
+
+- Descriptor generation:
+  - Divide the region around the keypoint into sub-regions.
+  - Compute Haar wavelet responses in each sub-region.
+  - Construct a descriptor by combining and normalizing the wavelet responses.
+
+These advanced feature extraction techniques, SIFT and SURF, offer powerful capabilities for identifying distinctive image features invariant to various transformations. They form the foundation for many computer vision applications, including object recognition, image stitching, and 3D reconstruction.
 
 ## References
 
 <ul>
   <li>Geiger, Andreas, Philip Lenz, and Raquel Urtasun. “Are we ready for autonomous driving? The KITTI vision benchmark suite.” Conference on Computer Vision and Pattern Recognition (CVPR), 2012.</li>
   <li>KITTI Vision Benchmark Suite. http://www.cvlibs.net/datasets/kitti/</li>
+  <li><a id="HarrisRef" href="#Harris">Harris, Chris, and Mike Stephens. "A combined corner and edge detector." Alvey vision conference. Vol. 15. No. 50. 1988.</a></li>
+  <li><a id="ShiRef" href="#Shi">Shi, Jianbo. "Good features to track." 1994 Proceedings of IEEE conference on computer vision and pattern recognition. IEEE, 1994.</a></li>
 </ul>
