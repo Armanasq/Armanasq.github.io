@@ -1091,9 +1091,11 @@ In this code, we use the `cv2.goodFeaturesToTrack()` function in OpenCV to apply
 
 <img id="myImg" src="/kitti/Shi-Tomasi.png">
 
-### 1. Scale-Invariant Feature Transform (SIFT)
+### 3. Scale-Invariant Feature Transform (SIFT)
 
-The Scale-Invariant Feature Transform (SIFT) algorithm, introduced by Lowe in 1999, is widely used for robust feature extraction. SIFT extracts distinctive features invariant to scale, rotation, and affine transformations. It consists of the following key steps:
+The Scale-Invariant Feature Transform (SIFT) algorithm, introduced by [<a id="Lowe" href="#LoweRef">Lowe</a>] in 2004, which extract keypoints and compute its descriptors. SIFT provides robustness to changes in scale, rotation, and affine transformations, making it highly effective in various real-world scenarios.
+
+The SIFT algorithm consists of the following main steps:
 
 1. **Scale-space Extrema Detection:** SIFT applies a Difference of Gaussian (DoG) algorithm to detect potential keypoints in different scales and locations. The DoG is obtained by subtracting blurred versions of an image at multiple scales.
 
@@ -1102,8 +1104,9 @@ The Scale-Invariant Feature Transform (SIFT) algorithm, introduced by Lowe in 19
 3. **Orientation Assignment:** Each keypoint is assigned a dominant orientation based on local image gradients. This orientation provides invariance to image rotation.
 
 4. **Descriptor Generation:** SIFT computes a descriptor for each keypoint by considering the local image gradients and orientations. The descriptor captures the distinctive local image properties.
+5. **Keypoint Matching:** Once the descriptors are computed for keypoints in multiple images, a matching algorithm is used to find corresponding keypoints between the images. This step allows for tasks such as image alignment, object tracking, and image stitching.
 
-The SIFT algorithm is characterized by the following equations:
+The SIFT algorithm incorporates several mathematical techniques to achieve scale invariance, robustness to noise, and distinctive feature representation. Some of the key equations and techniques used in SIFT are:
 
 - Difference of Gaussian (DoG):
   $$  \begin{equation} D(x, y, \sigma) = (G(x, y, k\sigma) - G(x, y, \sigma)) \ast I(x, y)  \end{equation} $$
@@ -1120,9 +1123,35 @@ The SIFT algorithm is characterized by the following equations:
   - Construct a histogram of gradient orientations in each sub-region.
   - Concatenate the histograms to form the final descriptor.
 
-### 2. Speeded-Up Robust Features (SURF)
 
-The Speeded-Up Robust Features (SURF) algorithm, introduced by Bay et al. in 2006, provides an efficient alternative to SIFT. SURF extracts robust and distinctive features while achieving faster computation. The main steps of SURF are as follows:
+
+```python
+# Load the input image
+Image = handler.first_image_left
+# Create a copy of the image
+image = Image.copy()
+# Create SIFT object
+sift = cv2.SIFT_create()
+
+# Detect keypoints and compute descriptors
+keypoints, descriptors = sift.detectAndCompute(image, None)
+
+# Draw keypoints on the image
+image_with_keypoints = cv2.drawKeypoints(image, keypoints, None)
+image = cv2.cvtColor(image_with_keypoints, cv2.COLOR_BGR2RGB)
+# Display the image with keypoints using matplotlib
+plt.figure(figsize=(11, 6))
+plt.imshow(image)
+plt.title('Image with SIFT Keypoints')
+plt.axis('off')
+plt.show()
+```
+
+<img id="myImg" src="/kitti/SIFT.png">
+
+### 4. Speeded-Up Robust Features (SURF)
+
+The [<a id="SURF" href="#SURFRef">Speeded-Up Robust Features (SURF)</a>] algorithm, introduced by Bay et al. in 2006, provides an efficient alternative to SIFT. SURF extracts robust and distinctive features while achieving faster computation. The main steps of SURF are as follows:
 
 1. **Scale-space Extrema Detection:** SURF applies a Hessian matrix-based approach to detect keypoints at multiple scales. The determinant of the Hessian matrix is used to identify potential interest points.
 
@@ -1149,6 +1178,464 @@ The SURF algorithm involves the following equations:
 
 These advanced feature extraction techniques, SIFT and SURF, offer powerful capabilities for identifying distinctive image features invariant to various transformations. They form the foundation for many computer vision applications, including object recognition, image stitching, and 3D reconstruction.
 
+Since the SURF algorithm is not available in the current version of OpenCV, you can not use it.
+
+
+### 5. FAST Algorithm for Corner Detection
+
+The [<a id="FAST" href="#FASTRef">FAST (Features from Accelerated Segment Test)</a>] algorithm is a popular corner detection method known for its efficiency and effectiveness. It aims to identify corners in images by comparing the intensity of pixels in a circular neighborhood around each pixel. The FAST algorithm is widely used in computer vision applications such as tracking, image registration, and 3D reconstruction.
+
+The key steps involved in the FAST algorithm are as follows:
+
+1. **Feature Point Selection:** The algorithm selects a pixel in the image as a potential corner point.
+
+2. **Feature Point Classification:** A circular neighborhood of 16 pixels is examined around the selected point. Based on the intensities of these pixels, the algorithm classifies the selected point as a corner or not.
+
+3. **Non-Maximum Suppression:** If the selected point is classified as a corner, non-maximum suppression is applied to remove neighboring points that have similar intensities.
+
+The FAST algorithm utilizes a score-based approach for corner classification. It compares the intensity of the selected pixel with the intensities of the surrounding pixels to determine whether it is a corner or not. The algorithm employs a threshold value that determines the minimum intensity difference required for a pixel to be classified as a corner.
+
+The corner detection process in the FAST algorithm involves several computations and comparisons to achieve efficiency and accuracy. The key equations and techniques used in the FAST algorithm are as follows:
+
+- **Segment Test:** The algorithm performs a binary test by comparing the intensities of a selected pixel with a threshold value. If the pixel's intensity is greater or smaller than the threshold value by a certain amount, it is considered as a candidate for a corner.
+
+- **Corner Classification:** The algorithm compares the segment test results of neighboring pixels to classify the selected pixel as a corner. If a contiguous set of pixels in a circle satisfies the segment test criteria, the selected pixel is classified as a corner.
+
+- **Non-Maximum Suppression:** After identifying potential corner points, non-maximum suppression is applied to select the most salient corners. This process eliminates neighboring corners that have similar intensities, retaining only the most distinctive corners.
+
+Here's an example code snippet demonstrating the FAST algorithm using Python and the matplotlib library for visualization:
+
+```python
+# Load the input image
+Image = handler.first_image_left
+# Create a copy of the image
+image = Image.copy()
+
+# Create FAST object
+fast = cv2.FastFeatureDetector_create()
+
+# Detect keypoints
+keypoints = fast.detect(image, None)
+
+# Draw keypoints on the image
+image_with_keypoints = cv2.drawKeypoints(image, keypoints, None, color=(255, 0, 0))
+
+# Display the image with keypoints using matplotlib
+plt.figure(figsize=(11, 6))
+plt.imshow(cv2.cvtColor(image_with_keypoints, cv2.COLOR_BGR2RGB))
+plt.title('FAST Corner Detection')
+plt.axis('off')
+plt.show()
+```
+
+In this code, we first load the image and create a FAST object using `cv2.FastFeatureDetector_create()`. We then use the `detect()` function to detect keypoints in the image. Finally, we draw the keypoints on the image using `cv2.drawKeypoints()` and display the result using `plt.imshow()`.
+
+<img id="myImg" src="/kitti/FAST.png">
+
+### 6. BRIEF (Binary Robust Independent Elementary Features)
+
+[<a id="BRIEF" href="#BRIEFRef">BRIEF (Binary Robust Independent Elementary Features)</a>] generates a binary feature descriptor that encodes the local image properties around key points. These descriptors are efficient to compute and compare, making them suitable for real-time applications.
+
+The BRIEF algorithm consists of the following steps:
+
+1. **Keypoint Selection:** BRIEF selects key points in the image using a corner detection algorithm such as Harris Corner Detection or FAST Algorithm.
+
+2. **Descriptor Construction:** For each key point, BRIEF constructs a binary feature descriptor by comparing pairs of pixel intensities in a predefined pattern around the key point.
+
+3. **Descriptor Matching:** The binary feature descriptors are compared using a matching algorithm such as Hamming distance or Euclidean distance to find correspondences between keypoints in different images.
+
+The BRIEF algorithm employs a pre-defined sampling pattern to select pairs of pixels around each key point. These pixel pairs are then compared, and the results are encoded into a binary string, forming the feature descriptor.
+
+Here are the key equations and techniques used in the BRIEF algorithm:
+
+- **Sampling Pattern:** BRIEF uses a pre-defined sampling pattern to select pairs of pixels around each key point. The pattern specifies the pixel locations relative to the key point where the intensity comparisons will be made.
+
+- **Intensity Comparison:** BRIEF compares the pixel intensities at the selected pairs of locations using a simple binary test. For example, the algorithm may compare whether the intensity of the first pixel is greater than the intensity of the second pixel.
+
+- **Encoding:** The results of the intensity comparisons are encoded into a binary string to form the feature descriptor. Each bit in the string represents the outcome of a particular intensity comparison.
+
+- **Descriptor Matching:** BRIEF uses a distance metric, such as Hamming distance or Euclidean distance, to compare the binary feature descriptors of keypoints in different images. The distance measure determines the similarity between descriptors and helps in matching keypoints.
+
+Here's an example code snippet demonstrating the BRIEF algorithm using Python and the matplotlib library for visualization:
+
+```python
+# Load the input image
+Image = handler.first_image_left
+# Create a copy of the image
+image = Image.copy()
+
+# Initiate FAST detector
+star = cv2.xfeatures2d.StarDetector_create()
+# Initiate BRIEF extractor
+brief = cv2.xfeatures2d.BriefDescriptorExtractor_create()
+# find the keypoints with STAR
+kp = star.detect(image,None)
+# compute the descriptors with BRIEF
+kp, des = brief.compute(image, kp)
+
+# Draw keypoints on the image
+image_with_keypoints = cv2.drawKeypoints(image, kp, None, color=(255, 0, 0))
+
+# Display the image with keypoints using matplotlib
+plt.figure(figsize=(11, 6))
+plt.imshow(cv2.cvtColor(image_with_keypoints, cv2.COLOR_BGR2RGB))
+plt.title('BRIEF Feature Extraction')
+plt.axis('off')
+plt.show()
+```
+
+In this code, we first load the image and create a BRIEF object using `cv2.xfeatures2d.BriefDescriptorExtractor_create()`. We then use the `detect()` function to detect keypoints in the image and compute the BRIEF descriptors using `brief.compute()`. Finally, we draw the keypoints on the image using `cv2.drawKeypoints()` and display the result using `plt.imshow()`.
+
+<img id="myImg" src="/kitti/BRIEF.png">
+
+
+### ORB (Oriented FAST and Rotated BRIEF)
+
+[<a id="ORB" href="#ORBRef">ORB (Oriented FAST and Rotated BRIEF)</a>]  combines the efficiency of the FAST corner detector with the robustness of the BRIEF descriptor. It introduces modifications to both the corner detection and descriptor computation steps to improve the performance and robustness of feature extraction.
+
+The ORB algorithm consists of the following steps:
+
+1. **Keypoint Detection:** ORB detects keypoints in the image using the FAST corner detection algorithm. FAST efficiently identifies corner-like features based on intensity variations in a circular neighborhood.
+
+2. **Orientation Assignment:** ORB assigns an orientation to each keypoint to make the feature descriptor rotation-invariant. It computes a dominant orientation based on the intensity distribution in the region surrounding the keypoint.
+
+3. **Descriptor Construction:** ORB constructs a binary feature descriptor by comparing pairs of pixel intensities in a predefined pattern around the keypoint. The BRIEF descriptor is modified to account for the assigned orientation, making it rotation-invariant.
+
+4. **Descriptor Matching:** The binary feature descriptors of keypoints in different images are compared using a distance metric such as Hamming distance or Euclidean distance to establish correspondences between keypoints.
+
+The ORB algorithm incorporates several optimizations and modifications to enhance its performance, including efficient sampling, orientation estimation, and scale pyramid representation.
+
+Here are the key equations and techniques used in the ORB algorithm:
+
+- **FAST Corner Detection:** The FAST algorithm compares the intensity of pixels in a circular neighborhood around each pixel to identify corners. It employs a threshold and requires a sufficient number of contiguous pixels to be brighter or darker than the central pixel for it to be considered a corner.
+
+- **BRIEF Descriptor:** ORB uses a binary descriptor similar to BRIEF, which compares pairs of pixel intensities. However, ORB modifies BRIEF to account for the assigned orientation of keypoints. This modification involves rotating the sampling pattern according to the keypoint orientation.
+
+- **Orientation Assignment:** ORB assigns an orientation to each keypoint by estimating the dominant direction of intensity variations around the keypoint. It calculates the intensity centroid and computes the principal orientation using the moments of the intensity distribution.
+
+- **Descriptor Matching:** ORB compares the binary feature descriptors of keypoints using a distance metric such as Hamming distance or Euclidean distance. The distance measure determines the similarity between descriptors and aids in matching keypoints.
+
+Here's an example code snippet demonstrating the ORB algorithm using Python and the matplotlib library for visualization:
+
+```python
+# Load the input image
+Image = handler.first_image_left
+# Create a copy of the image
+image = Image.copy()
+
+# Create ORB object
+orb = cv2.ORB_create()
+
+# Detect keypoints
+keypoints = orb.detect(image, None)
+
+# Compute ORB descriptors
+keypoints, descriptors = orb.compute(image, keypoints)
+
+# Draw keypoints on the image
+image_with_keypoints = cv2.drawKeypoints(image, keypoints, None, color=(255, 0, 0))
+
+# Display the image with keypoints using matplotlib
+plt.figure(figsize=(11, 6))
+plt.imshow(cv2.cvtColor(image_with_keypoints, cv2.COLOR_BGR2RGB))
+plt.title('ORB Feature Extraction')
+plt.axis('off')
+plt.show()
+```
+
+In this code, we first load the image and create an ORB object using `cv2.ORB_create()`. We then use the `detect()` function to detect keypoints in the image and compute the ORB descriptors using `orb.compute()`. Finally, we draw the keypoints on the image
+
+ using `cv2.drawKeypoints()` and display the result using `plt.imshow()`.
+
+<img id="myImg" src="/kitti/ORB.png">
+
+
+## Feature Matching
+Feature matching is a fundamental task in computer vision that aims to establish correspondences between features in different images or frames. It plays a crucial role in various applications such as image alignment, object recognition, motion tracking, and 3D reconstruction. The goal is to identify corresponding features across different images or frames, which enables us to understand the spatial relationships and transformations between them.
+
+### Descriptor Distance Measures
+
+Descriptor distance measures play a vital role in feature matching by quantifying the similarity or dissimilarity between feature descriptors. These measures help determine the quality and accuracy of matches. Here, we will discuss three commonly used descriptor distance measures:
+
+1. **Euclidean Distance**: The Euclidean distance is a fundamental distance measure used in many feature matching algorithms. It calculates the straight-line distance between two feature descriptors in the descriptor space. Mathematically, the Euclidean distance between two descriptors $x$ and $y$ with $N$ dimensions can be expressed as:
+
+   $$\begin{equation}d(x, y) = \sqrt{\sum_{i=1}^{N}(x_i - y_i)^2} \end{equation}$$
+
+   The Euclidean distance is suitable for continuous-valued feature descriptors.
+
+2. **Hamming Distance**: The Hamming distance is specifically used for binary feature descriptors, where each bit represents a certain feature characteristic. It measures the number of differing bits between two binary strings. For example, it is commonly used with binary descriptors like BRIEF or ORB. Mathematically, the Hamming distance between two binary descriptors $x$ and $y$ with $N$ bits can be calculated as:
+
+   $$\begin{equation}d(x, y) = \sum_{i=1}^{N}(x_i \oplus y_i) \end{equation}$$
+
+   Here, $x_i$ and $y_i$ represent the bits of the binary strings $x$ and $y$, respectively, and $\oplus$ denotes the XOR operation.
+
+3. **Cosine Similarity**: Cosine similarity is often employed in high-dimensional feature spaces. It measures the cosine of the angle between two feature vectors in the descriptor space, providing a similarity measure rather than a distance measure. Mathematically, the cosine similarity between two feature vectors $x$ and $y$ can be computed as:
+
+   $$\begin{equation}\text{similarity}(x, y) = \frac{x \cdot y}{\|x\| \cdot \|y\|} \end{equation}$$
+
+   Here, $x \cdot y$ represents the dot product of $x$ and $y$, and $$\|x\|$ and $\|y\|$ denote the Euclidean norms of $x$ and $y$, respectively.
+
+### Matching Techniques
+
+Matching techniques aim to establish correspondences between feature descriptors, enabling the identification of similar features in different images or frames. Below, we discuss three common matching techniques:
+
+1. **Brute-Force Matching**: Brute-force matching is a straightforward approach where each feature in one image is compared with all the features in the other image using a chosen distance measure. The best match is determined based on the minimum distance or maximum similarity score. Brute-force matching exhaustively searches for the most similar features, ensuring the best match. However, it can be computationally expensive for large-scale matching tasks.
+
+2. **FLANN (Fast Library for Approximate Nearest Neighbors) Matching**: FLANN is an efficient algorithm for approximate nearest neighbor search. It constructs an index structure, such as a kd-tree or an approximate k-means tree, to enable fast retrieval of approximate nearest neighbors. FLANN is particularly useful in high-dimensional feature spaces where the computational cost of exact matching methods, such as brute-force matching, becomes prohibitive. By providing approximate matches, FLANN significantly reduces the time required for matching.
+
+3. **Ratio Test**: The ratio test is a post-processing step commonly applied to feature matching to filter out ambiguous matches and enhance matching accuracy. It involves comparing the distance to the best match with the distance to the second-best match. If the ratio between these distances is below a specified threshold, the match is considered valid. By setting a threshold,
+
+ the ratio test ensures that matches are distinctive and significantly better than alternative matches. This test helps reduce false positives and improves the robustness of feature matching.
+
+### Code Example: Feature Matching with Brute-Force Matching and Euclidean Distance
+
+Here is an example code snippet that demonstrates feature matching using the brute-force matching technique with Euclidean distance as the descriptor distance measure:
+
+```python
+
+image1 = handler.first_image_left
+image2 = handler.first_image_right
+
+# Create feature detector and descriptor extractor
+detector = cv2.ORB_create()
+descriptor = cv2.ORB_create()
+
+# Detect and compute keypoints and descriptors for both images
+keypoints1, descriptors1 = detector.detectAndCompute(image1, None)
+keypoints2, descriptors2 = detector.detectAndCompute(image2, None)
+
+# Create a brute-force matcher with Euclidean distance
+matcher = cv2.BFMatcher(cv2.NORM_L2)
+
+# Perform matching
+matches = matcher.match(descriptors1, descriptors2)
+
+# Sort matches by distance
+matches = sorted(matches, key=lambda x: x.distance)
+
+# Draw top N matches
+N = 10
+matched_image = cv2.drawMatches(image1, keypoints1, image2, keypoints2, matches[:N], None)
+
+# Convert the image to RGB format for display
+matched_image_rgb = cv2.cvtColor(matched_image, cv2.COLOR_BGR2RGB)
+
+# Display the matched image using matplotlib
+plt.figure(figsize=(22, 8))
+plt.imshow(matched_image_rgb)
+plt.axis('off')
+plt.show()
+
+```
+
+In this code example, we use the ORB feature detector and descriptor extractor to detect keypoints and compute descriptors for both images. Then, a brute-force matcher with Euclidean distance is created to perform matching on the descriptors. The matches are sorted based on distance, and the top N matches are visualized using `cv2.drawMatches()`. Finally, the matched image is displayed using `plt.imshow()`.
+
+Note: Make sure to replace `'image1.jpg'` and `'image2.jpg'` with the paths to your own image files.
+
+This feature matching code demonstrates one possible implementation using the brute-force matching technique with Euclidean distance. It can be customized by selecting different distance measures, employing alternative matching techniques like FLANN, or adjusting parameters such as the ratio threshold in the ratio test to suit specific requirements and achieve optimal matching results.
+
+<img id="myImg" src="/kitti/Feature-Matching.png">
+
+[<a  target="_blank" href="/kitti/Feature-Matching.png"> Click hear to see full screed </a>]
+
+
+### Point Cloud to Image Projection
+
+Point cloud to image projection is a crucial step in 3D reconstruction and visualization tasks. It involves mapping the points in a 3D point cloud onto a 2D image plane to generate a corresponding image representation. This projection allows us to visualize the 3D scene from different viewpoints or perspectives. Here, we discuss the process of projecting a point cloud onto an image plane.
+
+Given a point cloud composed of 3D points $P_i = (X_i, Y_i, Z_i)$ and an intrinsic camera matrix $\mathbf{K}$, the projection of a 3D point onto a 2D image plane can be computed using the following steps:
+
+1. **Homogeneous Coordinate Transformation**: The 3D point $P_i$ is represented in homogeneous coordinates as $\mathbf{P}_i = (X_i, Y_i, Z_i, 1)$. Homogeneous coordinates allow us to perform transformations using matrix operations.
+
+2. **World to Camera Transformation**: The point $\mathbf{P}_i$ is transformed from the world coordinate system to the camera coordinate system using the camera extrinsic matrix $\mathbf{E}$. The transformation can be expressed as $\mathbf{P}_i' = \mathbf{E} \cdot \mathbf{P}_i$.
+
+3. **Perspective Projection**: The transformed point $\mathbf{P}_i'$ in the camera coordinate system is projected onto the image plane using perspective projection. This projection accounts for the camera intrinsic parameters, such as focal length and principal point, defined by the intrinsic camera matrix $\mathbf{K}$. The projection can be computed as $\mathbf{p}_i = \mathbf{K} \cdot \mathbf{P}_i'$.
+
+4. **Normalization**: The projected point $\mathbf{p}_i$ is normalized by dividing its $x$ and $y$ coordinates by its $z$ coordinate to obtain the 2D image coordinates. The normalized coordinates are given by $x = \frac{p_x}{p_z}$ and $y = \frac{p_y}{p_z}$.
+
+5. **Clipping**: The projected point is checked against the image boundaries to ensure that it lies within the valid image region. Points outside the image boundaries are typically discarded or handled using appropriate techniques.
+
+By repeating these steps for each point in the point cloud, we can project the entire point cloud onto the image plane, generating a corresponding image representation.
+
+Code Example: Point Cloud to Image Projection
+
+```python
+def project_point_cloud_to_image(point_cloud, image_height, image_width, transformation_matrix, projection_matrix):
+    """
+    Projects a point cloud onto an image plane by transforming the X, Y, Z coordinates of the points
+    to the camera frame using the transformation matrix, and then projecting them using the camera's
+    projection matrix.
+    
+    Arguments:
+    point_cloud -- array of shape Nx4 containing (X, Y, Z, reflectivity) coordinates of the point cloud
+    image_height -- height (in pixels) of the image plane
+    image_width -- width (in pixels) of the image plane
+    transformation_matrix -- 3x4 transformation matrix between the lidar (X, Y, Z, 1) homogeneous and camera (X, Y, Z)
+                             coordinate frames
+    projection_matrix -- projection matrix of the camera (should have identity transformation if the
+                         transformation matrix is used)
+    
+    Returns:
+    rendered_image -- a (image_height x image_width) array containing depth (Z) information from the lidar scan
+    """
+    # Ignore points with X values less than or equal to zero (behind the lidar)
+    point_cloud = point_cloud[point_cloud[:, 0] > 0]
+    
+    # Drop the last column (reflectivity) and replace it with ones to make coordinates homogeneous
+    point_cloud_homogeneous = np.hstack([point_cloud[:, :3], np.ones((point_cloud.shape[0], 1))])
+    
+    # Transform the point cloud into the camera coordinate frame
+    transformed_cloud = np.dot(transformation_matrix, point_cloud_homogeneous.T).T
+    
+    # Ignore points behind the camera
+    transformed_cloud = transformed_cloud[transformed_cloud[:, 2] > 0]
+    
+    # Extract the Z coordinates (depth) from the camera
+    depth = transformed_cloud[:, 2].copy()
+    
+    # Project the coordinates in the camera frame onto a flat plane at Z=1 by dividing by Z
+    transformed_cloud /= transformed_cloud[:, 2].reshape(-1, 1)
+    
+    # Add a row of ones to make the 3D coordinates on the plane homogeneous for dotting with the projection matrix
+    transformed_cloud_homogeneous = np.vstack([transformed_cloud.T, np.ones(transformed_cloud.shape[0])])
+    
+    # Get the pixel coordinates (X, Y) in the camera coordinate frame
+    projected_points = np.dot(projection_matrix, transformed_cloud_homogeneous)
+    projected_points = projected_points.T
+    
+    # Round the pixel coordinates to integers for indexing
+    pixel_coordinates = np.round(projected_points[:, :2]).astype('int')
+    
+    # Limit the pixel coordinates to those within the image plane boundaries
+    indices = np.where((pixel_coordinates[:, 0] < image_width)
+                       & (pixel_coordinates[:, 0] >= 0)
+                       & (pixel_coordinates[:, 1] < image_height)
+                       & (pixel_coordinates[:, 1] >= 0))
+    pixel_coordinates = pixel_coordinates[indices]
+    depth = depth[indices]
+    
+    # Create an empty image, then fill it with the depths of each point
+    rendered_image = np.zeros((image_height, image_width))
+    for j, (u, v) in enumerate(pixel_coordinates):
+        if 0 <= u < image_width and 0 <= v < image_height:
+            rendered_image[v, u] = depth[j]
+    
+    # Fill zero values with a large distance so they will be ignored
+    rendered_image[rendered_image == 0.0] = 3861.45
+    
+    return rendered_image
+```
+
+In this code example, the function `project_point_cloud_to_image` takes a point cloud, camera extrinsic matrix, camera intrinsic matrix, image width, and image height as input parameters. It performs the steps described above to project the point cloud onto the image plane. The projected points and valid indices are returned for further processing or visualization.
+
+Note: The actual implementation may vary depending on the library or framework used for point cloud and image processing. The provided code serves as a general guide to the projection process and may require modification to suit specific requirements and conventions.
+
+```python
+depth_lidar = pointcloud2image(handler.first_pointcloud,
+                            handler.imheight, 
+                            handler.imwidth,handler.Tr, handler.P0)
+depth_stereo = compute_disp_left(handler.first_image_left, 
+                            handler.first_image_right,
+                            5,11, matcher_name='bm')
+
+fig, (ax1, ax2) = plt.subplots(2,1, figsize=(12, 8))
+
+ax1.imshow(depth_lidar)
+ax1.set_title('Lidar Depth Map')
+ax1.axis('off')
+
+ax2.imshow(depth_stereo)
+ax2.set_title('Stereo Depth Map')
+ax2.axis('off')
+
+plt.tight_layout()
+plt.show()
+```
+
+<img id="myImg" src="/kitti/Depth_map.png">
+
+
+### Visualizing LiDAR Pointcloud
+
+```python
+import numpy as np
+import plotly.graph_objects as go
+
+def visualize_pointcloud(pointcloud):
+    """
+    Visualizes a lidar point cloud using Plotly
+    
+    Arguments:
+    pointcloud  --  array of shape Nx4 containing (X, Y, Z, reflectivity) 
+                    coordinates of the point cloud
+    """
+    # Extract coordinates from the point cloud
+    xs = pointcloud[:, 0]
+    ys = pointcloud[:, 1]
+    zs = pointcloud[:, 2]
+
+    # Create a 3D scatter plot
+    fig = go.Figure(data=[go.Scatter3d(x=xs, y=ys, z=zs, mode='markers', 
+                          marker=dict(size=1, color=zs, 
+                          colorscale='Viridis'))])
+    
+    # Set the layout options
+    fig.update_layout(scene=dict(aspectmode='data',
+                                 xaxis=dict(showgrid=False,
+                                            showticklabels=False),
+                                 yaxis=dict(showgrid=False, 
+                                            showticklabels=False),
+                                 zaxis=dict(showgrid=False, 
+                                            showticklabels=False)),
+                                 showlegend=False)
+    # Show the plot
+    fig.show()
+```
+
+<iframe src="/kitti/pointcloud.html" width="800" height="800" frameborder="0"></iframe>
+
+
+Let's compare the diffrence between Stereo Depth and LiDAR Depth.
+A comparison of depth estimation methods, specifically stereo estimation and lidar technology, offers valuable insights into the accuracy and reliability of these techniques for capturing depth information. Stereo estimation involves leveraging multiple images taken from slightly different perspectives to triangulate depth, while lidar utilizes laser beams to measure distances between the sensor and objects in its field of view. Understanding the nuances and discrepancies between these depth estimation approaches is of utmost importance in a wide range of applications, including autonomous driving, 3D mapping, and robotics.
+
+By conducting a comparative analysis of the depth outputs obtained from stereo estimation and lidar, we can evaluate their consistency and identify potential systematic errors. The provided code allows us to filter lidar depths based on a threshold and extract corresponding depths from stereo estimation. Subsequently, the difference in depth between the two methods can be calculated and visualized through a scatter plot.
+
+Analyzing the depth difference provides a means to assess the relative accuracy of stereo estimation and lidar. A depth difference close to zero signifies a strong agreement between the two methods, while significant deviations shed light on limitations or biases inherent to each technique. This insight is vital for comprehending the strengths and weaknesses associated with each approach and facilitates informed decision-making when choosing the most suitable method for specific applications.
+
+By visualizing the depth difference, valuable insights can be gained regarding the particular areas or scenarios where one method excels over the other. Such analysis plays a pivotal role in driving advancements in depth sensing technologies and aids in the development of more accurate and robust systems for depth perception.
+
+```python
+# Filter depths from lidar below a threshold
+lidar_threshold = 3000
+valid_depth_indices = np.where(depth_lidar < lidar_threshold)
+depth_indx = np.array(list(zip(*valid_depth_indices)))
+
+# Extract depths for comparison
+stereo_depths = depth_stereo[depth_indx[:, 0], depth_indx[:, 1]]
+lidar_depths = depth_lidar[depth_indx[:, 0], depth_indx[:, 1]]
+
+# Calculate the difference between stereo depth and lidar depth
+depth_difference = stereo_depths - lidar_depths
+
+# Create scatter plot for depth difference
+fig, ax = plt.subplots(figsize=(8, 6))
+ax.scatter(stereo_depths, depth_difference, c='b', label='Depth Difference', alpha=0.8)
+ax.axhline(0, color='r', linestyle='--')
+ax.set_xlabel('Stereo Depth')
+ax.set_ylabel('Depth Difference')
+ax.legend()
+
+plt.title('Difference between Stereo Depth and Lidar Depth')
+plt.grid(color='gray', linestyle='--', linewidth=0.5)
+plt.tight_layout()
+plt.show()
+```
+
+<img id="myImg" src="/kitti/stereoVSlidar.png">
+
+
+
+
 ## References
 
 <ul>
@@ -1156,4 +1643,9 @@ These advanced feature extraction techniques, SIFT and SURF, offer powerful capa
   <li>KITTI Vision Benchmark Suite. http://www.cvlibs.net/datasets/kitti/</li>
   <li><a id="HarrisRef" href="#Harris">Harris, Chris, and Mike Stephens. "A combined corner and edge detector." Alvey vision conference. Vol. 15. No. 50. 1988.</a></li>
   <li><a id="ShiRef" href="#Shi">Shi, Jianbo. "Good features to track." 1994 Proceedings of IEEE conference on computer vision and pattern recognition. IEEE, 1994.</a></li>
+  <li><a id="LoweRef" href="#Lowe">Lowe, David G. "Distinctive image features from scale-invariant keypoints." International journal of computer vision 60 (2004): 91-110.</a></li>
+  <li><a id="SURFRef" href="#SURF">Bay, Herbert, Tinne Tuytelaars, and Luc Van Gool. "Surf: Speeded up robust features." Lecture notes in computer science 3951 (2006): 404-417.</a></li>
+  <li><a id="FASTRef" href="#FAST">Rosten, Edward, and Tom Drummond. "Machine learning for high-speed corner detection." Computer Vision–ECCV 2006: 9th European Conference on Computer Vision, Graz, Austria, May 7-13, 2006. Proceedings, Part I 9. Springer Berlin Heidelberg, 2006.</a></li>
+  <li><a id="BRIEFRef" href="#BRIEF">Calonder, Michael, et al. "Brief: Binary robust independent elementary features." Computer Vision–ECCV 2010: 11th European Conference on Computer Vision, Heraklion, Crete, Greece, September 5-11, 2010, Proceedings, Part IV 11. Springer Berlin Heidelberg, 2010.</a></li>
+  <li><a id="ORBRef" href="#ORB">Rublee, Ethan, et al. "ORB: An efficient alternative to SIFT or SURF." 2011 International conference on computer vision. Ieee, 2011.</a></li>
 </ul>

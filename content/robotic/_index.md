@@ -58,6 +58,15 @@ permalink: /robotic/
       </div>
     </a>
   </div>
+
+  <div class="section">
+    <a href="/compute-vision/">
+      <div class="section-content">
+        <img src="/computer-vision.png" style="width:120px; margin:0 Auto;" alt="Computer Vision">
+        <h2>Computer Vision</h2>
+      </div>
+    </a>
+  </div>
 </div>
 
 <style>
