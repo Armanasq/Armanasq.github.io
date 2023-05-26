@@ -1,0 +1,27 @@
+/* Add your custom styles for the dark mode here */
+body {
+    background-color: #222;
+    color: #fff;
+  }
+  
+  /* Example: Style the navigation menu differently in dark mode */
+  .nav-menu {
+    background-color: #111;
+    color: #fff;
+  }
+  
+  /* Example: Style links in dark mode */
+  a {
+    color: #fff;
+  }
+  
+  /* Example: Style headings in dark mode */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: #fff;
+  }
+  

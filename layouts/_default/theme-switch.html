@@ -1,0 +1,11 @@
+{{- if eq .Request.Method "POST" -}}
+{{- $newTheme := site.Params.theme | default "dark" -}}
+  {{- $configPath := "config.yaml" -}}
+  {{- $configContent := readFile $configPath -}}
+  {{- $newConfigContent := replaceRE "defaultTheme: .*" (printf "defaultTheme: %s" $newTheme) $configContent -}}
+  {{- $bytes := slice ($newConfigContent | safeHTML) -}}
+  {{- $tempConfigPath := "temp_config.yaml" -}}
+  {{- $tempFile := (printf "%s/%s" .Site.WorkingDir $tempConfigPath) -}}
+  {{- $err := os.WriteFile $tempFile $bytes 0644 -}}
+  {{- partial "serve-config" (dict "path" $tempConfigPath) -}}
+{{- end -}}

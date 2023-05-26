@@ -1,0 +1,5 @@
+{{- $path := .path -}}
+{{- $content := readFile $path -}}
+{{- $contentType := "text/yaml" -}}
+{{- .Response.Header.Set "Content-Type" $contentType -}}
+{{- .Response.Write $content -}}

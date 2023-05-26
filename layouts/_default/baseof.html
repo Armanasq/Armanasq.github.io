@@ -12,6 +12,36 @@
 
   gtag('config', 'G-55GQYC5GYC');
 </script>
+<style>
+    /* Define your light and dark mode styles here */
+    body.list.light {
+      background-color: #ffffff;
+      color: #000000;
+      transition: background-color 0.5s, color 0.5s;
+    }
+
+    body.list.dark {
+      background-color: #333333;
+      color: #ffffff;
+      transition: background-color 0.5s, color 0.5s;
+    }
+
+    button {
+      padding: 10px 15px;
+      font-size: 16px;
+      background-color: #ffff;
+      color: #ffffff;
+      border: none;
+      cursor: pointer;
+      border-radius: 100%;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color:aqua;
+    }
+
+  </style>
 </head>
 
 <body class="
@@ -25,6 +55,69 @@
     {{- if not .IsHome  }}
     {{- partialCached "header.html" . .Page -}}
     {{- end }}
+    
+    <button onclick="toggleMode()" id="theme-toggle-button" class="light">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          <circle cx="12" cy="12" r="9"></circle>
+        </svg>
+      </button>
+      
+      <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0">
+        <symbol id="moon-icon" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79zM5 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0z"></path>
+        </symbol>
+      </svg>
+      
+      <script>
+        function toggleMode() {
+          var button = document.getElementById('theme-toggle-button');
+          var body = document.querySelector('body');
+      
+          if (button.classList.contains('light')) {
+            button.classList.remove('light');
+            button.disabled = true; // Disable the button
+            button.innerHTML = `
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <use xlink:href="#moon-icon"></use>
+              </svg>
+            `;
+            body.classList.add('dark');
+          } else {
+            button.classList.add('light');
+            button.disabled = true; // Disable the button
+            button.innerHTML = `
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="5"></circle>
+                <line x1="12" y1="1" x2="12" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="23"></line>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                <line x1="1" y1="12" x2="3" y2="12"></line>
+                <line x1="21" y1="12" x2="23" y2="12"></line>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                <circle cx="12" cy="12" r="9"></circle>
+              </svg>
+            `;
+            body.classList.remove('dark');
+          }
+      
+          setTimeout(function() {
+            button.disabled = false; // Re-enable the button after a short delay
+          }, 500); // Adjust the delay time (in milliseconds) as needed
+        }
+      </script>
+      
+
     <main class="main">
         {{- block "main" . }}{{ end }}
     </main>

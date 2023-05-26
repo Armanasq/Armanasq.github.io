@@ -173,3 +173,23 @@ span.onclick = function() {
     });
 </script>
 {{- end }}
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+      var themeButton = document.getElementById("themeButton");
+  
+      themeButton.addEventListener("click", function() {
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+          if (xhr.readyState === 4 && xhr.status === 200) {
+            location.reload(); // Refresh the page after the parameter is updated
+          }
+        };
+  
+        xhr.open("POST", "/theme-switch", true);
+        xhr.send();
+      });
+    });
+  </script>
+  
+  
