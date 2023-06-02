@@ -11,7 +11,8 @@ tags:
 ---
 [&lArr; Kaggle](/kaggle/)
 # Kaggle Tutorials
-"How-to-use-Kaggle" is a GitHub repository that provides a comprehensive guide on how to use the Kaggle platform for data science and machine learning. It covers all aspects of the platform, including creating an account, participating in competitions, using Kaggle's cloud-based workbench and datasets, and utilizing the Kaggle API. 
+"How-to-use-Kaggle" is a GitHub repository that provides a comprehensive guide on how to use the Kaggle platform for data science and machine learning. It covers all aspects of the platform, including creating an account, participating in competitions, using Kaggle's cloud-based workbench and datasets, and utilizing the Kaggle API.  
+[GitHub Repo](https://github.com/Armanasq/Kaggle-Tutorials)
 
 # A Comprehensive Guide to Using Kaggle from Scratch
 

@@ -46,7 +46,7 @@ params:
     author: Arman Asgharpoor Golroudbari
     googleAnalyticsID: "G-55GQYC5GYC"
     DateFormat: "January 2006"
-    defaultTheme: light
+    defaultTheme: dark
     hideFooter: true
     disableThemeToggle: true
     ShowShareButtons: false

@@ -28,7 +28,9 @@ output:
     css: http://localhost:4000/assets/css/main.css
 ---
 
-<p><img src="/images/kitti-cover.png" alt="KITTI Datasets" /></p>
+<p><img style="width:100%; margin: 0 auto;" src="/images/kitti-cover.png" alt="KITTI Datasets" /></p>
+
+[&lArr; Datasets](/datasets/)
 
 ## Introduction
 

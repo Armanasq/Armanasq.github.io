@@ -12,6 +12,7 @@
     display: block;
 }
 
+
 .logo,
 #menu {
     display: flex;
@@ -55,19 +56,27 @@ body:not(.dark) #sun {
     word-break: keep-all;
     overflow-x: auto;
     white-space: nowrap;
+    padding-left: 10px;
+
 }
 
 #menu li + li {
     margin-inline-start: var(--gap);
+    transition: 0.3s;
 }
 
+#menu :hover {
+    font-weight: bold;
+
+  }
 #menu a {
     font-size: var(--headersize);
-    font-weight: 400;
+    font-weight: 500;
 }
 
 #menu .active {
     border-bottom: 2px solid var(--darkpurple);
+    font-weight: bold;
 }
 
 .lang-switch li,
