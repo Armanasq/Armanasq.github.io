@@ -67,6 +67,15 @@ permalink: /robotic/
       </div>
     </a>
   </div>
+
+  <div class="section">
+    <a href="/kaggle/">
+      <div class="section-content">
+        <img src="/Kaggle_logo.png" style="width:125px; margin:25px Auto; padding:10px;" alt="Kaggle">
+        <h2 style="margin">Kaggle</h2>
+      </div>
+    </a>
+  </div>
 </div>
 
 <style>
