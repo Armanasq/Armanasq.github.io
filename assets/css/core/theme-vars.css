@@ -35,9 +35,9 @@
 .dark {
     --theme: rgb(29, 30, 32);
     --entry: rgb(46, 46, 51);
-    --primary: rgb(255, 255, 219);
-    --secondary: rgb(120, 120, 130);
-    --tertiary: rgb(65, 66, 68);
+    --primary: rgb(243, 243, 228);
+    --secondary: rgb(208, 202, 202);
+    --tertiary: rgb(119, 120, 122);
     --content: rgb(196, 196, 197);
     --hljs-bg: rgb(46, 46, 51);
     --code-bg: rgb(55, 56, 62);
