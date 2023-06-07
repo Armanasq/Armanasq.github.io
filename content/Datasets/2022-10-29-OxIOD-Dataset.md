@@ -2,6 +2,7 @@
 title: "OxIOD IMU Dataset"
 date: 2022-10-29
 url: /OxIOD-Dataset/
+showToc: true
 tags:
 
   - IMU Dataset
@@ -13,19 +14,18 @@ tags:
   - Inertial Odometry Dataset
 ---
 [Dataset](/datasets/)
-# Introduction
 
-### OxIOD Dataset
+## OxIOD Dataset
 
 [Oxford Inertial Odometry Dataset](http://deepio.cs.ox.ac.uk/) [<a id="d1" href="#oxiod">1</a>] is a large set of inertial data for inertial odometry which is recorded by smartphones at 100 Hz in indoor environment. The suite consists of 158 tests and covers a distance of over 42 km, with OMC ground track available for 132 tests. Therefore, it does not include pure rotational movements and pure translational movements, which are helpful for systematically evaluating the model's performance under different conditions; however, it covers a wide range of everyday movements.
 
 Due to the different focus, some information (for example, the alignment of the coordinate frames) is not accurately described. In addition, the orientation of the ground trace contains frequent irregularities (e.g., jumps in orientation that are not accompanied by similar jumps in the IMU data). The dataset is available at [Link](https://forms.gle/wjE7u5AonoyyrgXJ7).
 
-### How to use OxIOD Dataset
+## How to use OxIOD Dataset
 
 The dataset can be download from [here](`https://forms.gle/wjE7u5AonoyyrgXJ7`). The Dataset Contains:
 
-#### 24 Handheld Sequences
+### 24 Handheld Sequences
 
 Total 8821 seconds for 7193 meters.
 
@@ -73,7 +73,7 @@ Total 8821 seconds for 7193 meters.
 | seq4  | 366  | 306  |
 | total | 1830 | 1454 |
 
-#### 11 Pocket Sequences
+### 11 Pocket Sequences
 
 Total 5622 seconds for 4231 meters.
 
@@ -96,7 +96,7 @@ Total 5622 seconds for 4231 meters.
 | seq6  | 623  | 494  |
 | total | 3599 | 2694 |
 
-#### 8 Handbag Sequences
+### 8 Handbag Sequences
 
 Total 4100 seconds for 3431 meters.
 
@@ -116,7 +116,7 @@ Total 4100 seconds for 3431 meters.
 | seq4  | 370  | 328  |
 | total | 1930 | 1695 |
 
-#### 13 Trolley Sequences
+### 13 Trolley Sequences
 
 Total 4262 seconds for 2685 meters.
 
@@ -141,7 +141,7 @@ Total 4262 seconds for 2685 meters.
 | seq6  | 211  | 158 |
 | total | 1076 | 766 |
 
-#### 8 Slow Walking Sequences
+### 8 Slow Walking Sequences
 
 Total 4150 seconds for 2421 meters.
 
@@ -157,7 +157,7 @@ Total 4150 seconds for 2421 meters.
 | seq8  | 304  | 167  |
 | total | 4150 | 2421 |
 
-#### 7 Running Sequences
+### 7 Running Sequences
 
 Total 3732 seconds for 4356 meters.
 
@@ -172,7 +172,7 @@ Total 3732 seconds for 4356 meters.
 | seq7  | 303  | 393  |
 | total | 3732 | 4356 |
 
-#### 26 Multi Devices Sequences
+### 26 Multi Devices Sequences
 
 Total 7144 seconds for 5350 meters.
 
@@ -214,7 +214,7 @@ Total 7144 seconds for 5350 meters.
 | seq8    | 194  | 127  |
 | total   | 4021 | 2752 |
 
-#### 35 Multi Users Sequences
+### 35 Multi Users Sequences
 
 Total 8821 seconds for 9465 meters.
 
@@ -269,7 +269,7 @@ Total 8821 seconds for 9465 meters.
 | seq10  | 152  | 130  |
 | total  | 2884 | 2488 |
 
-#### 26 Large Scale Sequences
+### 26 Large Scale Sequences
 
 Total 4161 seconds for 3465 meters.
 
@@ -327,7 +327,7 @@ The header of files is
 5. user_acc_x(G) user_acc_y(G) user_acc_z(G)
 6. magnetic_field_x(microteslas) magnetic_field_y(microteslas) magnetic_field_z(microteslas)
 
-### Use OxIOD Dataset in Python
+## Use OxIOD Dataset in Python
 
 First, we need to import libraries
 
