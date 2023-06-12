@@ -1,0 +1,7 @@
+{{- $paginator := .Paginate (where .Site.RegularPages "Type" "in" (slice "post")) -}}
+{{- range $index, $page := $paginator.Pages -}}
+    {{- if ne $page.Name "_index.md" -}}
+        <!-- Add your desired HTML code for each post here -->
+    {{- end -}}
+{{- end -}}
+{{- partial "pagination.html" (dict "paginator" $paginator "style" "default") -}}

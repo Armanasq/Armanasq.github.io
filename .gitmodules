@@ -1,0 +1,3 @@
+[submodule "barks"]
+	path = barks
+	url = https://github.com/timothygebhard/barks

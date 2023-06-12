@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  .myImg {
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .myImg:hover {
+    opacity: 0.7;
+    cursor: pointer;
+  }
+
+  /* The Modal (background) */
+  .modal-img {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 150px; /* Location of the box */
+    left: 0;
+    top: 0px;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0); /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.6); /* Black w/ opacity */
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Modal Content (image) */
+  .modal-content {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 150%;
+    max-width: 1000px;
+
+  }
+
+  /* Caption of Modal Image */
+  #caption {
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    padding: 10px 0;
+
+  }
+
+  /* Add Animation */
+  .modal-content,
+  #caption {
+    -webkit-animation-name: zoom;
+    -webkit-animation-duration: 0.6s;
+    animation-name: zoom;
+    animation-duration: 0.6s;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @-webkit-keyframes zoom {
+    from {
+      -webkit-transform: scale(0);
+    }
+    to {
+      -webkit-transform: scale(1);
+    }
+  }
+
+  @keyframes zoom {
+    from {
+      transform: scale(0);
+    }
+    to {
+      transform: scale(1);
+    }
+  }
+
+  /* The Close Button */
+ /* The New Close Button for Modal */
+ .modal-close {
+    position: absolute;
+    top: -55px;
+    right: 0;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+  }
+
+  .modal-close:hover,
+  .modal-close:focus {
+    color: #bbb;
+    text-decoration: none;
+  }
+
+  /* 100% Image Width on Smaller Screens */
+  @media only screen and (max-width: 900px) {
+    .modal-content {
+      width: 90%;
+    }
+  }
+
+  .test:hover {
+    scale: 1.2;
+  }
+
+
+
+
+
+
+
+  .navbar-nav {
+    font-size:20px;
+    font-family: Merriweather,sans-serif;
+  }
+
+  .robotic-section-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .robotic-section {
+    flex-basis: calc(30.33% - 12px);
+    margin: 10px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    transition: box-shadow 0.3s ease-in-out;
+    overflow: hidden;
+  }
+  
+  .robotic-section:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .robotic-section-content {
+    text-align: center;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+  }
+  
+  .robotic-section-content .image-placeholder {
+    width: 300px;
+    height: 300px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f1f1f1;
+  }
+  
+  .robotic-section-content .image-placeholder img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+  
+  .robotic-section-content-h2 {
+    margin-top: 10px;
+    font-size: 1.rem;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .robotic-section-content-h2 :hover{
+    font-size: 10px
+  }
+  .robotic-section-content-h2 {
+    margin-top: 10px;
+    color: #777;
+    font-size: 1.2rem;
+  }
+  
+  .robotic-section-content .text-placeholder {
+    height: 80px;
+    background-color: #f1f1f1;
+  }
+  
+  .robotic-section-content a {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #FF4081;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: bold;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .robotic-section-content a:hover {
+    background-color: #E91E63;
+  }
+  
+  /* Media Query for smaller screens */
+  @media (max-width: 768px) {
+    .robotic-section {
+      flex-basis: calc(50% - 40px);
+    }
+  }
+  
+  /* Media Query for mobile devices */
+  @media (max-width: 480px) {
+    .robotic-section {
+      flex-basis: 100%;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div id="myModal" class="modal-img">
+  <div class="modal-content">
+    <span class="modal-close">&times;</span>
+    <img id="img01" style="margin-left: auto; margin-right: auto;">
+    <div id="caption"></div>
+  </div>
+</div>
+
+<!-- Add your images with the class "myImg" -->
+
+<script>
+    // Get the modal
+    var modal = document.getElementById("myModal");
+    
+    // Get all the images with the class "myImg"
+    var images = document.querySelectorAll("img.myImg");
+    
+    // Get the <img> element, the caption, and the image source
+    var modalImg = document.getElementById("img01");
+    var captionText = document.getElementById("caption");
+    
+    // Loop through all the images and add a click event listener
+    for (var i = 0; i < images.length; i++) {
+      // Store the image source in a data attribute to make it accessible in the click event listener
+      images[i].setAttribute("data-src", images[i].src);
+      // Add the click event listener to each image
+      images[i].addEventListener("click", function() {
+        // Update the modal content with the clicked image and caption
+        modalImg.src = this.getAttribute("data-src");
+        captionText.innerHTML = this.alt;
+        // Display the modal
+        modal.style.display = "block";
+      });
+    }
+    
+    // Get the close button element for the image modal
+    var modalClose = document.querySelector(".modal-content .modal-close");
+    
+    // When the user clicks on the close button, close the modal
+    modalClose.onclick = function() {
+      modal.style.display = "none";
+    };
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    </script>
+    
+    </body>
+    </html>

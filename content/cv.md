@@ -48,9 +48,14 @@ Skills
 
 Publications
 ======
-  <ul>{% for post in site.publications %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
+  <ul>
+  {{ range .Site.RegularPages.ByType "publication" }}
+    <h2>{{ .Title }}</h2>
+    <!-- Add any other desired content or template partials here -->
+{{ end }}
+</ul>
+  
+
   
 Talks
 ======
