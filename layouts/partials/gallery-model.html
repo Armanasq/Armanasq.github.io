@@ -1,24 +1,24 @@
 <div id="galleryModal" class="modal">
-    <span class="close">&times;</span>
-    <img class="modal-content" id="modalImage">
+  <span class="close">&times;</span>
+  <div class="modal-content">
+    <img id="modalImage">
   </div>
-  
-  <script>
-    // Get the modal
-    var modal = document.getElementById("galleryModal");
-  
-    // Get the image and insert it inside the modal - use its "alt" text as a caption
-    var img = document.getElementById("modalImage");
-    var modalImg = document.getElementById("modalImage");
-  
-    function openModal(imageSrc) {
-      modal.style.display = "block";
-      modalImg.src = imageSrc;
-    }
-  
-    // When the user clicks on <span> (x), close the modal
-    document.getElementsByClassName("close")[0].onclick = function () {
-      modal.style.display = "none";
-    };
-  </script>
-  
+</div>
+
+<script>
+  // Get the modal
+  var modal = document.getElementById("galleryModal");
+
+  // Get the image and insert it inside the modal - use its "alt" text as a caption
+  var modalImg = document.getElementById("modalImage");
+
+  function openModal(imageSrc) {
+    modal.style.display = "block";
+    modalImg.src = imageSrc;
+  }
+
+  // When the user clicks on <span> (x), close the modal
+  document.getElementsByClassName("close")[0].onclick = function () {
+    modal.style.display = "none";
+  };
+</script>
