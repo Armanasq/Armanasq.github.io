@@ -140,7 +140,7 @@ sections:
       title: Gallery
       subtitle: ''
       text: |-
-        {{< gallery album="demo" >}}
+        {{% gallery album="demo" %}}
     design:
       columns: '1'
   
