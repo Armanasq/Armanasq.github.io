@@ -1,6 +1,6 @@
 ---
 title: "Physics-Informed Neural Networks (PINN)"
-date: 2022-09-18
+date: 2023-06-18
 showToc: true
 url: /Deep-Learning/PINN
 tags:
