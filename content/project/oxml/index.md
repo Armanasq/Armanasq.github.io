@@ -1,3 +1,37 @@
+---
+title: Carcinoma Classification - OxML 2023 Cases
+summary: Advanced Cancer Classification Repository. The-Health-and-Medicine-OxML-competition-track
+tags:
+  - Deep Learning
+  - OxML
+date: '2023-06-01T00:00:00Z'
+
+# Optional external URL for project (replaces project detail page).
+external_link: ''
+url: /project/OxML2023/
+
+
+links:
+  - icon: github
+    icon_pack: fab
+    name: Project Code
+    url: https://github.com/Armanasq/The-Health-and-Medicine-OxML-competition-track
+  - icon: kaggle
+    icon_pack: fab
+    name: Project Code
+    url: https://www.kaggle.com/code/armanasgharpoor1993/ensemble-learning-k-fold
+url_code: ''
+url_pdf: ''
+url_slides: ''
+url_video: ''
+
+# Slides (optional).
+#   Associate this project with Markdown slides.
+#   Simply enter your slide deck's filename without extension.
+#   E.g. `slides = "example-slides"` references `content/slides/example-slides.md`.
+#   Otherwise, set `slides = ""`.
+
+---
 
 # Carcinoma Classification - OxML 2023 Cases
 
