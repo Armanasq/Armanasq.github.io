@@ -11,7 +11,15 @@ tags:
 ---
 
 
-# Physics-Informed Neural Networks (PINN)
+- [Introduction to PINN](#introduction-to-pinn)
+- [Formulation of PINN](#formulation-of-pinn)
+  - [Data-Driven Loss Term](#data-driven-loss-term)
+  - [Physics-Based Loss Term](#physics-based-loss-term)
+  - [Total Loss Function](#total-loss-function)
+- [Training PINN](#training-pinn)
+- [Advantages of PINN](#advantages-of-pinn)
+- [Limitations and Challenges](#limitations-and-challenges)
+- [Conclusion](#conclusion)
 
 Physics-Informed Neural Networks (PINN) is a powerful and innovative framework that combines the strengths of both physics-based modeling and deep learning. This approach aims to solve partial differential equations (PDEs) and other physical problems by leveraging the expressiveness of neural networks while incorporating prior knowledge of the underlying physics. PINN has gained significant attention in recent years due to its ability to handle complex, multi-physics problems and provide accurate predictions even with limited data.
 

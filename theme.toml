@@ -36,7 +36,7 @@ tags = ["widgets",
         ]
 features = ["page builder", "widgets", "themes", "search", "research publication system", "filterable portfolio",
             "blog", "create courses", "talks", "events", "slides", "gallery", "contact form"]
-
+disqusShortname = 'disqus_identifier'
 [author]
   name = "Arman Asgharpoor Golroudbarin"
   homepage = "armanasq.github.io"
