@@ -73,4 +73,4 @@ sitemap:
   _merge: deep
 minify:
   _merge: deep
-disqusShortname: your-disqus-shortname
+disqusShortname: disqus_identifier
