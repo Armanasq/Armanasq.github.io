@@ -2,8 +2,7 @@
 {{ with .Get "album" }}
   {{ range (where .Site.Pages "Type" "in" (slice "jpg" "jpeg" "png" "gif")) }}
     <a href="#" onclick="openModal('{{ $relref }}{{ .RelPermalink }}')">
-      <img src="{{ .Site.BaseURL }}{{ $relref }}{{ .RelPermalink }}" alt="{{ .Name }}" />
-
+      <img src="{{ $relref }}{{ .RelPermalink }}" alt="{{ .Name }}" />
     </a>
   {{ end }}
 {{ end }}
