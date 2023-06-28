@@ -10,11 +10,11 @@
   var modal = document.getElementById("galleryModal");
 
   // Get the image and insert it inside the modal - use its "alt" text as a caption
-  var modalImg = document.getElementById("modalImage");
 
   function openModal(imageSrc) {
     modal.style.display = "block";
-    modalImg.src = imageSrc;
+    modalImg.src = "{{ .Site.BaseURL }}" + imageSrc;
+
   }
 
   // When the user clicks on <span> (x), close the modal
