@@ -10,6 +10,8 @@ tags:
   - Neural Networks
 ---
 
+In this tutorial, we will explore Physics Informed Neural Networks (PINNs), which are neural networks trained to solve supervised learning tasks while respecting given laws of physics described by general nonlinear partial differential equations. PINNs are a class of data-efficient universal function approximators that encode underlying physical laws as prior information. We will cover two main classes of problems: data-driven solution and data-driven discovery of partial differential equations. We will provide examples and Python code snippets using TensorFlow to illustrate the concepts.
+
 
 - [Introduction to PINN](#introduction-to-pinn)
 - [Formulation of PINN](#formulation-of-pinn)
@@ -21,7 +23,7 @@ tags:
 - [Limitations and Challenges](#limitations-and-challenges)
 - [Conclusion](#conclusion)
 
-Physics-Informed Neural Networks (PINN) is a powerful and innovative framework that combines the strengths of both physics-based modeling and deep learning. This approach aims to solve partial differential equations (PDEs) and other physical problems by leveraging the expressiveness of neural networks while incorporating prior knowledge of the underlying physics. PINN has gained significant attention in recent years due to its ability to handle complex, multi-physics problems and provide accurate predictions even with limited data.
+PINN is a powerful and innovative framework that combines the strengths of both physics-based modeling and deep learning. This approach aims to solve partial differential equations (PDEs) and other physical problems by leveraging the expressiveness of neural networks while incorporating prior knowledge of the underlying physics. PINN has gained significant attention in recent years due to its ability to handle complex, multi-physics problems and provide accurate predictions even with limited data.
 
 ## Introduction to PINN
 
