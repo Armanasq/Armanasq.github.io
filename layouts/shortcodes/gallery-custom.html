@@ -1,4 +1,4 @@
-{{/* Gallery Shortcode for Wowchemy. */}}
+{{/* Gallery Modal Shortcode for Wowchemy. */}}
 {{/* Load gallery images from media library. */}}
 {{/* https://github.com/wowchemy/wowchemy-hugo-themes */}}
 
@@ -7,7 +7,7 @@
 
     Parameters
     ----------
-    album : default "gallery"
+    album-custom : required
         Album folder in `assets/media/albums/` to load images from.
     order : default "asc"
         Sort images by title ascending (asc) or descending (desc).
@@ -18,9 +18,9 @@
 {{/* For gallery nested in landing page sections */}}
 {{ $.Page.Store.Set "has_gallery" true }}
 
-{{/* Get album folder or default to `media/albums/gallery/`. */}}
-{{ $album := (.Get "album") | default "gallery" }}
-{{ $album_path := path.Join "media" "albums" $album "*" }}
+{{/* Get album folder from album-custom parameter. */}}
+{{ $album_custom := .Get "album-custom" }}
+{{ $album_path := path.Join "media" "albums" $album_custom "*" }}
 
 {{/* Gallery options */}}
 {{ $sort_order := .Get "order" | default "asc" }}
@@ -36,30 +36,25 @@
     {{ $filename := path.Base .Name }}
     {{ $caption := "" }}
     {{ if $.Page.Params.gallery_item }}
-      {{ range (where (where $.Page.Params.gallery_item "album" $album) "image" $filename) }}
+      {{ range (where (where $.Page.Params.gallery_item "album" $album_custom) "image" $filename) }}
         {{ $caption = .caption }}
       {{ end }}
     {{ end }}
-    {{ $image_size := "gallery-item--medium" }}
-    {{ if in .Name "-f." }}
-      {{ $image_size = "gallery-item--full" }}
-    {{ else if in .Name "-s." }}
-      {{ $image_size = "" }}
-    {{ else if in .Name "-l." }}
-      {{ $image_size = "gallery-item--large" }}
-    {{ end }}
-    <div class="gallery-item {{$image_size}}">
-      <a data-fancybox="gallery-{{$album}}" href="{{ .RelPermalink }}" {{ with $caption }}data-caption="{{.|markdownify|emojify|safeHTMLAttr}}"{{ end }}>
-        <img src="{{ $image.RelPermalink }}" loading="lazy" alt="{{ plainify $caption | default $filename }}" width="{{ $image.Width }}" height="{{ $image.Height }}">
-      </a>
-    </div>
-  {{ else }}
+  {{ $image_size := "gallery-item--medium" }}
+  {{if in .Name "-f." }}
+    {{ $image_size = "gallery-item--full" }}
+  {{else if in .Name "-s." }}
+    {{ $image_size = "" }}
+  {{else if in .Name "-l." }}
+    {{ $image_size = "gallery-item--large" }}
+  {{end}}
+  <div class="gallery-item {{$image_size}}">
+    <a data-fancybox="gallery-{{$album_custom}}" href="{{ .RelPermalink }}" {{ with $caption }}data-caption="{{.|markdownify|emojify|safeHTMLAttr}}"{{ end }}>
+      <img src="{{ $image.RelPermalink }}" loading="lazy" alt="{{ plainify $caption | default $filename }}" width="{{ $image.Width }}" height="{{ $image.Height }}">
+    </a>
+  </div>
+  {{else}}
     {{ errorf "Unable to load gallery `%s` in `%s`." $album_path .Page.File.Filename }}
-  {{ end }}
+  {{end}}
 
 </div>
-
-{{/* Load gallery modal if enabled */}}
-{{ if $.Site.Params.enable_gallery_modal }}
-  {{ partial "gallery-modal.html" . }}
-{{ end }}
