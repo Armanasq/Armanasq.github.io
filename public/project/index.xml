@@ -1,0 +1,514 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Projects | </title>
+    <link>https://armanasq.github.io/project/</link>
+      <atom:link href="https://armanasq.github.io/project/index.xml" rel="self" type="application/rss+xml" />
+    <description>Projects</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Thu, 01 Jun 2023 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://armanasq.github.io/media/icon_hu3a1b1aacf1bb12033635935a8f8a9863_117561_512x512_fill_lanczos_center_3.png</url>
+      <title>Projects</title>
+      <link>https://armanasq.github.io/project/</link>
+    </image>
+    
+    <item>
+      <title>Carcinoma Classification - OxML 2023 Cases</title>
+      <link>https://armanasq.github.io/project/OxML2023/</link>
+      <pubDate>Thu, 01 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>https://armanasq.github.io/project/OxML2023/</guid>
+      <description>&lt;h1 id=&#34;carcinoma-classification---oxml-2023-cases&#34;&gt;Carcinoma Classification - OxML 2023 Cases&lt;/h1&gt;
+&lt;h2 id=&#34;advanced-cancer-classification-repository&#34;&gt;Advanced Cancer Classification Repository&lt;/h2&gt;
+&lt;h2 id=&#34;the-health-and-medicine-oxml-competition-track&#34;&gt;The-Health-and-Medicine-OxML-competition-track&lt;/h2&gt;
+&lt;p&gt;This repository contains code for a sophisticated and advanced cancer classification model. The model utilizes state-of-the-art deep learning architectures, including ResNet-50, EfficientNet-V2, Inception-V3, and GoogLeNet, to classify images of skin lesions into three classes: benign, malignant, and unknown.&lt;/p&gt;
+&lt;h2 id=&#34;table-of-contents&#34;&gt;Table of Contents&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#carcinoma-classification---oxml-2023-cases&#34;&gt;Carcinoma Classification - OxML 2023 Cases&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#advanced-cancer-classification-repository&#34;&gt;Advanced Cancer Classification Repository&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#the-health-and-medicine-oxml-competition-track&#34;&gt;The-Health-and-Medicine-OxML-competition-track&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#table-of-contents&#34;&gt;Table of Contents&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#introduction&#34;&gt;Introduction&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#dataset&#34;&gt;Dataset&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#approach&#34;&gt;Approach&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#preprocessing&#34;&gt;Preprocessing&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#methodology&#34;&gt;Methodology&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#equations-and-formulas&#34;&gt;Equations and Formulas&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#implementation-details&#34;&gt;Implementation Details&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#dataset-and-data-augmentation&#34;&gt;Dataset and Data Augmentation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#model-selection-and-training&#34;&gt;Model Selection and Training&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#cross-validation&#34;&gt;Cross-Validation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#model-evaluation-and-predictions&#34;&gt;Model Evaluation and Predictions&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#data-preprocessing&#34;&gt;Data Preprocessing&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#model-architecture&#34;&gt;Model Architecture&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#training&#34;&gt;Training&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#loss-function&#34;&gt;Loss Function:&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#optimization-algorithm&#34;&gt;Optimization Algorithm:&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#model-ensemble&#34;&gt;Model Ensemble:&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#evaluation-metrics&#34;&gt;Evaluation Metrics:&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#evaluation&#34;&gt;Evaluation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#conclusion&#34;&gt;Conclusion&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;Cancer classification is a challenging task that plays a crucial role in early detection and diagnosis. The proposed model in this repository aims to accurately classify skin lesion images into three classes: benign, malignant, and unknown. To achieve this, the model utilizes a combination of pre-trained deep learning models, including ResNet-50, EfficientNet-V2, Inception-V3, and GoogLeNet, each with their specific strengths and features. By leveraging the power of ensemble learning, the model can make robust and accurate predictions.&lt;/p&gt;
+&lt;p&gt;This code is part of the Carcinoma Classification competition, specifically focusing on classifying HES stained histopathological slices as containing or not containing carcinoma cells. The goal is to determine if a carcinoma is present and, if so, whether it is benign or malignant. The competition provides a dataset of 186 images, with labels available for only 62 of them. Due to the limited training data, participants are encouraged to leverage pre-trained models and apply various techniques to improve classification performance.&lt;/p&gt;
+&lt;h2 id=&#34;dataset&#34;&gt;Dataset&lt;/h2&gt;
+&lt;p&gt;The dataset consists of HES stained histopathological slices. Each image may contain carcinoma cells, and the corresponding labels indicate whether the carcinoma is benign (0), malignant (1), or not present (-1). It is important to note that the training data is highly imbalanced, and a naive classification approach labeling all samples as healthy would yield high accuracy but an unbalanced precision/recall trade-off. The evaluation metric for this competition is the Mean F1-Score, which provides a good trade-off between sensitivity and specificity.&lt;/p&gt;
+&lt;h2 id=&#34;approach&#34;&gt;Approach&lt;/h2&gt;
+&lt;p&gt;To tackle this task, several approaches can be employed:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Relying on a pre-trained model and using zero/few-shot learning techniques.&lt;/li&gt;
+&lt;li&gt;Fine-tuning the last layer of a pre-trained model for a new classification task.&lt;/li&gt;
+&lt;li&gt;Leveraging a pre-trained model and applying a different classifier, such as Gaussian Process, SVMs, or XGBoost.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;preprocessing&#34;&gt;Preprocessing&lt;/h2&gt;
+&lt;p&gt;Several preprocessing considerations should be taken into account when working with this dataset:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Image Size: The images in the dataset do not have the same size, and cropping them may result in missing the target cells. Resizing the images may alter their features and make them less readable, so careful handling is necessary.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;methodology&#34;&gt;Methodology&lt;/h2&gt;
+&lt;p&gt;The code provided implements a deep learning pipeline for image classification using pre-trained models. The pipeline consists of the following steps:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Setting seeds: The &lt;code&gt;set_seeds&lt;/code&gt; function sets the random seeds to ensure reproducibility of the results.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;CustomDataset class: This class is used to create a custom dataset for loading and preprocessing the image data. It takes the image directory, labels file, and optional transformations as inputs. The class provides methods to retrieve the length of the dataset and individual data items.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Device setup: The code checks if a GPU is available and sets the device accordingly.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Data preparation:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Loading labeled dataset: The labeled dataset is loaded from a CSV file containing image labels.&lt;/li&gt;
+&lt;li&gt;Finding maximum size: The maximum width and height of the images in the dataset are determined.&lt;/li&gt;
+&lt;li&gt;Data transformation: Two main data transformation pipelines are defined:
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;main_transform&lt;/code&gt;: Resizes the images to the maximum width and height, converts them to tensors, and applies normalization.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;augmentation_transform&lt;/code&gt;: Includes resizing, random flips, rotation, color jitter, and normalization for data augmentation.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Dataset creation: The main dataset and augmented dataset are created using the &lt;code&gt;CustomDataset&lt;/code&gt; class and the respective transformation pipelines.&lt;/li&gt;
+&lt;li&gt;Combining datasets: The main dataset and augmented dataset are combined using the &lt;code&gt;ConcatDataset&lt;/code&gt; class.&lt;/li&gt;
+&lt;li&gt;Stratified k-fold cross-validation: The combined dataset is split into train and validation sets using stratified k-fold cross-validation.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Model setup:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Pre-trained model loading: Several pre-trained models from the torchvision library are loaded, including ResNet50, EfficientNetV2, Inception V3, and GoogLeNet.&lt;/li&gt;
+&lt;li&gt;Model adaptation: The last fully connected layers (classifiers) of each model are replaced with new linear layers to match the number of classes in the current task.&lt;/li&gt;
+&lt;li&gt;Model device placement: The models are moved to the specified device (GPU if available).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Training loop:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Loss function and optimizer: The cross-entropy loss and Adam optimizer are defined for each model.&lt;/li&gt;
+&lt;li&gt;Training phase: The training loop iterates over the specified number of epochs and performs the following steps for each model:
+&lt;ul&gt;
+&lt;li&gt;Sets the model to train mode and initializes the running loss.&lt;/li&gt;
+&lt;li&gt;Iterates over the training dataloader and performs the following steps for each batch:
+&lt;ul&gt;
+&lt;li&gt;Moves the images and labels to the specified device.&lt;/li&gt;
+&lt;li&gt;Clears the gradients from the previous iteration.&lt;/li&gt;
+&lt;li&gt;Performs a forward pass through the model to get the outputs.&lt;/li&gt;
+&lt;li&gt;Computes the loss by comparing the outputs with the ground truth labels.&lt;/li&gt;
+&lt;li&gt;Performs backpropagation to compute the gradients.&lt;/li&gt;
+&lt;li&gt;Updates the model parameters based on the gradients using the optimizer.&lt;/li&gt;
+&lt;li&gt;Accumulates the running loss.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Calculates the average loss for the epoch and prints it.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Evaluation:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Validation phase: After each training epoch, the models are evaluated on the validation set.&lt;/li&gt;
+&lt;li&gt;Evaluation metrics: Various evaluation metrics such as accuracy, F1 score, and recall are calculated using the predictions and true labels.&lt;/li&gt;
+&lt;li&gt;Best model selection: The model with the best validation loss, F1 score, and accuracy is selected and saved.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Model testing: The selected best model is used to make predictions on the test set.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;equations-and-formulas&#34;&gt;Equations and Formulas&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Class weights calculation:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Formula: &lt;code&gt;class_weights = 1.0 / torch.tensor(np.bincount(stacked_labels[train_index]))&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Description: Compute the class weights by taking the reciprocal of the counts of each class in the training set. This gives more weight to underrepresented classes and less weight to overrepresented classes.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Cross-Entropy Loss:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Formula:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://latex.codecogs.com/png.latex?%5Cbg_white%20%5Ctext%7BCrossEntropyLoss%7D%28%5Cmathbf%7Bp%7D%2C%20%5Cmathbf%7Bq%7D%29%20%3D%20-%20%5Csum_i%20p_i%20%5Clog%20q_i&#34; alt=&#34;Cross-Entropy Loss&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Description: The cross-entropy loss measures the dissimilarity between the predicted probability distribution (q) and the true probability distribution (p) of the classes. It is commonly used as a loss function in multi-class classification problems. The formula sums over all classes (i) and calculates the negative log-likelihood of the true class probabilities predicted by the model.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Adam Optimizer:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Formula for parameter update:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://latex.codecogs.com/png.latex?%5Cbg_white%20%5Ctheta_%7Bt&amp;amp;plus;1%7D%20%3D%20%5Ctheta_t%20-%20%5Cfrac%7B%5Ctext%7BLearningRate%7D%7D%7B%5Csqrt%7B%5Chat%7Bv%7D_t%7D%20%2B%20%5Cepsilon%7D%20%5Codot%20%5Chat%7Bm%7D_t&#34; alt=&#34;Adam Optimizer Update&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;Description: The Adam optimizer is an adaptive learning rate optimization algorithm commonly used in deep learning. It computes individual learning rates for different parameters by estimating first and second moments of the gradients. The formula calculates the updated parameter values (θ) based on the previous parameter values (θt), the learning rate (LearningRate), the estimated first moment of the gradient (m), the estimated second moment of the gradient (v), and a small epsilon value for numerical stability.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Accuracy:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Formula:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://latex.codecogs.com/png.latex?%5Cbg_white%20%5Ctext%7BAccuracy%7D%20%3D%20%5Cfrac%7B%5Ctext%7BNumber%20of%20correct%20predictions%7D%7D%7B%5Ctext%7BTotal%20number%20of%20predictions%7D%7D&#34; alt=&#34;Accuracy&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;Description: Accuracy is a common evaluation metric used in classification tasks. It measures the percentage of correct predictions out of the total number of predictions made by the model.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;F1 Score:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Formula:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://latex.codecogs.com/png.latex?%5Cbg_white%20%5Ctext%7BF1%20Score%7D%20%3D%20%5Cfrac%7B2%20%5Ctimes%20%5Ctext%7BPrecision%7D%20%5Ctimes%20%5Ctext%7BRecall%7D%7D%7B%5Ctext%7BPrecision%7D%20%2B%20%5Ctext%7BRecall%7D%7D&#34; alt=&#34;F1 Score&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;Description: The F1 score is the harmonic mean of precision and recall. It is a single metric that combines both precision (the ability of the model to correctly predict positive samples) and recall (the ability of the model to find all positive samples). The F1 score is commonly used when there is an imbalance between the number of positive and negative samples in the dataset.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Recall (Sensitivity):&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Formula:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://latex.codecogs.com/png.latex?%5Cbg_white%20%5Ctext%7BRecall%7D%20%3D%20%5Cfrac%7B%5Ctext%7BTrue%20Positives%7D%7D%7B%5Ctext%7BTrue%20Positives%7D%20%2B%20%5Ctext%7BFalse%20Negatives%7D%7D&#34; alt=&#34;Recall&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;Description: Recall, also known as sensitivity or true positive rate, measures the proportion of actual positive samples that are correctly identified by the model. It is a useful metric when the goal is to minimize false negatives.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;These are just a few examples of commonly used mathematical notations and formulas in machine learning. There are many other concepts and equations used in various algorithms and models depending on the specific task at hand.&lt;/p&gt;
+&lt;h2 id=&#34;implementation-details&#34;&gt;Implementation Details&lt;/h2&gt;
+&lt;p&gt;The code provided here is a Python implementation for the Carcinoma Classification competition. The code utilizes the PyTorch library for deep learning tasks. Here is an overview of the key components of the code:&lt;/p&gt;
+&lt;h3 id=&#34;dataset-and-data-augmentation&#34;&gt;Dataset and Data Augmentation&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;The &lt;code&gt;CustomDataset&lt;/code&gt; class is implemented to handle loading the dataset and corresponding labels. It also includes support for optional data augmentation transformations.&lt;/li&gt;
+&lt;li&gt;Multiple data augmentation transforms are defined using the &lt;code&gt;transforms.Compose&lt;/code&gt; function from the torchvision library. These transforms apply various operations such as resizing, random flipping, rotation, color jittering, and normalization.&lt;/li&gt;
+&lt;li&gt;The dataset is split into a main dataset and an augmented dataset, which is achieved by creating two instances of the &lt;code&gt;CustomDataset&lt;/code&gt; class with different transforms.&lt;/li&gt;
+&lt;li&gt;The &lt;code&gt;ConcatDataset&lt;/code&gt; class is used to combine the main dataset and the augmented dataset into a single dataset for training.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;model-selection-and-training&#34;&gt;Model Selection and Training&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Pre-trained models such as ResNet-50, EfficientNetV2, Inception V3, and GoogLeNet are loaded using the torchvision.models module.&lt;/li&gt;
+&lt;li&gt;The last fully connected layers of the pre-trained models are replaced to match the number of classes in the competition.&lt;/li&gt;
+&lt;li&gt;The models are moved to the available device (GPU if available) using the &lt;code&gt;to&lt;/code&gt; method.&lt;/li&gt;
+&lt;li&gt;The training loop consists of multiple epochs, where each epoch involves training the models on the training data and evaluating them on the validation data.&lt;/li&gt;
+&lt;li&gt;The training loss is calculated using the CrossEntropyLoss function, and the Adam optimizer is used for optimization.&lt;/li&gt;
+&lt;li&gt;Class weights are calculated based on the training data distribution to handle the imbalanced dataset.&lt;/li&gt;
+&lt;li&gt;The best validation loss, F1 score, and accuracy are tracked to monitor the model&amp;rsquo;s performance and select the best model.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;cross-validation&#34;&gt;Cross-Validation&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;The dataset is split into k-folds using the StratifiedKFold class from the scikit-learn library.&lt;/li&gt;
+&lt;li&gt;For each fold, the training and validation sets are obtained, and the models are trained and evaluated on these sets. This helps to assess the model&amp;rsquo;s performance across different data subsets and reduce the risk of overfitting.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;model-evaluation-and-predictions&#34;&gt;Model Evaluation and Predictions&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;The trained models are evaluated on the test set to obtain the final performance metrics, including F1 score, accuracy, precision, and recall.&lt;/li&gt;
+&lt;li&gt;The predictions are generated for the test set, which can be used for submission or further analysis.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;data-preprocessing&#34;&gt;Data Preprocessing&lt;/h2&gt;
+&lt;p&gt;Before training the models, several preprocessing steps are applied to the dataset:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Image Resizing&lt;/strong&gt;: The images are resized to the maximum dimensions found in the dataset to ensure uniformity across all samples.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Data Augmentation&lt;/strong&gt;: Two sets of data augmentation transforms are applied to the images. The first set includes random horizontal and vertical flips, random rotations, and color jittering. The second set includes additional transformations such as random affine transformations, random resized crops, and random perspective transformations. These augmentations help in increasing the diversity and generalizability of the training data.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Normalization&lt;/strong&gt;: All images are normalized by subtracting the mean and dividing by the standard deviation of the RGB channels.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;model-architecture&#34;&gt;Model Architecture&lt;/h2&gt;
+&lt;p&gt;The proposed model ensemble consists of four pre-trained deep learning models:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;ResNet-50&lt;/strong&gt;: A popular and powerful deep residual network that has shown excellent performance on various image classification tasks. The last fully connected layer of ResNet-50 is replaced with a new linear layer to accommodate the three-class classification task.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;EfficientNet-V2&lt;/strong&gt;: A highly efficient and effective deep neural network architecture that achieves state-of-the-art performance with significantly fewer parameters than other models. The last fully connected layer of EfficientNet-V2 is modified to match the three-class classification task.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Inception-V3&lt;/strong&gt;: A deep convolutional neural network known for its ability to capture intricate spatial structures and patterns in images. The original fully connected layer of Inception-V3 is replaced with a new linear layer for three-class classification.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;GoogLeNet&lt;/strong&gt;: A deep neural network architecture that utilizes inception modules and auxiliary classifiers to enhance training and improve performance. The last fully connected layer of GoogLeNet is adapted to accommodate the three-class classification task.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;To ensure computational efficiency, all pre-trained model parameters are frozen, except for the final fully connected layers. The models are moved to the available device, typically a GPU, for accelerated computations.&lt;/p&gt;
+&lt;h2 id=&#34;training&#34;&gt;Training&lt;/h2&gt;
+&lt;p&gt;The training process involves several steps:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;K-Fold Cross-Validation&lt;/strong&gt;: The dataset is split into k folds, where k is set to 8. Stratified sampling is employed to ensure a balanced distribution of classes in each fold.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Model Initialization&lt;/strong&gt;: For each fold, the four pre-trained models (ResNet-50, EfficientNet-V2, Inception-V3, and GoogLeNet) are initialized with their respective weights from the pre-trained models.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Training Loop&lt;/strong&gt;: For each epoch, the following steps are performed:
+&lt;ul&gt;
+&lt;li&gt;The training dataset is divided into batches.&lt;/li&gt;
+&lt;li&gt;For each batch, the forward pass is performed on each model to obtain the predicted probabilities for each class.&lt;/li&gt;
+&lt;li&gt;The loss is computed using the cross-entropy loss function.&lt;/li&gt;
+&lt;li&gt;The gradients are calculated and backpropagated through the models.&lt;/li&gt;
+&lt;li&gt;The optimizer is used to update the model parameters based on the gradients.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Validation&lt;/strong&gt;: After each epoch, the models are evaluated on the validation dataset to monitor their performance. The accuracy, precision, recall, and F1-score are calculated for each fold.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Model Ensemble&lt;/strong&gt;: Once training is complete, the models from each fold are combined into an ensemble. The predictions of each model are averaged to obtain the final prediction for each image in the test dataset.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Ensemble Evaluation&lt;/strong&gt;: The performance of the ensemble is evaluated on the test dataset using accuracy, precision, recall, and F1-score.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;loss-function&#34;&gt;Loss Function:&lt;/h3&gt;
+&lt;p&gt;The cross-entropy loss function is commonly used for multi-class classification tasks. Given a training example with true class label y and predicted class probabilities  ŷ, the cross-entropy loss is calculated as follows:&lt;/p&gt;
+&lt;p&gt;L(y, ŷ) = - ∑ y_i * log(ŷ_i)&lt;/p&gt;
+&lt;p&gt;Where y_i is the true probability of the i-th class and ŷ_i is the predicted probability of the i-th class. The loss function penalizes incorrect predictions by assigning a higher loss value when the predicted probability deviates from the true probability.&lt;/p&gt;
+&lt;h3 id=&#34;optimization-algorithm&#34;&gt;Optimization Algorithm:&lt;/h3&gt;
+&lt;p&gt;Stochastic Gradient Descent (SGD) is a widely used optimization algorithm for training deep learning models. It updates the model parameters in the direction of steepest descent to minimize the loss function. The update equation for the model parameters using SGD can be expressed as:&lt;/p&gt;
+&lt;p&gt;θ(t+1) = θ(t) - α * ∇L(θ(t))&lt;/p&gt;
+&lt;p&gt;Where θ(t) represents the model parameters at time step t, α is the learning rate that determines the step size, and ∇L(θ(t)) denotes the gradient of the loss function with respect to the model parameters.&lt;/p&gt;
+&lt;h3 id=&#34;model-ensemble&#34;&gt;Model Ensemble:&lt;/h3&gt;
+&lt;p&gt;The model ensemble combines the predictions of multiple models to obtain a final prediction. In this case, the predictions from each fold&amp;rsquo;s models are averaged to create an ensemble prediction. The ensemble prediction is obtained by summing the predicted probabilities for each class from all the models and normalizing them by the total number of models.&lt;/p&gt;
+&lt;p&gt;ŷ_ensemble = (1 / N) * ∑ ŷ_fold_i&lt;/p&gt;
+&lt;p&gt;Where ŷ_ensemble represents the ensemble prediction, ŷ_fold_i denotes the predicted probability from the i-th fold&amp;rsquo;s model, and N is the total number of models in the ensemble.&lt;/p&gt;
+&lt;h3 id=&#34;evaluation-metrics&#34;&gt;Evaluation Metrics:&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;Accuracy: Accuracy measures the proportion of correctly classified images over the total number of images in the test dataset.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Accuracy = (TP + TN) / (TP + TN + FP + FN)&lt;/p&gt;
+&lt;p&gt;Where TP represents the number of true positive predictions, TN represents the number of true negative predictions, FP represents the number of false positive predictions, and FN represents the number of false negative predictions.&lt;/p&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;Precision: Precision quantifies the proportion of correctly classified positive predictions (malignant and benign) out of all positive predictions.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Precision = TP / (TP + FP)&lt;/p&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;Recall: Recall, also known as sensitivity or true positive rate, measures the proportion of correctly classified positive predictions out of all actual positive instances.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Recall = TP / (TP + FN)&lt;/p&gt;
+&lt;ol start=&#34;4&#34;&gt;
+&lt;li&gt;F1-score: The F1-score combines precision and recall into a single metric, providing a balanced evaluation of the model&amp;rsquo;s performance.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;F1-score = 2 * (Precision * Recall) / (Precision + Recall)&lt;/p&gt;
+&lt;p&gt;These evaluation metrics provide a comprehensive assessment of the model&amp;rsquo;s classification performance, taking into account both true positives, true negatives, false positives, and false negatives.&lt;/p&gt;
+&lt;h2 id=&#34;evaluation&#34;&gt;Evaluation&lt;/h2&gt;
+&lt;p&gt;The model ensemble&amp;rsquo;s performance is evaluated using standard metrics, including accuracy, precision, recall, and F1-score. These metrics provide insights into the model&amp;rsquo;s ability to correctly classify images into the three classes: benign, malignant, and unknown. The evaluation results are presented in a clear and concise manner, allowing for an easy interpretation of the model&amp;rsquo;s performance.&lt;/p&gt;
+&lt;h2 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;The advanced cancer classification repository contains code for a powerful ensemble model that combines the strengths of multiple pre-trained deep learning architectures for accurate classification of skin lesion images. The repository provides detailed information on the dataset, data preprocessing steps, model architectures, training process, and evaluation metrics. Researchers and practitioners can utilize this repository to develop and deploy sophisticated cancer classification systems for early detection and diagnosis, contributing to improved patient outcomes.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Deep Learning based Inertial Attitude Estimation</title>
+      <link>https://armanasq.github.io/project/deep-attitude/</link>
+      <pubDate>Thu, 27 Apr 2023 00:00:00 +0000</pubDate>
+      <guid>https://armanasq.github.io/project/deep-attitude/</guid>
+      <description>&lt;p&gt;This project aimed for training and evaluating a deep learning model for predicting quaternion-based orientations using inertial measurement unit (IMU) sensor data. The model is trained using a combination of accelerometer, gyroscope, and magnetometer readings from the IMU sensors.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://zenodo.org/badge/latestdoi/603502780&#34;&gt;&lt;img src=&#34;https://zenodo.org/badge/603502780.svg&#34; alt=&#34;DOI&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;end-to-end-deep-learning-framework-for-real-time-inertial-attitude-estimation-using-6dof-imu&#34;&gt;End-to-End-Deep-Learning-Framework-for-Real-Time-Inertial-Attitude-Estimation-using-6DoF-IMU&lt;/h1&gt;
+&lt;p&gt;Code repo of paper &lt;strong&gt;Generalizable end-to-end deep learning frameworks for real-time attitude estimation using 6DoF inertial measurement units&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;ScienceDirect: &lt;a href=&#34;https://doi.org/10.1016/j.measurement.2023.113105&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Link&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Arxiv: &lt;a href=&#34;https://arxiv.org/abs/2302.06037&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Link&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;imu-quaternion-prediction&#34;&gt;IMU Quaternion Prediction&lt;/h1&gt;
+&lt;p&gt;This repository contains code for training and evaluating a deep learning model for predicting quaternion orientations using inertial measurement unit (IMU) sensor data. The model is trained using a combination of accelerometer, gyroscope, and magnetometer readings from the IMU sensors.&lt;/p&gt;
+&lt;h2 id=&#34;table-of-contents&#34;&gt;Table of Contents&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#end-to-end-deep-learning-framework-for-real-time-inertial-attitude-estimation-using-6dof-imu&#34;&gt;End-to-End-Deep-Learning-Framework-for-Real-Time-Inertial-Attitude-Estimation-using-6DoF-IMU&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#imu-quaternion-prediction&#34;&gt;IMU Quaternion Prediction&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#table-of-contents&#34;&gt;Table of Contents&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#introduction&#34;&gt;Introduction&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#requirements&#34;&gt;Requirements&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#installation&#34;&gt;Installation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#usage&#34;&gt;Usage&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#data-preprocessing&#34;&gt;Data Preprocessing&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#model-training&#34;&gt;Model Training&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#model-evaluation&#34;&gt;Model Evaluation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#results&#34;&gt;Results&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#contributing&#34;&gt;Contributing&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#citation&#34;&gt;Citation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#license&#34;&gt;License&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;Inertial measurement units (IMUs) are commonly used in various applications, such as robotics, virtual reality, and motion tracking. They consist of sensors, including accelerometers, gyroscopes, and magnetometers, that provide measurements of linear acceleration, angular velocity, and magnetic field orientation, respectively. Quaternion representations are often used to represent the orientation of an IMU sensor due to their advantages over other representations.&lt;/p&gt;
+&lt;p&gt;The goal of this project is to develop a deep learning model that can accurately predict the orientation of an IMU sensor using the sensor&amp;rsquo;s raw data. The model takes as input the accelerometer, gyroscope, and magnetometer readings and outputs a quaternion representing the sensor&amp;rsquo;s orientation in 3D space. Accurate quaternion prediction is crucial for applications that rely on precise orientation estimation.&lt;/p&gt;
+&lt;h2 id=&#34;requirements&#34;&gt;Requirements&lt;/h2&gt;
+&lt;p&gt;To run the code in this repository, you need the following dependencies:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Python 3.x&lt;/li&gt;
+&lt;li&gt;TensorFlow 2.x&lt;/li&gt;
+&lt;li&gt;Keras&lt;/li&gt;
+&lt;li&gt;NumPy&lt;/li&gt;
+&lt;li&gt;Pandas&lt;/li&gt;
+&lt;li&gt;Matplotlib&lt;/li&gt;
+&lt;li&gt;scikit-learn&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;These dependencies can be easily installed using pip or conda.&lt;/p&gt;
+&lt;h2 id=&#34;installation&#34;&gt;Installation&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;Clone this repository to your local machine using the following command:
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git clone https://github.com/your-username/imu-quaternion-prediction.git
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;Change into the project directory:
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;cd imu-quaternion-prediction
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;Install the required dependencies using pip:
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;pip install -r requirements.txt
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;usage&#34;&gt;Usage&lt;/h2&gt;
+&lt;p&gt;The code in this repository is organized into several modules, each responsible for a specific task. Here is an overview of the main modules and their functionality:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;model.py&lt;/code&gt;: Contains the definition of the deep learning model used for quaternion prediction. It utilizes convolutional and recurrent neural network layers to learn spatial and temporal patterns from the sensor data.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;dataset_loader.py&lt;/code&gt;: Implements functions for loading and preprocessing the IMU sensor data. It handles reading data from different sources, merging the data into a single dataset, and splitting it into training and testing sets. It also performs windowing and normalization of the sensor data.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;learning.py&lt;/code&gt;: Includes functions for training and evaluating the model. It compiles the model with an appropriate optimizer and loss function, sets up callbacks for early stopping, learning rate scheduling, model checkpointing, and tensorboard logging. It also trains the model using the training dataset and evaluates its performance on the testing dataset.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;util.py&lt;/code&gt;: Provides utility functions used throughout the project, such as functions for computing quaternion error angles and visualizing sensor data.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;To run the code, you can use the &lt;code&gt;train.py&lt;/code&gt; script. This script loads the IMU sensor data, preprocesses it, trains the model, and evaluates its performance. You can customize the hyperparameters and settings in the script to suit your needs.&lt;/p&gt;
+&lt;p&gt;To train the model, run the following command:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;python train.py
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;data-preprocessing&#34;&gt;Data Preprocessing&lt;/h2&gt;
+&lt;p&gt;The &lt;code&gt;dataset_loader.py&lt;/code&gt; module provides functions for loading and preprocessing the IMU sensor data. The data preprocessing&lt;/p&gt;
+&lt;p&gt;steps include reading the sensor data from CSV files, merging the data from multiple sensors into a single dataset, splitting the data into training and testing sets, windowing the data, and normalizing the sensor readings. These preprocessing steps are essential to prepare the data for training the model.&lt;/p&gt;
+&lt;h2 id=&#34;model-training&#34;&gt;Model Training&lt;/h2&gt;
+&lt;p&gt;The &lt;code&gt;model.py&lt;/code&gt; module contains the definition of the deep learning model used for quaternion prediction. The model architecture consists of convolutional and recurrent neural network layers, which enable the model to learn spatial and temporal patterns from the sensor data. The model is compiled with an appropriate optimizer and loss function for training.&lt;/p&gt;
+&lt;p&gt;During training, the model is fed with batches of preprocessed sensor data. The model learns to map the input sensor readings to quaternion orientations by minimizing the specified loss function. The training process can be customized using various hyperparameters, such as learning rate, batch size, and number of epochs.&lt;/p&gt;
+&lt;h2 id=&#34;model-evaluation&#34;&gt;Model Evaluation&lt;/h2&gt;
+&lt;p&gt;After training, the model&amp;rsquo;s performance is evaluated using the testing dataset. The &lt;code&gt;learning.py&lt;/code&gt; module includes functions for evaluating the model&amp;rsquo;s performance by computing various metrics, such as mean absolute error (MAE), root mean squared error (RMSE), and mean error angle (MEA). These metrics provide insights into how well the model is performing and help you understand its strengths and weaknesses.&lt;/p&gt;
+&lt;h2 id=&#34;results&#34;&gt;Results&lt;/h2&gt;
+&lt;p&gt;The &lt;code&gt;results&lt;/code&gt; directory contains the trained models and evaluation results obtained during the experiments. You can find the best-performing models and their corresponding evaluation metrics in this directory. The evaluation results include metrics such as MAE, RMSE, and MEA, as well as visualizations of the predicted quaternion orientations compared to the ground truth values.&lt;/p&gt;
+&lt;h2 id=&#34;contributing&#34;&gt;Contributing&lt;/h2&gt;
+&lt;p&gt;Contributions to this repository are welcome. If you have any suggestions, bug fixes, or improvements, feel free to submit a pull request. Please provide clear and detailed information about the changes you have made.&lt;/p&gt;
+&lt;h2 id=&#34;citation&#34;&gt;Citation&lt;/h2&gt;
+&lt;p&gt;If you make use of this work, please cite&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;@software{Asgharpoor_Golroudbari_End-to-End-Deep-Learning-Framework-for-Real-Time-Inertial-Attitude-Estimation-using-6DoF-IMU_2023,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;author = {Asgharpoor Golroudbari, Arman and Sabour, Mohammad Hossein},
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;doi = {10.5281/zenodo.7850047},
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;month = apr,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;title = {{End-to-End-Deep-Learning-Framework-for-Real-Time-Inertial-Attitude-Estimation-using-6DoF-IMU}},
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;url = {https://github.com/Armanasq/End-to-End-Deep-Learning-Framework-for-Real-Time-Inertial-Attitude-Estimation-using-6DoF-IMU},
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;version = {1.0.0},
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;year = {2023}
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;@article{GOLROUDBARI2023113105,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;title = {Generalizable end-to-end deep learning frameworks for real-time attitude estimation using 6DoF inertial measurement units},
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;journal = {Measurement},
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;pages = {113105},
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;year = {2023},
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;issn = {0263-2241},
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;doi = {https://doi.org/10.1016/j.measurement.2023.113105},
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;url = {https://www.sciencedirect.com/science/article/pii/S0263224123006693},
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;author = {Arman Asgharpoor Golroudbari and Mohammad Hossein Sabour},
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;keywords = {Deep learning, Navigation, Inertial sensors, Intelligent filter, Sensor fusion, Long-short term memory, Convolutional neural network}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;license&#34;&gt;License&lt;/h2&gt;
+&lt;p&gt;This project is licensed under the MIT License. See the &lt;a href=&#34;LICENSE&#34;&gt;LICENSE&lt;/a&gt; file for more details.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Recent Talks | </title>
+    <link>https://armanasq.github.io/talk/</link>
+      <atom:link href="https://armanasq.github.io/talk/index.xml" rel="self" type="application/rss+xml" />
+    <description>Recent Talks</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Mon, 01 Aug 2022 15:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://armanasq.github.io/media/icon_hu3a1b1aacf1bb12033635935a8f8a9863_117561_512x512_fill_lanczos_center_3.png</url>
+      <title>Recent Talks</title>
+      <link>https://armanasq.github.io/talk/</link>
+    </image>
+    
+    <item>
+      <title>Neural Network based Attitude Estimation</title>
+      <link>https://armanasq.github.io/talk/neural-network-based-attitude-estimation/</link>
+      <pubDate>Mon, 01 Aug 2022 15:00:00 +0000</pubDate>
+      <guid>https://armanasq.github.io/talk/neural-network-based-attitude-estimation/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Quantum Computation</title>
+      <link>https://armanasq.github.io/talk/quantum-computation/</link>
+      <pubDate>Sun, 01 Aug 2021 15:00:00 +0000</pubDate>
+      <guid>https://armanasq.github.io/talk/quantum-computation/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

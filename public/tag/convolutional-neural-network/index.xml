@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Convolutional Neural Network | </title>
+    <link>https://armanasq.github.io/tag/convolutional-neural-network/</link>
+      <atom:link href="https://armanasq.github.io/tag/convolutional-neural-network/index.xml" rel="self" type="application/rss+xml" />
+    <description>Convolutional Neural Network</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Mon, 01 May 2023 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://armanasq.github.io/media/icon_hu3a1b1aacf1bb12033635935a8f8a9863_117561_512x512_fill_lanczos_center_3.png</url>
+      <title>Convolutional Neural Network</title>
+      <link>https://armanasq.github.io/tag/convolutional-neural-network/</link>
+    </image>
+    
+    <item>
+      <title>Recent Advancements in Deep Learning Applications and Methods for Autonomous Navigation: A Comprehensive Review</title>
+      <link>https://armanasq.github.io/publication/preprint/</link>
+      <pubDate>Mon, 01 May 2023 00:00:00 +0000</pubDate>
+      <guid>https://armanasq.github.io/publication/preprint/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,1930 @@
+<!DOCTYPE html>
+<!-- This site was created with Wowchemy. https://www.wowchemy.com -->
+<!-- Last Published: July 2, 2023 --><html lang="en-us" >
+
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Wowchemy 5.7.0 for Hugo" />
+  
+
+  
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+  
+
+  
+  
+
+  
+  
+    
+    <script src="/js/mathjax-config.js"></script>
+  
+
+  
+
+  <link rel="stylesheet" href="/css/vendor-bundle.min.047268c6dd09ad74ba54a0ba71837064.css" media="print" onload="this.media='all'">
+
+  
+  
+  
+    
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.2/css/academicons.min.css" integrity="sha512-KlJCpRsLf+KKu2VQa5vmRuClRFjxc5lXO03ixZt82HZUk41+1I0bD8KBSA0fY290ayMfWYI9udIqeOWSu1/uZg==" crossorigin="anonymous" media="print" onload="this.media='all'">
+    
+
+    
+    
+    
+    
+      
+      
+    
+    
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.d060e36f065b14306ff371728665eb02.css" />
+
+  
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+    
+    
+    <link rel="stylesheet" href="/css/libs/chroma/dracula.min.css" title="hl-light" media="print" onload="this.media='all'" >
+    <link rel="stylesheet" href="/css/libs/chroma/dracula.min.css" title="hl-dark" media="print" onload="this.media='all'" disabled>
+  
+
+  
+  
+
+  <meta name="google-site-verification" content="Zv4l_ljWZhu4o0Z-kfZwQmuokpt40AvKXA78N8kynpc" />
+
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-55GQYC5GYC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag() {
+      dataLayer.push(arguments);
+  }
+
+  function trackOutboundLink(url, target) {
+    gtag('event', 'click', {
+         'event_category': 'outbound',
+         'event_label': url,
+         'transport_type': 'beacon',
+         'event_callback': function () {
+           if (target !== '_blank') {
+             document.location = url;
+           }
+         }
+    });
+    console.debug("Outbound link clicked: " + url);
+  }
+
+  function onClickCallback(event) {
+    if ((event.target.tagName !== 'A') || (event.target.host === window.location.host)) {
+      return;
+    }
+    trackOutboundLink(event.target, event.target.getAttribute('target'));  
+  }
+
+  gtag('js', new Date());
+  gtag('config', 'G-55GQYC5GYC', {});
+  gtag('set', {'cookie_flags': 'SameSite=None;Secure'});
+
+  
+  document.addEventListener('click', onClickCallback, false);
+</script>
+
+
+
+
+<script>
+  (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','G-55GQYC5GYC');
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+
+
+
+
+
+
+  <meta name="author" content="Arman Asgharpoor Golroudbari" />
+
+
+
+
+
+  
+
+<meta name="description" content="Introduction RepoIMU T-stick RepoIMU T-pendulum Sassari OxIOD MAV Dataset EuRoC MAV TUM-VI KITTI RIDI RoNIN BROAD References Introduction IMU Datasets are used to evaluate the performance of the attitude estimation algorithms." />
+
+
+
+<link rel="alternate" hreflang="en-us" href="https://armanasq.github.io/datasets/imu-datsets/" />
+<link rel="canonical" href="https://armanasq.github.io/datasets/imu-datsets/" />
+
+
+
+  <link rel="manifest" href="/manifest.webmanifest" />
+
+
+
+<link rel="icon" type="image/png" href="/media/icon_hu3a1b1aacf1bb12033635935a8f8a9863_117561_32x32_fill_lanczos_center_3.png" />
+<link rel="apple-touch-icon" type="image/png" href="/media/icon_hu3a1b1aacf1bb12033635935a8f8a9863_117561_180x180_fill_lanczos_center_3.png" />
+
+<meta name="theme-color" content="#1565c0" />
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+<meta property="twitter:card" content="summary" />
+
+  <meta property="twitter:site" content="@wowchemy" />
+  <meta property="twitter:creator" content="@wowchemy" />
+<meta property="twitter:image" content="https://armanasq.github.io/media/icon_hu3a1b1aacf1bb12033635935a8f8a9863_117561_512x512_fill_lanczos_center_3.png" />
+<meta property="og:site_name" content="" />
+<meta property="og:url" content="https://armanasq.github.io/datasets/imu-datsets/" />
+<meta property="og:title" content="IMU Datasets | " />
+<meta property="og:description" content="Introduction RepoIMU T-stick RepoIMU T-pendulum Sassari OxIOD MAV Dataset EuRoC MAV TUM-VI KITTI RIDI RoNIN BROAD References Introduction IMU Datasets are used to evaluate the performance of the attitude estimation algorithms." /><meta property="og:image" content="https://armanasq.github.io/media/icon_hu3a1b1aacf1bb12033635935a8f8a9863_117561_512x512_fill_lanczos_center_3.png" /><meta property="og:locale" content="en-us" />
+
+  
+    <meta
+      property="article:published_time"
+      content="2022-09-18T00:00:00&#43;00:00"
+    />
+  
+  
+    <meta property="article:modified_time" content="2022-09-18T00:00:00&#43;00:00">
+  
+
+
+
+
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://armanasq.github.io/datasets/imu-datsets/"
+  },
+  "headline": "IMU Datasets",
+  
+  "datePublished": "2022-09-18T00:00:00Z",
+  "dateModified": "2022-09-18T00:00:00Z",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Arman Asgharpoor Golroudbari"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://armanasq.github.io/media/icon_hu3a1b1aacf1bb12033635935a8f8a9863_117561_192x192_fill_lanczos_center_3.png"
+    }
+  },
+  "description": "Introduction RepoIMU T-stick RepoIMU T-pendulum Sassari OxIOD MAV Dataset EuRoC MAV TUM-VI KITTI RIDI RoNIN BROAD References Introduction IMU Datasets are used to evaluate the performance of the attitude estimation algorithms."
+}
+</script>
+
+  
+
+  
+
+
+
+
+  
+  
+  
+
+  
+  
+
+  
+
+
+  
+  <title>IMU Datasets | </title>
+
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="96717597f52c6ebacd5450530e9f8dc0" >
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.min.ec9d49ca50e4b80bdb08f0417a28ed84.js"></script>
+
+  
+
+
+<aside class="search-modal" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#" aria-label="Close"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control"
+        aria-label="Search...">
+        
+      </div>
+
+      
+      
+
+      
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+
+  <div class="page-header header--fixed">
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<header>
+  <nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+    <div class="container-xl">
+
+      
+      <div class="d-none d-lg-inline-flex">
+        <a class="navbar-brand" href="/"></a>
+      </div>
+      
+
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse"
+              data-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
+      <span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+      
+      <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+        <a class="navbar-brand" href="/"></a>
+      </div>
+      
+
+      
+      
+      <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+        
+        <ul class="navbar-nav d-md-inline-flex">
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#about"><span>Home</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/robotic"><span>Robotic</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#posts"><span>Posts</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#projects"><span>Projects</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#talks"><span>Talks</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/publication"><span>Publications</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/certificates"><span>Certificates</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#contact"><span>Contact</span></a>
+          </li>
+
+          
+          
+
+        
+
+          
+        </ul>
+      </div>
+
+      <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+        
+        
+          
+            
+            <li class="nav-item d-none d-lg-inline-flex">
+              <a class="nav-link" href="mailto:a.asgharpoor1993@gmail.com" data-toggle="tooltip" data-placement="bottom" title="Drop me an email."  aria-label="Drop me an email.">
+                <i class="fas fa-envelope" aria-hidden="true"></i>
+              </a>
+            </li>
+          
+            
+            <li class="nav-item d-none d-lg-inline-flex">
+              <a class="nav-link" href="https://github.com/armanasq" data-toggle="tooltip" data-placement="bottom" title="Follow Me on GitHub." target="_blank" rel="noopener" aria-label="Follow Me on GitHub.">
+                <i class="fab fa-github" aria-hidden="true"></i>
+              </a>
+            </li>
+          
+        
+
+        
+        
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" href="#" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+        
+        
+        <li class="nav-item dropdown theme-dropdown">
+          <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-label="Display preferences">
+            <i class="fas fa-moon" aria-hidden="true"></i>
+          </a>
+          <div class="dropdown-menu">
+            <a href="#" class="dropdown-item js-set-theme-light">
+              <span>Light</span>
+            </a>
+            <a href="#" class="dropdown-item js-set-theme-dark">
+              <span>Dark</span>
+            </a>
+            <a href="#" class="dropdown-item js-set-theme-auto">
+              <span>Automatic</span>
+            </a>
+          </div>
+        </li>
+        
+
+        
+        
+
+      </ul>
+
+    </div>
+  </nav>
+</header>
+
+
+  </div>
+
+  <div class="page-body">
+    
+    
+    
+
+    <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>IMU Datasets</h1>
+
+  
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    Sep 18, 2022
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    10 min read
+  </span>
+  
+
+  
+  
+  
+  
+
+  
+  
+
+</div>
+
+    
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      <ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#repoimu-t-stick">RepoIMU T-stick</a></li>
+<li><a href="#repoimu-t-pendulum">RepoIMU T-pendulum</a></li>
+<li><a href="#sassari">Sassari</a></li>
+<li><a href="#oxiod">OxIOD</a></li>
+<li><a href="#mav-dataset">MAV Dataset</a></li>
+<li><a href="#euroc-mav">EuRoC MAV</a></li>
+<li><a href="#tum-vi">TUM-VI</a></li>
+<li><a href="#kitti">KITTI</a></li>
+<li><a href="#ridi">RIDI</a></li>
+<li><a href="#ronin">RoNIN</a></li>
+<li><a href="#broad">BROAD</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+<h2 id="introduction">Introduction</h2>
+<p>IMU Datasets are used to evaluate the performance of the attitude estimation algorithms. In this post, we will present some of the most popular IMU Datasets. The datasets are divided into two categories: synthetic and real-world. The synthetic datasets are generated by simulating the IMU measurements. The real-world datasets are collected from the real-world experiments. The real-world experiments are divided into two categories: indoor and outdoor. The indoor experiments are conducted in a controlled environment, e.g., a laboratory. The outdoor experiments are conducted in an uncontrolled environment, e.g., a car. Also, to train, validate and test any neural network model, we need a database including accurate input and output. A Deep Learning model&rsquo;s performance will be directly affected by the data that is used for it. So, to train the Deep Learning model we need a database containing the input and output parameters with following conditions:</p>
+<ul>
+<li>The input and output parameters should be accurate.</li>
+<li>The amount of data must be sufficient to train the Deep Learning model</li>
+<li>The data should be diverse enough to cover all the possible scenarios.</li>
+</ul>
+<p>In the following sections, we will present some of the most popular IMU Datasets.</p>
+<h2 id="repoimu-t-stick">RepoIMU T-stick</h2>
+<p>The RepoIMU T-stick [<a id="d1" href="#repoT">1</a>] is a small, low-cost, and high-performance inertial measurement unit (IMU) that can be used for a wide range of applications. The RepoIMU T-stick is a 9-axis IMU that measures the acceleration, angular velocity, and magnetic field. This database contains two separate sets of experiments recorded with a T-stick and a pendulum. A total of 29 trials were collected on the T-stick, and each trial lasted approximately 90 seconds. As the name suggests, the IMU is attached to a T-shaped stick equipped with six reflective markers. Each experiment consists of slow or fast rotation around a principal sensor axis or translation along a principal sensor axis. In this scenario, the data from the Vicon Nexus OMC system and the XSens MTi IMU are synchronized and provided at a frequency of 100 Hz. The authors clearly state that the IMU coordinate system and the ground trace are not aligned and propose a method to compensate for one of the two required rotations based on quaternion averaging. Unfortunately, some experiments contain gyroscope clipping and ground tracking, which significantly affect the obtained errors. Therefore, careful pre-processing and removal of some trials should be considered when using the dataset to evaluate the model&rsquo;s accuracy. The dataset is available at <a href="http://https://github.com/agnieszkaszczesna/RepoIMU">Link</a>.</p>
+<h2 id="repoimu-t-pendulum">RepoIMU T-pendulum</h2>
+<p>The second part of the RepoIMU dataset contains data from a triple pendulum on which the IMUs are mounted. Measurement data is provided at 90 Hz or 166 Hz. However, the IMU data contains duplicate samples. This is usually the result of artificial sampling or transmission problems where missed samples are replaced by duplicating the last sample received, effectively reducing the sampling rate. The sampling rate achieved when discarding frequent samples is about 25 Hz and 48 Hz for the accelerometer and gyroscope, respectively. Due to this issue, it is not recommended to use this database for model training and evaluation. Due to this fact, we cannot recommend using pendulum tests to evaluate the accuracy of IOE with high precision.</p>
+<h2 id="sassari">Sassari</h2>
+<p>The Sassari dataset published in [<a id="d2" href="#sassari">2</a>] aims to validate a parameter tuning approach based on the orientation difference of two IMUs of the same model. To facilitate this, six IMUs from three manufacturers (Xsens, APDM, Shimmer) are placed on a wooden board. Rotation around specific axes and free rotation around all axes are repeated at three different speeds. Data is synchronized and presented at 100 Hz. Local coordinate frames are aligned by precise manual placement. There are 18 experiments (3 speeds, 3 IMU models, and 2 IMUs of each model) in this dataset.</p>
+<p>According to these points, this database seems to be a suitable option for training, evaluating, and testing the model, but some essential points should be paid attention to. The inclusion of different speeds and different types of IMUs helped to diversify the data set. However, all motions occur in a homogeneous magnetic field and do not involve pure translational motions. Therefore, this data set does not have a robust variety in terms of the type of movement and the variety of magnetic data. Therefore, the model trained with it cannot be robust and general. However, it can be used to evaluate the model.</p>
+<p>The total movement duration of all three trials is 168 seconds, with the most extended movement phase lasting 30 seconds. For this reason, considering the short time, it is not a suitable option for training. The dataset is available at <a href="http://https://ieee-dataport.org/documents/mimuopticalsassaridataset">Link</a>.</p>
+<h2 id="oxiod">OxIOD</h2>
+<p>The Oxford Inertial Odometry Dataset (OxIOD) [<a id="d3" href="#oxiod">3</a>] is a large set of inertial data recorded by smartphones (mainly iPhone 7 Plus) at 100 Hz. The suite consists of 158 tests and covers a distance of over 42 km, with OMC ground track available for 132 tests. The purpose of this set is inertial odometry. Therefore, it does not include pure rotational movements and pure translational movements, which are helpful for systematically evaluating the model&rsquo;s performance under different conditions; however, it covers a wide range of everyday movements.</p>
+<p>Due to the different focus, some information (for example, the alignment of the coordinate frames) is not accurately described. In addition, the orientation of the ground trace contains frequent irregularities (e.g., jumps in orientation that are not accompanied by similar jumps in the IMU data). The dataset is available at <a href="http://deepio.cs.ox.ac.uk/">Link</a>.</p>
+<h2 id="mav-dataset">MAV Dataset</h2>
+<p>Most datasets suitable for the simultaneous localization and mapping problem are collected from sensors such as wheel encoders and laser range finders mounted on ground robots. For small air vehicles, there are few datasets, and MAV Dataset [<a id="d4" href="#mav">4</a>] is one of them. This data set was collected from the sensor array installed on the &ldquo;Pelican&rdquo; quadrotor platform in an environment. The sensor suite includes a forward-facing camera, a downward-facing camera, an inertial measurement unit, and a Vicon ground-tracking system. Five synchronized datasets are presented</p>
+<ol>
+<li> 1LoopDown </li>
+<li> 2LoopsDown </li>
+<li> 3LoopsDown </li>
+<li> hoveringDown </li>
+<li> randomFront </li>
+</ol>
+<p>These datasets include camera images, accelerations, heading rates, absolute angles from the IMU, and ground tracking from the Vicon system. The dataset is available at <a href="https://sites.google.com/site/sflyorg/mav-datasets">Link</a>.</p>
+<h2 id="euroc-mav">EuRoC MAV</h2>
+<p>The EuRoC MAV dataset [<a id="d5" href="#euroc">5</a>] is a large dataset collected from a quadrotor MAV. The dataset contains the internal flight data of a small air vehicle (MAV) and is designed to reconstruct the visual-inertial 3D environment. The six experiments performed in the chamber and synchronized and aligned using the OMC-based Vicon ground probe are suitable for training and evaluating the model&rsquo;s accuracy. It should be noted that camera images and point clouds are also included.</p>
+<p>This set does not include magnetometer data, which limits the evaluation of three degrees of freedom and is only for two-way models (including accelerometer and gyroscope). Due to the nature of the data, most of the movement consists of horizontal transfer and rotation around the vertical axis. This slope does not change much during the experiments. For this reason, it does not have a suitable variety for model training. Since flight-induced vibrations are clearly visible in the raw accelerometer data, the EuRoC MAV dataset provides a unique test case for orientation estimation with perturbed accelerometer data. The dataset is available at <a href="https://projects.asl.ethz.ch/datasets/doku.php?id=kmavvisualinertialdatasets">Link</a>.</p>
+<h2 id="tum-vi">TUM-VI</h2>
+<p>The TUM Visual-Inertial Dataset [<a id="d6" href="#tumvi">6</a>] suitable for optical-inertial odometry consists of 28 experiments with a handheld instrument equipped with a camera and IMU. Due to this application focus, most experiments only include OMC ground trace data at the beginning and at the end of the experiment. However, the six-chamber experiments include complete OMC data. They are suitable for evaluating the accuracy of the neural network model. Similar to the EuRoC MAV data, the motion consists mainly of horizontal translation and rotation about the vertical axis, and magnetometer data is not included. The dataset is available at <a href="https://vision.in.tum.de/data/datasets/visual-inertial-dataset">Link</a>.</p>
+<h2 id="kitti">KITTI</h2>
+<p>The KITTI Vision Benchmark Suite [<a id="d7" href="#kitti">7</a>] is a large set of data collected from a stereo camera and a laser range finder mounted on a car. The dataset includes 11 sequences with a total of 20,000 images. The dataset is suitable for evaluating the accuracy of the model in the presence of optical flow. However, the dataset does not include magnetometer data, which limits the evaluation of three degrees of freedom and is only for two-way models (including accelerometer and gyroscope). The dataset is available at <a href="http://www.cvlibs.net/datasets/kitti/eval_odometry.php">Link</a>.</p>
+<h2 id="ridi">RIDI</h2>
+<p>RIDI datasets were collected over 2.5 hours on 10 human subjects using smartphones equipped with a 3D tracking capability to collect IMU-motion data placed on four different surfaces (e.g., the hand, the bag, the leg pocket, and the body). The ground-truth motion data was produced by the Visual Inertial SLAM technique. They recorded linear accelerations, angular velocities, gravity directions, device orientations (via Android APIs), and 3D camera poses with a Google Tango phone, Lenovo Phab2 Pro. Visual Inertial Odometry on Tango provides camera poses that are accurate enough for inertial odometry purposes (less than 1 meter after 200 meters of tracking).The dataset is available at <a href="http://www.cvlibs.net/datasets/kitti/eval_odometry.php">Link</a>.</p>
+<h2 id="ronin">RoNIN</h2>
+<p>The RoNIN dataset [<a id="d9" href="#ridi">9</a>] contains over 40 hours of IMU sensor data from 100 human subjects with 3D ground-truth trajectories under natural human movements. This data set provides measurements of the accelerometer, gyroscope, dipstick, GPS, and ground track, including direction and location in 327 sequences and at a frequency of 200 Hz. A two-device data collection protocol was developed. A harness was used to attach one phone to the body for 3D tracking, allowing subjects to control the other phone to collect IMU data freely. It should be noted that the ground track can only be obtained using the 3D tracker phone attached to the harness. In addition, the body trajectory is estimated instead of the IMU. The dataset is available at <a href="https://yanhangpublic.github.io/ridi/index.html">Link</a>.</p>
+<h2 id="broad">BROAD</h2>
+<p>The Berlin Robust Orientation Evaluation (BROAD) dataset [<a id="d10" href="#broad">10</a>] includes a diverse set of experiments covering a variety of motion types, velocities, undisturbed motions, and motions with intentional accelerometer perturbations as well as motions performed in the presence of magnetic perturbations. This data set includes 39 experiments (23 undisturbed experiments with different movement types and speeds and 16 experiments with various intentional disturbances). The data of the accelerometer, gyroscope, magnetometer, quaternion, and ground tracks, are provided in an ENU frame with a frequency of 286.3 Hz. The dataset is available at <a href="https://github.com/dlaidig/broad">Link</a>.</p>
+<h2 id="references">References</h2>
+<p><a id="repoT" href="#d1">[1]</a> A. Szczęsna, P. Skurowski, P. Pruszowski, D. Pęszor, M. Paszkuta, and K. Wojciechowski, &ldquo;Reference data set for accuracy evaluation of orientation estimation algorithms for inertial motion capture systems,&rdquo; in International Conference on Computer Vision and Graphics, 2016: Springer, pp. 509-520. <a href="https://link.springer.com/chapter/10.1007/978-3-319-46418-3_45/10.1007/978-3-319-46484-8_42" target="_blank" rel="noopener">Link</a></p>
+<p><a id="sassari" href="#d2">[2]</a> M. Caruso, A. M. Sabatini, M. Knaflitz, M. Gazzoni, U. Della Croce, and A. Cereatti, &ldquo;Orientation estimation through magneto-inertial sensor fusion: A Heuristic approach for suboptimal parameters tuning,&rdquo; IEEE Sensors Journal, vol. 21, no. 3, pp. 3408-3419, 2020. <a href="https://ieeexplore.ieee.org/abstract/document/9201115/" target="_blank" rel="noopener">Link</a></p>
+<p><a id="oxiod" href="#d3">[3]</a> C. Chen, P. Zhao, C. X. Lu, W. Wang, A. Markham, and N. Trigoni, &ldquo;Oxiod: The dataset for deep inertial odometry,&rdquo; arXiv preprint arXiv:1809.07491, 2018. <a href="https://arxiv.org/abs/1809.07491" target="_blank" rel="noopener">Link</a></p>
+<p><a id="mav" href="#d4">[4]</a> G. H. Lee, M. Achtelik, F. Fraundorfer, M. Pollefeys, and R. Siegwart, &ldquo;A benchmarking tool for MAV visual pose estimation,&rdquo; in 2010 11th International Conference on Control Automation Robotics &amp; Vision, 2010: IEEE, pp. 1541-1546. <a href="https://ieeexplore.ieee.org/abstract/document/5707339/" target="_blank" rel="noopener">Link</a></p>
+<p><a id="euroc" href="#d5">[5]</a> M. Burri et al., &ldquo;The EuRoC micro aerial vehicle datasets,&rdquo; The International Journal of Robotics Research, vol. 35, no. 10, pp. 1157-1163, 2016. <a href="https://journals.sagepub.com/doi/abs/10.1177/0278364915620033" target="_blank" rel="noopener">Link</a></p>
+<p><a id="tumvi" href="#d6">[6]</a> D. Schubert, T. Goll, N. Demmel, V. Usenko, J. Stückler, and D. Cremers, &ldquo;The TUM VI benchmark for evaluating visual-inertial odometry,&rdquo; in 2018 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS), 2018: IEEE, pp. 1680-1687.  <a href="https://ieeexplore.ieee.org/abstract/document/8593419/" target="_blank" rel="noopener">Link</a></p>
+<p><a id="kitti" href="#d7">[7]</a> A. Geiger, P. Lenz, R. Urtasun , &ldquo;Are we ready for autonomous driving? the kitti vision benchmark suite.&rdquo; 2012 IEEE conference on computer vision and pattern recognition. IEEE, 2012. <a href="https://ieeexplore.ieee.org/abstract/document/6638959/" target="_blank" rel="noopener">Link</a></p>
+<p><a id="ridi" href="#d8">[8]</a> H. Yan, Q. Shan, and Y. Furukawa. &ldquo;RIDI: Robust IMU double integration.&rdquo; Proceedings of the European Conference on Computer Vision (ECCV). 2018. <a href="http://openaccess.thecvf.com/content_ECCV_2018/html/Hang_Yan_RIDI_Robust_IMU_ECCV_2018_paper.html" target="_blank" rel="noopener">Link</a></p>
+<p><a id="ronin" href="#d8">[9]</a> H. Yan, H. Sachini, and  Y. Furukawa. &ldquo;Ronin: Robust neural inertial navigation in the wild: Benchmark, evaluations, and new methods.&rdquo; arXiv preprint arXiv:1905.12853, 2019. <a href="https://arxiv.org/abs/1905.12853" target="_blank" rel="noopener">link</a></p>
+<p><a id="broad" href="#d10">[10]</a> MD. Laidig, M. Caruso, A. Cereatti, and T. Seel, &ldquo;BROAD—A Benchmark for Robust Inertial Orientation Estimation,&rdquo; Data, vol. 6, no. 7, p. 72, 2021. <a href="https://www.mdpi.com/2306-5729/6/7/72" target="_blank" rel="noopener">Link</a></p>
+
+    </div>
+
+    
+
+
+
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tag/dataset/">Dataset</a>
+  
+  <a class="badge badge-light" href="/tag/imu/">IMU</a>
+  
+  <a class="badge badge-light" href="/tag/inertial-measurement-unit/">Inertial Measurement Unit</a>
+  
+</div>
+
+
+
+<div class="share-box">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Farmanasq.github.io%2Fdatasets%2Fimu-datsets%2F&amp;text=IMU&#43;Datasets" target="_blank" rel="noopener" class="share-btn-twitter" aria-label="twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https%3A%2F%2Farmanasq.github.io%2Fdatasets%2Fimu-datsets%2F&amp;t=IMU&#43;Datasets" target="_blank" rel="noopener" class="share-btn-facebook" aria-label="facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a href="mailto:?subject=IMU%20Datasets&amp;body=https%3A%2F%2Farmanasq.github.io%2Fdatasets%2Fimu-datsets%2F" target="_blank" rel="noopener" class="share-btn-email" aria-label="envelope">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https%3A%2F%2Farmanasq.github.io%2Fdatasets%2Fimu-datsets%2F&amp;title=IMU&#43;Datasets" target="_blank" rel="noopener" class="share-btn-linkedin" aria-label="linkedin-in">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=IMU&#43;Datasets%20https%3A%2F%2Farmanasq.github.io%2Fdatasets%2Fimu-datsets%2F" target="_blank" rel="noopener" class="share-btn-whatsapp" aria-label="whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=https%3A%2F%2Farmanasq.github.io%2Fdatasets%2Fimu-datsets%2F&amp;title=IMU&#43;Datasets" target="_blank" rel="noopener" class="share-btn-weibo" aria-label="weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+  
+  
+    
+  
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+      
+      <a href="https://armanasq.github.io/"><img class="avatar mr-3 avatar-circle" src="/authors/admin/avatar_hu423262b037e945bf3d00a3d75617f940_247637_270x270_fill_q75_lanczos_center.jpeg" alt="Arman Asgharpoor Golroudbari"></a>
+    
+
+    <div class="media-body">
+      <h5 class="card-title"><a href="https://armanasq.github.io/">Arman Asgharpoor Golroudbari</a></h5>
+      <h6 class="card-subtitle">Space-AI Researcher</h6>
+      <p class="card-text">My research interests revolve around planetary rovers and spacecraft vision-based navigation.</p>
+      <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="/#contact" >
+        <i class="fas fa-comment-alt"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+    <li>
+      <a href="mailto:a.asgharpoor1993@gmail.com" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://scholar.google.com/citations?user=IlAgF9UAAAAJ&amp;hl=en" target="_blank" rel="noopener">
+        <i class="ai ai-google-scholar"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/armanasq" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://linkedin.com/in/asgharpoor" target="_blank" rel="noopener">
+        <i class="fab fa-linkedin"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://orcid.org/my-orcid?orcid=0000-0001-6271-4533" target="_blank" rel="noopener">
+        <i class="ai ai-orcid"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://www.webofscience.com/wos/author/record/IAN-3152-2023" target="_blank" rel="noopener">
+        <i class="ai ai-publons"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://researchgate.net/profile/Arman_Asgharpoor" target="_blank" rel="noopener">
+        <i class="ai ai-researchgate"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="/uploads/cv.pdf" >
+        <i class="ai ai-cv"></i>
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+</article>
+  </div>
+
+  <div class="page-footer">
+    
+    
+    <div class="container">
+      <footer class="site-footer">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+
+  
+  
+    
+  
+  
+    
+  
+
+  
+
+  
+  <p class="powered-by copyright-license-text">
+    © 2023 Me. This work is licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0" rel="noopener noreferrer" target="_blank">CC BY NC ND 4.0</a>
+  </p>
+  
+
+  <p class="powered-by footer-license-icons">
+    <a href="https://creativecommons.org/licenses/by-nc-nd/4.0" rel="noopener noreferrer" target="_blank" aria-label="Creative Commons">
+      <i class="fab fa-creative-commons fa-2x" aria-hidden="true"></i>
+      <i class="fab fa-creative-commons-by fa-2x" aria-hidden="true"></i>
+      
+        <i class="fab fa-creative-commons-nc fa-2x" aria-hidden="true"></i>
+      
+      
+        <i class="fab fa-creative-commons-nd fa-2x" aria-hidden="true"></i>
+      
+    </a>
+  </p>
+
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+      
+      
+      
+      
+      
+      
+      Published with <a href="https://wowchemy.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Wowchemy</a> — the free, <a href="https://github.com/wowchemy/wowchemy-hugo-themes" target="_blank" rel="noopener">open source</a> website builder that empowers creators.
+    
+  </p>
+</footer>
+
+    </div>
+    
+  </div>
+
+  
+
+
+<script src="/js/vendor-bundle.min.f64289d8217e08e3afcd597d60836062.js"></script>
+
+
+
+
+  
+
+  
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script id="search-hit-fuse-template" type="text/x-template">
+    <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+    </div>
+  </script>
+  
+    <script src="https://cdn.jsdelivr.net/gh/krisk/Fuse@v3.2.1/dist/fuse.min.js" integrity="sha512-o38bmzBGX+hD3JHWUFCDA09btWaqrNmoJ3RXLlrysA7PP01Kgs4UlE4MhelE1v5dJR3+cxlR4qQlotsW7jKsnw==" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/gh/julmot/mark.js@8.11.1/dist/jquery.mark.min.js" integrity="sha512-mhbv5DqBMgrWL+32MmsDOt/OAvqr/cHimk6B8y/bx/xS88MVkYGPiVv2ixKVrkywF2qHplNRUvFsAHUdxZ3Krg==" crossorigin="anonymous"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+<script id="page-data" type="application/json">{"use_headroom":true}</script>
+
+
+
+  <script src="/js/wowchemy-headroom.db4755770454eb63685f8de785c0a172.js" type="module"></script>
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+<script src="/en/js/wowchemy.min.ead4a376bcf2c4714888c770ea9b0040.js"></script>
+
+
+
+
+
+
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+        <pre><code></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <script src="/js/wowchemy-publication.68f8d7090562ca65fc6d3cb3f8f2d2cb.js" type="module"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+      
+      <!DOCTYPE html>
+<html>
+<head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-55GQYC5GYC"></script>
+
+<style>
+  .myImg {
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .myImg:hover {
+    opacity: 0.7;
+    cursor: pointer;
+  }
+
+   
+  .modal-img {
+    display: none;  
+    position: fixed;  
+    z-index: 1;  
+    padding-top: 150px;  
+    left: 0;
+    top: 0px;
+    width: 100%;  
+    height: 100%;  
+    overflow: visible;  
+    background-color: rgb(0, 0, 0);  
+    background-color: rgba(0, 0, 0, 0.6);  
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+   
+  .modal-content {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 80%;
+    max-height: 80%;
+
+  }
+
+   
+  #caption {
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    padding: 10px 0;
+
+  }
+
+   
+  .modal-content,
+  #caption {
+    -webkit-animation-name: zoom;
+    -webkit-animation-duration: 0.6s;
+    animation-name: zoom;
+    animation-duration: 0.6s;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @-webkit-keyframes zoom {
+    from {
+      -webkit-transform: scale(0);
+    }
+    to {
+      -webkit-transform: scale(1);
+    }
+  }
+
+  @keyframes zoom {
+    from {
+      transform: scale(0);
+    }
+    to {
+      transform: scale(1);
+    }
+  }
+
+   
+  
+ .modal-close {
+    position: absolute;
+    top: -55px;
+    right: 0;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+  }
+
+  .modal-close:hover,
+  .modal-close:focus {
+    color: #bbb;
+    text-decoration: none;
+  }
+
+   
+  @media only screen and (max-width: 900px) {
+    .modal-content {
+      width: 90%;
+    }
+  }
+
+  .test:hover {
+    scale: 1.2;
+  }
+
+
+
+
+
+
+
+  .navbar-nav {
+    font-size:20px;
+    font-family: Merriweather,sans-serif;
+  }
+
+  .robotic-section-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .robotic-section {
+    flex-basis: calc(30.33% - 12px);
+    margin: 10px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    transition: box-shadow 0.3s ease-in-out;
+    overflow: hidden;
+  }
+  
+  .robotic-section:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .robotic-section-content {
+    text-align: center;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+  }
+  
+  .robotic-section-content .image-placeholder {
+    width: 300px;
+    height: 300px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f1f1f1;
+  }
+  
+  .robotic-section-content .image-placeholder img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+  
+  .robotic-section-content-h2 {
+    margin-top: 10px;
+    font-size: 1.rem;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .robotic-section-content-h2 :hover{
+    font-size: 10px
+  }
+  .robotic-section-content-h2 {
+    margin-top: 10px;
+    color: #777;
+    font-size: 1.2rem;
+  }
+  
+  .robotic-section-content .text-placeholder {
+    height: 80px;
+    background-color: #f1f1f1;
+  }
+  
+  .robotic-section-content a {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #FF4081;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: bold;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .robotic-section-content a:hover {
+    background-color: #E91E63;
+  }
+  
+   
+  @media (max-width: 768px) {
+    .robotic-section {
+      flex-basis: calc(50% - 40px);
+    }
+  }
+  
+   
+  @media (max-width: 480px) {
+    .robotic-section {
+      flex-basis: 100%;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div id="myModal" class="modal-img">
+  <div class="modal-content">
+    <span class="modal-close">&times;</span>
+    <img id="img01" style="margin-left: auto; margin-right: auto;">
+    <div id="caption"></div>
+  </div>
+</div>
+
+
+
+
+<script>
+    
+    var modal = document.getElementById("myModal");
+    
+    
+    var images = document.querySelectorAll("img.myImg");
+    
+    
+    var modalImg = document.getElementById("img01");
+    var captionText = document.getElementById("caption");
+    
+    
+    for (var i = 0; i < images.length; i++) {
+      
+      images[i].setAttribute("data-src", images[i].src);
+      
+      images[i].addEventListener("click", function() {
+        
+        modalImg.src = this.getAttribute("data-src");
+        captionText.innerHTML = this.alt;
+        
+        modal.style.display = "block";
+      });
+    }
+    
+    
+    var modalClose = document.querySelector(".modal-content .modal-close");
+    
+    
+    modalClose.onclick = function() {
+      modal.style.display = "none";
+    };
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    </script>
+    
+    </body>
+    </html>
+      
+    
+  
+
+
+
+
+
+
+</body>
+</html>

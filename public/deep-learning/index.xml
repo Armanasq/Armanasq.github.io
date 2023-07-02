@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Deep Learning | </title>
+    <link>https://armanasq.github.io/deep-learning/</link>
+      <atom:link href="https://armanasq.github.io/deep-learning/index.xml" rel="self" type="application/rss+xml" />
+    <description>Deep Learning</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Mon, 12 Jun 2023 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://armanasq.github.io/media/icon_hu3a1b1aacf1bb12033635935a8f8a9863_117561_512x512_fill_lanczos_center_3.png</url>
+      <title>Deep Learning</title>
+      <link>https://armanasq.github.io/deep-learning/</link>
+    </image>
+    
+    <item>
+      <title>Physics-Informed Neural Networks (PINN)</title>
+      <link>https://armanasq.github.io/Deep-Learning/PINN/</link>
+      <pubDate>Sun, 18 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>https://armanasq.github.io/Deep-Learning/PINN/</guid>
+      <description>&lt;p&gt;In this tutorial, we will explore Physics Informed Neural Networks (PINNs), which are neural networks trained to solve supervised learning tasks while respecting given laws of physics described by general nonlinear partial differential equations. PINNs are a class of data-efficient universal function approximators that encode underlying physical laws as prior information. We will cover two main classes of problems: data-driven solution and data-driven discovery of partial differential equations. We will provide examples and Python code snippets using TensorFlow to illustrate the concepts.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#introduction-to-pinn&#34;&gt;Introduction to PINN&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#formulation-of-pinn&#34;&gt;Formulation of PINN&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#data-driven-loss-term&#34;&gt;Data-Driven Loss Term&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#physics-based-loss-term&#34;&gt;Physics-Based Loss Term&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#total-loss-function&#34;&gt;Total Loss Function&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#training-pinn&#34;&gt;Training PINN&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#advantages-of-pinn&#34;&gt;Advantages of PINN&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#limitations-and-challenges&#34;&gt;Limitations and Challenges&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#conclusion&#34;&gt;Conclusion&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;PINN is a powerful and innovative framework that combines the strengths of both physics-based modeling and deep learning. This approach aims to solve partial differential equations (PDEs) and other physical problems by leveraging the expressiveness of neural networks while incorporating prior knowledge of the underlying physics. PINN has gained significant attention in recent years due to its ability to handle complex, multi-physics problems and provide accurate predictions even with limited data.&lt;/p&gt;
+&lt;h2 id=&#34;introduction-to-pinn&#34;&gt;Introduction to PINN&lt;/h2&gt;
+&lt;p&gt;Traditional methods for solving PDEs, such as finite difference or finite element methods, rely on discretizing the domain and solving a system of equations. These approaches often require fine-grained meshes, which can be computationally expensive and challenging to implement for complex geometries. Additionally, these methods may struggle with noisy or incomplete data.&lt;/p&gt;
+&lt;p&gt;PINN offers an alternative solution by combining physics-based models with neural networks, which are known for their ability to learn complex patterns and generalize well to unseen data. By parameterizing the solution using a neural network, PINN can approximate the unknown solution to a PDE using a set of training data and enforce the governing equations at the same time.&lt;/p&gt;
+&lt;h2 id=&#34;formulation-of-pinn&#34;&gt;Formulation of PINN&lt;/h2&gt;
+&lt;p&gt;The key idea behind PINN is to train a neural network to approximate the solution to a PDE while respecting the underlying physics. This is achieved by minimizing a loss function that consists of two components: a data-driven loss term and a physics-based loss term.&lt;/p&gt;
+&lt;h3 id=&#34;data-driven-loss-term&#34;&gt;Data-Driven Loss Term&lt;/h3&gt;
+&lt;p&gt;The data-driven loss term ensures that the neural network accurately predicts the known data points. Suppose we have a set of N data points, denoted as {(x_i, t_i, y_i)} for i = 1, 2, &amp;hellip;, N, where (x_i, t_i) represents the spatial and temporal coordinates, and y_i represents the corresponding observed value. The data-driven loss term is typically defined as the mean squared error between the predicted solution and the observed data:&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;equations/data_driven_loss.png&#34; alt=&#34;Data-Driven Loss&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;Here, u(x_i, t_i) denotes the predicted solution at (x_i, t_i), and Ω represents the training domain.&lt;/p&gt;
+&lt;h3 id=&#34;physics-based-loss-term&#34;&gt;Physics-Based Loss Term&lt;/h3&gt;
+&lt;p&gt;The physics-based loss term ensures that the neural network satisfies the governing equations of the PDE. Suppose we have a set of K governing equations, denoted as {F_k}, where k = 1, 2, &amp;hellip;, K. These equations represent the physical laws or conservation principles governing the system. The physics-based loss term is typically defined as the mean squared error between the residuals of the governing equations:&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;equations/physics_based_loss.png&#34; alt=&#34;Physics-Based Loss&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;Here, R_k(u) denotes the residual of the kth governing equation, which is obtained by substituting the predicted solution u(x, t) into the kth equation.&lt;/p&gt;
+&lt;h3 id=&#34;total-loss-function&#34;&gt;Total Loss Function&lt;/h3&gt;
+&lt;p&gt;The total loss function is the sum of the data-driven loss term and the physics-based loss term:&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;equations/total_loss.png&#34; alt=&#34;Total Loss Function&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;Here, α and β are hyperparameters that control the relative importance of the data-driven and physics-based terms, respectively.&lt;/p&gt;
+&lt;h2 id=&#34;training-pinn&#34;&gt;Training PINN&lt;/h2&gt;
+&lt;p&gt;To train a PINN, we typically use an optimization algorithm, such as stochastic gradient descent (SGD), to minimize the total loss function. The weights and biases of the neural network are updated iteratively to find the optimal solution. During the training process, the network learns to approximate the unknown solution to the PDE by minimizing the data-driven loss term while satisfying the physics-based loss term.&lt;/p&gt;
+&lt;h2 id=&#34;advantages-of-pinn&#34;&gt;Advantages of PINN&lt;/h2&gt;
+&lt;p&gt;PINN offers several advantages over traditional methods for solving PDEs:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Flexibility:&lt;/strong&gt; PINN can handle complex geometries and boundary conditions without the need for explicit meshing or grid generation. This flexibility allows for easier integration with real-world applications and reduces the computational cost associated with mesh generation.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Generalizability:&lt;/strong&gt; Neural networks have the ability to generalize well to unseen data. Once trained, a PINN can accurately predict the solution at any point within the domain, even in regions where no data points are available. This is particularly useful when dealing with sparse or noisy data.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Multi-physics Applications:&lt;/strong&gt; PINN is capable of solving multi-physics problems by incorporating multiple sets of governing equations. This makes it suitable for problems involving coupled phenomena, such as fluid-structure interactions, heat transfer with phase change, or electromechanical systems.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Data-Driven Learning:&lt;/strong&gt; By leveraging available data, PINN can capture intricate patterns and relationships that may not be explicitly encoded in traditional physics-based models. This data-driven learning capability makes PINN well-suited for problems where complex nonlinear behaviors or unknown parameters are involved.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Reduced Computational Cost:&lt;/strong&gt; PINN can significantly reduce the computational cost compared to traditional methods, especially for problems with high-dimensional or time-dependent solutions. The ability to bypass costly grid generation and solve directly on continuous domains leads to computational efficiency gains.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Uncertainty Quantification:&lt;/strong&gt; PINN can be extended to quantify uncertainties in the predictions by incorporating probabilistic frameworks. This enables the assessment of prediction reliability and provides valuable insights into the confidence intervals of the estimated solutions.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;limitations-and-challenges&#34;&gt;Limitations and Challenges&lt;/h2&gt;
+&lt;p&gt;While PINN offers great promise, there are some challenges and limitations to consider:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Choice of Loss Function:&lt;/strong&gt; The selection of appropriate loss functions and hyperparameters can be crucial for the success of PINN. Finding the right balance between data-driven and physics-based terms and effectively weighting them requires careful consideration.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Data Requirements:&lt;/strong&gt; PINN requires a sufficient amount of training data to accurately learn the underlying physics. Insufficient or noisy data can lead to poor predictions and failure to satisfy the physics-based constraints.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Training Complexity:&lt;/strong&gt; Training a PINN can be computationally intensive, especially for complex problems or large-scale applications. The optimization process may require substantial computational resources and time.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Overfitting and Regularization:&lt;/strong&gt; Neural networks are prone to overfitting, where they become overly complex and fail to generalize well to unseen data. Regularization techniques, such as dropout or weight decay, need to be employed to mitigate this issue.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Interpretability:&lt;/strong&gt; Neural networks are often considered black-box models, lacking interpretability compared to physics-based models. Understanding the physical meaning behind the learned parameters and internal representations of the network can be challenging.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;Physics-Informed Neural Networks (PINN) offer a powerful framework for solving PDEs and other physical problems by combining the strengths of physics-based modeling and deep learning. By incorporating prior knowledge of the underlying physics and leveraging neural networks&amp;rsquo; flexibility and data-driven learning capabilities, PINN has shown great potential for accurately predicting complex phenomena and handling multi-physics problems. While challenges and limitations exist, ongoing research in PINN continues to advance the field and broaden its applicability across various scientific and engineering domains.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

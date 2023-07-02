@@ -1,0 +1,20 @@
+{{/* Load Fancybox CSS and JS */}}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha384-DfkY/f6MbLcaZndZb3wX8CO8JgOW6/XaUXRaBYqhuGujvuFfMdQHwTo6f1uS0o/g" crossorigin="anonymous" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha384-R4FZU9Gr7K51OkOH+5gN9L50gADoGkPDWcCT+Rz7E5yJ25ztF6wbR85TS2at3X6a" crossorigin="anonymous"></script>
+
+{{/* Initialize Fancybox */}}
+<script>
+  $(document).ready(function() {
+    $('[data-fancybox]').fancybox({
+      buttons: [
+        "zoom",
+        "slideShow",
+        "fullScreen",
+        "thumbs",
+        "close"
+      ],
+      protect: true,
+      loop: true
+    });
+  });
+</script>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Attitude Determination | </title>
+    <link>https://armanasq.github.io/tag/attitude-determination/</link>
+      <atom:link href="https://armanasq.github.io/tag/attitude-determination/index.xml" rel="self" type="application/rss+xml" />
+    <description>Attitude Determination</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Thu, 13 Jan 2022 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://armanasq.github.io/media/icon_hu3a1b1aacf1bb12033635935a8f8a9863_117561_512x512_fill_lanczos_center_3.png</url>
+      <title>Attitude Determination</title>
+      <link>https://armanasq.github.io/tag/attitude-determination/</link>
+    </image>
+    
+    <item>
+      <title>Attitude</title>
+      <link>https://armanasq.github.io/attitude/</link>
+      <pubDate>Thu, 13 Jan 2022 00:00:00 +0000</pubDate>
+      <guid>https://armanasq.github.io/attitude/</guid>
+      <description>&lt;h2 id=&#34;table-of-contents&#34;&gt;Table of Contents&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#table-of-contents&#34;&gt;Table of Contents&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#introduction&#34;&gt;Introduction&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#attitude-and-attitude-terminology&#34;&gt;Attitude and Attitude Terminology&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#references&#34;&gt;References&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;Attitude determination and control play a vital role in Aerospace engineering. Most aerial or space vehicles have subsystem(s) that must be pointed to a specific direction, known as pointing modes, e.g., Sun pointing, Earth pointing. For example, communications satellites, keeping satellites antenna pointed to the Earth continuously, is the key to the successful mission. That will be achieved only if we have proper knowledge of the vehicle’s orientation; in other words, the attitude must be determined. In this post, the fundamental concepts for defining the attitude of an object in the three-dimensional space will be presented. It is necessary to have a clear view of the exact meaning of the attitude or orientation. So, at first, the attitude and attitude terminology will be defined. Then the mathematical relationships between the attitude and the angular velocity will be presented. Finally, the attitude and angular velocity will be used to define the attitude dynamics.&lt;/p&gt;
+&lt;h2 id=&#34;attitude-and-attitude-terminology&#34;&gt;Attitude and Attitude Terminology&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Attitude&lt;/strong&gt; is the mathematical representation of the orientation in space related to the reference frames. Attitude parameters (attitude coordinates) refer to sets of parameters (coordinates) that fully describe a rigid body&amp;rsquo;s attitude, which is not unique expressions. At least three parameters are required to describe the orientation uniquely. The process of determining these parameters is called attitude determination. Attitude determination methods can be divided in two categories: static and dynamic.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Static Attitude Determination&lt;/strong&gt; is a point-to-point time-independent attitude-determining method with the memoryless approach, also known as attitude determination. It is the observations or measurements processing to obtain the information for describing the object&amp;rsquo;s orientation relative to a reference frame. It could be determined by measuring the directions from the vehicle to the known points, i.e., Attitude Knowledge. Due to accuracy limit, measurement noise, model error, and process error, most deterministic approaches are inefficient for accurate prospects; in this situation, using statistical methods will be a good solution.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Dynamic Attitude Determination&lt;/strong&gt; methods, also known as Attitude estimation, refer to using mathematical methods and techniques (e.g., statistical and probabilistic) to predict and estimate the future attitude based on a dynamic model and prior measurements. These techniques fuse data that retain a series of measurements using algorithms such as filtering, Multi-Sensor-Data-Fusion.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Suppose we consider attitude estimation as mathematical methods and attitude determination as instruments and measurements. In that case, we could find that no such works had been done in attitude estimation until the eighteenth or nineteenth century, as M.D. Shuster mentioned in [&lt;a id =&#34;id1&#34; href=&#34;#1&#34; &gt; 1&lt;/a&gt;, &lt;a id =&#34;id2&#34; href=&#34;#2&#34; &gt;2&lt;/a&gt;] attitude estimation is a young and underdeveloped field such that Sputnik 1 (the first artificial satellite) and Echo 1 (the first passive communications satellite experiment) did not have attitude determination and control system (ADCS). Also, the next generation of spacecraft has an attitude control system without any attitude estimation. Those spacecraft used passive attitude control methods such as gravity gradient attitude stabilization.&lt;/p&gt;
+&lt;p&gt;At first, two frames must be defined to formulate the attitude, the body frame $B$ and the Observer frame $O$. Then we can define the attitude as the orientation of the $B$ frame with respect to the $O$ frame. Usually, the rigid body orientation is given with respect to an inertial frame called Inertial Fixed References System (IFRS). As mentioned before, attitude is a set of coordinates which defines the orientation. It could be a 3D vector which is represented by a 3D rotation matrix. The basic rotation matrix (also called elemental rotation) is a 3x3 matrix which is used to rotate the coordinate system by an angle $\theta$ about $x$, $y$, or $z$ axis and defined by the following equation:&lt;/p&gt;
+&lt;div&gt;
+$$ R_x = \begin{bmatrix} 1 &amp; 0 &amp; 0 \\ 0 &amp; \cos(\theta) &amp; -\sin(\theta) \\ 0 &amp; \sin(\theta) &amp; \cos(\theta)  \end{bmatrix} $$
+&lt;/div&gt;
+&lt;div&gt;
+$$ R_y = \begin{bmatrix} \cos(\theta) &amp; 0 &amp; \sin(\theta)  \\  0 &amp; 1 &amp; 0 \\ -\sin(\theta) &amp; 0 &amp; \cos(\theta) \end{bmatrix} $$
+&lt;/div&gt;
+&lt;div&gt;
+$$ R_z = \begin{bmatrix} \cos(\theta) &amp; -\sin(\theta) &amp; 0 \\ \sin(\theta) &amp; \cos(\theta) &amp; 0 \\ 0 &amp; 0 &amp; 1 \end{bmatrix} $$
+&lt;/div&gt;
+&lt;p&gt;where $\theta$ is the angle of rotation.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://armanasq.github.io/attitude-representation/&#34;&gt;Attitude Representation&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
+&lt;p&gt;[&lt;a id=&#34;1&#34; href=&#34;#id1&#34; &gt; 1 &lt;/a&gt;] M. D. Shuster, &amp;ldquo;In my estimation,&amp;rdquo; The Journal of the Astronautical Sciences, 2006. &lt;br&gt;
+[&lt;a id=&#34;2&#34; href=&#34;#id2&#34; &gt; 2 &lt;/a&gt;]	M. D. Shuster, &amp;ldquo;Beyond estimation,&amp;rdquo; Advances in the Astronautical Sciences, 2006. &lt;br&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

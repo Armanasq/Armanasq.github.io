@@ -1,0 +1,3290 @@
+<!DOCTYPE html>
+<!-- This site was created with Wowchemy. https://www.wowchemy.com -->
+<!-- Last Published: July 2, 2023 --><html lang="en-us" >
+
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Wowchemy 5.7.0 for Hugo" />
+  
+
+  
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+  
+
+  
+  
+
+  
+  
+    
+    <script src="/js/mathjax-config.js"></script>
+  
+
+  
+
+  <link rel="stylesheet" href="/css/vendor-bundle.min.047268c6dd09ad74ba54a0ba71837064.css" media="print" onload="this.media='all'">
+
+  
+  
+  
+    
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.2/css/academicons.min.css" integrity="sha512-KlJCpRsLf+KKu2VQa5vmRuClRFjxc5lXO03ixZt82HZUk41+1I0bD8KBSA0fY290ayMfWYI9udIqeOWSu1/uZg==" crossorigin="anonymous" media="print" onload="this.media='all'">
+    
+
+    
+    
+    
+    
+      
+      
+    
+    
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.d060e36f065b14306ff371728665eb02.css" />
+
+  
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+    
+    
+    <link rel="stylesheet" href="/css/libs/chroma/dracula.min.css" title="hl-light" media="print" onload="this.media='all'" >
+    <link rel="stylesheet" href="/css/libs/chroma/dracula.min.css" title="hl-dark" media="print" onload="this.media='all'" disabled>
+  
+
+  
+  
+
+  <meta name="google-site-verification" content="Zv4l_ljWZhu4o0Z-kfZwQmuokpt40AvKXA78N8kynpc" />
+
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-55GQYC5GYC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag() {
+      dataLayer.push(arguments);
+  }
+
+  function trackOutboundLink(url, target) {
+    gtag('event', 'click', {
+         'event_category': 'outbound',
+         'event_label': url,
+         'transport_type': 'beacon',
+         'event_callback': function () {
+           if (target !== '_blank') {
+             document.location = url;
+           }
+         }
+    });
+    console.debug("Outbound link clicked: " + url);
+  }
+
+  function onClickCallback(event) {
+    if ((event.target.tagName !== 'A') || (event.target.host === window.location.host)) {
+      return;
+    }
+    trackOutboundLink(event.target, event.target.getAttribute('target'));  
+  }
+
+  gtag('js', new Date());
+  gtag('config', 'G-55GQYC5GYC', {});
+  gtag('set', {'cookie_flags': 'SameSite=None;Secure'});
+
+  
+  document.addEventListener('click', onClickCallback, false);
+</script>
+
+
+
+
+<script>
+  (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','G-55GQYC5GYC');
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+
+
+
+
+
+
+  <meta name="author" content="Arman Asgharpoor Golroudbari" />
+
+
+
+
+
+  
+
+<meta name="description" content="Dataset
+OxIOD Dataset How to use OxIOD Dataset 24 Handheld Sequences 11 Pocket Sequences 8 Handbag Sequences 13 Trolley Sequences 8 Slow Walking Sequences 7 Running Sequences 26 Multi Devices Sequences 35 Multi Users Sequences 26 Large Scale Sequences Use OxIOD Dataset in Python References OxIOD Dataset Oxford Inertial Odometry Dataset [1] is a large set of inertial data for inertial odometry which is recorded by smartphones at 100 Hz in indoor environment." />
+
+
+
+<link rel="alternate" hreflang="en-us" href="https://armanasq.github.io/datsets/OxIOD-Dataset/" />
+<link rel="canonical" href="https://armanasq.github.io/datsets/OxIOD-Dataset/" />
+
+
+
+  <link rel="manifest" href="/manifest.webmanifest" />
+
+
+
+<link rel="icon" type="image/png" href="/media/icon_hu3a1b1aacf1bb12033635935a8f8a9863_117561_32x32_fill_lanczos_center_3.png" />
+<link rel="apple-touch-icon" type="image/png" href="/media/icon_hu3a1b1aacf1bb12033635935a8f8a9863_117561_180x180_fill_lanczos_center_3.png" />
+
+<meta name="theme-color" content="#1565c0" />
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+<meta property="twitter:card" content="summary" />
+
+  <meta property="twitter:site" content="@wowchemy" />
+  <meta property="twitter:creator" content="@wowchemy" />
+<meta property="twitter:image" content="https://armanasq.github.io/media/icon_hu3a1b1aacf1bb12033635935a8f8a9863_117561_512x512_fill_lanczos_center_3.png" />
+<meta property="og:site_name" content="" />
+<meta property="og:url" content="https://armanasq.github.io/datsets/OxIOD-Dataset/" />
+<meta property="og:title" content="OxIOD IMU Dataset | " />
+<meta property="og:description" content="Dataset
+OxIOD Dataset How to use OxIOD Dataset 24 Handheld Sequences 11 Pocket Sequences 8 Handbag Sequences 13 Trolley Sequences 8 Slow Walking Sequences 7 Running Sequences 26 Multi Devices Sequences 35 Multi Users Sequences 26 Large Scale Sequences Use OxIOD Dataset in Python References OxIOD Dataset Oxford Inertial Odometry Dataset [1] is a large set of inertial data for inertial odometry which is recorded by smartphones at 100 Hz in indoor environment." /><meta property="og:image" content="https://armanasq.github.io/media/icon_hu3a1b1aacf1bb12033635935a8f8a9863_117561_512x512_fill_lanczos_center_3.png" /><meta property="og:locale" content="en-us" />
+
+  
+    <meta
+      property="article:published_time"
+      content="2022-10-29T00:00:00&#43;00:00"
+    />
+  
+  
+    <meta property="article:modified_time" content="2022-10-29T00:00:00&#43;00:00">
+  
+
+
+
+
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://armanasq.github.io/datsets/OxIOD-Dataset/"
+  },
+  "headline": "OxIOD IMU Dataset",
+  
+  "datePublished": "2022-10-29T00:00:00Z",
+  "dateModified": "2022-10-29T00:00:00Z",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Arman Asgharpoor Golroudbari"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://armanasq.github.io/media/icon_hu3a1b1aacf1bb12033635935a8f8a9863_117561_192x192_fill_lanczos_center_3.png"
+    }
+  },
+  "description": "Dataset\nOxIOD Dataset How to use OxIOD Dataset 24 Handheld Sequences 11 Pocket Sequences 8 Handbag Sequences 13 Trolley Sequences 8 Slow Walking Sequences 7 Running Sequences 26 Multi Devices Sequences 35 Multi Users Sequences 26 Large Scale Sequences Use OxIOD Dataset in Python References OxIOD Dataset Oxford Inertial Odometry Dataset [1] is a large set of inertial data for inertial odometry which is recorded by smartphones at 100 Hz in indoor environment."
+}
+</script>
+
+  
+
+  
+
+
+
+
+  
+  
+  
+
+  
+  
+
+  
+
+
+  
+  <title>OxIOD IMU Dataset | </title>
+
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="7e1173a647a796069286da4e358a8453" >
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.min.ec9d49ca50e4b80bdb08f0417a28ed84.js"></script>
+
+  
+
+
+<aside class="search-modal" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#" aria-label="Close"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control"
+        aria-label="Search...">
+        
+      </div>
+
+      
+      
+
+      
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+
+  <div class="page-header header--fixed">
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<header>
+  <nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+    <div class="container-xl">
+
+      
+      <div class="d-none d-lg-inline-flex">
+        <a class="navbar-brand" href="/"></a>
+      </div>
+      
+
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse"
+              data-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
+      <span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+      
+      <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+        <a class="navbar-brand" href="/"></a>
+      </div>
+      
+
+      
+      
+      <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+        
+        <ul class="navbar-nav d-md-inline-flex">
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#about"><span>Home</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/robotic"><span>Robotic</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#posts"><span>Posts</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#projects"><span>Projects</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#talks"><span>Talks</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/publication"><span>Publications</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/certificates"><span>Certificates</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#contact"><span>Contact</span></a>
+          </li>
+
+          
+          
+
+        
+
+          
+        </ul>
+      </div>
+
+      <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+        
+        
+          
+            
+            <li class="nav-item d-none d-lg-inline-flex">
+              <a class="nav-link" href="mailto:a.asgharpoor1993@gmail.com" data-toggle="tooltip" data-placement="bottom" title="Drop me an email."  aria-label="Drop me an email.">
+                <i class="fas fa-envelope" aria-hidden="true"></i>
+              </a>
+            </li>
+          
+            
+            <li class="nav-item d-none d-lg-inline-flex">
+              <a class="nav-link" href="https://github.com/armanasq" data-toggle="tooltip" data-placement="bottom" title="Follow Me on GitHub." target="_blank" rel="noopener" aria-label="Follow Me on GitHub.">
+                <i class="fab fa-github" aria-hidden="true"></i>
+              </a>
+            </li>
+          
+        
+
+        
+        
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" href="#" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+        
+        
+        <li class="nav-item dropdown theme-dropdown">
+          <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-label="Display preferences">
+            <i class="fas fa-moon" aria-hidden="true"></i>
+          </a>
+          <div class="dropdown-menu">
+            <a href="#" class="dropdown-item js-set-theme-light">
+              <span>Light</span>
+            </a>
+            <a href="#" class="dropdown-item js-set-theme-dark">
+              <span>Dark</span>
+            </a>
+            <a href="#" class="dropdown-item js-set-theme-auto">
+              <span>Automatic</span>
+            </a>
+          </div>
+        </li>
+        
+
+        
+        
+
+      </ul>
+
+    </div>
+  </nav>
+</header>
+
+
+  </div>
+
+  <div class="page-body">
+    
+    
+    
+
+    <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>OxIOD IMU Dataset</h1>
+
+  
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    Oct 29, 2022
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    8 min read
+  </span>
+  
+
+  
+  
+  
+  
+
+  
+  
+
+</div>
+
+    
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      <p><a href="/datasets/">Dataset</a></p>
+<ul>
+<li><a href="#oxiod-dataset">OxIOD Dataset</a></li>
+<li><a href="#how-to-use-oxiod-dataset">How to use OxIOD Dataset</a>
+<ul>
+<li><a href="#24-handheld-sequences">24 Handheld Sequences</a></li>
+<li><a href="#11-pocket-sequences">11 Pocket Sequences</a></li>
+<li><a href="#8-handbag-sequences">8 Handbag Sequences</a></li>
+<li><a href="#13-trolley-sequences">13 Trolley Sequences</a></li>
+<li><a href="#8-slow-walking-sequences">8 Slow Walking Sequences</a></li>
+<li><a href="#7-running-sequences">7 Running Sequences</a></li>
+<li><a href="#26-multi-devices-sequences">26 Multi Devices Sequences</a></li>
+<li><a href="#35-multi-users-sequences">35 Multi Users Sequences</a></li>
+<li><a href="#26-large-scale-sequences">26 Large Scale Sequences</a></li>
+</ul>
+</li>
+<li><a href="#use-oxiod-dataset-in-python">Use OxIOD Dataset in Python</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+<h2 id="oxiod-dataset">OxIOD Dataset</h2>
+<p><a href="http://deepio.cs.ox.ac.uk/" target="_blank" rel="noopener">Oxford Inertial Odometry Dataset</a> [<a id="d1" href="#oxiod">1</a>] is a large set of inertial data for inertial odometry which is recorded by smartphones at 100 Hz in indoor environment. The suite consists of 158 tests and covers a distance of over 42 km, with OMC ground track available for 132 tests. Therefore, it does not include pure rotational movements and pure translational movements, which are helpful for systematically evaluating the model&rsquo;s performance under different conditions; however, it covers a wide range of everyday movements.</p>
+<p>Due to the different focus, some information (for example, the alignment of the coordinate frames) is not accurately described. In addition, the orientation of the ground trace contains frequent irregularities (e.g., jumps in orientation that are not accompanied by similar jumps in the IMU data). The dataset is available at <a href="https://forms.gle/wjE7u5AonoyyrgXJ7" target="_blank" rel="noopener">Link</a>.</p>
+<h2 id="how-to-use-oxiod-dataset">How to use OxIOD Dataset</h2>
+<p>The dataset can be download from <a href="%60https://forms.gle/wjE7u5AonoyyrgXJ7%60">here</a>. The Dataset Contains:</p>
+<h3 id="24-handheld-sequences">24 Handheld Sequences</h3>
+<p>Total 8821 seconds for 7193 meters.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">data1</th>
+<th style="text-align:left">time (s)</th>
+<th style="text-align:left">distance (m)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">seq1</td>
+<td style="text-align:left">376</td>
+<td style="text-align:left">301</td>
+</tr>
+<tr>
+<td style="text-align:left">seq2</td>
+<td style="text-align:left">234</td>
+<td style="text-align:left">177</td>
+</tr>
+<tr>
+<td style="text-align:left">seq3</td>
+<td style="text-align:left">188</td>
+<td style="text-align:left">147</td>
+</tr>
+<tr>
+<td style="text-align:left">seq4</td>
+<td style="text-align:left">216</td>
+<td style="text-align:left">166</td>
+</tr>
+<tr>
+<td style="text-align:left">seq5</td>
+<td style="text-align:left">322</td>
+<td style="text-align:left">264</td>
+</tr>
+<tr>
+<td style="text-align:left">seq6</td>
+<td style="text-align:left">325</td>
+<td style="text-align:left">274</td>
+</tr>
+<tr>
+<td style="text-align:left">seq7</td>
+<td style="text-align:left">141</td>
+<td style="text-align:left">118</td>
+</tr>
+<tr>
+<td style="text-align:left">total</td>
+<td style="text-align:left">1802</td>
+<td style="text-align:left">1447</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">data2</th>
+<th style="text-align:left">time (s)</th>
+<th style="text-align:left">dis (m)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">seq1</td>
+<td style="text-align:left">326</td>
+<td style="text-align:left">281</td>
+</tr>
+<tr>
+<td style="text-align:left">seq2</td>
+<td style="text-align:left">312</td>
+<td style="text-align:left">264</td>
+</tr>
+<tr>
+<td style="text-align:left">seq3</td>
+<td style="text-align:left">301</td>
+<td style="text-align:left">249</td>
+</tr>
+<tr>
+<td style="text-align:left">total</td>
+<td style="text-align:left">939</td>
+<td style="text-align:left">794</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">data3</th>
+<th style="text-align:left">time</th>
+<th style="text-align:left">dis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">seq1</td>
+<td style="text-align:left">308</td>
+<td style="text-align:left">251</td>
+</tr>
+<tr>
+<td style="text-align:left">seq2</td>
+<td style="text-align:left">379</td>
+<td style="text-align:left">324</td>
+</tr>
+<tr>
+<td style="text-align:left">seq3</td>
+<td style="text-align:left">609</td>
+<td style="text-align:left">533</td>
+</tr>
+<tr>
+<td style="text-align:left">seq4</td>
+<td style="text-align:left">538</td>
+<td style="text-align:left">467</td>
+</tr>
+<tr>
+<td style="text-align:left">seq5</td>
+<td style="text-align:left">383</td>
+<td style="text-align:left">319</td>
+</tr>
+<tr>
+<td style="text-align:left">total</td>
+<td style="text-align:left">2217</td>
+<td style="text-align:left">1894</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">data4</th>
+<th style="text-align:left">time</th>
+<th style="text-align:left">dis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">seq1</td>
+<td style="text-align:left">317</td>
+<td style="text-align:left">242</td>
+</tr>
+<tr>
+<td style="text-align:left">seq2</td>
+<td style="text-align:left">322</td>
+<td style="text-align:left">243</td>
+</tr>
+<tr>
+<td style="text-align:left">seq3</td>
+<td style="text-align:left">606</td>
+<td style="text-align:left">476</td>
+</tr>
+<tr>
+<td style="text-align:left">seq4</td>
+<td style="text-align:left">438</td>
+<td style="text-align:left">359</td>
+</tr>
+<tr>
+<td style="text-align:left">seq5</td>
+<td style="text-align:left">350</td>
+<td style="text-align:left">284</td>
+</tr>
+<tr>
+<td style="text-align:left">total</td>
+<td style="text-align:left">2033</td>
+<td style="text-align:left">1604</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">data5</th>
+<th style="text-align:left">time</th>
+<th style="text-align:left">dis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">seq1</td>
+<td style="text-align:left">310</td>
+<td style="text-align:left">237</td>
+</tr>
+<tr>
+<td style="text-align:left">seq2</td>
+<td style="text-align:left">594</td>
+<td style="text-align:left">466</td>
+</tr>
+<tr>
+<td style="text-align:left">seq3</td>
+<td style="text-align:left">560</td>
+<td style="text-align:left">445</td>
+</tr>
+<tr>
+<td style="text-align:left">seq4</td>
+<td style="text-align:left">366</td>
+<td style="text-align:left">306</td>
+</tr>
+<tr>
+<td style="text-align:left">total</td>
+<td style="text-align:left">1830</td>
+<td style="text-align:left">1454</td>
+</tr>
+</tbody>
+</table>
+<h3 id="11-pocket-sequences">11 Pocket Sequences</h3>
+<p>Total 5622 seconds for 4231 meters.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">data1</th>
+<th style="text-align:left">time</th>
+<th style="text-align:left">dis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">seq1</td>
+<td style="text-align:left">330</td>
+<td style="text-align:left">284</td>
+</tr>
+<tr>
+<td style="text-align:left">seq2</td>
+<td style="text-align:left">456</td>
+<td style="text-align:left">379</td>
+</tr>
+<tr>
+<td style="text-align:left">seq3</td>
+<td style="text-align:left">506</td>
+<td style="text-align:left">405</td>
+</tr>
+<tr>
+<td style="text-align:left">seq4</td>
+<td style="text-align:left">491</td>
+<td style="text-align:left">387</td>
+</tr>
+<tr>
+<td style="text-align:left">seq5</td>
+<td style="text-align:left">240</td>
+<td style="text-align:left">182</td>
+</tr>
+<tr>
+<td style="text-align:left">total</td>
+<td style="text-align:left">2023</td>
+<td style="text-align:left">1637</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">data2</th>
+<th style="text-align:left">time</th>
+<th style="text-align:left">dis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">seq1</td>
+<td style="text-align:left">651</td>
+<td style="text-align:left">492</td>
+</tr>
+<tr>
+<td style="text-align:left">seq2</td>
+<td style="text-align:left">559</td>
+<td style="text-align:left">414</td>
+</tr>
+<tr>
+<td style="text-align:left">seq3</td>
+<td style="text-align:left">628</td>
+<td style="text-align:left">429</td>
+</tr>
+<tr>
+<td style="text-align:left">seq4</td>
+<td style="text-align:left">668</td>
+<td style="text-align:left">494</td>
+</tr>
+<tr>
+<td style="text-align:left">seq5</td>
+<td style="text-align:left">470</td>
+<td style="text-align:left">371</td>
+</tr>
+<tr>
+<td style="text-align:left">seq6</td>
+<td style="text-align:left">623</td>
+<td style="text-align:left">494</td>
+</tr>
+<tr>
+<td style="text-align:left">total</td>
+<td style="text-align:left">3599</td>
+<td style="text-align:left">2694</td>
+</tr>
+</tbody>
+</table>
+<h3 id="8-handbag-sequences">8 Handbag Sequences</h3>
+<p>Total 4100 seconds for 3431 meters.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">data1</th>
+<th style="text-align:left">time</th>
+<th style="text-align:left">dis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">seq1</td>
+<td style="text-align:left">575</td>
+<td style="text-align:left">437</td>
+</tr>
+<tr>
+<td style="text-align:left">seq2</td>
+<td style="text-align:left">570</td>
+<td style="text-align:left">467</td>
+</tr>
+<tr>
+<td style="text-align:left">seq3</td>
+<td style="text-align:left">580</td>
+<td style="text-align:left">466</td>
+</tr>
+<tr>
+<td style="text-align:left">seq4</td>
+<td style="text-align:left">445</td>
+<td style="text-align:left">366</td>
+</tr>
+<tr>
+<td style="text-align:left">total</td>
+<td style="text-align:left">2170</td>
+<td style="text-align:left">1736</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">data2</th>
+<th style="text-align:left">time</th>
+<th style="text-align:left">dis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">seq1</td>
+<td style="text-align:left">575</td>
+<td style="text-align:left">487</td>
+</tr>
+<tr>
+<td style="text-align:left">seq2</td>
+<td style="text-align:left">560</td>
+<td style="text-align:left">499</td>
+</tr>
+<tr>
+<td style="text-align:left">seq3</td>
+<td style="text-align:left">425</td>
+<td style="text-align:left">381</td>
+</tr>
+<tr>
+<td style="text-align:left">seq4</td>
+<td style="text-align:left">370</td>
+<td style="text-align:left">328</td>
+</tr>
+<tr>
+<td style="text-align:left">total</td>
+<td style="text-align:left">1930</td>
+<td style="text-align:left">1695</td>
+</tr>
+</tbody>
+</table>
+<h3 id="13-trolley-sequences">13 Trolley Sequences</h3>
+<p>Total 4262 seconds for 2685 meters.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">data1</th>
+<th style="text-align:left">time</th>
+<th style="text-align:left">dis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">seq1</td>
+<td style="text-align:left">447</td>
+<td style="text-align:left">251</td>
+</tr>
+<tr>
+<td style="text-align:left">seq2</td>
+<td style="text-align:left">309</td>
+<td style="text-align:left">169</td>
+</tr>
+<tr>
+<td style="text-align:left">seq3</td>
+<td style="text-align:left">359</td>
+<td style="text-align:left">209</td>
+</tr>
+<tr>
+<td style="text-align:left">seq4</td>
+<td style="text-align:left">599</td>
+<td style="text-align:left">362</td>
+</tr>
+<tr>
+<td style="text-align:left">seq5</td>
+<td style="text-align:left">612</td>
+<td style="text-align:left">374</td>
+</tr>
+<tr>
+<td style="text-align:left">seq6</td>
+<td style="text-align:left">586</td>
+<td style="text-align:left">380</td>
+</tr>
+<tr>
+<td style="text-align:left">seq7</td>
+<td style="text-align:left">274</td>
+<td style="text-align:left">174</td>
+</tr>
+<tr>
+<td style="text-align:left">total</td>
+<td style="text-align:left">3186</td>
+<td style="text-align:left">1919</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">data2</th>
+<th style="text-align:left">time</th>
+<th style="text-align:left">dis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">seq1</td>
+<td style="text-align:left">156</td>
+<td style="text-align:left">106</td>
+</tr>
+<tr>
+<td style="text-align:left">seq2</td>
+<td style="text-align:left">168</td>
+<td style="text-align:left">118</td>
+</tr>
+<tr>
+<td style="text-align:left">seq3</td>
+<td style="text-align:left">161</td>
+<td style="text-align:left">113</td>
+</tr>
+<tr>
+<td style="text-align:left">seq4</td>
+<td style="text-align:left">163</td>
+<td style="text-align:left">113</td>
+</tr>
+<tr>
+<td style="text-align:left">seq5</td>
+<td style="text-align:left">217</td>
+<td style="text-align:left">158</td>
+</tr>
+<tr>
+<td style="text-align:left">seq6</td>
+<td style="text-align:left">211</td>
+<td style="text-align:left">158</td>
+</tr>
+<tr>
+<td style="text-align:left">total</td>
+<td style="text-align:left">1076</td>
+<td style="text-align:left">766</td>
+</tr>
+</tbody>
+</table>
+<h3 id="8-slow-walking-sequences">8 Slow Walking Sequences</h3>
+<p>Total 4150 seconds for 2421 meters.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">data1</th>
+<th style="text-align:left">time</th>
+<th style="text-align:left">dis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">seq1</td>
+<td style="text-align:left">612</td>
+<td style="text-align:left">382</td>
+</tr>
+<tr>
+<td style="text-align:left">seq2</td>
+<td style="text-align:left">603</td>
+<td style="text-align:left">353</td>
+</tr>
+<tr>
+<td style="text-align:left">seq3</td>
+<td style="text-align:left">617</td>
+<td style="text-align:left">341</td>
+</tr>
+<tr>
+<td style="text-align:left">seq4</td>
+<td style="text-align:left">594</td>
+<td style="text-align:left">323</td>
+</tr>
+<tr>
+<td style="text-align:left">seq5</td>
+<td style="text-align:left">606</td>
+<td style="text-align:left">352</td>
+</tr>
+<tr>
+<td style="text-align:left">seq6</td>
+<td style="text-align:left">503</td>
+<td style="text-align:left">331</td>
+</tr>
+<tr>
+<td style="text-align:left">seq7</td>
+<td style="text-align:left">311</td>
+<td style="text-align:left">172</td>
+</tr>
+<tr>
+<td style="text-align:left">seq8</td>
+<td style="text-align:left">304</td>
+<td style="text-align:left">167</td>
+</tr>
+<tr>
+<td style="text-align:left">total</td>
+<td style="text-align:left">4150</td>
+<td style="text-align:left">2421</td>
+</tr>
+</tbody>
+</table>
+<h3 id="7-running-sequences">7 Running Sequences</h3>
+<p>Total 3732 seconds for 4356 meters.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">data1</th>
+<th style="text-align:left">time</th>
+<th style="text-align:left">dis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">seq1</td>
+<td style="text-align:left">691</td>
+<td style="text-align:left">761</td>
+</tr>
+<tr>
+<td style="text-align:left">seq2</td>
+<td style="text-align:left">623</td>
+<td style="text-align:left">719</td>
+</tr>
+<tr>
+<td style="text-align:left">seq3</td>
+<td style="text-align:left">590</td>
+<td style="text-align:left">665</td>
+</tr>
+<tr>
+<td style="text-align:left">seq4</td>
+<td style="text-align:left">603</td>
+<td style="text-align:left">679</td>
+</tr>
+<tr>
+<td style="text-align:left">seq5</td>
+<td style="text-align:left">619</td>
+<td style="text-align:left">766</td>
+</tr>
+<tr>
+<td style="text-align:left">seq6</td>
+<td style="text-align:left">303</td>
+<td style="text-align:left">373</td>
+</tr>
+<tr>
+<td style="text-align:left">seq7</td>
+<td style="text-align:left">303</td>
+<td style="text-align:left">393</td>
+</tr>
+<tr>
+<td style="text-align:left">total</td>
+<td style="text-align:left">3732</td>
+<td style="text-align:left">4356</td>
+</tr>
+</tbody>
+</table>
+<h3 id="26-multi-devices-sequences">26 Multi Devices Sequences</h3>
+<p>Total 7144 seconds for 5350 meters.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">iPhone 5</th>
+<th style="text-align:left">time</th>
+<th style="text-align:left">dis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">seq1</td>
+<td style="text-align:left">178</td>
+<td style="text-align:left">150</td>
+</tr>
+<tr>
+<td style="text-align:left">seq2</td>
+<td style="text-align:left">163</td>
+<td style="text-align:left">133</td>
+</tr>
+<tr>
+<td style="text-align:left">seq3</td>
+<td style="text-align:left">160</td>
+<td style="text-align:left">126</td>
+</tr>
+<tr>
+<td style="text-align:left">seq4</td>
+<td style="text-align:left">124</td>
+<td style="text-align:left">100</td>
+</tr>
+<tr>
+<td style="text-align:left">seq5</td>
+<td style="text-align:left">174</td>
+<td style="text-align:left">139</td>
+</tr>
+<tr>
+<td style="text-align:left">seq6</td>
+<td style="text-align:left">167</td>
+<td style="text-align:left">136</td>
+</tr>
+<tr>
+<td style="text-align:left">seq7</td>
+<td style="text-align:left">197</td>
+<td style="text-align:left">150</td>
+</tr>
+<tr>
+<td style="text-align:left">seq8</td>
+<td style="text-align:left">184</td>
+<td style="text-align:left">141</td>
+</tr>
+<tr>
+<td style="text-align:left">seq9</td>
+<td style="text-align:left">184</td>
+<td style="text-align:left">142</td>
+</tr>
+<tr>
+<td style="text-align:left">total</td>
+<td style="text-align:left">1531</td>
+<td style="text-align:left">1217</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">iPhone 6</th>
+<th style="text-align:left">time</th>
+<th style="text-align:left">dis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">seq1</td>
+<td style="text-align:left">180</td>
+<td style="text-align:left">165</td>
+</tr>
+<tr>
+<td style="text-align:left">seq2</td>
+<td style="text-align:left">184</td>
+<td style="text-align:left">171</td>
+</tr>
+<tr>
+<td style="text-align:left">seq3</td>
+<td style="text-align:left">182</td>
+<td style="text-align:left">168</td>
+</tr>
+<tr>
+<td style="text-align:left">seq4</td>
+<td style="text-align:left">150</td>
+<td style="text-align:left">140</td>
+</tr>
+<tr>
+<td style="text-align:left">seq5</td>
+<td style="text-align:left">183</td>
+<td style="text-align:left">162</td>
+</tr>
+<tr>
+<td style="text-align:left">seq6</td>
+<td style="text-align:left">171</td>
+<td style="text-align:left">155</td>
+</tr>
+<tr>
+<td style="text-align:left">seq7</td>
+<td style="text-align:left">184</td>
+<td style="text-align:left">139</td>
+</tr>
+<tr>
+<td style="text-align:left">seq8</td>
+<td style="text-align:left">185</td>
+<td style="text-align:left">148</td>
+</tr>
+<tr>
+<td style="text-align:left">seq9</td>
+<td style="text-align:left">173</td>
+<td style="text-align:left">133</td>
+</tr>
+<tr>
+<td style="text-align:left">total</td>
+<td style="text-align:left">1592</td>
+<td style="text-align:left">1381</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">nexus 5</th>
+<th style="text-align:left">time</th>
+<th style="text-align:left">dis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">seq1</td>
+<td style="text-align:left">604</td>
+<td style="text-align:left">452</td>
+</tr>
+<tr>
+<td style="text-align:left">seq2</td>
+<td style="text-align:left">609</td>
+<td style="text-align:left">438</td>
+</tr>
+<tr>
+<td style="text-align:left">seq3</td>
+<td style="text-align:left">605</td>
+<td style="text-align:left">414</td>
+</tr>
+<tr>
+<td style="text-align:left">seq4</td>
+<td style="text-align:left">609</td>
+<td style="text-align:left">403</td>
+</tr>
+<tr>
+<td style="text-align:left">seq5</td>
+<td style="text-align:left">607</td>
+<td style="text-align:left">388</td>
+</tr>
+<tr>
+<td style="text-align:left">seq6</td>
+<td style="text-align:left">607</td>
+<td style="text-align:left">401</td>
+</tr>
+<tr>
+<td style="text-align:left">seq7</td>
+<td style="text-align:left">186</td>
+<td style="text-align:left">130</td>
+</tr>
+<tr>
+<td style="text-align:left">seq8</td>
+<td style="text-align:left">194</td>
+<td style="text-align:left">127</td>
+</tr>
+<tr>
+<td style="text-align:left">total</td>
+<td style="text-align:left">4021</td>
+<td style="text-align:left">2752</td>
+</tr>
+</tbody>
+</table>
+<h3 id="35-multi-users-sequences">35 Multi Users Sequences</h3>
+<p>Total 8821 seconds for 9465 meters.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">user 2</th>
+<th style="text-align:left">time</th>
+<th style="text-align:left">dis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">seq1</td>
+<td style="text-align:left">311</td>
+<td style="text-align:left">284</td>
+</tr>
+<tr>
+<td style="text-align:left">seq2</td>
+<td style="text-align:left">358</td>
+<td style="text-align:left">313</td>
+</tr>
+<tr>
+<td style="text-align:left">seq3</td>
+<td style="text-align:left">390</td>
+<td style="text-align:left">328</td>
+</tr>
+<tr>
+<td style="text-align:left">seq4</td>
+<td style="text-align:left">217</td>
+<td style="text-align:left">172</td>
+</tr>
+<tr>
+<td style="text-align:left">seq5</td>
+<td style="text-align:left">311</td>
+<td style="text-align:left">240</td>
+</tr>
+<tr>
+<td style="text-align:left">seq6</td>
+<td style="text-align:left">256</td>
+<td style="text-align:left">193</td>
+</tr>
+<tr>
+<td style="text-align:left">seq7</td>
+<td style="text-align:left">371</td>
+<td style="text-align:left">296</td>
+</tr>
+<tr>
+<td style="text-align:left">seq8</td>
+<td style="text-align:left">450</td>
+<td style="text-align:left">375</td>
+</tr>
+<tr>
+<td style="text-align:left">seq9</td>
+<td style="text-align:left">264</td>
+<td style="text-align:left">221</td>
+</tr>
+<tr>
+<td style="text-align:left">total</td>
+<td style="text-align:left">2928</td>
+<td style="text-align:left">2422</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">user 3</th>
+<th style="text-align:left">time</th>
+<th style="text-align:left">dis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">seq1</td>
+<td style="text-align:left">382</td>
+<td style="text-align:left">301</td>
+</tr>
+<tr>
+<td style="text-align:left">seq2</td>
+<td style="text-align:left">318</td>
+<td style="text-align:left">272</td>
+</tr>
+<tr>
+<td style="text-align:left">seq3</td>
+<td style="text-align:left">340</td>
+<td style="text-align:left">295</td>
+</tr>
+<tr>
+<td style="text-align:left">seq4</td>
+<td style="text-align:left">232</td>
+<td style="text-align:left">198</td>
+</tr>
+<tr>
+<td style="text-align:left">seq5</td>
+<td style="text-align:left">214</td>
+<td style="text-align:left">185</td>
+</tr>
+<tr>
+<td style="text-align:left">seq6</td>
+<td style="text-align:left">356</td>
+<td style="text-align:left">289</td>
+</tr>
+<tr>
+<td style="text-align:left">seq7</td>
+<td style="text-align:left">258</td>
+<td style="text-align:left">203</td>
+</tr>
+<tr>
+<td style="text-align:left">total</td>
+<td style="text-align:left">2100</td>
+<td style="text-align:left">1743</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">user 4</th>
+<th style="text-align:left">time</th>
+<th style="text-align:left">dis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">seq1</td>
+<td style="text-align:left">387</td>
+<td style="text-align:left">367</td>
+</tr>
+<tr>
+<td style="text-align:left">seq2</td>
+<td style="text-align:left">329</td>
+<td style="text-align:left">307</td>
+</tr>
+<tr>
+<td style="text-align:left">seq3</td>
+<td style="text-align:left">305</td>
+<td style="text-align:left">288</td>
+</tr>
+<tr>
+<td style="text-align:left">seq4</td>
+<td style="text-align:left">248</td>
+<td style="text-align:left">229</td>
+</tr>
+<tr>
+<td style="text-align:left">seq5</td>
+<td style="text-align:left">356</td>
+<td style="text-align:left">314</td>
+</tr>
+<tr>
+<td style="text-align:left">seq6</td>
+<td style="text-align:left">293</td>
+<td style="text-align:left">272</td>
+</tr>
+<tr>
+<td style="text-align:left">seq7</td>
+<td style="text-align:left">297</td>
+<td style="text-align:left">260</td>
+</tr>
+<tr>
+<td style="text-align:left">seq8</td>
+<td style="text-align:left">468</td>
+<td style="text-align:left">411</td>
+</tr>
+<tr>
+<td style="text-align:left">seq9</td>
+<td style="text-align:left">435</td>
+<td style="text-align:left">364</td>
+</tr>
+<tr>
+<td style="text-align:left">total</td>
+<td style="text-align:left">3118</td>
+<td style="text-align:left">2812</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">user 5</th>
+<th style="text-align:left">time</th>
+<th style="text-align:left">dis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">seq1</td>
+<td style="text-align:left">294</td>
+<td style="text-align:left">237</td>
+</tr>
+<tr>
+<td style="text-align:left">seq2</td>
+<td style="text-align:left">305</td>
+<td style="text-align:left">264</td>
+</tr>
+<tr>
+<td style="text-align:left">seq3</td>
+<td style="text-align:left">253</td>
+<td style="text-align:left">211</td>
+</tr>
+<tr>
+<td style="text-align:left">seq4</td>
+<td style="text-align:left">390</td>
+<td style="text-align:left">337</td>
+</tr>
+<tr>
+<td style="text-align:left">seq5</td>
+<td style="text-align:left">300</td>
+<td style="text-align:left">226</td>
+</tr>
+<tr>
+<td style="text-align:left">seq6</td>
+<td style="text-align:left">338</td>
+<td style="text-align:left">284</td>
+</tr>
+<tr>
+<td style="text-align:left">seq7</td>
+<td style="text-align:left">168</td>
+<td style="text-align:left">154</td>
+</tr>
+<tr>
+<td style="text-align:left">seq8</td>
+<td style="text-align:left">410</td>
+<td style="text-align:left">395</td>
+</tr>
+<tr>
+<td style="text-align:left">seq9</td>
+<td style="text-align:left">274</td>
+<td style="text-align:left">250</td>
+</tr>
+<tr>
+<td style="text-align:left">seq10</td>
+<td style="text-align:left">152</td>
+<td style="text-align:left">130</td>
+</tr>
+<tr>
+<td style="text-align:left">total</td>
+<td style="text-align:left">2884</td>
+<td style="text-align:left">2488</td>
+</tr>
+</tbody>
+</table>
+<h3 id="26-large-scale-sequences">26 Large Scale Sequences</h3>
+<p>Total 4161 seconds for 3465 meters.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">floor1</th>
+<th style="text-align:left">time</th>
+<th style="text-align:left">dis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">seq1</td>
+<td style="text-align:left">153</td>
+<td style="text-align:left">142</td>
+</tr>
+<tr>
+<td style="text-align:left">seq2</td>
+<td style="text-align:left">165</td>
+<td style="text-align:left">143</td>
+</tr>
+<tr>
+<td style="text-align:left">seq3</td>
+<td style="text-align:left">158</td>
+<td style="text-align:left">142</td>
+</tr>
+<tr>
+<td style="text-align:left">seq4</td>
+<td style="text-align:left">157</td>
+<td style="text-align:left">145</td>
+</tr>
+<tr>
+<td style="text-align:left">seq5</td>
+<td style="text-align:left">156</td>
+<td style="text-align:left">142</td>
+</tr>
+<tr>
+<td style="text-align:left">seq6</td>
+<td style="text-align:left">156</td>
+<td style="text-align:left">142</td>
+</tr>
+<tr>
+<td style="text-align:left">seq7</td>
+<td style="text-align:left">161</td>
+<td style="text-align:left">144</td>
+</tr>
+<tr>
+<td style="text-align:left">seq8</td>
+<td style="text-align:left">155</td>
+<td style="text-align:left">143</td>
+</tr>
+<tr>
+<td style="text-align:left">seq9</td>
+<td style="text-align:left">160</td>
+<td style="text-align:left">126</td>
+</tr>
+<tr>
+<td style="text-align:left">seq10</td>
+<td style="text-align:left">158</td>
+<td style="text-align:left">143</td>
+</tr>
+<tr>
+<td style="text-align:left">total</td>
+<td style="text-align:left">1579</td>
+<td style="text-align:left">1412</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">floor4</th>
+<th style="text-align:left">time</th>
+<th style="text-align:left">dis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">seq1</td>
+<td style="text-align:left">160</td>
+<td style="text-align:left">170</td>
+</tr>
+<tr>
+<td style="text-align:left">seq2</td>
+<td style="text-align:left">157</td>
+<td style="text-align:left">153</td>
+</tr>
+<tr>
+<td style="text-align:left">seq3</td>
+<td style="text-align:left">162</td>
+<td style="text-align:left">153</td>
+</tr>
+<tr>
+<td style="text-align:left">seq4</td>
+<td style="text-align:left">118</td>
+<td style="text-align:left">106</td>
+</tr>
+<tr>
+<td style="text-align:left">seq5</td>
+<td style="text-align:left">164</td>
+<td style="text-align:left">153</td>
+</tr>
+<tr>
+<td style="text-align:left">seq6</td>
+<td style="text-align:left">163</td>
+<td style="text-align:left">143</td>
+</tr>
+<tr>
+<td style="text-align:left">seq7</td>
+<td style="text-align:left">169</td>
+<td style="text-align:left">141</td>
+</tr>
+<tr>
+<td style="text-align:left">seq8</td>
+<td style="text-align:left">166</td>
+<td style="text-align:left">153</td>
+</tr>
+<tr>
+<td style="text-align:left">seq9</td>
+<td style="text-align:left">172</td>
+<td style="text-align:left">135</td>
+</tr>
+<tr>
+<td style="text-align:left">seq10</td>
+<td style="text-align:left">169</td>
+<td style="text-align:left">154</td>
+</tr>
+<tr>
+<td style="text-align:left">seq11</td>
+<td style="text-align:left">166</td>
+<td style="text-align:left">152</td>
+</tr>
+<tr>
+<td style="text-align:left">seq12</td>
+<td style="text-align:left">165</td>
+<td style="text-align:left">154</td>
+</tr>
+<tr>
+<td style="text-align:left">seq13</td>
+<td style="text-align:left">165</td>
+<td style="text-align:left">133</td>
+</tr>
+<tr>
+<td style="text-align:left">seq14</td>
+<td style="text-align:left">164</td>
+<td style="text-align:left">153</td>
+</tr>
+<tr>
+<td style="text-align:left">seq15</td>
+<td style="text-align:left">163</td>
+<td style="text-align:left">153</td>
+</tr>
+<tr>
+<td style="text-align:left">seq16</td>
+<td style="text-align:left">159</td>
+<td style="text-align:left">133</td>
+</tr>
+<tr>
+<td style="text-align:left">total</td>
+<td style="text-align:left">2582</td>
+<td style="text-align:left">2053</td>
+</tr>
+</tbody>
+</table>
+<p>In each folder, there is a raw data subfolder and a syn data subfolder, which represent the raw data collection without synchronisation but with high precise timestep, and the synchronised data but without high precise timestep.</p>
+<p>The header of files is</p>
+<p><em><em>vicon (vi</em>.csv)</em>*</p>
+<ol>
+<li>Time</li>
+<li>Header</li>
+<li>translation.x translation.y translation.z</li>
+<li>rotation.x rotation.y rotation.z rotation.w</li>
+</ol>
+<p><em><em>Sensors (imu</em>.csv)</em>*</p>
+<ol>
+<li>Time</li>
+<li>attitude_roll(radians) attitude_pitch(radians) attitude_yaw(radians)</li>
+<li>rotation_rate_x(radians/s) rotation_rate_y(radians/s) rotation_rate_z(radians/s)</li>
+<li>gravity_x(G) gravity_y(G) gravity_z(G)</li>
+<li>user_acc_x(G) user_acc_y(G) user_acc_z(G)</li>
+<li>magnetic_field_x(microteslas) magnetic_field_y(microteslas) magnetic_field_z(microteslas)</li>
+</ol>
+<h2 id="use-oxiod-dataset-in-python">Use OxIOD Dataset in Python</h2>
+<p>First, we need to import libraries</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</span></span></code></pre></div><p>Create variables to store data</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">imu_data_OxIOD</span> <span class="o">=</span><span class="p">[]</span>
+</span></span><span class="line"><span class="cl"><span class="n">gt_data_OxIOD</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl"><span class="n">imu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span><span class="mi">9</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">gt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
+</span></span></code></pre></div><p>Load data files</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">imu_data_OxIOD</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;handheld/data5/syn/imu3.csv&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">imu_data_OxIOD</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;handheld/data2/syn/imu1.csv&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">imu_data_OxIOD</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;handheld/data2/syn/imu2.csv&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">imu_data_OxIOD</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;handheld/data5/syn/imu2.csv&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">imu_data_OxIOD</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;handheld/data3/syn/imu4.csv&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">imu_data_OxIOD</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;handheld/data4/syn/imu4.csv&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">imu_data_OxIOD</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;handheld/data4/syn/imu2.csv&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">imu_data_OxIOD</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;handheld/data1/syn/imu7.csv&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">imu_data_OxIOD</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;handheld/data5/syn/imu4.csv&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">imu_data_OxIOD</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;handheld/data4/syn/imu5.csv&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">imu_data_OxIOD</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;handheld/data1/syn/imu3.csv&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">imu_data_OxIOD</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;handheld/data3/syn/imu2.csv&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">imu_data_OxIOD</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;handheld/data2/syn/imu3.csv&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">imu_data_OxIOD</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;handheld/data1/syn/imu1.csv&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">imu_data_OxIOD</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;handheld/data3/syn/imu3.csv&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">imu_data_OxIOD</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;handheld/data3/syn/imu5.csv&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">imu_data_OxIOD</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;handheld/data1/syn/imu4.csv&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">gt_data_OxIOD</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;handheld/data5/syn/vi3.csv&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">gt_data_OxIOD</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;handheld/data2/syn/vi1.csv&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">gt_data_OxIOD</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;handheld/data2/syn/vi2.csv&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">gt_data_OxIOD</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;handheld/data5/syn/vi2.csv&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">gt_data_OxIOD</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;handheld/data3/syn/vi4.csv&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">gt_data_OxIOD</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;handheld/data4/syn/vi4.csv&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">gt_data_OxIOD</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;handheld/data4/syn/vi2.csv&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">gt_data_OxIOD</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;handheld/data1/syn/vi7.csv&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">gt_data_OxIOD</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;handheld/data5/syn/vi4.csv&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">gt_data_OxIOD</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;handheld/data4/syn/vi5.csv&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">gt_data_OxIOD</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;handheld/data1/syn/vi3.csv&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">gt_data_OxIOD</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;handheld/data3/syn/vi2.csv&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">gt_data_OxIOD</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;handheld/data2/syn/vi3.csv&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">gt_data_OxIOD</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;handheld/data1/syn/vi1.csv&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">gt_data_OxIOD</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;handheld/data3/syn/vi3.csv&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">gt_data_OxIOD</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;handheld/data3/syn/vi5.csv&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">gt_data_OxIOD</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;handheld/data1/syn/vi4.csv&#39;</span><span class="p">)</span>
+</span></span></code></pre></div><p>Import data from file</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">imu_data_filename</span><span class="p">,</span> <span class="n">gt_data_filename</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">imu_data_OxIOD</span><span class="p">,</span> <span class="n">gt_data_OxIOD</span><span class="p">)):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">oxiod_gt</span>    <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">gt_data_filename</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
+</span></span><span class="line"><span class="cl">        <span class="n">oxiod_imu</span>   <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">imu_data_filename</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
+</span></span><span class="line"><span class="cl">        <span class="n">oxiod_imu</span>   <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">oxiod_imu</span><span class="p">[:,</span> <span class="mi">10</span><span class="p">:</span><span class="mi">13</span><span class="p">],</span> <span class="n">oxiod_imu</span><span class="p">[:,</span> <span class="mi">4</span><span class="p">:</span><span class="mi">7</span><span class="p">],</span> <span class="n">oxiod_imu</span><span class="p">[:,</span> <span class="mi">7</span><span class="p">:</span><span class="mi">10</span><span class="p">]])</span>
+</span></span><span class="line"><span class="cl">        <span class="n">oxiod_gt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">oxiod_gt</span><span class="p">[:,</span> <span class="mi">8</span><span class="p">:</span><span class="mi">9</span><span class="p">],</span> <span class="n">oxiod_gt</span><span class="p">[:,</span> <span class="mi">5</span><span class="p">:</span><span class="mi">8</span><span class="p">]],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">oxiod_gt</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">:</span><span class="mi">5</span><span class="p">]])</span>
+</span></span><span class="line"><span class="cl">        <span class="n">imu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">imu</span><span class="p">,</span> <span class="n">oxiod_imu</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">        <span class="n">gt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">gt</span><span class="p">,</span><span class="n">oxiod_gt</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="n">acc</span> <span class="o">=</span> <span class="n">imu</span><span class="p">[:,</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">gyro</span> <span class="o">=</span><span class="n">imu</span><span class="p">[:,</span><span class="mi">3</span><span class="p">:</span><span class="mi">6</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">mag</span> <span class="o">=</span> <span class="n">imu</span><span class="p">[:,</span><span class="mi">6</span><span class="p">:</span><span class="mi">9</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">ori</span> <span class="o">=</span> <span class="n">gt</span><span class="p">[:,</span><span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">pose</span> <span class="o">=</span> <span class="n">gt</span><span class="p">[:,</span><span class="mi">4</span><span class="p">:</span><span class="mi">7</span><span class="p">]</span>
+</span></span></code></pre></div><p>Store in csv file</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">df_imu</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;Acc x&#39;</span><span class="p">:</span> <span class="n">acc</span><span class="p">[</span><span class="mi">1</span><span class="p">:,</span> <span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;Acc y&#39;</span><span class="p">:</span> <span class="n">acc</span><span class="p">[</span><span class="mi">1</span><span class="p">:,</span> <span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;Acc z&#39;</span><span class="p">:</span> <span class="n">acc</span><span class="p">[</span><span class="mi">1</span><span class="p">:,</span> <span class="mi">2</span><span class="p">],</span> <span class="s1">&#39;Gyro x&#39;</span><span class="p">:</span> <span class="n">gyro</span><span class="p">[</span><span class="mi">1</span><span class="p">:,</span> <span class="mi">0</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">                      <span class="s1">&#39;Gyro y&#39;</span><span class="p">:</span> <span class="n">gyro</span><span class="p">[</span><span class="mi">1</span><span class="p">:,</span> <span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;Gyro z&#39;</span><span class="p">:</span> <span class="n">gyro</span><span class="p">[</span><span class="mi">1</span><span class="p">:,</span> <span class="mi">2</span><span class="p">],</span> <span class="s1">&#39;Mag x&#39;</span><span class="p">:</span> <span class="n">mag</span><span class="p">[</span><span class="mi">1</span><span class="p">:,</span> <span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;Mag y&#39;</span><span class="p">:</span> <span class="n">mag</span><span class="p">[</span><span class="mi">1</span><span class="p">:,</span> <span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;Mag z&#39;</span><span class="p">:</span> <span class="n">mag</span><span class="p">[</span><span class="mi">1</span><span class="p">:,</span> <span class="mi">2</span><span class="p">]})</span>
+</span></span><span class="line"><span class="cl"><span class="n">df_imu</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;OxIOD_IMU_train.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">df_gt</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;Ori w&#39;</span><span class="p">:</span> <span class="n">ori</span><span class="p">[</span><span class="mi">1</span><span class="p">:,</span> <span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;Ori x&#39;</span><span class="p">:</span> <span class="n">ori</span><span class="p">[</span><span class="mi">1</span><span class="p">:,</span> <span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;Ori y&#39;</span><span class="p">:</span> <span class="n">ori</span><span class="p">[</span><span class="mi">1</span><span class="p">:,</span> <span class="mi">2</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">                     <span class="s1">&#39;Ori z&#39;</span><span class="p">:</span> <span class="n">ori</span><span class="p">[</span><span class="mi">1</span><span class="p">:,</span> <span class="mi">3</span><span class="p">],</span> <span class="s1">&#39;Pose x&#39;</span><span class="p">:</span> <span class="n">pose</span><span class="p">[</span><span class="mi">1</span><span class="p">:,</span> <span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;Pose y&#39;</span><span class="p">:</span> <span class="n">pose</span><span class="p">[</span><span class="mi">1</span><span class="p">:,</span> <span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;Pose z&#39;</span><span class="p">:</span> <span class="n">pose</span><span class="p">[</span><span class="mi">1</span><span class="p">:,</span> <span class="mi">2</span><span class="p">]})</span>
+</span></span><span class="line"><span class="cl"><span class="n">df_gt</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;OxIOD_GT_train.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span></span></code></pre></div><p>The data could be plot by</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</span></span><span class="line"><span class="cl"><span class="n">fs</span> <span class="o">=</span> <span class="mi">100</span>
+</span></span><span class="line"><span class="cl"><span class="n">dt</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">fs</span>
+</span></span><span class="line"><span class="cl"><span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">acc</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="n">fs</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Plot the IMU readings</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## Accelermoter </span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Plotting the three axis of the accelerometer in one figure.</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">acc</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Acc x&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&#34;upper right&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time (s)&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Acceleration in X-Axis ($m/s^2$)&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">acc</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Acc y&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&#34;upper right&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time (s)&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Acceleration in Y-Axis ($m/s^2$)&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">acc</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Acc z&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time (s)&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Acceleration in Z-Axis ($m/s^2$)&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&#34;upper right&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&#34;Accelermoter&#34;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">25</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;RIDI_Acc.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## Gyroscope </span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Plotting the three axis of the gyroscope in one figure.</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">gyro</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Gyro x&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&#34;upper right&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time (s)&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Angular Velocity in X-Axis ($rad/s$)&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">gyro</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Gyro y&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&#34;upper right&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time (s)&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Angular Velocity in Y-Axis ($rad/s$)&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">gyro</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Gyro z&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time (s)&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Angular Velocity in Z-Axis ($rad/s$)&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&#34;upper right&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&#34;Gyroscope&#34;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">25</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;RIDI_Gyro.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## Magnetometer</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Plotting the three axis of the magnetometer in one figure.</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">mag</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Mag x&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&#34;upper right&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time (s)&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Magnetic Field in X-Axis ($\mu T$)&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">mag</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Mag y&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&#34;upper right&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time (s)&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Magnetic Field in Y-Axis ($\mu T$)&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">mag</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Mag z&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time (s)&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Magnetic Field in Z-Axis ($\mu T$)&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&#34;upper right&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&#34;Magnetometer&#34;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">25</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;RIDI_Mag.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+</span></span></code></pre></div><img class="myImg" src="/OxIOD_Acc.png" alt="Accelerometer" width="100%" height="100%" />
+<img class="myImg" src="/OxIOD_Gyro.png" alt="Gyro" width="100%" height="100%" />
+<img class="myImg" src="/OxIOD_Mag.png" alt="Magnetometer" width="100%" height="100%" />
+<p>The magnetomer 3d scatter plot can be found <a href="/oxiod-magnetomer-3d-scatter.html">here</a>
+<a href="/oxiod-magnetomer-3d-scatter.html"> <img class="myImg" src="/OxIOD_MagField.png" width="100%" height="100%" /></a></p>
+<p>To test the dataset, we can use AHRS [<a id="d2" href="#ahrs">2</a>] library which has multiple sensor fusion algorithm for python. The Madgwick algorithm has been chosen as SFA.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">fs</span> <span class="o">=</span> <span class="mi">100</span>
+</span></span><span class="line"><span class="cl"><span class="n">dt</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">fs</span>
+</span></span><span class="line"><span class="cl"><span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">acc</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="n">fs</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">madgwick</span> <span class="o">=</span> <span class="n">sfa</span><span class="o">.</span><span class="n">Madgwick</span><span class="p">(</span><span class="n">gyr</span><span class="o">=</span><span class="n">gyro</span><span class="p">,</span> <span class="n">acc</span><span class="o">=</span><span class="n">acc</span><span class="p">,</span> <span class="n">mag</span><span class="o">=</span><span class="n">mag</span><span class="p">,</span> <span class="n">frequency</span><span class="o">=</span><span class="n">fs</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">roll_ref</span><span class="p">,</span> <span class="n">pitch_ref</span><span class="p">,</span> <span class="n">yaw_ref</span> <span class="o">=</span> <span class="n">quat2eul</span><span class="p">(</span><span class="n">ori</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">roll_est</span><span class="p">,</span> <span class="n">pitch_est</span><span class="p">,</span> <span class="n">yaw_est</span> <span class="o">=</span> <span class="n">quat2eul</span><span class="p">(</span><span class="n">madgwick</span><span class="o">.</span><span class="n">Q</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Plot the results</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Roll</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">roll_ref</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;roll_ref&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">roll_est</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;roll_est&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Roll angle (rad)&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time (s)&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Roll angle (rad)&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">3.5</span><span class="p">,</span> <span class="mf">3.999</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Pitch</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">pitch_ref</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;pitch_ref&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">pitch_est</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;pitch_est&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Pitch angle (rad)&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time (s)&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Pitch angle (rad)&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">3.5</span><span class="p">,</span> <span class="mf">3.999</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Yaw</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">yaw_ref</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;yaw_ref&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">yaw_est</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;yaw_est&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Yaw angle (rad)&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time (s)&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Yaw angle (rad)&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">3.5</span><span class="p">,</span> <span class="mf">3.999</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></span></code></pre></div><p>The result would be as follows
+<img class="myImg" src="/OxIOD-Roll-Madgwick.png" alt="Roll" width="100%" height="100%" />
+<img class="myImg" src="/OxIOD-Pitch-Madgwick.png" alt="Pitch" width="100%" height="100%" />
+<img class="myImg" src="/OxIOD-Yaw-Madgwick.png" alt="Yaw" width="100%" height="100%" /></p>
+<p><a href="/datasets/">Dataset</a></p>
+<h2 id="references">References</h2>
+<p><a id="oxiod" href="#d1">[1]</a> C. Chen, P. Zhao, C. X. Lu, W. Wang, A. Markham, and N. Trigoni, &ldquo;Oxiod: The dataset for deep inertial odometry,&rdquo; arXiv preprint arXiv:1809.07491, 2018. <a href="https://arxiv.org/abs/1809.07491" target="_blank" rel="noopener">Link</a></p>
+<p><a id="ahrs" href="#d2">[2]</a> <a href="https://ahrs.readthedocs.io/en/latest/">ahrs.readthedocs.io/en</a></p>
+
+    </div>
+
+    
+
+
+
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tag/imu-dataset/">IMU Dataset</a>
+  
+  <a class="badge badge-light" href="/tag/oxiod-dataset/">OxIOD Dataset</a>
+  
+  <a class="badge badge-light" href="/tag/inertial-navigation-dataset/">Inertial Navigation Dataset</a>
+  
+  <a class="badge badge-light" href="/tag/inertial-odometry-dataset/">Inertial Odometry Dataset</a>
+  
+</div>
+
+
+
+<div class="share-box">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Farmanasq.github.io%2Fdatsets%2FOxIOD-Dataset%2F&amp;text=OxIOD&#43;IMU&#43;Dataset" target="_blank" rel="noopener" class="share-btn-twitter" aria-label="twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https%3A%2F%2Farmanasq.github.io%2Fdatsets%2FOxIOD-Dataset%2F&amp;t=OxIOD&#43;IMU&#43;Dataset" target="_blank" rel="noopener" class="share-btn-facebook" aria-label="facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a href="mailto:?subject=OxIOD%20IMU%20Dataset&amp;body=https%3A%2F%2Farmanasq.github.io%2Fdatsets%2FOxIOD-Dataset%2F" target="_blank" rel="noopener" class="share-btn-email" aria-label="envelope">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https%3A%2F%2Farmanasq.github.io%2Fdatsets%2FOxIOD-Dataset%2F&amp;title=OxIOD&#43;IMU&#43;Dataset" target="_blank" rel="noopener" class="share-btn-linkedin" aria-label="linkedin-in">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=OxIOD&#43;IMU&#43;Dataset%20https%3A%2F%2Farmanasq.github.io%2Fdatsets%2FOxIOD-Dataset%2F" target="_blank" rel="noopener" class="share-btn-whatsapp" aria-label="whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=https%3A%2F%2Farmanasq.github.io%2Fdatsets%2FOxIOD-Dataset%2F&amp;title=OxIOD&#43;IMU&#43;Dataset" target="_blank" rel="noopener" class="share-btn-weibo" aria-label="weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+  
+  
+    
+  
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+      
+      <a href="https://armanasq.github.io/"><img class="avatar mr-3 avatar-circle" src="/authors/admin/avatar_hu423262b037e945bf3d00a3d75617f940_247637_270x270_fill_q75_lanczos_center.jpeg" alt="Arman Asgharpoor Golroudbari"></a>
+    
+
+    <div class="media-body">
+      <h5 class="card-title"><a href="https://armanasq.github.io/">Arman Asgharpoor Golroudbari</a></h5>
+      <h6 class="card-subtitle">Space-AI Researcher</h6>
+      <p class="card-text">My research interests revolve around planetary rovers and spacecraft vision-based navigation.</p>
+      <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="/#contact" >
+        <i class="fas fa-comment-alt"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+    <li>
+      <a href="mailto:a.asgharpoor1993@gmail.com" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://scholar.google.com/citations?user=IlAgF9UAAAAJ&amp;hl=en" target="_blank" rel="noopener">
+        <i class="ai ai-google-scholar"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/armanasq" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://linkedin.com/in/asgharpoor" target="_blank" rel="noopener">
+        <i class="fab fa-linkedin"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://orcid.org/my-orcid?orcid=0000-0001-6271-4533" target="_blank" rel="noopener">
+        <i class="ai ai-orcid"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://www.webofscience.com/wos/author/record/IAN-3152-2023" target="_blank" rel="noopener">
+        <i class="ai ai-publons"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://researchgate.net/profile/Arman_Asgharpoor" target="_blank" rel="noopener">
+        <i class="ai ai-researchgate"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="/uploads/cv.pdf" >
+        <i class="ai ai-cv"></i>
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+</article>
+  </div>
+
+  <div class="page-footer">
+    
+    
+    <div class="container">
+      <footer class="site-footer">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+
+  
+  
+    
+  
+  
+    
+  
+
+  
+
+  
+  <p class="powered-by copyright-license-text">
+    © 2023 Me. This work is licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0" rel="noopener noreferrer" target="_blank">CC BY NC ND 4.0</a>
+  </p>
+  
+
+  <p class="powered-by footer-license-icons">
+    <a href="https://creativecommons.org/licenses/by-nc-nd/4.0" rel="noopener noreferrer" target="_blank" aria-label="Creative Commons">
+      <i class="fab fa-creative-commons fa-2x" aria-hidden="true"></i>
+      <i class="fab fa-creative-commons-by fa-2x" aria-hidden="true"></i>
+      
+        <i class="fab fa-creative-commons-nc fa-2x" aria-hidden="true"></i>
+      
+      
+        <i class="fab fa-creative-commons-nd fa-2x" aria-hidden="true"></i>
+      
+    </a>
+  </p>
+
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+      
+      
+      
+      
+      
+      
+      Published with <a href="https://wowchemy.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Wowchemy</a> — the free, <a href="https://github.com/wowchemy/wowchemy-hugo-themes" target="_blank" rel="noopener">open source</a> website builder that empowers creators.
+    
+  </p>
+</footer>
+
+    </div>
+    
+  </div>
+
+  
+
+
+<script src="/js/vendor-bundle.min.f64289d8217e08e3afcd597d60836062.js"></script>
+
+
+
+
+  
+
+  
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script id="search-hit-fuse-template" type="text/x-template">
+    <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+    </div>
+  </script>
+  
+    <script src="https://cdn.jsdelivr.net/gh/krisk/Fuse@v3.2.1/dist/fuse.min.js" integrity="sha512-o38bmzBGX+hD3JHWUFCDA09btWaqrNmoJ3RXLlrysA7PP01Kgs4UlE4MhelE1v5dJR3+cxlR4qQlotsW7jKsnw==" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/gh/julmot/mark.js@8.11.1/dist/jquery.mark.min.js" integrity="sha512-mhbv5DqBMgrWL+32MmsDOt/OAvqr/cHimk6B8y/bx/xS88MVkYGPiVv2ixKVrkywF2qHplNRUvFsAHUdxZ3Krg==" crossorigin="anonymous"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+<script id="page-data" type="application/json">{"use_headroom":true}</script>
+
+
+
+  <script src="/js/wowchemy-headroom.db4755770454eb63685f8de785c0a172.js" type="module"></script>
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+<script src="/en/js/wowchemy.min.ead4a376bcf2c4714888c770ea9b0040.js"></script>
+
+
+
+
+
+
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+        <pre><code></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <script src="/js/wowchemy-publication.68f8d7090562ca65fc6d3cb3f8f2d2cb.js" type="module"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+      
+      <!DOCTYPE html>
+<html>
+<head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-55GQYC5GYC"></script>
+
+<style>
+  .myImg {
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .myImg:hover {
+    opacity: 0.7;
+    cursor: pointer;
+  }
+
+   
+  .modal-img {
+    display: none;  
+    position: fixed;  
+    z-index: 1;  
+    padding-top: 150px;  
+    left: 0;
+    top: 0px;
+    width: 100%;  
+    height: 100%;  
+    overflow: visible;  
+    background-color: rgb(0, 0, 0);  
+    background-color: rgba(0, 0, 0, 0.6);  
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+   
+  .modal-content {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 80%;
+    max-height: 80%;
+
+  }
+
+   
+  #caption {
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    padding: 10px 0;
+
+  }
+
+   
+  .modal-content,
+  #caption {
+    -webkit-animation-name: zoom;
+    -webkit-animation-duration: 0.6s;
+    animation-name: zoom;
+    animation-duration: 0.6s;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @-webkit-keyframes zoom {
+    from {
+      -webkit-transform: scale(0);
+    }
+    to {
+      -webkit-transform: scale(1);
+    }
+  }
+
+  @keyframes zoom {
+    from {
+      transform: scale(0);
+    }
+    to {
+      transform: scale(1);
+    }
+  }
+
+   
+  
+ .modal-close {
+    position: absolute;
+    top: -55px;
+    right: 0;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+  }
+
+  .modal-close:hover,
+  .modal-close:focus {
+    color: #bbb;
+    text-decoration: none;
+  }
+
+   
+  @media only screen and (max-width: 900px) {
+    .modal-content {
+      width: 90%;
+    }
+  }
+
+  .test:hover {
+    scale: 1.2;
+  }
+
+
+
+
+
+
+
+  .navbar-nav {
+    font-size:20px;
+    font-family: Merriweather,sans-serif;
+  }
+
+  .robotic-section-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .robotic-section {
+    flex-basis: calc(30.33% - 12px);
+    margin: 10px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    transition: box-shadow 0.3s ease-in-out;
+    overflow: hidden;
+  }
+  
+  .robotic-section:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .robotic-section-content {
+    text-align: center;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+  }
+  
+  .robotic-section-content .image-placeholder {
+    width: 300px;
+    height: 300px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f1f1f1;
+  }
+  
+  .robotic-section-content .image-placeholder img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+  
+  .robotic-section-content-h2 {
+    margin-top: 10px;
+    font-size: 1.rem;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .robotic-section-content-h2 :hover{
+    font-size: 10px
+  }
+  .robotic-section-content-h2 {
+    margin-top: 10px;
+    color: #777;
+    font-size: 1.2rem;
+  }
+  
+  .robotic-section-content .text-placeholder {
+    height: 80px;
+    background-color: #f1f1f1;
+  }
+  
+  .robotic-section-content a {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #FF4081;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: bold;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .robotic-section-content a:hover {
+    background-color: #E91E63;
+  }
+  
+   
+  @media (max-width: 768px) {
+    .robotic-section {
+      flex-basis: calc(50% - 40px);
+    }
+  }
+  
+   
+  @media (max-width: 480px) {
+    .robotic-section {
+      flex-basis: 100%;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div id="myModal" class="modal-img">
+  <div class="modal-content">
+    <span class="modal-close">&times;</span>
+    <img id="img01" style="margin-left: auto; margin-right: auto;">
+    <div id="caption"></div>
+  </div>
+</div>
+
+
+
+
+<script>
+    
+    var modal = document.getElementById("myModal");
+    
+    
+    var images = document.querySelectorAll("img.myImg");
+    
+    
+    var modalImg = document.getElementById("img01");
+    var captionText = document.getElementById("caption");
+    
+    
+    for (var i = 0; i < images.length; i++) {
+      
+      images[i].setAttribute("data-src", images[i].src);
+      
+      images[i].addEventListener("click", function() {
+        
+        modalImg.src = this.getAttribute("data-src");
+        captionText.innerHTML = this.alt;
+        
+        modal.style.display = "block";
+      });
+    }
+    
+    
+    var modalClose = document.querySelector(".modal-content .modal-close");
+    
+    
+    modalClose.onclick = function() {
+      modal.style.display = "none";
+    };
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    </script>
+    
+    </body>
+    </html>
+      
+    
+  
+
+
+
+
+
+
+</body>
+</html>

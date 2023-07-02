@@ -1,0 +1,2328 @@
+<!DOCTYPE html>
+<!-- This site was created with Wowchemy. https://www.wowchemy.com -->
+<!-- Last Published: July 2, 2023 --><html lang="en-us" >
+
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Wowchemy 5.7.0 for Hugo" />
+  
+
+  
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+  
+
+  
+  
+
+  
+  
+    
+    <script src="/js/mathjax-config.js"></script>
+  
+
+  
+
+  <link rel="stylesheet" href="/css/vendor-bundle.min.047268c6dd09ad74ba54a0ba71837064.css" media="print" onload="this.media='all'">
+
+  
+  
+  
+    
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.2/css/academicons.min.css" integrity="sha512-KlJCpRsLf+KKu2VQa5vmRuClRFjxc5lXO03ixZt82HZUk41+1I0bD8KBSA0fY290ayMfWYI9udIqeOWSu1/uZg==" crossorigin="anonymous" media="print" onload="this.media='all'">
+    
+
+    
+    
+    
+    
+      
+      
+    
+    
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.d060e36f065b14306ff371728665eb02.css" />
+
+  
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+    
+    
+    <link rel="stylesheet" href="/css/libs/chroma/dracula.min.css" title="hl-light" media="print" onload="this.media='all'" >
+    <link rel="stylesheet" href="/css/libs/chroma/dracula.min.css" title="hl-dark" media="print" onload="this.media='all'" disabled>
+  
+
+  
+  
+
+  <meta name="google-site-verification" content="Zv4l_ljWZhu4o0Z-kfZwQmuokpt40AvKXA78N8kynpc" />
+
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-55GQYC5GYC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag() {
+      dataLayer.push(arguments);
+  }
+
+  function trackOutboundLink(url, target) {
+    gtag('event', 'click', {
+         'event_category': 'outbound',
+         'event_label': url,
+         'transport_type': 'beacon',
+         'event_callback': function () {
+           if (target !== '_blank') {
+             document.location = url;
+           }
+         }
+    });
+    console.debug("Outbound link clicked: " + url);
+  }
+
+  function onClickCallback(event) {
+    if ((event.target.tagName !== 'A') || (event.target.host === window.location.host)) {
+      return;
+    }
+    trackOutboundLink(event.target, event.target.getAttribute('target'));  
+  }
+
+  gtag('js', new Date());
+  gtag('config', 'G-55GQYC5GYC', {});
+  gtag('set', {'cookie_flags': 'SameSite=None;Secure'});
+
+  
+  document.addEventListener('click', onClickCallback, false);
+</script>
+
+
+
+
+<script>
+  (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','G-55GQYC5GYC');
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+
+
+
+
+
+
+  <meta name="author" content="Arman Asgharpoor Golroudbari" />
+
+
+
+
+
+  
+
+<meta name="description" content="Advanced Cancer Classification Repository. The-Health-and-Medicine-OxML-competition-track" />
+
+
+
+<link rel="alternate" hreflang="en-us" href="https://armanasq.github.io/project/OxML2023/" />
+<link rel="canonical" href="https://armanasq.github.io/project/OxML2023/" />
+
+
+
+  <link rel="manifest" href="/manifest.webmanifest" />
+
+
+
+<link rel="icon" type="image/png" href="/media/icon_hu3a1b1aacf1bb12033635935a8f8a9863_117561_32x32_fill_lanczos_center_3.png" />
+<link rel="apple-touch-icon" type="image/png" href="/media/icon_hu3a1b1aacf1bb12033635935a8f8a9863_117561_180x180_fill_lanczos_center_3.png" />
+
+<meta name="theme-color" content="#1565c0" />
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+<meta property="twitter:card" content="summary_large_image" />
+
+  <meta property="twitter:site" content="@wowchemy" />
+  <meta property="twitter:creator" content="@wowchemy" />
+<meta property="twitter:image" content="https://armanasq.github.io/project/OxML2023/featured.png" />
+<meta property="og:site_name" content="" />
+<meta property="og:url" content="https://armanasq.github.io/project/OxML2023/" />
+<meta property="og:title" content="Carcinoma Classification - OxML 2023 Cases | " />
+<meta property="og:description" content="Advanced Cancer Classification Repository. The-Health-and-Medicine-OxML-competition-track" /><meta property="og:image" content="https://armanasq.github.io/project/OxML2023/featured.png" /><meta property="og:locale" content="en-us" />
+
+  
+    <meta
+      property="article:published_time"
+      content="2023-06-01T00:00:00&#43;00:00"
+    />
+  
+  
+    <meta property="article:modified_time" content="2023-06-01T00:00:00&#43;00:00">
+  
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://armanasq.github.io/project/OxML2023/"
+  },
+  "headline": "Carcinoma Classification - OxML 2023 Cases",
+  
+  "image": [
+    "https://armanasq.github.io/project/OxML2023/featured.png"
+  ],
+  
+  "datePublished": "2023-06-01T00:00:00Z",
+  "dateModified": "2023-06-01T00:00:00Z",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Arman Asgharpoor Golroudbari"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://armanasq.github.io/media/icon_hu3a1b1aacf1bb12033635935a8f8a9863_117561_192x192_fill_lanczos_center_3.png"
+    }
+  },
+  "description": "Advanced Cancer Classification Repository. The-Health-and-Medicine-OxML-competition-track"
+}
+</script>
+
+  
+
+  
+
+
+
+
+  
+  
+  
+
+  
+  
+
+  
+
+
+  
+  <title>Carcinoma Classification - OxML 2023 Cases | </title>
+
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="214c3de1b00b9c375723abe8c63d6be5" >
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.min.ec9d49ca50e4b80bdb08f0417a28ed84.js"></script>
+
+  
+
+
+<aside class="search-modal" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#" aria-label="Close"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control"
+        aria-label="Search...">
+        
+      </div>
+
+      
+      
+
+      
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+
+  <div class="page-header header--fixed">
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<header>
+  <nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+    <div class="container-xl">
+
+      
+      <div class="d-none d-lg-inline-flex">
+        <a class="navbar-brand" href="/"></a>
+      </div>
+      
+
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse"
+              data-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
+      <span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+      
+      <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+        <a class="navbar-brand" href="/"></a>
+      </div>
+      
+
+      
+      
+      <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+        
+        <ul class="navbar-nav d-md-inline-flex">
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#about"><span>Home</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/robotic"><span>Robotic</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#posts"><span>Posts</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#projects"><span>Projects</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#talks"><span>Talks</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/publication"><span>Publications</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/certificates"><span>Certificates</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#contact"><span>Contact</span></a>
+          </li>
+
+          
+          
+
+        
+
+          
+        </ul>
+      </div>
+
+      <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+        
+        
+          
+            
+            <li class="nav-item d-none d-lg-inline-flex">
+              <a class="nav-link" href="mailto:a.asgharpoor1993@gmail.com" data-toggle="tooltip" data-placement="bottom" title="Drop me an email."  aria-label="Drop me an email.">
+                <i class="fas fa-envelope" aria-hidden="true"></i>
+              </a>
+            </li>
+          
+            
+            <li class="nav-item d-none d-lg-inline-flex">
+              <a class="nav-link" href="https://github.com/armanasq" data-toggle="tooltip" data-placement="bottom" title="Follow Me on GitHub." target="_blank" rel="noopener" aria-label="Follow Me on GitHub.">
+                <i class="fab fa-github" aria-hidden="true"></i>
+              </a>
+            </li>
+          
+        
+
+        
+        
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" href="#" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+        
+        
+        <li class="nav-item dropdown theme-dropdown">
+          <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-label="Display preferences">
+            <i class="fas fa-moon" aria-hidden="true"></i>
+          </a>
+          <div class="dropdown-menu">
+            <a href="#" class="dropdown-item js-set-theme-light">
+              <span>Light</span>
+            </a>
+            <a href="#" class="dropdown-item js-set-theme-dark">
+              <span>Dark</span>
+            </a>
+            <a href="#" class="dropdown-item js-set-theme-auto">
+              <span>Automatic</span>
+            </a>
+          </div>
+        </li>
+        
+
+        
+        
+
+      </ul>
+
+    </div>
+  </nav>
+</header>
+
+
+  </div>
+
+  <div class="page-body">
+    
+    
+    
+
+    <article class="article article-project">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+<div class="article-container pt-3">
+  <h1>Carcinoma Classification - OxML 2023 Cases</h1>
+
+  
+
+  
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    Jun 1, 2023
+  </span>
+  
+
+  
+
+  
+
+  
+  
+  
+  
+
+  
+  
+
+</div>
+
+  
+
+
+
+
+<div class="btn-links mb-3">
+  
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+    
+  
+  
+  
+  
+  
+    
+  
+  <a class="btn btn-outline-primary btn-page-header" href="https://github.com/Armanasq/The-Health-and-Medicine-OxML-competition-track" target="_blank" rel="noopener">
+    <i class="fab fa-github mr-1"></i>Project Code</a>
+
+  
+  
+  
+    
+  
+  
+  
+  
+  
+    
+  
+  <a class="btn btn-outline-primary btn-page-header" href="https://www.kaggle.com/code/armanasgharpoor1993/ensemble-learning-k-fold" target="_blank" rel="noopener">
+    <i class="fab fa-kaggle mr-1"></i>Project Code</a>
+
+
+</div>
+
+
+</div>
+
+
+<div class="article-header article-container featured-image-wrapper mt-4 mb-4" style="max-width: 472px; max-height: 179px;">
+  <div style="position: relative">
+    <img src="/project/OxML2023/featured_huf7cdfad23b42cb79d74bac07c6dd10c8_84602_720x2500_fit_q75_h2_lanczos_3.webp" width="472" height="179" alt="" class="featured-image">
+    
+  </div>
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      <h1 id="carcinoma-classification---oxml-2023-cases">Carcinoma Classification - OxML 2023 Cases</h1>
+<h2 id="advanced-cancer-classification-repository">Advanced Cancer Classification Repository</h2>
+<h2 id="the-health-and-medicine-oxml-competition-track">The-Health-and-Medicine-OxML-competition-track</h2>
+<p>This repository contains code for a sophisticated and advanced cancer classification model. The model utilizes state-of-the-art deep learning architectures, including ResNet-50, EfficientNet-V2, Inception-V3, and GoogLeNet, to classify images of skin lesions into three classes: benign, malignant, and unknown.</p>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ul>
+<li><a href="#carcinoma-classification---oxml-2023-cases">Carcinoma Classification - OxML 2023 Cases</a>
+<ul>
+<li><a href="#advanced-cancer-classification-repository">Advanced Cancer Classification Repository</a></li>
+<li><a href="#the-health-and-medicine-oxml-competition-track">The-Health-and-Medicine-OxML-competition-track</a></li>
+<li><a href="#table-of-contents">Table of Contents</a></li>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#dataset">Dataset</a></li>
+<li><a href="#approach">Approach</a></li>
+<li><a href="#preprocessing">Preprocessing</a></li>
+<li><a href="#methodology">Methodology</a></li>
+<li><a href="#equations-and-formulas">Equations and Formulas</a></li>
+<li><a href="#implementation-details">Implementation Details</a>
+<ul>
+<li><a href="#dataset-and-data-augmentation">Dataset and Data Augmentation</a></li>
+<li><a href="#model-selection-and-training">Model Selection and Training</a></li>
+<li><a href="#cross-validation">Cross-Validation</a></li>
+<li><a href="#model-evaluation-and-predictions">Model Evaluation and Predictions</a></li>
+</ul>
+</li>
+<li><a href="#data-preprocessing">Data Preprocessing</a></li>
+<li><a href="#model-architecture">Model Architecture</a></li>
+<li><a href="#training">Training</a>
+<ul>
+<li><a href="#loss-function">Loss Function:</a></li>
+<li><a href="#optimization-algorithm">Optimization Algorithm:</a></li>
+<li><a href="#model-ensemble">Model Ensemble:</a></li>
+<li><a href="#evaluation-metrics">Evaluation Metrics:</a></li>
+</ul>
+</li>
+<li><a href="#evaluation">Evaluation</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="introduction">Introduction</h2>
+<p>Cancer classification is a challenging task that plays a crucial role in early detection and diagnosis. The proposed model in this repository aims to accurately classify skin lesion images into three classes: benign, malignant, and unknown. To achieve this, the model utilizes a combination of pre-trained deep learning models, including ResNet-50, EfficientNet-V2, Inception-V3, and GoogLeNet, each with their specific strengths and features. By leveraging the power of ensemble learning, the model can make robust and accurate predictions.</p>
+<p>This code is part of the Carcinoma Classification competition, specifically focusing on classifying HES stained histopathological slices as containing or not containing carcinoma cells. The goal is to determine if a carcinoma is present and, if so, whether it is benign or malignant. The competition provides a dataset of 186 images, with labels available for only 62 of them. Due to the limited training data, participants are encouraged to leverage pre-trained models and apply various techniques to improve classification performance.</p>
+<h2 id="dataset">Dataset</h2>
+<p>The dataset consists of HES stained histopathological slices. Each image may contain carcinoma cells, and the corresponding labels indicate whether the carcinoma is benign (0), malignant (1), or not present (-1). It is important to note that the training data is highly imbalanced, and a naive classification approach labeling all samples as healthy would yield high accuracy but an unbalanced precision/recall trade-off. The evaluation metric for this competition is the Mean F1-Score, which provides a good trade-off between sensitivity and specificity.</p>
+<h2 id="approach">Approach</h2>
+<p>To tackle this task, several approaches can be employed:</p>
+<ol>
+<li>Relying on a pre-trained model and using zero/few-shot learning techniques.</li>
+<li>Fine-tuning the last layer of a pre-trained model for a new classification task.</li>
+<li>Leveraging a pre-trained model and applying a different classifier, such as Gaussian Process, SVMs, or XGBoost.</li>
+</ol>
+<h2 id="preprocessing">Preprocessing</h2>
+<p>Several preprocessing considerations should be taken into account when working with this dataset:</p>
+<ol>
+<li>Image Size: The images in the dataset do not have the same size, and cropping them may result in missing the target cells. Resizing the images may alter their features and make them less readable, so careful handling is necessary.</li>
+</ol>
+<h2 id="methodology">Methodology</h2>
+<p>The code provided implements a deep learning pipeline for image classification using pre-trained models. The pipeline consists of the following steps:</p>
+<ol>
+<li>
+<p>Setting seeds: The <code>set_seeds</code> function sets the random seeds to ensure reproducibility of the results.</p>
+</li>
+<li>
+<p>CustomDataset class: This class is used to create a custom dataset for loading and preprocessing the image data. It takes the image directory, labels file, and optional transformations as inputs. The class provides methods to retrieve the length of the dataset and individual data items.</p>
+</li>
+<li>
+<p>Device setup: The code checks if a GPU is available and sets the device accordingly.</p>
+</li>
+<li>
+<p>Data preparation:</p>
+<ul>
+<li>Loading labeled dataset: The labeled dataset is loaded from a CSV file containing image labels.</li>
+<li>Finding maximum size: The maximum width and height of the images in the dataset are determined.</li>
+<li>Data transformation: Two main data transformation pipelines are defined:
+<ul>
+<li><code>main_transform</code>: Resizes the images to the maximum width and height, converts them to tensors, and applies normalization.</li>
+<li><code>augmentation_transform</code>: Includes resizing, random flips, rotation, color jitter, and normalization for data augmentation.</li>
+</ul>
+</li>
+<li>Dataset creation: The main dataset and augmented dataset are created using the <code>CustomDataset</code> class and the respective transformation pipelines.</li>
+<li>Combining datasets: The main dataset and augmented dataset are combined using the <code>ConcatDataset</code> class.</li>
+<li>Stratified k-fold cross-validation: The combined dataset is split into train and validation sets using stratified k-fold cross-validation.</li>
+</ul>
+</li>
+<li>
+<p>Model setup:</p>
+<ul>
+<li>Pre-trained model loading: Several pre-trained models from the torchvision library are loaded, including ResNet50, EfficientNetV2, Inception V3, and GoogLeNet.</li>
+<li>Model adaptation: The last fully connected layers (classifiers) of each model are replaced with new linear layers to match the number of classes in the current task.</li>
+<li>Model device placement: The models are moved to the specified device (GPU if available).</li>
+</ul>
+</li>
+<li>
+<p>Training loop:</p>
+<ul>
+<li>Loss function and optimizer: The cross-entropy loss and Adam optimizer are defined for each model.</li>
+<li>Training phase: The training loop iterates over the specified number of epochs and performs the following steps for each model:
+<ul>
+<li>Sets the model to train mode and initializes the running loss.</li>
+<li>Iterates over the training dataloader and performs the following steps for each batch:
+<ul>
+<li>Moves the images and labels to the specified device.</li>
+<li>Clears the gradients from the previous iteration.</li>
+<li>Performs a forward pass through the model to get the outputs.</li>
+<li>Computes the loss by comparing the outputs with the ground truth labels.</li>
+<li>Performs backpropagation to compute the gradients.</li>
+<li>Updates the model parameters based on the gradients using the optimizer.</li>
+<li>Accumulates the running loss.</li>
+</ul>
+</li>
+<li>Calculates the average loss for the epoch and prints it.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Evaluation:</p>
+<ul>
+<li>Validation phase: After each training epoch, the models are evaluated on the validation set.</li>
+<li>Evaluation metrics: Various evaluation metrics such as accuracy, F1 score, and recall are calculated using the predictions and true labels.</li>
+<li>Best model selection: The model with the best validation loss, F1 score, and accuracy is selected and saved.</li>
+</ul>
+</li>
+<li>
+<p>Model testing: The selected best model is used to make predictions on the test set.</p>
+</li>
+</ol>
+<h2 id="equations-and-formulas">Equations and Formulas</h2>
+<ol>
+<li>
+<p>Class weights calculation:</p>
+<ul>
+<li>Formula: <code>class_weights = 1.0 / torch.tensor(np.bincount(stacked_labels[train_index]))</code></li>
+<li>Description: Compute the class weights by taking the reciprocal of the counts of each class in the training set. This gives more weight to underrepresented classes and less weight to overrepresented classes.</li>
+</ul>
+</li>
+<li>
+<p>Cross-Entropy Loss:</p>
+<ul>
+<li>
+<p>Formula:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img src="https://latex.codecogs.com/png.latex?%5Cbg_white%20%5Ctext%7BCrossEntropyLoss%7D%28%5Cmathbf%7Bp%7D%2C%20%5Cmathbf%7Bq%7D%29%20%3D%20-%20%5Csum_i%20p_i%20%5Clog%20q_i" alt="Cross-Entropy Loss" loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+</li>
+<li>
+<p>Description: The cross-entropy loss measures the dissimilarity between the predicted probability distribution (q) and the true probability distribution (p) of the classes. It is commonly used as a loss function in multi-class classification problems. The formula sums over all classes (i) and calculates the negative log-likelihood of the true class probabilities predicted by the model.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Adam Optimizer:</p>
+<ul>
+<li>Formula for parameter update:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img src="https://latex.codecogs.com/png.latex?%5Cbg_white%20%5Ctheta_%7Bt&amp;plus;1%7D%20%3D%20%5Ctheta_t%20-%20%5Cfrac%7B%5Ctext%7BLearningRate%7D%7D%7B%5Csqrt%7B%5Chat%7Bv%7D_t%7D%20%2B%20%5Cepsilon%7D%20%5Codot%20%5Chat%7Bm%7D_t" alt="Adam Optimizer Update" loading="lazy" data-zoomable /></div>
+  </div></figure>
+</li>
+<li>Description: The Adam optimizer is an adaptive learning rate optimization algorithm commonly used in deep learning. It computes individual learning rates for different parameters by estimating first and second moments of the gradients. The formula calculates the updated parameter values (θ) based on the previous parameter values (θt), the learning rate (LearningRate), the estimated first moment of the gradient (m), the estimated second moment of the gradient (v), and a small epsilon value for numerical stability.</li>
+</ul>
+</li>
+<li>
+<p>Accuracy:</p>
+<ul>
+<li>Formula:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img src="https://latex.codecogs.com/png.latex?%5Cbg_white%20%5Ctext%7BAccuracy%7D%20%3D%20%5Cfrac%7B%5Ctext%7BNumber%20of%20correct%20predictions%7D%7D%7B%5Ctext%7BTotal%20number%20of%20predictions%7D%7D" alt="Accuracy" loading="lazy" data-zoomable /></div>
+  </div></figure>
+</li>
+<li>Description: Accuracy is a common evaluation metric used in classification tasks. It measures the percentage of correct predictions out of the total number of predictions made by the model.</li>
+</ul>
+</li>
+<li>
+<p>F1 Score:</p>
+<ul>
+<li>Formula:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img src="https://latex.codecogs.com/png.latex?%5Cbg_white%20%5Ctext%7BF1%20Score%7D%20%3D%20%5Cfrac%7B2%20%5Ctimes%20%5Ctext%7BPrecision%7D%20%5Ctimes%20%5Ctext%7BRecall%7D%7D%7B%5Ctext%7BPrecision%7D%20%2B%20%5Ctext%7BRecall%7D%7D" alt="F1 Score" loading="lazy" data-zoomable /></div>
+  </div></figure>
+</li>
+<li>Description: The F1 score is the harmonic mean of precision and recall. It is a single metric that combines both precision (the ability of the model to correctly predict positive samples) and recall (the ability of the model to find all positive samples). The F1 score is commonly used when there is an imbalance between the number of positive and negative samples in the dataset.</li>
+</ul>
+</li>
+<li>
+<p>Recall (Sensitivity):</p>
+<ul>
+<li>Formula:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img src="https://latex.codecogs.com/png.latex?%5Cbg_white%20%5Ctext%7BRecall%7D%20%3D%20%5Cfrac%7B%5Ctext%7BTrue%20Positives%7D%7D%7B%5Ctext%7BTrue%20Positives%7D%20%2B%20%5Ctext%7BFalse%20Negatives%7D%7D" alt="Recall" loading="lazy" data-zoomable /></div>
+  </div></figure>
+</li>
+<li>Description: Recall, also known as sensitivity or true positive rate, measures the proportion of actual positive samples that are correctly identified by the model. It is a useful metric when the goal is to minimize false negatives.</li>
+</ul>
+</li>
+</ol>
+<p>These are just a few examples of commonly used mathematical notations and formulas in machine learning. There are many other concepts and equations used in various algorithms and models depending on the specific task at hand.</p>
+<h2 id="implementation-details">Implementation Details</h2>
+<p>The code provided here is a Python implementation for the Carcinoma Classification competition. The code utilizes the PyTorch library for deep learning tasks. Here is an overview of the key components of the code:</p>
+<h3 id="dataset-and-data-augmentation">Dataset and Data Augmentation</h3>
+<ul>
+<li>The <code>CustomDataset</code> class is implemented to handle loading the dataset and corresponding labels. It also includes support for optional data augmentation transformations.</li>
+<li>Multiple data augmentation transforms are defined using the <code>transforms.Compose</code> function from the torchvision library. These transforms apply various operations such as resizing, random flipping, rotation, color jittering, and normalization.</li>
+<li>The dataset is split into a main dataset and an augmented dataset, which is achieved by creating two instances of the <code>CustomDataset</code> class with different transforms.</li>
+<li>The <code>ConcatDataset</code> class is used to combine the main dataset and the augmented dataset into a single dataset for training.</li>
+</ul>
+<h3 id="model-selection-and-training">Model Selection and Training</h3>
+<ul>
+<li>Pre-trained models such as ResNet-50, EfficientNetV2, Inception V3, and GoogLeNet are loaded using the torchvision.models module.</li>
+<li>The last fully connected layers of the pre-trained models are replaced to match the number of classes in the competition.</li>
+<li>The models are moved to the available device (GPU if available) using the <code>to</code> method.</li>
+<li>The training loop consists of multiple epochs, where each epoch involves training the models on the training data and evaluating them on the validation data.</li>
+<li>The training loss is calculated using the CrossEntropyLoss function, and the Adam optimizer is used for optimization.</li>
+<li>Class weights are calculated based on the training data distribution to handle the imbalanced dataset.</li>
+<li>The best validation loss, F1 score, and accuracy are tracked to monitor the model&rsquo;s performance and select the best model.</li>
+</ul>
+<h3 id="cross-validation">Cross-Validation</h3>
+<ul>
+<li>The dataset is split into k-folds using the StratifiedKFold class from the scikit-learn library.</li>
+<li>For each fold, the training and validation sets are obtained, and the models are trained and evaluated on these sets. This helps to assess the model&rsquo;s performance across different data subsets and reduce the risk of overfitting.</li>
+</ul>
+<h3 id="model-evaluation-and-predictions">Model Evaluation and Predictions</h3>
+<ul>
+<li>The trained models are evaluated on the test set to obtain the final performance metrics, including F1 score, accuracy, precision, and recall.</li>
+<li>The predictions are generated for the test set, which can be used for submission or further analysis.</li>
+</ul>
+<h2 id="data-preprocessing">Data Preprocessing</h2>
+<p>Before training the models, several preprocessing steps are applied to the dataset:</p>
+<ol>
+<li><strong>Image Resizing</strong>: The images are resized to the maximum dimensions found in the dataset to ensure uniformity across all samples.</li>
+<li><strong>Data Augmentation</strong>: Two sets of data augmentation transforms are applied to the images. The first set includes random horizontal and vertical flips, random rotations, and color jittering. The second set includes additional transformations such as random affine transformations, random resized crops, and random perspective transformations. These augmentations help in increasing the diversity and generalizability of the training data.</li>
+<li><strong>Normalization</strong>: All images are normalized by subtracting the mean and dividing by the standard deviation of the RGB channels.</li>
+</ol>
+<h2 id="model-architecture">Model Architecture</h2>
+<p>The proposed model ensemble consists of four pre-trained deep learning models:</p>
+<ol>
+<li><strong>ResNet-50</strong>: A popular and powerful deep residual network that has shown excellent performance on various image classification tasks. The last fully connected layer of ResNet-50 is replaced with a new linear layer to accommodate the three-class classification task.</li>
+<li><strong>EfficientNet-V2</strong>: A highly efficient and effective deep neural network architecture that achieves state-of-the-art performance with significantly fewer parameters than other models. The last fully connected layer of EfficientNet-V2 is modified to match the three-class classification task.</li>
+<li><strong>Inception-V3</strong>: A deep convolutional neural network known for its ability to capture intricate spatial structures and patterns in images. The original fully connected layer of Inception-V3 is replaced with a new linear layer for three-class classification.</li>
+<li><strong>GoogLeNet</strong>: A deep neural network architecture that utilizes inception modules and auxiliary classifiers to enhance training and improve performance. The last fully connected layer of GoogLeNet is adapted to accommodate the three-class classification task.</li>
+</ol>
+<p>To ensure computational efficiency, all pre-trained model parameters are frozen, except for the final fully connected layers. The models are moved to the available device, typically a GPU, for accelerated computations.</p>
+<h2 id="training">Training</h2>
+<p>The training process involves several steps:</p>
+<ol>
+<li><strong>K-Fold Cross-Validation</strong>: The dataset is split into k folds, where k is set to 8. Stratified sampling is employed to ensure a balanced distribution of classes in each fold.</li>
+<li><strong>Model Initialization</strong>: For each fold, the four pre-trained models (ResNet-50, EfficientNet-V2, Inception-V3, and GoogLeNet) are initialized with their respective weights from the pre-trained models.</li>
+<li><strong>Training Loop</strong>: For each epoch, the following steps are performed:
+<ul>
+<li>The training dataset is divided into batches.</li>
+<li>For each batch, the forward pass is performed on each model to obtain the predicted probabilities for each class.</li>
+<li>The loss is computed using the cross-entropy loss function.</li>
+<li>The gradients are calculated and backpropagated through the models.</li>
+<li>The optimizer is used to update the model parameters based on the gradients.</li>
+</ul>
+</li>
+<li><strong>Validation</strong>: After each epoch, the models are evaluated on the validation dataset to monitor their performance. The accuracy, precision, recall, and F1-score are calculated for each fold.</li>
+<li><strong>Model Ensemble</strong>: Once training is complete, the models from each fold are combined into an ensemble. The predictions of each model are averaged to obtain the final prediction for each image in the test dataset.</li>
+<li><strong>Ensemble Evaluation</strong>: The performance of the ensemble is evaluated on the test dataset using accuracy, precision, recall, and F1-score.</li>
+</ol>
+<h3 id="loss-function">Loss Function:</h3>
+<p>The cross-entropy loss function is commonly used for multi-class classification tasks. Given a training example with true class label y and predicted class probabilities  ŷ, the cross-entropy loss is calculated as follows:</p>
+<p>L(y, ŷ) = - ∑ y_i * log(ŷ_i)</p>
+<p>Where y_i is the true probability of the i-th class and ŷ_i is the predicted probability of the i-th class. The loss function penalizes incorrect predictions by assigning a higher loss value when the predicted probability deviates from the true probability.</p>
+<h3 id="optimization-algorithm">Optimization Algorithm:</h3>
+<p>Stochastic Gradient Descent (SGD) is a widely used optimization algorithm for training deep learning models. It updates the model parameters in the direction of steepest descent to minimize the loss function. The update equation for the model parameters using SGD can be expressed as:</p>
+<p>θ(t+1) = θ(t) - α * ∇L(θ(t))</p>
+<p>Where θ(t) represents the model parameters at time step t, α is the learning rate that determines the step size, and ∇L(θ(t)) denotes the gradient of the loss function with respect to the model parameters.</p>
+<h3 id="model-ensemble">Model Ensemble:</h3>
+<p>The model ensemble combines the predictions of multiple models to obtain a final prediction. In this case, the predictions from each fold&rsquo;s models are averaged to create an ensemble prediction. The ensemble prediction is obtained by summing the predicted probabilities for each class from all the models and normalizing them by the total number of models.</p>
+<p>ŷ_ensemble = (1 / N) * ∑ ŷ_fold_i</p>
+<p>Where ŷ_ensemble represents the ensemble prediction, ŷ_fold_i denotes the predicted probability from the i-th fold&rsquo;s model, and N is the total number of models in the ensemble.</p>
+<h3 id="evaluation-metrics">Evaluation Metrics:</h3>
+<ol>
+<li>Accuracy: Accuracy measures the proportion of correctly classified images over the total number of images in the test dataset.</li>
+</ol>
+<p>Accuracy = (TP + TN) / (TP + TN + FP + FN)</p>
+<p>Where TP represents the number of true positive predictions, TN represents the number of true negative predictions, FP represents the number of false positive predictions, and FN represents the number of false negative predictions.</p>
+<ol start="2">
+<li>Precision: Precision quantifies the proportion of correctly classified positive predictions (malignant and benign) out of all positive predictions.</li>
+</ol>
+<p>Precision = TP / (TP + FP)</p>
+<ol start="3">
+<li>Recall: Recall, also known as sensitivity or true positive rate, measures the proportion of correctly classified positive predictions out of all actual positive instances.</li>
+</ol>
+<p>Recall = TP / (TP + FN)</p>
+<ol start="4">
+<li>F1-score: The F1-score combines precision and recall into a single metric, providing a balanced evaluation of the model&rsquo;s performance.</li>
+</ol>
+<p>F1-score = 2 * (Precision * Recall) / (Precision + Recall)</p>
+<p>These evaluation metrics provide a comprehensive assessment of the model&rsquo;s classification performance, taking into account both true positives, true negatives, false positives, and false negatives.</p>
+<h2 id="evaluation">Evaluation</h2>
+<p>The model ensemble&rsquo;s performance is evaluated using standard metrics, including accuracy, precision, recall, and F1-score. These metrics provide insights into the model&rsquo;s ability to correctly classify images into the three classes: benign, malignant, and unknown. The evaluation results are presented in a clear and concise manner, allowing for an easy interpretation of the model&rsquo;s performance.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>The advanced cancer classification repository contains code for a powerful ensemble model that combines the strengths of multiple pre-trained deep learning architectures for accurate classification of skin lesion images. The repository provides detailed information on the dataset, data preprocessing steps, model architectures, training process, and evaluation metrics. Researchers and practitioners can utilize this repository to develop and deploy sophisticated cancer classification systems for early detection and diagnosis, contributing to improved patient outcomes.</p>
+
+    </div>
+
+    
+
+
+
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tag/deep-learning/">Deep Learning</a>
+  
+  <a class="badge badge-light" href="/tag/oxml/">OxML</a>
+  
+</div>
+
+
+
+<div class="share-box">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Farmanasq.github.io%2Fproject%2FOxML2023%2F&amp;text=Carcinoma&#43;Classification&#43;-&#43;OxML&#43;2023&#43;Cases" target="_blank" rel="noopener" class="share-btn-twitter" aria-label="twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https%3A%2F%2Farmanasq.github.io%2Fproject%2FOxML2023%2F&amp;t=Carcinoma&#43;Classification&#43;-&#43;OxML&#43;2023&#43;Cases" target="_blank" rel="noopener" class="share-btn-facebook" aria-label="facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a href="mailto:?subject=Carcinoma%20Classification%20-%20OxML%202023%20Cases&amp;body=https%3A%2F%2Farmanasq.github.io%2Fproject%2FOxML2023%2F" target="_blank" rel="noopener" class="share-btn-email" aria-label="envelope">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https%3A%2F%2Farmanasq.github.io%2Fproject%2FOxML2023%2F&amp;title=Carcinoma&#43;Classification&#43;-&#43;OxML&#43;2023&#43;Cases" target="_blank" rel="noopener" class="share-btn-linkedin" aria-label="linkedin-in">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=Carcinoma&#43;Classification&#43;-&#43;OxML&#43;2023&#43;Cases%20https%3A%2F%2Farmanasq.github.io%2Fproject%2FOxML2023%2F" target="_blank" rel="noopener" class="share-btn-whatsapp" aria-label="whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=https%3A%2F%2Farmanasq.github.io%2Fproject%2FOxML2023%2F&amp;title=Carcinoma&#43;Classification&#43;-&#43;OxML&#43;2023&#43;Cases" target="_blank" rel="noopener" class="share-btn-weibo" aria-label="weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+  
+  
+    
+  
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+      
+      <a href="https://armanasq.github.io/"><img class="avatar mr-3 avatar-circle" src="/authors/admin/avatar_hu423262b037e945bf3d00a3d75617f940_247637_270x270_fill_q75_lanczos_center.jpeg" alt="Arman Asgharpoor Golroudbari"></a>
+    
+
+    <div class="media-body">
+      <h5 class="card-title"><a href="https://armanasq.github.io/">Arman Asgharpoor Golroudbari</a></h5>
+      <h6 class="card-subtitle">Space-AI Researcher</h6>
+      <p class="card-text">My research interests revolve around planetary rovers and spacecraft vision-based navigation.</p>
+      <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="/#contact" >
+        <i class="fas fa-comment-alt"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+    <li>
+      <a href="mailto:a.asgharpoor1993@gmail.com" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://scholar.google.com/citations?user=IlAgF9UAAAAJ&amp;hl=en" target="_blank" rel="noopener">
+        <i class="ai ai-google-scholar"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/armanasq" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://linkedin.com/in/asgharpoor" target="_blank" rel="noopener">
+        <i class="fab fa-linkedin"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://orcid.org/my-orcid?orcid=0000-0001-6271-4533" target="_blank" rel="noopener">
+        <i class="ai ai-orcid"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://www.webofscience.com/wos/author/record/IAN-3152-2023" target="_blank" rel="noopener">
+        <i class="ai ai-publons"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://researchgate.net/profile/Arman_Asgharpoor" target="_blank" rel="noopener">
+        <i class="ai ai-researchgate"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="/uploads/cv.pdf" >
+        <i class="ai ai-cv"></i>
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="project-related-pages content-widget-hr">
+      
+      
+
+      
+      
+      
+
+      
+      
+      
+
+      
+      
+      
+    </div>
+  </div>
+</article>
+  </div>
+
+  <div class="page-footer">
+    
+    
+    <div class="container">
+      <footer class="site-footer">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+
+  
+  
+    
+  
+  
+    
+  
+
+  
+
+  
+  <p class="powered-by copyright-license-text">
+    © 2023 Me. This work is licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0" rel="noopener noreferrer" target="_blank">CC BY NC ND 4.0</a>
+  </p>
+  
+
+  <p class="powered-by footer-license-icons">
+    <a href="https://creativecommons.org/licenses/by-nc-nd/4.0" rel="noopener noreferrer" target="_blank" aria-label="Creative Commons">
+      <i class="fab fa-creative-commons fa-2x" aria-hidden="true"></i>
+      <i class="fab fa-creative-commons-by fa-2x" aria-hidden="true"></i>
+      
+        <i class="fab fa-creative-commons-nc fa-2x" aria-hidden="true"></i>
+      
+      
+        <i class="fab fa-creative-commons-nd fa-2x" aria-hidden="true"></i>
+      
+    </a>
+  </p>
+
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+      
+      
+      
+      
+      
+      
+      Published with <a href="https://wowchemy.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Wowchemy</a> — the free, <a href="https://github.com/wowchemy/wowchemy-hugo-themes" target="_blank" rel="noopener">open source</a> website builder that empowers creators.
+    
+  </p>
+</footer>
+
+    </div>
+    
+  </div>
+
+  
+
+
+<script src="/js/vendor-bundle.min.f64289d8217e08e3afcd597d60836062.js"></script>
+
+
+
+
+  
+
+  
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script id="search-hit-fuse-template" type="text/x-template">
+    <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+    </div>
+  </script>
+  
+    <script src="https://cdn.jsdelivr.net/gh/krisk/Fuse@v3.2.1/dist/fuse.min.js" integrity="sha512-o38bmzBGX+hD3JHWUFCDA09btWaqrNmoJ3RXLlrysA7PP01Kgs4UlE4MhelE1v5dJR3+cxlR4qQlotsW7jKsnw==" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/gh/julmot/mark.js@8.11.1/dist/jquery.mark.min.js" integrity="sha512-mhbv5DqBMgrWL+32MmsDOt/OAvqr/cHimk6B8y/bx/xS88MVkYGPiVv2ixKVrkywF2qHplNRUvFsAHUdxZ3Krg==" crossorigin="anonymous"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+<script id="page-data" type="application/json">{"use_headroom":true}</script>
+
+
+
+  <script src="/js/wowchemy-headroom.db4755770454eb63685f8de785c0a172.js" type="module"></script>
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+<script src="/en/js/wowchemy.min.ead4a376bcf2c4714888c770ea9b0040.js"></script>
+
+
+
+
+
+
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+        <pre><code></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <script src="/js/wowchemy-publication.68f8d7090562ca65fc6d3cb3f8f2d2cb.js" type="module"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+      
+      <!DOCTYPE html>
+<html>
+<head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-55GQYC5GYC"></script>
+
+<style>
+  .myImg {
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .myImg:hover {
+    opacity: 0.7;
+    cursor: pointer;
+  }
+
+   
+  .modal-img {
+    display: none;  
+    position: fixed;  
+    z-index: 1;  
+    padding-top: 150px;  
+    left: 0;
+    top: 0px;
+    width: 100%;  
+    height: 100%;  
+    overflow: visible;  
+    background-color: rgb(0, 0, 0);  
+    background-color: rgba(0, 0, 0, 0.6);  
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+   
+  .modal-content {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 80%;
+    max-height: 80%;
+
+  }
+
+   
+  #caption {
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    padding: 10px 0;
+
+  }
+
+   
+  .modal-content,
+  #caption {
+    -webkit-animation-name: zoom;
+    -webkit-animation-duration: 0.6s;
+    animation-name: zoom;
+    animation-duration: 0.6s;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @-webkit-keyframes zoom {
+    from {
+      -webkit-transform: scale(0);
+    }
+    to {
+      -webkit-transform: scale(1);
+    }
+  }
+
+  @keyframes zoom {
+    from {
+      transform: scale(0);
+    }
+    to {
+      transform: scale(1);
+    }
+  }
+
+   
+  
+ .modal-close {
+    position: absolute;
+    top: -55px;
+    right: 0;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+  }
+
+  .modal-close:hover,
+  .modal-close:focus {
+    color: #bbb;
+    text-decoration: none;
+  }
+
+   
+  @media only screen and (max-width: 900px) {
+    .modal-content {
+      width: 90%;
+    }
+  }
+
+  .test:hover {
+    scale: 1.2;
+  }
+
+
+
+
+
+
+
+  .navbar-nav {
+    font-size:20px;
+    font-family: Merriweather,sans-serif;
+  }
+
+  .robotic-section-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .robotic-section {
+    flex-basis: calc(30.33% - 12px);
+    margin: 10px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    transition: box-shadow 0.3s ease-in-out;
+    overflow: hidden;
+  }
+  
+  .robotic-section:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .robotic-section-content {
+    text-align: center;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+  }
+  
+  .robotic-section-content .image-placeholder {
+    width: 300px;
+    height: 300px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f1f1f1;
+  }
+  
+  .robotic-section-content .image-placeholder img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+  
+  .robotic-section-content-h2 {
+    margin-top: 10px;
+    font-size: 1.rem;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .robotic-section-content-h2 :hover{
+    font-size: 10px
+  }
+  .robotic-section-content-h2 {
+    margin-top: 10px;
+    color: #777;
+    font-size: 1.2rem;
+  }
+  
+  .robotic-section-content .text-placeholder {
+    height: 80px;
+    background-color: #f1f1f1;
+  }
+  
+  .robotic-section-content a {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #FF4081;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: bold;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .robotic-section-content a:hover {
+    background-color: #E91E63;
+  }
+  
+   
+  @media (max-width: 768px) {
+    .robotic-section {
+      flex-basis: calc(50% - 40px);
+    }
+  }
+  
+   
+  @media (max-width: 480px) {
+    .robotic-section {
+      flex-basis: 100%;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div id="myModal" class="modal-img">
+  <div class="modal-content">
+    <span class="modal-close">&times;</span>
+    <img id="img01" style="margin-left: auto; margin-right: auto;">
+    <div id="caption"></div>
+  </div>
+</div>
+
+
+
+
+<script>
+    
+    var modal = document.getElementById("myModal");
+    
+    
+    var images = document.querySelectorAll("img.myImg");
+    
+    
+    var modalImg = document.getElementById("img01");
+    var captionText = document.getElementById("caption");
+    
+    
+    for (var i = 0; i < images.length; i++) {
+      
+      images[i].setAttribute("data-src", images[i].src);
+      
+      images[i].addEventListener("click", function() {
+        
+        modalImg.src = this.getAttribute("data-src");
+        captionText.innerHTML = this.alt;
+        
+        modal.style.display = "block";
+      });
+    }
+    
+    
+    var modalClose = document.querySelector(".modal-content .modal-close");
+    
+    
+    modalClose.onclick = function() {
+      modal.style.display = "none";
+    };
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    </script>
+    
+    </body>
+    </html>
+      
+    
+  
+
+
+
+
+
+
+</body>
+</html>

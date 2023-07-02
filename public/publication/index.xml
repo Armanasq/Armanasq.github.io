@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Publications | </title>
+    <link>https://armanasq.github.io/publication/</link>
+      <atom:link href="https://armanasq.github.io/publication/index.xml" rel="self" type="application/rss+xml" />
+    <description>Publications</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Mon, 01 May 2023 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://armanasq.github.io/media/icon_hu3a1b1aacf1bb12033635935a8f8a9863_117561_512x512_fill_lanczos_center_3.png</url>
+      <title>Publications</title>
+      <link>https://armanasq.github.io/publication/</link>
+    </image>
+    
+    <item>
+      <title>Recent Advancements in Deep Learning Applications and Methods for Autonomous Navigation: A Comprehensive Review</title>
+      <link>https://armanasq.github.io/publication/preprint/</link>
+      <pubDate>Mon, 01 May 2023 00:00:00 +0000</pubDate>
+      <guid>https://armanasq.github.io/publication/preprint/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Generalizable end-to-end deep learning frameworks for real-time attitude estimation using 6DoF inertial measurement units</title>
+      <link>https://armanasq.github.io/publication/attitude/</link>
+      <pubDate>Sat, 01 Apr 2023 00:00:00 +0000</pubDate>
+      <guid>https://armanasq.github.io/publication/attitude/</guid>
+      <description>&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    Click the &lt;em&gt;Cite&lt;/em&gt; button above to import publication metadata.
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    Create your slides in Markdown - click the &lt;em&gt;Slides&lt;/em&gt; button to check out the example.
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;a href=&#34;Model_A.png&#34;&gt;Model A&lt;/a&gt;
+Supplementary notes can be added here, including &lt;a href=&#34;https://wowchemy.com/docs/writing-markdown-latex/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;code, math, and images&lt;/a&gt;.&lt;/p&gt;
+&lt;img class=&#34;myImg&#34; src=&#34;Model_A.png&#34; alt=&#34;Model A&#34;&gt;
+&lt;img class=&#34;myImg&#34; src=&#34;Model_B.png&#34; alt=&#34;Model B&#34;&gt;
+&lt;img class=&#34;myImg&#34; src=&#34;Model_C.png&#34; alt=&#34;Model C&#34;&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
