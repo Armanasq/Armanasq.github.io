@@ -38,11 +38,11 @@ tags:
     - [Step 7: Perform Image Segmentation](#step-7-perform-image-segmentation)
 
 
-In this in-depth tutorial, we will learn how to perform image segmentation using the COCO dataset and deep learning. Image segmentation is the process of partitioning an image into multiple segments to identify objects and their boundaries. The COCO dataset is a popular benchmark dataset for object detection, instance segmentation, and image captioning tasks. We will use deep learning techniques to train a model on the COCO dataset and perform image segmentation.
+In this tutorial, we will delve into **how to perform image segmentation using the COCO dataset** and deep learning. Image segmentation is the process of partitioning an image into multiple segments to identify objects and their boundaries. The [COCO dataset](http://cocodataset.org/#home) is a popular benchmark dataset for object detection, instance segmentation, and image captioning tasks. We will use deep learning techniques to train a model on the COCO dataset and perform image segmentation.
 
 ## COCO Dataset Overview
 
-The COCO (Common Objects in Context) dataset is a widely used benchmark dataset for computer vision tasks, including object detection, instance segmentation, and image captioning. It provides a large-scale collection of high-quality images, along with pixel-level annotations for multiple object categories.
+The COCO (Common Objects in Context) dataset is a widely used large-scale benchmark dataset for computer vision tasks, including object detection, instance segmentation, and image captioning. It provides a large-scale collection of high-quality images, along with pixel-level annotations for multiple object categories.
 
 COCO was created to address the limitations of existing datasets, such as Pascal VOC and ImageNet, which primarily focus on object classification or bounding box annotations. COCO extends the scope by providing rich annotations for both object detection and instance segmentation.
 
@@ -98,7 +98,7 @@ After downloading, extract the contents of both ZIP files into a directory of yo
 Open a terminal or command prompt and run the following command to install the necessary libraries:
 
 ```bash
-pip install tensorflow opencv-python pycocotools
+pip install tensorflow opencv-python pycocotools ujason
 ```
 
 We'll install TensorFlow (or PyTorch), OpenCV, and the `pycocotools` library to work with the COCO dataset.
@@ -111,48 +111,84 @@ Create a new Python script file (e.g., `preprocess_coco.py`) and add the followi
 
 ```python
 import os
+import cv2
 from pycocotools.coco import COCO
-import skimage.io as io
+import ujson as json
+import warnings
+from tqdm import tqdm
+from concurrent.futures import ThreadPoolExecutor
+
+# Filter the UserWarning related to low contrast images
+warnings.filterwarnings("ignore", category=UserWarning, message=".*low contrast image.*")
 
 # Specify the paths to the COCO dataset files
-data_dir = '<path_to_dataset_directory>'
-train_dir = os.path.join(data_dir, 'train2017')
-val_dir = os.path.join(data_dir, 'val2017')
+data_dir = "./"
+train_dir = os.path.join(data_dir, 'train2014')
+val_dir = os.path.join(data_dir, 'val2014')
 annotations_dir = os.path.join(data_dir, 'annotations')
-train_annotations_file = os.path.join(annotations_dir, 'instances_train2017.json')
-val_annotations_file = os.path.join(annotations_dir, 'instances_val2017.json')
+train_annotations_file = os.path.join(annotations_dir, 'instances_train2014.json')
+val_annotations_file = os.path.join(annotations_dir, 'instances_val2014.json')
 
 # Create directories for preprocessed images and masks
-preprocessed_dir = '<path_to_preprocessed_directory>'
-os.makedirs(os.path.join(preprocessed_dir, 'images'), exist_ok=True)
-os.makedirs(os.path.join(preprocessed_dir, 'masks'), exist_ok=True)
+preprocessed_dir = './preprocessed'
+os.makedirs(os.path.join(preprocessed_dir, 'train', 'images'), exist_ok=True)
+os.makedirs(os.path.join(preprocessed_dir, 'train', 'masks'), exist_ok=True)
+os.makedirs(os.path.join(preprocessed_dir, 'val', 'images'), exist_ok=True)
+os.makedirs(os.path.join(preprocessed_dir, 'val', 'masks'), exist_ok=True)
+
+batch_size = 10  # Number of images to process before updating the progress bar
+
+def preprocess_image(img_info, coco, data_dir, output_dir):
+    image_path = os.path.join(data_dir, img_info['file_name'])
+    ann_ids = coco.getAnnIds(imgIds=img_info['id'], iscrowd=None)
+    if len(ann_ids) == 0:
+        return
+
+    mask = coco.annToMask(coco.loadAnns(ann_ids)[0])
+
+    # Save the preprocessed image
+    image = cv2.imread(image_path)
+    cv2.imwrite(os.path.join(output_dir, 'images', img_info['file_name']), image)
+
+    # Save the corresponding mask
+    cv2.imwrite(os.path.join(output_dir, 'masks', img_info['file_name'].replace('.jpg', '.png')), mask)
 
 def preprocess_dataset(data_dir, annotations_file, output_dir):
     coco = COCO(annotations_file)
-    image_ids = coco.getImgIds()
+    with open(annotations_file, 'r') as f:
+        coco_data = json.load(f)
+    image_infos = coco_data['images']
 
-    for img_id in image_ids:
-        img_info = coco.loadImgs(img_id)[0]
-        image_path = os.path.join(data_dir, img_info['file_name'])
-        mask = coco.annToMask(coco.loadAnns(coco.getAnnIds(imgIds=img_id, iscrowd=None))[0])
+    total_images = len(image_infos)
+    num_batches = total_images // batch_size
 
-        # Save the preprocessed image
-        image = io.imread(image_path)
-        io.imsave(os.path.join(output_dir, 'images', img_info['file_name']), image)
+    # Use tqdm to create a progress bar
+    progress_bar = tqdm(total=num_batches, desc='Preprocessing', unit='batch(es)', ncols=80)
 
-        # Save the corresponding mask
-        io
+    with ThreadPoolExecutor() as executor:
+        for i in range(0, total_images, batch_size):
+            batch_image_infos = image_infos[i:i+batch_size]
+            futures = []
 
-.imsave(os.path.join(output_dir, 'masks', img_info['file_name'].replace('.jpg', '.png')), mask)
+            for img_info in batch_image_infos:
+                future = executor.submit(preprocess_image, img_info, coco, data_dir, output_dir)
+                futures.append(future)
+
+            # Wait for the processing of all images in the batch to complete
+            for future in futures:
+                future.result()
+
+            progress_bar.update(1)  # Update the progress bar for each batch
+
+    progress_bar.close()  # Close the progress bar once finished
 
 # Preprocess the training set
-preprocess_dataset(train_dir, train_annotations_file, preprocessed_dir)
+preprocess_dataset(train_dir, train_annotations_file, os.path.join(preprocessed_dir, 'train'))
 
 # Preprocess the validation set (if required)
-preprocess_dataset(val_dir, val_annotations_file, preprocessed_dir)
+preprocess_dataset(val_dir, val_annotations_file, os.path.join(preprocessed_dir, 'val'))
 ```
 
-Replace `<path_to_dataset_directory>` with the path to the directory where you extracted the COCO dataset files, and `<path_to_preprocessed_directory>` with the desired output directory for the preprocessed images and masks.
 
 Run the script to preprocess the COCO dataset:
 
@@ -162,6 +198,19 @@ python preprocess_coco.py
 
 This script will save the preprocessed images and masks in the specified output directory.
 
+```
+loading annotations into memory...
+Done (t=10.78s)
+creating index...
+index created!
+Preprocessing: 8279batch(es) [16:15,  8.49batch(es)/s]                          
+loading annotations into memory...
+Done (t=8.27s)
+creating index...
+index created!
+Preprocessing: 4051batch(es) [09:28,  7.13batch(es)/s]    
+```
+
 ### Step 4: Prepare the Data for Training
 
 Now that we have preprocessed the COCO dataset, we need to create a data pipeline to load and preprocess the data during training.
@@ -170,6 +219,7 @@ Create a new Python script file (e.g., `data_loader.py`) and add the following c
 
 ```python
 import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'  # Disable TensorFlow logs
 import tensorflow as tf
 
 def load_image(image_path):
@@ -194,7 +244,9 @@ def create_dataset(data_dir, batch_size):
     mask_dir = os.path.join(data_dir, 'masks')
 
     image_paths = tf.data.Dataset.list_files(os.path.join(image_dir, '*.jpg'))
-    mask_paths = image_paths.map(lambda x: tf.strings.regex_replace(x, image_dir, mask_dir))
+    image_paths = list(image_paths.as_numpy_iterator())  # Convert dataset to a list
+
+    mask_paths = [os.path.join(mask_dir, os.path.basename(image_path.decode()).replace('.jpg', '.png')) for image_path in image_paths]
 
     dataset = tf.data.Dataset.from_tensor_slices((image_paths, mask_paths))
     dataset = dataset.map(parse_image_mask)
@@ -206,12 +258,10 @@ def create_dataset(data_dir, batch_size):
 
 # Example usage
 batch_size = 8
-data_dir = '<path_to_preprocessed_directory>'
+data_dir = './preprocessed'
 train_dataset = create_dataset(os.path.join(data_dir, 'train'), batch_size)
 val_dataset = create_dataset(os.path.join(data_dir, 'val'), batch_size)
 ```
-
-Replace `<path_to_preprocessed_directory>` with the path to the directory where you saved the preprocessed images and masks.
 
 This script provides functions to load and preprocess the images and masks, as well as create TensorFlow datasets for the training and validation sets.
 
@@ -230,9 +280,7 @@ def create_model(input_shape, num_classes):
     # Encoder
     conv1 = tf.keras.layers.Conv2D(64, 3, activation='relu', padding='same')(inputs)
     conv1 = tf.keras.layers.Conv2D(64, 3, activation='relu', padding='same')(conv1)
-    pool1 = tf
-
-.keras.layers.MaxPooling2D(pool_size=(2, 2))(conv1)
+    pool1 = tf.keras.layers.MaxPooling2D(pool_size=(2, 2))(conv1)
 
     conv2 = tf.keras.layers.Conv2D(128, 3, activation='relu', padding='same')(pool1)
     conv2 = tf.keras.layers.Conv2D(128, 3, activation='relu', padding='same')(conv2)
@@ -325,9 +373,7 @@ def segment_image(image_path, model, threshold=0.5):
 
 # Example usage
 image_path = '<path_to_image>'
-model_path = '<path_to_saved_model>
-
-'
+model_path = '<path_to_saved_model>'
 
 model = tf.keras.models.load_model(model_path)
 segmented_mask = segment_image(image_path, model)
