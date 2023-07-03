@@ -37,7 +37,7 @@ tags:
 - IMU
 - Navigation
 featured: false
-
+commentable: true
 # links:
 # - name: ""
 #   url: ""

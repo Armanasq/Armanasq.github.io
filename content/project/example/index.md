@@ -7,7 +7,7 @@ date: '2023-04-27T00:00:00Z'
 url: /project/deep-attitude/
 # Optional external URL for project (replaces project detail page).
 external_link: ''
-
+commentable: true
 
 
 links:

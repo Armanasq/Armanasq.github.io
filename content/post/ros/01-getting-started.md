@@ -6,6 +6,7 @@ url: "/ros/tutorial-01/"
 showToc: true
 math: true
 disableAnchoredHeadings: False
+commentable: true
 tags:
   - ROS
   - Tutorial
