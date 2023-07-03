@@ -5,6 +5,7 @@ url: /kaggle/tutorial-06/
 showToc: true
 math: true
 disableAnchoredHeadings: False
+commentable: true
 tags:
   - Kaggle
   - Tutorial

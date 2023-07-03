@@ -2,12 +2,13 @@
 title: "Image Segmentation"
 date: 2023-07-02
 description: "Introduction"
-url: "/computer-vision/tutorial-01/"
+url: "/computer-vision/image-segementation/"
 showToc: true
 math: true
 disableAnchoredHeadings: False
+commentable: true
 tags:
-  - ROS
+  - Image Segmentation
   - Tutorial
 ---
 [&lArr; Computer Vision](/computer-vision/)

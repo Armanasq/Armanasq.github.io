@@ -4,6 +4,7 @@ date: 2023-04-01
 description: "Introduction"
 url: "/datsets/kitti/"
 showToc: true
+commentable: true
 meta:
   - property: og:locale
     content: en-US

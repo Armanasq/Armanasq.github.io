@@ -8,6 +8,7 @@ summary: ""
 showToc: true
 math: true
 disableAnchoredHeadings: false
+commentable: true
 tags:
   - IMU Dataset
   - Inertial Navigation Dataset

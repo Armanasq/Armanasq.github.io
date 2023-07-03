@@ -3,6 +3,7 @@ title: "Physics-Informed Neural Networks (PINN)"
 date: 2023-06-18
 showToc: true
 url: /Deep-Learning/PINN
+commentable: true
 tags:
   - Deep Learning
   - Physics-Informed Neural Networks

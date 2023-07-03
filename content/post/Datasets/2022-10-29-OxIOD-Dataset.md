@@ -3,6 +3,7 @@ title: "OxIOD IMU Dataset"
 date: 2022-10-29
 url: /datsets/OxIOD-Dataset/
 showToc: true
+commentable: true
 tags:
 
   - IMU Dataset
