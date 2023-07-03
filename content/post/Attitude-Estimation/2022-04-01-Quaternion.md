@@ -7,6 +7,8 @@ summary: ""
 showToc: true
 math: true
 disableAnchoredHeadings: false
+commentable: true
+
 tags:
   - Attitude
   - Attitude Representation
