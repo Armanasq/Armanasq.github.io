@@ -140,7 +140,7 @@ sections:
       title: Gallery
       subtitle: ''
       text: |-
-          {{< gallery-custom album-custom="landing" lightbox="true" >}}
+          {{< gallery album="landing" lightbox="true" resize_options="450x450" >}}
     design:
       columns: '1'
   

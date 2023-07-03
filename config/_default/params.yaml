@@ -81,17 +81,17 @@ features:
     gravatar: false
     shape: circle
   comment:
-    provider: ''
+    provider: 'giscus'
     disqus:
-      shortname: ''
+      shortname: 'armanasgharpoor'
       show_count: true
     commento:
       url: ''
     giscus:
-      repo: ''
-      repo_id: ''
-      category: ''
-      category_id: ''
+      repo: 'Armanasq/Armanasq.github.io'
+      repo_id: 'R_kgDOJi13ZQ'
+      category: '[ENTER CATEGORY NAME HERE]'
+      category_id: '[ENTER CATEGORY ID HERE]'
   search:
     provider: wowchemy
     algolia:
