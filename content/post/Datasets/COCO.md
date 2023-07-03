@@ -1,7 +1,7 @@
 ---
 title: "COCO Dataset"
 date: 2023-07-02
-url: /datasets/coc-datset/
+url: /datasets/coco-datset/
 author: "Arman Asgharpoor Golroudbari"
 description: "" 
 summary: "" 
