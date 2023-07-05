@@ -24,7 +24,7 @@ tags:
   - [Dataset Characteristics](#dataset-characteristics)
     - [Size and Scale](#size-and-scale)
   - [How to Use COCO Dataset in Python](#how-to-use-coco-dataset-in-python)
-    - [PyCOCO](#pycoco)
+  - [PyCOCO](#pycoco)
   - [COCO Dataset Format and Annotations](#coco-dataset-format-and-annotations)
     - [JSON File Structure](#json-file-structure)
     - [Annotation Details](#annotation-details)
@@ -146,28 +146,33 @@ This mindmap will help to have an overview of the categories in COCO dataset.
 ```
 ## How to Use COCO Dataset in Python
 
-First, you need to download the required libraries.
+First, you need to download the required library.
 
 ```bash
-pip install tensorflow opencv-python pycocotools ujason
+pip install pycocotools
 ```
 
-Import them
+Import all the required liberaries via
 
 ```python
 import matplotlib.pyplot as plt
-from pycocotools.coco import COCO
+import matplotlib.patches as patches
+import matplotlib.colors as colors
 import seaborn as sns
+import numpy as np
+
+from pycocotools.coco import COCO
 ```
 
-Let's explore the dataset. We will define the COCO directory by:
+Let's explore the dataset. In this post we used the 2014 version of the COCO dataset. We will define the COCO directory by:
 
 ```python
 dataDir='./'
 dataType='val2014'
 annFile='{}annotations/instances_{}.json'.format(dataDir,dataType)
 ```
-Then plot the distribution of different categories in the validation dataset (2014)
+
+Then plot the distribution of different categories in the validation dataset (2014) to have a clear overview of the imbalancing in the dataset. Feel free to change the `dataType` to others inculding `train2014`, `train2017`, or `val2017`.
 
 ```python
 
@@ -204,7 +209,7 @@ plt.savefig('coco-cats.png',dpi=300)
 plt.show()
 ```
 
-The output will be:
+The output should be:
 
 ```
 loading annotations into memory...
@@ -256,15 +261,16 @@ plt.show()
 
 ![png](/coco/coco-dis.png)
 
+
 In the following code snippet, we utilize the COCO API to visualize annotations for specific object classes within a dataset. By specifying a list of desired classes, the code filters the dataset to retrieve images containing those classes. A random image is then selected from the filtered images, and its corresponding annotations are loaded. The code proceeds to display the original image along with a bounding box and segmented colors for each annotation. Additionally, a legend is created to associate category names with their assigned colors. This code enables efficient exploration and visualization of specific object classes within a dataset, providing insights into the distribution and characteristics of the selected classes. The resulting visualizations can aid in tasks such as object detection, instance segmentation, and object recognition.
 
 ```python
-
-# Define the classes (out of the 81) which you want to see. Others will not be shown.
+# Define the classes (out of the 80) which you want to see. Others will not be shown.
 filterClasses = ['laptop', 'tv', 'cell phone']
 
 # Fetch class IDs only corresponding to the filterClasses
 catIds = coco.getCatIds(catNms=filterClasses)
+
 # Get all images containing the above Category IDs
 imgIds = coco.getImgIds(catIds=catIds)
 
@@ -331,6 +337,8 @@ else:
 ![png](/coco/annImg.png)
 
 
+Now we have an overview of the categories in the dataset (don't worry about the codes, we will delve into each line).
+
 Here's a detailed explanation of the code and how to use it:
 
 1. First, you need to define the classes of objects that you want to visualize. In the provided code, the `filterClasses` variable contains a list of desired classes such as 'laptop', 'tv', and 'cell phone'. You can modify this list to include the object classes of your interest.
@@ -355,7 +363,7 @@ Here's a detailed explanation of the code and how to use it:
 
 By following the instructions and modifying the code according to your desired classes, you can visualize annotations for specific object classes in the dataset. This code is useful for gaining insights into the distribution and characteristics of the selected classes, aiding in tasks such as object detection, instance segmentation, and object recognition.
 
-### PyCOCO
+## PyCOCO
 
 The PyCOCO library offers helpful function for working with the COCO dataset. Let's dive deeper into the functions of the COCO class from pycocotools.coco:
 
@@ -368,7 +376,14 @@ from pycocotools.coco import COCO
 then you can initialize the COCO API for instance annotations by 
 
 ```py
+dataDir='./'
+dataType='val2014'
+annFile='{}annotations/instances_{}.json'.format(dataDir,dataType)
+
 coco = COCO(annFile_path)
+
+# Initialize the COCO api for instance annotations
+coco=COCO(annFile)
 ```
 
 1. `loadCats(self, ids=[]):` Loads category metadata given their IDs. It returns a list of dictionaries, each representing a category. Each dictionary contains the category id, name, supercategory, and keypoints if available.
@@ -414,7 +429,7 @@ The `loadAnns` function is used to retrieve annotations for a specific image or 
 # Load annotations for the given ids
 annotation_ids = coco.getAnnIds(imgIds=image_id)
 annotations = coco.loadAnns(annotation_ids)
-annotations
+print(annotations)
 ```
 
 ```shell
@@ -455,7 +470,7 @@ annotations
 filterClasses = ['laptop', 'tv', 'cell phone']
 # Fetch class IDs only corresponding to the filterClasses
 catIds = coco.getCatIds(catNms=filterClasses)
-catIds
+print(catIds)
 ```
 
 ```shell
@@ -463,13 +478,6 @@ catIds
 ```
 
 5. `getImgIds(self, imgIds=[], catIds=[])`: This method gets IDs of images that satisfy given filter conditions. It can filter by image IDs and category IDs.
-
-```python
-# Get image ids that satisfy the given filter conditions
-imgIds = coco.getImgIds(imgIds, catIds)
-```
-
-6. `getAnnIds(self, imgIds=[], catIds=[], areaRng=[], iscrowd=None)`: This method gets IDs of annotations that satisfy given filter conditions. It can filter by image IDs, category IDs, area range, and whether the annotation is a crowd.
 
 ```python
 catID = 15
@@ -483,6 +491,18 @@ print(imgId)
 ```shell
 [{'supercategory': 'outdoor', 'id': 15, 'name': 'bench'}]
 262148
+```
+
+6. `getAnnIds(self, imgIds=[], catIds=[], areaRng=[], iscrowd=None)`: This method gets IDs of annotations that satisfy given filter conditions. It can filter by image IDs, category IDs, area range, and whether the annotation is a crowd.
+
+```python
+# Get annotaions IDs
+ann_ids = coco.getAnnIds(imgIds=[imgId], iscrowd=None)
+print(ann_ids)
+```
+
+```shell
+[247584, 576412, 642663, 1209372, 1251030, 1272930, 1277823, 1303789, 1307874, 1312222, 1312550, 1321181, 1324108, 1331011, 1332687, 1371763, 1372845, 1422576, 1837952, 1962686, 2007683, 2061640, 900100262148]
 ```
 
 7. `loadRes(self, resFile)`: This method loads results from a file and creates a result API. The results file should be in the COCO result format.
@@ -500,10 +520,12 @@ The `showAnns` function is designed to visualize the annotations on an image. It
 Together, `loadAnns` and `showAnns` provide a powerful combination for working with annotations in the COCO dataset. With `loadAnns`, you can access detailed information about individual annotations, enabling tasks such as object recognition, instance segmentation, or statistical analysis. Then, with `showAnns`, you can visualize the annotations on the image, helping you to understand and evaluate the dataset visually. These functions are essential for computer vision researchers and practitioners, as they facilitate the exploration, analysis, and interpretation of annotations in the COCO dataset.
 
 ```python
-image_dir = './val2014/'
+print(f"Annotations for Image ID {imgId}:")
+anns = coco.loadAnns(ann_ids)
+
 image_path = coco.loadImgs(imgId)[0]['file_name']
 print(image_path)
-image = plt.imread(image_dir + image_path)
+image = plt.imread(imageDir + image_path)
 plt.imshow(image)
 
 # Display the specified annotations
@@ -516,6 +538,7 @@ plt.show()
 ```
 
 ```shell
+Annotations for Image ID 262148:
 COCO_val2014_000000262148.jpg
 ```
 
@@ -545,9 +568,46 @@ The COCO dataset follows a structured format using JSON (JavaScript Object Notat
 
 ### JSON File Structure
 
-The COCO dataset comprises a single JSON file that organizes the dataset's information, including images, annotations, categories, and other metadata. The JSON file follows a hierarchical structure with the following main sections:
+The COCO dataset comprises a single JSON file that organizes the dataset's information, including images, annotations, categories, and other metadata. 
 
-1. **Info**: This section contains general information about the dataset, including its version, description, contributor details, and release year. For example:
+```json
+{
+  "info": info, 
+  "images": [image], 
+  "annotations": [annotation], 
+  "licenses": [license],
+}
+
+info{
+  "year": int, 
+  "version": str, 
+  "description": str, 
+  "contributor": str, 
+  "url": str, 
+  "date_created": datetime,
+}
+
+image{
+  "id": int, 
+  "width": int, 
+  "height": int, 
+  "file_name": str, 
+  "license": int, 
+  "flickr_url": str, 
+  "coco_url": str, 
+  "date_captured": datetime,
+}
+
+license{
+  "id": int, 
+  "name": str, 
+  "url": str,
+}
+```
+
+The JSON file follows a hierarchical structure with the following main sections:
+
+1. **Info**: general information about the dataset, including its version, description, contributor details, and release year. For example:
 
 ```json
 {
@@ -555,12 +615,14 @@ The COCO dataset comprises a single JSON file that organizes the dataset's infor
     "version": "1.0",
     "description": "COCO 2017 Dataset",
     "contributor": "Microsoft COCO group",
-    "year": 2017
+    "year": 2017,
+    "url": "https://...",
+    "date_created": "2000-01-01T00:00:00+00:00"
   }
 }
 ```
 
-2. **Licenses**: This section lists the licenses under which the dataset is made available. It includes details such as the license name, ID, and URL. For example:
+1. **Licenses**: lists the licenses under which the dataset is made available. It includes details such as the license name, ID, and URL. For example:
 
 ```json
 {
@@ -575,7 +637,7 @@ The COCO dataset comprises a single JSON file that organizes the dataset's infor
 }
 ```
 
-3. **Images**: This section contains a list of images in the dataset. Each image is represented as a dictionary and includes information such as the image ID, file name, height, width, and the license under which it is released. For example:
+1. **Images**: a list of images in the dataset. Each image is represented as a dictionary and includes information such as the image ID, file name, height, width, and the license under which it is released. For example:
 
 ```json
 {
@@ -585,14 +647,15 @@ The COCO dataset comprises a single JSON file that organizes the dataset's infor
       "file_name": "000000001.jpg",
       "height": 480,
       "width": 640,
-      "license": 1
+      "license": 1,
+      "date_captured": "2014-07-20T19:39:26+00:00"
     },
     ...
   ]
 }
 ```
 
-4. **Annotations**: This section provides annotations for objects present in the images. Each annotation is represented as a dictionary and includes information such as the annotation ID, image ID it belongs to, category ID, segmentation mask, bounding box coordinates, and additional attributes depending on the task. For example:
+1. **Annotations**: provides annotations for objects present in the images. Each annotation is represented as a dictionary and includes information such as the annotation ID, image ID it belongs to, category ID, segmentation mask, bounding box coordinates, and additional attributes depending on the task. For example:
 
 ```json
 {
@@ -602,14 +665,17 @@ The COCO dataset comprises a single JSON file that organizes the dataset's infor
       "image_id": 1,
       "category_id": 18,
       "segmentation": [[...]],
-      "bbox": [39, 63, 203, 112]
+      "bbox": [39, 63, 203, 112],
+      "area": 7225,
+      "segmentation": [],
+      "iscrowd": 0
     },
     ...
   ]
 }
 ```
 
-5. **Categories**: This section defines the object categories present in the dataset. Each category is represented as a dictionary and includes information such as the category ID and name. For example:
+1. **Categories**: defines the object categories present in the dataset. Each category is represented as a dictionary and includes information such as the category ID and name. For example:
 
 ```json
 {
@@ -639,7 +705,7 @@ The COCO dataset comprises a single JSON file that organizes the dataset's infor
 
 ### Annotation Details
 
-One of the key strengths of the COCO dataset is its rich and detailed annotations. Each image in the dataset is annotated with pixel-level segmentation masks, bounding box coordinates, and category labels. These annotations provide precise spatial information about the objects present in the images, enabling tasks such as object detection and instance segmentation.
+One of the key strengths of the COCO dataset is its rich and detailed annotations. Each image in the dataset is annotated with pixel-level segmentation masks, bounding box coordinates, and category labels which provide precise spatial information about the objects present in the images, enabling tasks such as object detection and instance segmentation.
 
 Moreover, the dataset also includes dense keypoint annotations for human poses, making it suitable for pose estimation and human-centric tasks. The combination of these detailed annotations allows for fine-grained analysis and evaluation of computer vision algorithms.
 
