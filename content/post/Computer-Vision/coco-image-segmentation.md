@@ -1,5 +1,5 @@
 ---
-title: "Image Segmentation"
+title: "Image Segmentation Using COCO Dataset"
 date: 2023-07-02
 description: "Introduction"
 url: "/computer-vision/image-segementation/"
@@ -39,7 +39,7 @@ tags:
     - [Step 7: Perform Image Segmentation](#step-7-perform-image-segmentation)
 
 
-In this tutorial, we will delve into **how to perform image segmentation using the COCO dataset** and deep learning. Image segmentation is the process of partitioning an image into multiple segments to identify objects and their boundaries. The [COCO dataset](http://cocodataset.org/#home) is a popular benchmark dataset for object detection, instance segmentation, and image captioning tasks. We will use deep learning techniques to train a model on the COCO dataset and perform image segmentation.
+In this tutorial, we will delve into **how to perform image segmentation using the COCO dataset** and deep learning. Image segmentation is the process of partitioning an image into multiple segments to identify objects and their boundaries. The [COCO dataset](http://cocodataset.org/#home) is a popular benchmark dataset for object detection, instance segmentation, and image captioning tasks. We will use deep learning techniques to train a model on the COCO dataset and perform image segmentation. You can find a comprehensive tutorial on using COCO dataset [here](/datasets/coco-datset/).
 
 ## COCO Dataset Overview
 
