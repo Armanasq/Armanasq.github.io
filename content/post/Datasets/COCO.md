@@ -9,13 +9,18 @@ showToc: true
 math: true
 disableAnchoredHeadings: false
 commentable: true
-
+links:
+  - icon: github
+    icon_pack: fab
+    name: Project Code
+    url: https://github.com/Armanasq/Deep-Learning-Image-Segmentation
 tags:
   - Dataset
   - Computer Vision
   - COCO
   
 ---
+
 
 # A Comprehensive Guide to the COCO Dataset
 
@@ -35,7 +40,7 @@ The COCO (Common Objects in Context) dataset is one of the most popular and wide
 
 Navigating through the vast expanse of the COCO dataset was an overwhelming experience for me at first. I felt disoriented and daunted by the scattered and insufficient resources available online, as well as the vague tutorials that only added to my confusion. It took numerous trial-and-error attempts and relentless determination to eventually uncover the path towards understanding. Reflecting on this arduous journey, I felt compelled to share my findings, from the very beginning to the triumphant end. My aim is to provide a comprehensive guide, eliminating the need for others to endure the same struggles I encountered. With this humble contribution, I hope to lighten the load for those embarking on their exploration of the COCO dataset, offering valuable insights and saving them from unnecessary hardships.
 
-Hope this post helps you on your journey in computer vision tasks.
+Hope this post helps you on your journey in computer vision tasks. You can find the {{< icon name="python" pack="fab" >}} **Python** code in the **[GitHub repo](https://github.com/Armanasq/Deep-Learning-Image-Segmentation)**.
 
 ## Introduction
 
@@ -723,3 +728,5 @@ The annotations in the COCO dataset offer precise spatial information about obje
 - **Segmentation Mask**: For instance segmentation tasks, the annotation includes a binary mask that represents the object's pixel-level segmentation. The mask is a 2D binary array of the same height and width as the image, where pixels belonging to the object are marked as 1, and pixels outside the object are marked as 0. The segmentation mask helps precisely delineate the boundaries of the object. For example, the "segmentation" field in the annotation can contain a list of polygonal coordinates that form the object's outline.
 
 - **Keypoints** (optional): For tasks like human pose estimation, the annotation may include keypoint locations representing specific body parts. Each keypoint consists of an (x, y) coordinate and an associated visibility flag. The visibility flag indicates whether the keypoint is visible or occluded in the image. For example, a keypoint annotation might include the coordinates and visibility of body joints like the head, shoulders, elbows, and knees.
+
+

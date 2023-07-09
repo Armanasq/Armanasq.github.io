@@ -81,9 +81,9 @@ Before getting started, make sure you have the following:
 
 - Python 3.6 or above: Python is the programming language we'll use for the tutorial.
 - TensorFlow 2.x or PyTorch: We'll use one of these deep learning frameworks for building and training the segmentation model.
-- COCO dataset: Download the COCO dataset from the official website (http://cocodataset.org/#download). Choose the desired version (e.g., 2017) and download the following files:
-  - Train images: train2017.zip
-  - Train annotations: annotations_trainval2017.zip
+- COCO dataset: Download the COCO dataset from the [official website](http://cocodataset.org/#download). Choose the desired version (e.g.,2014, 2017) and download the following files:
+  - Train images: train2014.zip
+  - Train annotations: annotations_trainval2014.zip
 
 After downloading, extract the contents of both ZIP files into a directory of your choice.
 
