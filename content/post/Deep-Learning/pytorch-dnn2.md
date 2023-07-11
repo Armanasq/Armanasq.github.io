@@ -25,12 +25,34 @@ tags:
 
 # Deep Neural Network Implementation Using PyTorch - Implementing all the layers
 
-In this tutorial, we will dive into implementing deep neural networks using PyTorch. If you haven't already, we recommend reading the previous tutorial on "Deep Neural Network Implementation Using PyTorch" to get a solid foundation in PyTorch.
 
 In this tutorial, we will explore the various layers available in the `torch.nn` module. These layers are the building blocks of neural networks and allow us to create complex architectures for different tasks. We will cover a wide range of layers, including containers, convolution layers, pooling layers, padding layers, non-linear activations, normalization layers, recurrent layers, transformer layers, linear layers, dropout layers, sparse layers, distance functions, loss functions, vision layers, shuffle layers, data parallel layers, utilities, quantized functions, and lazy module initialization.
 
 ## Containers
-Containers are used to combine multiple layers or modules together to form a more complex neural network architecture. They provide a convenient way to organize and manage layers within a network. Some commonly used containers in PyTorch include `nn.Sequential`, `nn.ModuleList`, and `nn.ModuleDict`. 
+
+Containers are modules that serve as organizational structures for other neural network modules. They allow us to combine multiple layers or modules together to form a more complex neural network architecture. In PyTorch, there are several container classes available in the `torch.nn` module.
+
+### Module
+`Module` is the base class for all neural network modules in PyTorch. It provides the fundamental functionalities and attributes required for building neural networks. When creating a custom neural network module, we typically inherit from the `Module` class.
+
+### Sequential
+`Sequential` is a container that allows us to stack layers or modules in a sequential manner. It provides a convenient way to define and organize the sequence of operations in a neural network. Each layer/module added to the `Sequential` container is applied to the output of the previous layer/module in the order they are passed.
+
+Example code:
+```python
+import torch
+import torch.nn as nn
+
+model = nn.Sequential(
+    nn.Linear(784, 128),
+    nn.ReLU(),
+    nn.Linear(128, 10),
+    nn.Softmax(dim=1)
+)
+```
+
+### ModuleList
+`ModuleList` is a container that holds submodules in a list. It allows us to create a list of layers or modules and access them as if they were attributes of the container. `ModuleList` is useful when we have a varying number of layers or modules, and we want to iterate over them or access them dynamically.
 
 Example code:
 ```python
@@ -40,18 +62,75 @@ import torch.nn as nn
 class NeuralNetwork(nn.Module):
     def __init__(self):
         super(NeuralNetwork, self).__init__()
-        self.layers = nn.Sequential(
+        self.layers = nn.ModuleList([
             nn.Linear(784, 128),
             nn.ReLU(),
             nn.Linear(128, 10),
             nn.Softmax(dim=1)
-        )
+        ])
 
     def forward(self, x):
-        return self.layers(x)
+        for layer in self.layers:
+            x = layer(x)
+        return x
 ```
 
-Exercise: Create a neural network using the `nn.Sequential` container and add layers of your choice.
+### ModuleDict
+`ModuleDict` is a container that holds submodules in a dictionary. Similar to `ModuleList`, it allows us to create a dictionary of layers or modules and access them by their specified keys. This is useful when we have a collection of layers or modules with specific names or purposes.
+
+Example code:
+```python
+import torch
+import torch.nn as nn
+
+class NeuralNetwork(nn.Module):
+    def __init__(self):
+        super(NeuralNetwork, self).__init__()
+        self.layers = nn.ModuleDict({
+            'fc1': nn.Linear(784, 128),
+            'relu': nn.ReLU(),
+            'fc2': nn.Linear(128, 10),
+            'softmax': nn.Softmax(dim=1)
+        })
+
+    def forward(self, x):
+        x = self.layers['fc1'](x)
+        x = self.layers['relu'](x)
+        x = self.layers['fc2'](x)
+        x = self.layers['softmax'](x)
+        return x
+```
+
+### ParameterList and ParameterDict
+`ParameterList` and `ParameterDict` are containers specifically designed for holding parameters (e.g., weights and biases) in a list or dictionary, respectively. They are useful when we want to manage and manipulate parameters in a structured manner, especially in cases where we have a varying number of parameters.
+
+Example code:
+```python
+import torch
+import torch.nn as nn
+
+class NeuralNetwork(nn.Module):
+    def __init__(self):
+        super(NeuralNetwork, self).__init__()
+        self.weights = nn.ParameterList([
+            nn.Parameter(torch.randn(784, 128)),
+            nn.Parameter(torch.randn(128, 10))
+        ])
+        self.biases = nn.ParameterDict({
+            'bias1': nn.Parameter(torch.zeros(128)),
+            'bias2': nn.Parameter(torch.zeros(10))
+        })
+
+    def forward(self, x):
+        x = torch.matmul(x, self.weights[0]) + self.biases['bias1']
+        x = torch.relu(x)
+        x = torch.matmul(x, self.weights[1]) + self.biases['bias2']
+        return x
+```
+
+Exercise: Create a custom neural network using any combination of `ModuleList` and `ModuleDict` containers, and define your forward pass logic.
+
+By using these container classes, we can easily organize and manage the layers or modules within our deep neural network, enabling us to build complex architectures with ease.
 
 ## Convolution Layers
 Convolution layers are widely used in computer vision tasks for extracting features from input data. They apply a set of learnable filters to input data and produce feature maps. The `nn.Conv2d` layer in PyTorch is commonly used for 2D convolution operations.
