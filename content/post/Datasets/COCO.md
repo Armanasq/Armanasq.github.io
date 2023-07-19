@@ -3,8 +3,8 @@ title: "COCO Dataset"
 date: 2023-07-02
 url: /datasets/coco-datset/
 author: "Arman Asgharpoor Golroudbari"
-description: "" 
-summary: "" 
+description: "A Comprehensive Guide to the COCO Dataset" 
+summary: "A Comprehensive Guide to the COCO Dataset" 
 showToc: true
 math: true
 disableAnchoredHeadings: false
@@ -14,6 +14,10 @@ links:
     icon_pack: fab
     name: Project Code
     url: https://github.com/Armanasq/Deep-Learning-Image-Segmentation
+  - icon: kaggle
+    icon_pack: fab
+    name: Project Code
+    url: https://www.kaggle.com/code/armanasgharpoor1993/coco-dataset-tutorial
 tags:
   - Dataset
   - Computer Vision
