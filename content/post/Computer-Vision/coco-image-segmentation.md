@@ -2,7 +2,7 @@
 title: "Image Segmentation Using COCO Dataset"
 date: 2023-07-02
 description: "Introduction"
-url: "/computer-vision/image-segementation/"
+url: "/computer-vision/image-segementation-coco/"
 showToc: true
 math: true
 disableAnchoredHeadings: False
