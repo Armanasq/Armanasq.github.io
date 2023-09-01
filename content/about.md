@@ -69,9 +69,7 @@ date: false
             <li>Referee, Research Council, Students' Scientific Research Center (SSRC)</li>
             <li>Member, Universal Scientific Education and Research Network (USERN)</li>
         </ul>
-        <p class="experience-description">Leveraging my expertise and knowledge, I contribute to the evaluation and review process of scientific research projects, ensuring the highest standards of quality and rigor. As a member of this esteemed international
-
-network, I collaborate with like-minded professionals, fostering innovation and fostering interdisciplinary collaborations.</p>
+        <p class="experience-description">Leveraging my expertise and knowledge, I contribute to the evaluation and review process of scientific research projects, ensuring the highest standards of quality and rigor. As a member of this esteemed international network, I collaborate with like-minded professionals, fostering innovation and fostering interdisciplinary collaborations.</p>
 
 </div>
 

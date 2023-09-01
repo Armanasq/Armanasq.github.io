@@ -70,11 +70,19 @@ summary: " "
     </a>
   </div>
 
-  <div class="robotic-section">
-    <a href="/kaggle/" class="robotic-section-link">
+<div class="robotic-section">
+  <a href="/kaggle/" class="robotic-section-link">
+    <div class="robotic-section-content" style="display: flex; flex-direction: column; align-items: center;">
+      <img src="/Kaggle_logo.png" style="margin: auto;" alt="Kaggle">
+      <div class="robotic-section-content-h2">Kaggle</div>
+    </div>
+  </a>
+</div>
+    <div class="robotic-section">
+    <a href="/nlp/" class="robotic-section-link">
       <div class="robotic-section-content">
-        <img src="/Kaggle_logo.png" alt="Kaggle">
-        <div class="robotic-section-content-h2">Kaggle</div class="robotic-section-content-h2">
+        <img src="/nlp.png" alt="Kaggle">
+        <div class="robotic-section-content-h2">Natural Language Processing</div class="robotic-section-content-h2">
       </div>
     </a>
   </div>

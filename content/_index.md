@@ -28,7 +28,7 @@ sections:
 
   - block: accomplishments
     content:
-      title: Academic Seervices
+      title: Academic Services
       # Date format for experience
       #   Refer to https://wowchemy.com/docs/customization/#date-format
       date_format: Jan 2006
