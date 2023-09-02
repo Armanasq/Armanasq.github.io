@@ -92,6 +92,7 @@ print(encoded)
 ```shell
 [101, 7592, 1010, 2129, 2024, 2017, 1029, 102]
 ```
+
 #### Decoding Tokens
 
 The `decode` method performs the inverse operation of tokenization. It takes a sequence of token IDs and converts it back to a human-readable text string. Special tokens can be skipped during decoding using the `skip_special_tokens` parameter.

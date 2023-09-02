@@ -58,9 +58,12 @@ sections:
           description: |2-
               Including
 
-            * IEEE Transactions on Instrumentation & Measurement , 6 Papers
-            * The Aeronautical Journal , 3 Papers
-            * Aerospace Science and Technology , 3 Papers
+            * IEEE Transactions on Instrumentation & Measurement, 20 Papers
+            * The Aeronautical Journal, 3 Papers
+            * Elsevier Aerospace Science and Technology, 6 Papers
+            * Space: Science & Technology, 2 Papers
+            * Elsevier Measurement, 1 Papers
+            * Springer Neural Computing and Applications , 1 Papers
               * Complete list on [www.webofscience.com/wos/author/record/AEM-0212-2022](https://www.webofscience.com/wos/author/record/AEM-0212-2022)
     design:
       columns: '2'
