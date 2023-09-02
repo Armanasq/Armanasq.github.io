@@ -4,6 +4,10 @@ url: /certificates/
 ---
 
 
+* **Certificate of Participation** - 2023 - Oxford Machine Learning Summer School (OxML 2023)
+  * Organised by AI for Global Goals and in partnership with CIFAR and the University of Oxford’s Deep Medicine Program
+
+![png](/images/cert/OxML2023_Cert.png)
 
 * **Certificate of Participation** - 2022 - Oxford Machine Learning Summer School (OxML 2022)
   * Organised by AI for Global Goals and in partnership with CIFAR and the University of Oxford’s Deep Medicine Program
@@ -13,6 +17,9 @@ url: /certificates/
 
 Awards
 ======
+
+* **Congratulations of the Health challenge Winner** - 2023 - OxML 2023
+![png](/images/cert/Award/OXML-Health2023.png)
 
 * **Certificate of Appreciation** - 2021 - USERN Minature Talk
 ![png](/images/cert/Award/MTalk.jpg)
@@ -50,6 +57,15 @@ Executive Activities
 
 Licences
 ======
+
+* **Course Certificate** - 2023 - University of Colorado Boulder (Coursera)
+    * Deep Learning Applications for Computer Vision
+    * ![png](/images/cert/Lic/DeepLearningApplicationsforComputerVision.png)
+    * 
+* **Course Certificate** - 2023 - Google Cloud (Coursera)
+    * Introduction to Large Language Models
+    * ![png](/images/cert/Lic/IntroductiontoLargeLanguageModels.png)
+
 * **Certificate of Attendace** - 2021 - USERN Congress and Prize Awarding Festival
     * ![png](/images/cert/Lic/USERN-Congress-Attendace.jpg)
 
