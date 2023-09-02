@@ -100,25 +100,18 @@ email: 'a.asgharpoor1993@gmail.com'
 # Highlight the author in author lists? (true/false)
 highlight_name: true
 ---
-## Researcher | Space Enthusiast | Collaborator
+## Researcher | Space Enthusiast | Deep Learning
 
-Welcome to my world of exploration and innovation! I'm Arman Asgharpoor Golroudbari, a passionate researcher with a penchant for pushing the boundaries of space engineering. Beyond the conventional CV, let me give you a glimpse into my journey:
-
-I earned a Master's in Space Engineering from the University of Tehran, specializing in the development of a cutting-edge Deep Learning-based Attitude and Heading Estimation Algorithm. Additionally, I hold an MBA from the Academic Center for Education, Culture, and Research, where I gained expertise in project management, entrepreneurship finance, and problem-solving. My academic journey commenced with a B.Eng. in Aircraft Avionics Technology from the University of Applied Science and Technology, complemented by an Associate degree in Avionics from the Civil Aviation Technology College.
+I'm Arman Asgharpoor Golroudbari, a researcher at Deep Space Initiatives. I strive to applied machine learning through interdisciplinary research on flight dynamics, control theory, deep learning, and sensor fusion algorithms.
 
 
-
-
-
-
-<span style="color:red;">**Seeking Research Collaborations**
+<span style="color:red;">**Research Collaborations:**
 </span>
-
-I am actively seeking opportunities for academic research collaborations, aiming to foster interdisciplinary synergies and engage in innovative knowledge exchange. 🤝💡
+*I am actively seeking opportunities for academic research collaborations, aiming to foster interdisciplinary synergies and engage in innovative knowledge exchange.* 🤝💡
 
 ---
 
-### Research Collaboration
+### Research 
 My passion for space technology has ignited collaborations with renowned institutions and projects, such as:
 - **Milky Way Program @ Deep Space Initiative**: Contributed to space transportation system research, addressing pressing space-related issues.
 - **Oxford Machine Learning Summer School**: Achieved top rank in the Health and Medicine OxML competition track, focusing on vision-based breast cancer detection.
@@ -132,12 +125,6 @@ I believe in sharing knowledge and experiences:
 - **Martial Arts Instructor @ Iran Martial Arts Federation**: Cultivating communication skills through teaching diverse students.
 - **Manager @ Arman Imen Passargad**: Nurturing leadership and management skills in challenging work environments.
 - **Teaching Assistant @ University of Tehran**: Imparting practical programming skills to graduate-level students.
-
-### Continuous Learning
-My commitment to personal growth and innovation includes participation in prestigious programs and courses, such as the Oxford Machine Learning Summer School and USERN Research Week.
-
-### Awards & Honors
-My dedication to excellence has been recognized through awards and accolades, including ranking 1st in the OxML Competition Track and being an appreciated presenter at the USERN Miniature Talk Competition.
 
 Feel free to reach out for inquiries or to explore exciting collaborations in the realm of space engineering. Let's embark on an extraordinary journey together.
 
