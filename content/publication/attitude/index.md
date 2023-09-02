@@ -81,7 +81,6 @@ Create your slides in Markdown - click the *Slides* button to check out the exam
 {{% /callout %}}
 
 [Model A](Model_A.png)
-Supplementary notes can be added here, including [code, math, and images](https://wowchemy.com/docs/writing-markdown-latex/).
 
 <img class="myImg" src="Model_A.png" alt="Model A">
 
