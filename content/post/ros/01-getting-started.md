@@ -12,6 +12,10 @@ tags:
   - Tutorial
 ---
 [&lArr; ROS](/ros/)
+<img src="/ros.png" alt="ROS" style="width:350px;display: block;
+  margin-left: auto;
+  margin-right: auto; margin-top:0px auto" >
+</div>
 
 - [Tutorial: Getting Started with ROS (Robot Operating System)](#tutorial-getting-started-with-ros-robot-operating-system)
   - [Introduction](#introduction)
