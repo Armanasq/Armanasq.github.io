@@ -115,7 +115,7 @@ The size of your corpus can vary based on your resources, but more data is gener
 If your NLP task is domain-specific (e.g., medical or legal text), focus on collecting data relevant to that domain. Domain-specific terminology and context are crucial for accurate model performance.
 
 
-Let's start by loading the dataset and setting up data loading workers.
+Let's start by loading the dataset and setting up data loading workers. The OSCAR dataset support various languages, including Persian (Farsi). We used the HuggingFace framework to load the OSCAR dataset via `datasets` library.
 
 ```python
 # Install the 'datasets' library
@@ -136,6 +136,7 @@ training_data = dataset['train']
 # Explore dataset features
 features = training_data.features
 ```
+
 ---
 
 ## Section 3: Tokenization 🧩
@@ -173,9 +174,10 @@ When using BPE tokenization, you specify the vocabulary size, which determines t
 #### Special Tokens
 
 BERT models use special tokens like:
+
 - '[CLS]' (classification)
-- '[SEP]' (separator) 
-- '[MASK]' (masked) 
+- '[SEP]' (separator)
+- '[MASK]' (masked)
 
 These tokens have specific roles in model input.
 
@@ -187,7 +189,7 @@ Tokenization is the bridge between raw text data and the model's input format. A
 
 ```python
 # Define the directory to save tokenization files
-output_directory = '../../data/text/oscar_fa/'
+output_directory = './data/text/oscar_fa/'
 
 # Create the output directory if it doesn't exist
 import os
@@ -219,7 +221,7 @@ Now that we have tokenized our data, let's train a Byte-Level Byte-Pair-Encoding
 ```python
 # Get file paths of tokenization files
 from pathlib import Path
-tokenization_files = [str(x) for x in Path('../../data/text/oscar_fa').glob('**/*.txt')]
+tokenization_files = [str(x) for x in Path('./data/text/oscar_fa').glob('**/*.txt')]
 
 # Initialize and train the tokenizer
 from tokenizers import ByteLevelBPETokenizer
