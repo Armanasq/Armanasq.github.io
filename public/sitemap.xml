@@ -2,6 +2,98 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://armanasq.github.io/tag/natural-language-processing/</loc>
+    <lastmod>2023-09-01T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://armanasq.github.io/tag/nlp/</loc>
+    <lastmod>2023-09-01T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://armanasq.github.io/post/</loc>
+    <lastmod>2023-09-01T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://armanasq.github.io/tags/</loc>
+    <lastmod>2023-09-01T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://armanasq.github.io/tag/tutorial/</loc>
+    <lastmod>2023-09-01T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://armanasq.github.io/nlp/self-attention/</loc>
+    <lastmod>2023-09-01T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://armanasq.github.io/tag/bert/</loc>
+    <lastmod>2023-08-31T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://armanasq.github.io/nlp/fine-tune-hugging-face/</loc>
+    <lastmod>2023-08-31T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://armanasq.github.io/nlp/train-BERT/</loc>
+    <lastmod>2023-08-31T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://armanasq.github.io/nlp/</loc>
+    <lastmod>2023-07-12T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://armanasq.github.io/tag/coco/</loc>
+    <lastmod>2023-07-02T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://armanasq.github.io/datasets/coco-datset/</loc>
+    <lastmod>2023-07-02T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://armanasq.github.io/tag/computer-vision/</loc>
+    <lastmod>2023-07-02T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://armanasq.github.io/tag/dataset/</loc>
+    <lastmod>2023-07-02T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://armanasq.github.io/tag/image-net/</loc>
+    <lastmod>2023-07-02T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://armanasq.github.io/datasets/image-net-datset/</loc>
+    <lastmod>2023-07-02T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://armanasq.github.io/tag/image-segmentation/</loc>
+    <lastmod>2023-07-02T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://armanasq.github.io/computer-vision/image-segementation/</loc>
+    <lastmod>2023-07-02T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://armanasq.github.io/computer-vision/image-segementation-coco/</loc>
+    <lastmod>2023-07-02T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://armanasq.github.io/tag/open-images-dataset/</loc>
+    <lastmod>2023-07-02T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://armanasq.github.io/datasets/open-image-datset/</loc>
+    <lastmod>2023-07-02T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://armanasq.github.io/talk/deep-learning-based-carcinoma-classification-oxml-2023/</loc>
+    <lastmod>2023-07-01T15:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://armanasq.github.io/talk/</loc>
+    <lastmod>2023-07-01T15:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
     <loc>https://armanasq.github.io/tag/deep-learning/</loc>
     <lastmod>2023-06-18T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -22,23 +114,19 @@
     <lastmod>2023-06-18T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>https://armanasq.github.io/post/</loc>
-    <lastmod>2023-06-18T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-  </url><url>
-    <loc>https://armanasq.github.io/tags/</loc>
-    <lastmod>2023-06-18T00:00:00+00:00</lastmod>
+    <loc>https://armanasq.github.io/pytorch/</loc>
+    <lastmod>2023-06-12T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
     <loc>https://armanasq.github.io/astronomy/</loc>
     <lastmod>2023-06-12T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>https://armanasq.github.io/datasets/</loc>
+    <loc>https://armanasq.github.io/computer-vision/</loc>
     <lastmod>2023-06-12T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>https://armanasq.github.io/deep-learning/</loc>
+    <loc>https://armanasq.github.io/datasets/</loc>
     <lastmod>2023-06-12T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
@@ -62,6 +150,26 @@
     <lastmod>2023-06-12T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
+    <loc>https://armanasq.github.io/tag/pytorch/</loc>
+    <lastmod>2023-06-05T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://armanasq.github.io/Deep-Learning/PyTorch-NN-Class/</loc>
+    <lastmod>2023-06-05T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://armanasq.github.io/Deep-Learning/PyTorch-DNN-layers/</loc>
+    <lastmod>2023-06-04T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://armanasq.github.io/Deep-Learning/PyTorch-Derivatives/</loc>
+    <lastmod>2023-06-02T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://armanasq.github.io/Deep-Learning/PyTorch-Tensors/</loc>
+    <lastmod>2023-06-01T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
     <loc>https://armanasq.github.io/project/OxML2023/</loc>
     <lastmod>2023-06-01T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -79,6 +187,10 @@
     <changefreq>weekly</changefreq>
   </url><url>
     <loc>https://armanasq.github.io/tag/convolutional-neural-network/</loc>
+    <lastmod>2023-05-01T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://armanasq.github.io/Deep-Learning/PyTorch-DNN/</loc>
     <lastmod>2023-05-01T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
@@ -142,11 +254,31 @@
     <lastmod>2023-01-02T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
+    <loc>https://armanasq.github.io/tag/meta-analysis/</loc>
+    <lastmod>2023-01-02T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://armanasq.github.io/tag/prisma/</loc>
+    <lastmod>2023-01-02T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://armanasq.github.io/research/</loc>
+    <lastmod>2023-01-02T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
     <loc>https://armanasq.github.io/tag/ros/</loc>
     <lastmod>2023-01-02T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>https://armanasq.github.io/tag/tutorial/</loc>
+    <loc>https://armanasq.github.io/ros/tutorial-01/</loc>
+    <lastmod>2023-01-02T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://armanasq.github.io/tag/systematic-review/</loc>
+    <lastmod>2023-01-02T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://armanasq.github.io/research/SysRev-PRISMA/</loc>
     <lastmod>2023-01-02T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
@@ -242,10 +374,6 @@
     <lastmod>2022-09-25T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>https://armanasq.github.io/tag/dataset/</loc>
-    <lastmod>2022-09-18T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-  </url><url>
     <loc>https://armanasq.github.io/datasets/imu-datsets/</loc>
     <lastmod>2022-09-18T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -290,10 +418,6 @@
     <lastmod>2022-08-01T15:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>https://armanasq.github.io/talk/</loc>
-    <lastmod>2022-08-01T15:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-  </url><url>
     <loc>https://armanasq.github.io/tag/attitude/</loc>
     <lastmod>2022-04-01T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -330,11 +454,19 @@
     <lastmod>2021-08-01T15:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
+    <loc>https://armanasq.github.io/deep-learning/</loc>
+    <lastmod>2020-06-12T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
     <loc>https://armanasq.github.io/slides/</loc>
     <lastmod>2019-02-05T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
     <loc>https://armanasq.github.io/slides/example/</loc>
+    <lastmod>2019-02-05T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://armanasq.github.io/slides/oxml2023/</loc>
     <lastmod>2019-02-05T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>

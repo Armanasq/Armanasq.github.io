@@ -1,0 +1,2191 @@
+<!DOCTYPE html>
+<!-- This site was created with Wowchemy. https://www.wowchemy.com -->
+<!-- Last Published: January 4, 2024 --><html lang="en-us" >
+
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Wowchemy 5.7.0 for Hugo" />
+  
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+  
+
+  
+  
+
+  
+  
+    
+    <script src="/js/mathjax-config.js"></script>
+  
+
+  
+
+  <link rel="stylesheet" href="/css/vendor-bundle.min.047268c6dd09ad74ba54a0ba71837064.css" media="print" onload="this.media='all'">
+
+  
+  
+  
+    
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.2/css/academicons.min.css" integrity="sha512-KlJCpRsLf+KKu2VQa5vmRuClRFjxc5lXO03ixZt82HZUk41+1I0bD8KBSA0fY290ayMfWYI9udIqeOWSu1/uZg==" crossorigin="anonymous" media="print" onload="this.media='all'">
+    
+
+    
+    
+    
+    
+      
+      
+    
+    
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.d060e36f065b14306ff371728665eb02.css" />
+
+  
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+    
+    
+    <link rel="stylesheet" href="/css/libs/chroma/dracula.min.css" title="hl-light" media="print" onload="this.media='all'" >
+    <link rel="stylesheet" href="/css/libs/chroma/dracula.min.css" title="hl-dark" media="print" onload="this.media='all'" disabled>
+  
+
+  
+  
+
+  <meta name="google-site-verification" content="Zv4l_ljWZhu4o0Z-kfZwQmuokpt40AvKXA78N8kynpc" />
+
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-55GQYC5GYC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag() {
+      dataLayer.push(arguments);
+  }
+
+  function trackOutboundLink(url, target) {
+    gtag('event', 'click', {
+         'event_category': 'outbound',
+         'event_label': url,
+         'transport_type': 'beacon',
+         'event_callback': function () {
+           if (target !== '_blank') {
+             document.location = url;
+           }
+         }
+    });
+    console.debug("Outbound link clicked: " + url);
+  }
+
+  function onClickCallback(event) {
+    if ((event.target.tagName !== 'A') || (event.target.host === window.location.host)) {
+      return;
+    }
+    trackOutboundLink(event.target, event.target.getAttribute('target'));  
+  }
+
+  gtag('js', new Date());
+  gtag('config', 'G-55GQYC5GYC', {});
+  gtag('set', {'cookie_flags': 'SameSite=None;Secure'});
+
+  
+  document.addEventListener('click', onClickCallback, false);
+</script>
+
+
+
+
+<script>
+  (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','G-55GQYC5GYC');
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+
+
+
+
+
+
+  <meta name="author" content="Arman Asgharpoor Golroudbari" />
+
+
+
+
+
+  
+
+<meta name="description" content="⇐ Natural Language Processing Training Your Own BERT Model from Scratch 🚀 Hey there, fellow learner! 🤓 In this post, we&rsquo;re going to embark on an exciting journey to train your very own BERT (Bidirectional Encoder Representations from Transformers) model from scratch." />
+
+
+
+<link rel="alternate" hreflang="en-us" href="https://armanasq.github.io/nlp/train-BERT/" />
+<link rel="canonical" href="https://armanasq.github.io/nlp/train-BERT/" />
+
+
+
+  <link rel="manifest" href="/manifest.webmanifest" />
+
+
+
+<link rel="icon" type="image/png" href="/media/icon_hu3a1b1aacf1bb12033635935a8f8a9863_117561_32x32_fill_lanczos_center_3.png" />
+<link rel="apple-touch-icon" type="image/png" href="/media/icon_hu3a1b1aacf1bb12033635935a8f8a9863_117561_180x180_fill_lanczos_center_3.png" />
+
+<meta name="theme-color" content="#1565c0" />
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+<meta property="twitter:card" content="summary" />
+
+  <meta property="twitter:site" content="@wowchemy" />
+  <meta property="twitter:creator" content="@wowchemy" />
+<meta property="twitter:image" content="https://armanasq.github.io/media/icon_hu3a1b1aacf1bb12033635935a8f8a9863_117561_512x512_fill_lanczos_center_3.png" />
+<meta property="og:site_name" content="" />
+<meta property="og:url" content="https://armanasq.github.io/nlp/train-BERT/" />
+<meta property="og:title" content="Training Your Own BERT Model from Scratch  | " />
+<meta property="og:description" content="⇐ Natural Language Processing Training Your Own BERT Model from Scratch 🚀 Hey there, fellow learner! 🤓 In this post, we&rsquo;re going to embark on an exciting journey to train your very own BERT (Bidirectional Encoder Representations from Transformers) model from scratch." /><meta property="og:image" content="https://armanasq.github.io/media/icon_hu3a1b1aacf1bb12033635935a8f8a9863_117561_512x512_fill_lanczos_center_3.png" /><meta property="og:locale" content="en-us" />
+
+  
+    <meta
+      property="article:published_time"
+      content="2023-08-31T00:00:00&#43;00:00"
+    />
+  
+  
+    <meta property="article:modified_time" content="2023-08-31T00:00:00&#43;00:00">
+  
+
+
+
+
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://armanasq.github.io/nlp/train-BERT/"
+  },
+  "headline": "Training Your Own BERT Model from Scratch ",
+  
+  "datePublished": "2023-08-31T00:00:00Z",
+  "dateModified": "2023-08-31T00:00:00Z",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Arman Asgharpoor Golroudbari"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://armanasq.github.io/media/icon_hu3a1b1aacf1bb12033635935a8f8a9863_117561_192x192_fill_lanczos_center_3.png"
+    }
+  },
+  "description": "⇐ Natural Language Processing Training Your Own BERT Model from Scratch 🚀 Hey there, fellow learner! 🤓 In this post, we\u0026rsquo;re going to embark on an exciting journey to train your very own BERT (Bidirectional Encoder Representations from Transformers) model from scratch."
+}
+</script>
+
+  
+
+  
+
+
+
+
+  
+  
+  
+
+  
+  
+
+  
+
+
+  
+  <title>Training Your Own BERT Model from Scratch  | </title>
+
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="3ddb8c91cfd849838d1c954c6b57de0f" >
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.min.ec9d49ca50e4b80bdb08f0417a28ed84.js"></script>
+
+  
+
+
+<aside class="search-modal" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#" aria-label="Close"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control"
+        aria-label="Search...">
+        
+      </div>
+
+      
+      
+
+      
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+
+  <div class="page-header header--fixed">
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<header>
+  <nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+    <div class="container-xl">
+
+      
+      <div class="d-none d-lg-inline-flex">
+        <a class="navbar-brand" href="/"></a>
+      </div>
+      
+
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse"
+              data-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
+      <span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+      
+      <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+        <a class="navbar-brand" href="/"></a>
+      </div>
+      
+
+      
+      
+      <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+        
+        <ul class="navbar-nav d-md-inline-flex">
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#about"><span>Home</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/robotic"><span>Robotic</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#posts"><span>Posts</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#projects"><span>Projects</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#talks"><span>Talks</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/publication"><span>Publications</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/certificates"><span>Certificates</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#contact"><span>Contact</span></a>
+          </li>
+
+          
+          
+
+        
+
+          
+        </ul>
+      </div>
+
+      <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+        
+        
+          
+            
+            <li class="nav-item d-none d-lg-inline-flex">
+              <a class="nav-link" href="mailto:a.asgharpoor1993@gmail.com" data-toggle="tooltip" data-placement="bottom" title="Drop me an email."  aria-label="Drop me an email.">
+                <i class="fas fa-envelope" aria-hidden="true"></i>
+              </a>
+            </li>
+          
+            
+            <li class="nav-item d-none d-lg-inline-flex">
+              <a class="nav-link" href="https://github.com/armanasq" data-toggle="tooltip" data-placement="bottom" title="Follow Me on GitHub." target="_blank" rel="noopener" aria-label="Follow Me on GitHub.">
+                <i class="fab fa-github" aria-hidden="true"></i>
+              </a>
+            </li>
+          
+        
+
+        
+        
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" href="#" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+        
+        
+        <li class="nav-item dropdown theme-dropdown">
+          <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-label="Display preferences">
+            <i class="fas fa-moon" aria-hidden="true"></i>
+          </a>
+          <div class="dropdown-menu">
+            <a href="#" class="dropdown-item js-set-theme-light">
+              <span>Light</span>
+            </a>
+            <a href="#" class="dropdown-item js-set-theme-dark">
+              <span>Dark</span>
+            </a>
+            <a href="#" class="dropdown-item js-set-theme-auto">
+              <span>Automatic</span>
+            </a>
+          </div>
+        </li>
+        
+
+        
+        
+
+      </ul>
+
+    </div>
+  </nav>
+</header>
+
+
+  </div>
+
+  <div class="page-body">
+    
+    
+    
+
+    <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>Training Your Own BERT Model from Scratch </h1>
+
+  
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    Aug 31, 2023
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    16 min read
+  </span>
+  
+
+  
+  
+  
+  
+
+  
+  
+
+</div>
+
+    
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      <p><a href="/nlp/">⇐ Natural Language Processing</a>
+<img src="/bert.png" alt="BERT" style="width:100%;display: block;
+margin-left: auto;
+margin-right: auto; margin-top:0px auto" ></p>
+</div>
+<h1 id="training-your-own-bert-model-from-scratch-">Training Your Own BERT Model from Scratch 🚀</h1>
+<p>Hey there, fellow learner! 🤓 In this post, we&rsquo;re going to embark on an exciting journey to train your very own BERT (Bidirectional Encoder Representations from Transformers) model from scratch. BERT is a transformer-based model that has revolutionized the field of natural language processing (NLP). Most of current tutorial only focus on fine-tuning the existing pre-trained model. By the end of this tutorial, you&rsquo;ll not only understand the code but also the intricate details of the methodologies involved.</p>
+<hr>
+<h2 id="section-0-introduction-">Section 0: Introduction 🚀</h2>
+<p>BERT has revolutionized the field of NLP by offering pre-trained models that capture rich contextual information from large text corpora. However, training a BERT model tailored to specific tasks or languages requires careful consideration and meticulous steps.</p>
+<h3 id="the-power-of-custom-bert-models">The Power of Custom BERT Models</h3>
+<p>Custom BERT models empower researchers, data scientists, and developers to harness the capabilities of BERT while fine-tuning it for unique use cases. Whether you&rsquo;re working on a specialized NLP task, dealing with languages with complex structures, or tackling domain-specific challenges, a custom BERT model can be your ally.</p>
+<h3 id="what-we-will-cover">What We Will Cover</h3>
+<p>Throughout this tutorial, we will delve into every aspect of creating and training a custom BERT model:</p>
+<ul>
+<li>
+<p><strong>Data Preparation</strong>: We&rsquo;ll start by preparing a diverse and substantial text corpus for training.</p>
+</li>
+<li>
+<p><strong>Tokenization</strong>: We&rsquo;ll explore tokenization, the process of breaking down text into smaller units for analysis. BERT relies on subword tokenization, a technique that can handle the complexity of various languages and word structures.</p>
+</li>
+<li>
+<p><strong>Model Tokenizer Initialization</strong>: We&rsquo;ll initialize the model tokenizer, which is responsible for encoding text into input features that our BERT model can understand.</p>
+</li>
+<li>
+<p><strong>Preparing Data for Training</strong>: We&rsquo;ll dive into the crucial steps of preparing our text data for BERT training. This includes masking tokens for masked language modeling (MLM), one of BERT&rsquo;s key features.</p>
+</li>
+<li>
+<p><strong>Creating a Custom Dataset</strong>: We&rsquo;ll construct a custom PyTorch dataset to efficiently organize and load our training data.</p>
+</li>
+<li>
+<p><strong>Training Configuration</strong>: We&rsquo;ll configure our BERT model, specifying its architecture and parameters. These configurations define the model&rsquo;s behavior during training.</p>
+</li>
+<li>
+<p><strong>Model Initialization</strong>: We&rsquo;ll initialize the BERT model for MLM, ensuring that it&rsquo;s ready to learn from our data. This step includes handling GPU placement for accelerated training.</p>
+</li>
+<li>
+<p><strong>Training Loop and Optimization</strong>: We&rsquo;ll set up the training loop and optimize our model using the AdamW optimizer.</p>
+</li>
+<li>
+<p><strong>Testing Your Custom BERT Model</strong>: Finally, we&rsquo;ll put our trained model to the test with real-world examples.</p>
+</li>
+</ul>
+<p>Let&rsquo;s begin our journey by delving into the critical step of data preparation.</p>
+<hr>
+<h2 id="section-1-prerequisites-and-setup-">Section 1: Prerequisites and Setup 🛠️</h2>
+<p>Before we dive into the BERT training process, let&rsquo;s ensure you have the necessary tools and libraries installed. We&rsquo;ll be using Python, so make sure you have it installed on your system.</p>
+<h3 id="setting-up-the-environment">Setting up the Environment</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># Uninstall any existing TensorFlow versions (if applicable)</span>
+</span></span><span class="line"><span class="cl"><span class="err">!</span><span class="n">pip</span> <span class="n">uninstall</span> <span class="o">-</span><span class="n">y</span> <span class="n">tensorflow</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Install the &#39;transformers&#39; library from the Hugging Face repository</span>
+</span></span><span class="line"><span class="cl"><span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="n">git</span><span class="o">+</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">huggingface</span><span class="o">/</span><span class="n">transformers</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Check the installed versions</span>
+</span></span><span class="line"><span class="cl"><span class="err">!</span><span class="n">pip</span> <span class="nb">list</span> <span class="o">|</span> <span class="n">grep</span> <span class="o">-</span><span class="n">E</span> <span class="s1">&#39;transformers|tokenizers&#39;</span>
+</span></span></code></pre></div><p>We&rsquo;ll also need your Hugging Face API token (<code>token</code>) for later steps, so make sure you have it ready.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># Import the relevant libraries for logging in</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">huggingface_hub</span> <span class="kn">import</span> <span class="n">login</span>
+</span></span><span class="line"><span class="cl"><span class="n">login</span><span class="p">(</span><span class="n">token</span><span class="o">=</span><span class="err">`</span><span class="n">your_huggingface_token</span><span class="err">`</span><span class="p">)</span>
+</span></span></code></pre></div><hr>
+<h2 id="section-2-data-preparation-">Section 2: Data Preparation 📊</h2>
+<h3 id="the-significance-of-data">The Significance of Data</h3>
+<p>The richness, diversity, and volume of our data directly impact the model&rsquo;s language understanding and generalization capabilities. Our training data must be representative of the language and tasks our model will encounter in the real world which ensures that our model learns relevant patterns and information.</p>
+<p>A diverse dataset exposes the model to various language styles, topics, and domains to enhances the model&rsquo;s ability to handle a wide range of inputs.</p>
+<p>The size of the dataset matters. Larger datasets enable the model to learn more robust language representations, but they also require substantial computational resources.</p>
+<h3 id="data-collection-and-sources">Data Collection and Sources</h3>
+<p>When collecting data for training a Language model, consider various sources such as books, articles, websites, and domain-specific texts. Open-source datasets and publicly available corpora can be valuable resources. In this tutorial, we obtained data from the OSCAR project (Open Super-large Crawled Aggregated coRpus) which is an Open Source project aiming to provide web-based multilingual resources and datasets. You can find the project page <a href="https://oscar-project.org/" target="_blank" rel="noopener">here</a>. Also, you can use any other text data you have access.</p>
+<h3 id="data-preprocessing">Data Preprocessing</h3>
+<p>Data preprocessing involves tasks like text cleaning, sentence tokenization, and ensuring uniform encoding (e.g., UTF-8). Proper preprocessing minimizes noise and ensures that the text is ready for tokenization.</p>
+<h3 id="corpus-size-and-sampling">Corpus Size and Sampling</h3>
+<p>The size of your corpus can vary based on your resources, but more data is generally better. If working with a massive dataset isn&rsquo;t feasible, consider random sampling or domain-specific sampling to create a representative subset.</p>
+<h3 id="domain-specific-considerations">Domain-Specific Considerations</h3>
+<p>If your NLP task is domain-specific (e.g., medical or legal text), focus on collecting data relevant to that domain. Domain-specific terminology and context are crucial for accurate model performance.</p>
+<p>Let&rsquo;s start by loading the dataset and setting up data loading workers. The OSCAR dataset support various languages, including Persian (Farsi). We used the HuggingFace framework to load the OSCAR dataset via <code>datasets</code> library.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># Install the &#39;datasets&#39; library</span>
+</span></span><span class="line"><span class="cl"><span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="n">datasets</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Load the streaming dataset</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">datasets</span> <span class="kn">import</span> <span class="n">load_dataset</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">torch.utils.data</span> <span class="kn">import</span> <span class="n">DataLoader</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s1">&#39;oscar&#39;</span><span class="p">,</span> <span class="s1">&#39;unshuffled_deduplicated_fa&#39;</span><span class="p">,</span> <span class="n">streaming</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Create a DataLoader with multiple workers to parallelize data loading</span>
+</span></span><span class="line"><span class="cl"><span class="n">dataloader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">num_workers</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Access the training data</span>
+</span></span><span class="line"><span class="cl"><span class="n">training_data</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Explore dataset features</span>
+</span></span><span class="line"><span class="cl"><span class="n">features</span> <span class="o">=</span> <span class="n">training_data</span><span class="o">.</span><span class="n">features</span>
+</span></span></code></pre></div><hr>
+<h2 id="section-3-tokenization-">Section 3: Tokenization 🧩</h2>
+<p>Tokenization is the process of breaking down text into smaller units, called tokens, and is a fundamental step in natural language processing. In this section, we&rsquo;ll explore tokenization in depth, especially subword tokenization, which is pivotal for BERT models.</p>
+<h3 id="the-role-of-tokenization">The Role of Tokenization</h3>
+<p>Tokenization is akin to breaking a sentence into individual words or subword units. It serves several critical purposes in NLP and BERT training:</p>
+<h4 id="1-text-segmentation">1. Text Segmentation:</h4>
+<p>Tokenization segments text into units that are easier to process. These units can be words, subwords, or even characters.</p>
+<h4 id="2-vocabulary-building">2. Vocabulary Building:</h4>
+<p>Tokenization contributes to building a vocabulary of unique tokens. This vocabulary is essential for encoding and decoding text.</p>
+<h4 id="3-consistency">3. Consistency:</h4>
+<p>Tokenization ensures consistency in how text is represented. The same word or subword is tokenized consistently across different documents.</p>
+<h4 id="4-handling-variations">4. Handling Variations:</h4>
+<p>Tokenization handles variations like verb conjugations, pluralization, and capitalization, ensuring that similar words map to the same tokens.</p>
+<h3 id="subword-tokenization">Subword Tokenization</h3>
+<p>BERT, and many other state-of-the-art models, rely on subword tokenization rather than word-based tokenization. Subword tokenization is a more flexible and effective approach, especially for languages with complex word structures.</p>
+<h4 id="byte-pair-encoding-bpe">Byte-Pair Encoding (BPE)</h4>
+<p>One popular subword tokenization technique is Byte-Pair Encoding (BPE). BPE divides text into subword units, such as prefixes, suffixes, and root words. This approach can represent a wide range of words and word variations effectively.</p>
+<h4 id="vocabulary-size">Vocabulary Size</h4>
+<p>When using BPE tokenization, you specify the vocabulary size, which determines the number of unique subword tokens. A larger vocabulary can capture more fine-grained language patterns but requires more memory.</p>
+<h4 id="special-tokens">Special Tokens</h4>
+<p>BERT models use special tokens like:</p>
+<ul>
+<li>&lsquo;[CLS]&rsquo; (classification)</li>
+<li>&lsquo;[SEP]&rsquo; (separator)</li>
+<li>&lsquo;[MASK]&rsquo; (masked)</li>
+</ul>
+<p>These tokens have specific roles in model input.</p>
+<h3 id="tokenization-with-hugging-face-transformers">Tokenization with Hugging Face Transformers</h3>
+<p>The Transformers library from Hugging Face provides powerful tools for tokenization. You&rsquo;ll use these tools to encode text into input features that the BERT model can understand.</p>
+<p>Tokenization is the bridge between raw text data and the model&rsquo;s input format. A strong understanding of tokenization is crucial for interpreting how the model processes and understands language.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># Define the directory to save tokenization files</span>
+</span></span><span class="line"><span class="cl"><span class="n">output_directory</span> <span class="o">=</span> <span class="s1">&#39;./data/text/oscar_fa/&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Create the output directory if it doesn&#39;t exist</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">os</span>
+</span></span><span class="line"><span class="cl"><span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">output_directory</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Tokenization Process</span>
+</span></span><span class="line"><span class="cl"><span class="n">text_data</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl"><span class="n">file_count</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">sample</span> <span class="ow">in</span> <span class="n">training_data</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">sample_text</span> <span class="o">=</span> <span class="n">sample</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">text_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sample_text</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">text_data</span><span class="p">)</span> <span class="o">==</span> <span class="mi">10_000</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># Save tokens to a file every 10,000 samples</span>
+</span></span><span class="line"><span class="cl">        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">output_directory</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;text_</span><span class="si">{</span><span class="n">file_count</span><span class="si">}</span><span class="s1">.txt&#39;</span><span class="p">),</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">fp</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">text_data</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="n">text_data</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">        <span class="n">file_count</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Save any remaining tokens</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="n">text_data</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">output_directory</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;text_</span><span class="si">{</span><span class="n">file_count</span><span class="si">}</span><span class="s1">.txt&#39;</span><span class="p">),</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">fp</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">text_data</span><span class="p">))</span>
+</span></span></code></pre></div><p>Now that we have tokenized our data, let&rsquo;s train a Byte-Level Byte-Pair-Encoding (BPE) tokenizer. Tokenizers like this split words into subword units, making them suitable for a wide range of languages.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># Get file paths of tokenization files</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+</span></span><span class="line"><span class="cl"><span class="n">tokenization_files</span> <span class="o">=</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;./data/text/oscar_fa&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;**/*.txt&#39;</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Initialize and train the tokenizer</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">tokenizers</span> <span class="kn">import</span> <span class="n">ByteLevelBPETokenizer</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">tokenizer</span> <span class="o">=</span> <span class="n">ByteLevelBPETokenizer</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">tokenizer</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">files</span><span class="o">=</span><span class="n">tokenization_files</span><span class="p">[:</span><span class="mi">5</span><span class="p">],</span> <span class="n">vocab_size</span><span class="o">=</span><span class="mi">30_522</span><span class="p">,</span> <span class="n">min_frequency</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="n">special_tokens</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;&lt;s&gt;&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;pad&gt;&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;/s&gt;&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;unk&gt;&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;mask&gt;&#39;</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Create a directory for the tokenizer model</span>
+</span></span><span class="line"><span class="cl"><span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="s1">&#39;./filiberto&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Save the trained tokenizer model</span>
+</span></span><span class="line"><span class="cl"><span class="n">tokenizer</span><span class="o">.</span><span class="n">save_model</span><span class="p">(</span><span class="s1">&#39;filiberto&#39;</span><span class="p">)</span>
+</span></span></code></pre></div><hr>
+<h2 id="section-4-model-tokenizer-initialization-">Section 4: Model Tokenizer Initialization 🤖🔡</h2>
+<p>Now that we understand the importance of tokenization, let&rsquo;s explore how to initialize the model tokenizer. The tokenizer plays a critical role in encoding text into input features that our BERT model can comprehend. In this section, we&rsquo;ll dive into the methodology behind tokenizer initialization.</p>
+<h3 id="tokenizer-initialization">Tokenizer Initialization</h3>
+<p>The model tokenizer is a vital component of the BERT architecture. It&rsquo;s responsible for several key tasks:</p>
+<h4 id="1-tokenization">1. Tokenization:</h4>
+<p>The tokenizer breaks down input text into tokens, including subword units and special tokens like &lsquo;[CLS]&rsquo; and &lsquo;[SEP]&rsquo;.</p>
+<h4 id="2-vocabulary-handling">2. Vocabulary Handling:</h4>
+<p>It manages the model&rsquo;s vocabulary, which includes all the unique tokens the model understands. The vocabulary is a crucial part of encoding and decoding text.</p>
+<h4 id="3-encoding">3. Encoding:</h4>
+<p>The tokenizer encodes text into input features, such as input IDs and attention masks, which are used as inputs for the model.</p>
+<h3 id="hugging-face-transformers-for-tokenization">Hugging Face Transformers for Tokenization</h3>
+<p>Hugging Face&rsquo;s Transformers library simplifies tokenization with a user-friendly interface. Here&rsquo;s a step-by-step breakdown of initializing the model tokenizer:</p>
+<h4 id="1-pretrained-models">1. Pretrained Models:</h4>
+<p>Transformers provides a wide range of pretrained BERT models for various languages and tasks. You can choose a model that matches your requirements.</p>
+<h4 id="2-tokenizer-loading">2. Tokenizer Loading:</h4>
+<p>Load the model&rsquo;s tokenizer using the selected pretrained model&rsquo;s name. This ensures that the tokenizer is aligned with the model&rsquo;s architecture.</p>
+<h4 id="3-tokenization">3. Tokenization:</h4>
+<p>You can now use the tokenizer to tokenize any text input. It returns tokenized inputs, including input IDs and attention masks.</p>
+<h4 id="4-special-tokens">4. Special Tokens:</h4>
+<p>The tokenizer automatically handles special tokens like &lsquo;[CLS]&rsquo;, &lsquo;[SEP]&rsquo;, and &lsquo;[MASK]&rsquo; according to the model&rsquo;s specifications.</p>
+<p>Understanding the tokenizer&rsquo;s role and its initialization is crucial for effectively preparing text data for BERT training. Tokenization transforms raw text into a format that the model can process, setting the stage for the subsequent steps in model training.</p>
+<hr>
+<h2 id="section-5-preparing-data-for-training-">Section 5: Preparing Data for Training 📝</h2>
+<p>Having grasped the significance of tokenization and model tokenizer initialization, let&rsquo;s delve into the process of preparing our text data for BERT training. This section outlines the steps to create input features for our model, including masked language modeling (MLM).</p>
+<h3 id="preparing-data-for-training">Preparing Data for Training</h3>
+<p>Training a BERT model involves creating input data that suits the model&rsquo;s architecture and objectives. BERT is pretrained using a masked language modeling (MLM) task, which involves predicting masked words in a sentence. To adapt our data for this task, we follow these steps:</p>
+<h4 id="1-tokenization-1">1. Tokenization:</h4>
+<p>We use the model tokenizer to tokenize our text data, resulting in input IDs and attention masks.</p>
+<h4 id="2-mlm-masking">2. MLM Masking:</h4>
+<p>To create an MLM task, we randomly mask a percentage (usually 15%) of the tokens in the input IDs. We exclude special tokens like &lsquo;[CLS]&rsquo; and &lsquo;[SEP]&rsquo; from masking.</p>
+<h4 id="3-label-preparation">3. Label Preparation:</h4>
+<p>The original token IDs are retained as labels for the model. During training, the model learns to predict the original tokens from the masked inputs.</p>
+<p>By preparing our data in this manner, we set up a supervised learning task for our BERT model. It learns to understand the context of a sentence by predicting masked words, which is a fundamental part of BERT&rsquo;s bidirectional learning.</p>
+<p>The concept of MLM is central to how BERT learns rich language representations. By predicting masked tokens, the model gains an understanding of how words relate to each other within sentences.</p>
+<p>In our next section, we&rsquo;ll explore how to construct a custom PyTorch dataset to efficiently organize and load our prepared training data, another crucial aspect of BERT model training.</p>
+<hr>
+<h2 id="section-6-creating-a-custom-dataset-">Section 6: Creating a Custom Dataset 📚</h2>
+<p>Training a BERT model requires organizing and loading the prepared data efficiently. In this section, we&rsquo;ll explore how to create a custom PyTorch dataset to accomplish this task.</p>
+<h3 id="the-role-of-datasets">The Role of Datasets</h3>
+<p>Datasets are the backbone of deep learning. They allow us to efficiently organize and load data, making it ready for training. A custom dataset class is particularly useful for preparing data in a format that&rsquo;s compatible with PyTorch&rsquo;s data loading utilities.</p>
+<h3 id="the-custom-dataset-class">The Custom Dataset Class</h3>
+<p>To create a custom PyTorch dataset, we define a class that inherits from the <code>torch.utils.data.Dataset</code> class. Our custom dataset class will have the following key methods:</p>
+<h4 id="1-initialization-__init__">1. Initialization (<code>__init__</code>):</h4>
+<p>In the constructor, we set up any necessary data structures and configurations. Here, we pass in the prepared encodings of our text data.</p>
+<h4 id="2-length-__len__">2. Length (<code>__len__</code>):</h4>
+<p>The <code>__len__</code> method returns the number of samples in the dataset. For BERT training, this corresponds to the number of input sentences.</p>
+<h4 id="3-get-item-__getitem__">3. Get Item (<code>__getitem__</code>):</h4>
+<p>The <code>__getitem__</code> method retrieves a specific sample from the dataset. It returns a dictionary containing the input features, attention masks, and labels for that sample.</p>
+<p>This custom dataset class efficiently encapsulates our data and makes it compatible with PyTorch&rsquo;s data loading utilities.</p>
+<h3 id="efficient-data-loading">Efficient Data Loading</h3>
+<p>Using a custom dataset class, we can leverage PyTorch&rsquo;s <code>DataLoader</code> to efficiently load and iterate through our data during training. This setup ensures that our BERT model receives properly formatted data in batches, facilitating the training process.</p>
+<p>Custom datasets are a fundamental concept in deep learning, and understanding how to create and use them is essential for efficient data handling in PyTorch. In the next section, we&rsquo;ll delve into the crucial aspects of configuring our BERT model for training.</p>
+<hr>
+<h2 id="section-7-training-configuration-">Section 7: Training Configuration 🚀</h2>
+<p>With our data prepared and organized, it&rsquo;s time to configure our BERT model for training. In this section, we&rsquo;ll explore the key configuration settings that influence the training process.</p>
+<h3 id="model-configuration">Model Configuration</h3>
+<p>Before we can embark on training our BERT model, we need to specify its architecture and behavior. The &lsquo;config&rsquo; object contains various parameters that define how the model will operate during training. Let&rsquo;s dive into some of the crucial settings:</p>
+<h4 id="1-vocabulary-size-vocab_size">1. Vocabulary Size (<code>vocab_size</code>):</h4>
+<p>The &lsquo;vocab_size&rsquo; parameter determines the size of the model&rsquo;s vocabulary. It&rsquo;s crucial to match this value with the vocabulary size used during tokenization to ensure compatibility.</p>
+<h4 id="2-maximum-position-embeddings-max_position_embeddings">2. Maximum Position Embeddings (<code>max_position_embeddings</code>):</h4>
+<p>This parameter sets the maximum number of positions the model can handle. In practice, this value should be set to match the maximum sequence length used during tokenization.</p>
+<h4 id="3-hidden-size-hidden_size">3. Hidden Size (<code>hidden_size</code>):</h4>
+<p>&lsquo;hidden_size&rsquo; specifies the dimensionality of the model&rsquo;s hidden states. This parameter plays a crucial role in determining the model&rsquo;s capacity to capture complex patterns in the data.</p>
+<h4 id="4-number-of-attention-heads-num_attention_heads">4. Number of Attention Heads (<code>num_attention_heads</code>):</h4>
+<p>&rsquo;num_attention_heads&rsquo; controls the number of attention heads in the</p>
+<p>model&rsquo;s multi-head attention mechanism. Increasing this value can enhance the model&rsquo;s ability to capture fine-grained relationships in the data.</p>
+<h4 id="5-number-of-hidden-layers-num_hidden_layers">5. Number of Hidden Layers (<code>num_hidden_layers</code>):</h4>
+<p>&rsquo;num_hidden_layers&rsquo; defines how deep the model&rsquo;s architecture is. Deeper models can capture more complex patterns but require more computational resources.</p>
+<h4 id="6-type-vocabulary-size-type_vocab_size">6. Type Vocabulary Size (<code>type_vocab_size</code>):</h4>
+<p>&rsquo;type_vocab_size&rsquo; is typically set to 1 for tasks like masked language modeling.</p>
+<p>By configuring these parameters, we define the architecture and behavior of our BERT model. These settings can be adjusted based on the specific requirements of your NLP task and the available computational resources.</p>
+<h3 id="model-initialization">Model Initialization</h3>
+<p>Now that we&rsquo;ve defined our model&rsquo;s configuration, it&rsquo;s time to initialize the BERT model for masked language modeling (MLM). We&rsquo;ll also handle device placement to leverage GPU acceleration if available.</p>
+<h4 id="model-selection">Model Selection:</h4>
+<p>We initialize a BERT model for masked language modeling (MLM) using the &lsquo;RobertaForMaskedLM&rsquo; class from the Transformers library. This class provides a pre-configured BERT architecture ready for fine-tuning.</p>
+<h4 id="device-placement">Device Placement:</h4>
+<p>We check if a GPU is available, and if so, we move the model to the GPU using <code>model.to(device)</code>. This step is essential for leveraging GPU acceleration during training, which significantly speeds up the process.</p>
+<p>Initializing the model is a pivotal step in our BERT training journey. With the model in place, we&rsquo;re ready to dive into the training loop and optimize it for our specific task.</p>
+<hr>
+<h2 id="section-8-training-loop-and-optimization-">Section 8: Training Loop and Optimization 🔄</h2>
+<p>Let&rsquo;s dive into the heart of training. We&rsquo;ll set up the training loop and optimize our model using AdamW.</p>
+<h3 id="activation-and-optimization">Activation and Optimization</h3>
+<h4 id="training-mode">Training Mode:</h4>
+<p>We activate the training mode of our BERT model using <code>model.train()</code>. This step is essential because it tells the model to compute gradients and update its parameters during training.</p>
+<h4 id="optimizer-initialization">Optimizer Initialization:</h4>
+<p>We initialize an AdamW optimizer, a variant of the Adam optimizer designed for training deep learning models. The optimizer is responsible for adjusting the model&rsquo;s weights to minimize the loss.</p>
+<h4 id="training-epochs">Training Epochs:</h4>
+<p>We specify the number of training epochs. An epoch represents one complete pass through the training data. In this example, we&rsquo;ve set it to 2, but you can adjust this based on your specific training needs.</p>
+<h3 id="training-loop">Training Loop</h3>
+<h4 id="tqdm-progress-bar">TQDM Progress Bar:</h4>
+<p>We use the TQDM library to create a progress bar that tracks the training progress. This progress bar provides real-time feedback on training loss and completion.</p>
+<h4 id="batch-processing">Batch Processing:</h4>
+<p>Inside the training loop, we process data in batches. Each batch consists of input IDs, attention masks, and labels.</p>
+<h4 id="forward-pass">Forward Pass:</h4>
+<p>We perform a forward pass through the model, passing the input tensors and computing model predictions.</p>
+<h4 id="loss-calculation">Loss Calculation:</h4>
+<p>We extract the loss from the model&rsquo;s outputs. The loss represents how far off the model&rsquo;s predictions are from the ground truth labels.</p>
+<h4 id="backpropagation">Backpropagation:</h4>
+<p>We perform backpropagation to calculate gradients with respect to the model&rsquo;s parameters. These gradients guide the optimizer in adjusting the model&rsquo;s weights to minimize the loss.</p>
+<h4 id="parameter-update">Parameter Update:</h4>
+<p>We update the model&rsquo;s parameters using the optimizer&rsquo;s <code>step</code> method. This step is where the model learns from its mistakes and becomes better at its task.</p>
+<h4 id="progress-bar-updates">Progress Bar Updates:</h4>
+<p>We update the progress bar to display the current epoch and the loss for the current batch.</p>
+<h3 id="model-saving">Model Saving</h3>
+<p>Finally, we save the pre-trained model using <code>model.save_pretrained('./filiberto')</code>. It&rsquo;s crucial to save the model&rsquo;s weights and configuration after training so that you can later load and use the trained model for various NLP tasks.</p>
+<p>This section provides a comprehensive overview of the training process, from setting up the training loop to optimizing our BERT model for the specified task.</p>
+<hr>
+<h2 id="section-9-testing-your-custom-bert-model-">Section 9: Testing Your Custom BERT Model 🧪</h2>
+<p>Congratulations! 🎉 You&rsquo;ve trained your custom BERT model. Let&rsquo;s test it with a fun example.</p>
+<h3 id="model-inference">Model Inference</h3>
+<h4 id="model-loading">Model Loading:</h4>
+<p>We load the trained model for inference using the Transformers library. The <code>pipeline</code> function simplifies the process of using the model for specific tasks, in this case, masked language modeling.</p>
+<h4 id="testing-with-masked-sentence">Testing with Masked Sentence:</h4>
+<p>We create a masked sentence to test our model&rsquo;s ability to fill in the missing word. The &lsquo;[MASK]&rsquo; token in the sentence indicates the position where the model should make predictions.</p>
+<h4 id="inference-results">Inference Results:</h4>
+<p>We run the masked sentence through the model using the <code>fill</code> pipeline and obtain the model&rsquo;s predictions. These predictions reveal the model&rsquo;s language understanding and completion capabilities.</p>
+<p>Testing your trained BERT model on real-world examples is an essential step in evaluating its performance and ensuring that it can effectively handle language-related tasks.</p>
+<hr>
+<h2 id="conclusion-">Conclusion 🎓</h2>
+<p>You&rsquo;ve reached the end of this comprehensive tutorial on training a custom BERT model from scratch using the Transformers library from Hugging Face. Throughout this tutorial, we&rsquo;ve covered essential topics, including data preparation, tokenization, model configuration, training, and inference.</p>
+<p>Training your own BERT model is a powerful capability that allows you to fine-tune a language model for specific tasks and domains. It&rsquo;s important to note that training large models like BERT requires significant computational resources, so you may want to consider using pre-trained models and fine-tuning them for your specific needs if you have limited resources.</p>
+<p>As you continue to explore the world of natural language processing (NLP) and deep learning, this tutorial should serve as a valuable foundation for creating and customizing state-of-the-art language models. Remember to adapt the techniques and configurations discussed here to your specific tasks and datasets, and happy modeling! 🤖📚🚀</p>
+
+    </div>
+
+    
+
+
+
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tag/natural-language-processing/">Natural Language Processing</a>
+  
+  <a class="badge badge-light" href="/tag/nlp/">NLP</a>
+  
+  <a class="badge badge-light" href="/tag/tutorial/">Tutorial</a>
+  
+  <a class="badge badge-light" href="/tag/bert/">BERT</a>
+  
+</div>
+
+
+
+<div class="share-box">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Farmanasq.github.io%2Fnlp%2Ftrain-BERT%2F&amp;text=Training&#43;Your&#43;Own&#43;BERT&#43;Model&#43;from&#43;Scratch&#43;" target="_blank" rel="noopener" class="share-btn-twitter" aria-label="twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https%3A%2F%2Farmanasq.github.io%2Fnlp%2Ftrain-BERT%2F&amp;t=Training&#43;Your&#43;Own&#43;BERT&#43;Model&#43;from&#43;Scratch&#43;" target="_blank" rel="noopener" class="share-btn-facebook" aria-label="facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a href="mailto:?subject=Training%20Your%20Own%20BERT%20Model%20from%20Scratch%20&amp;body=https%3A%2F%2Farmanasq.github.io%2Fnlp%2Ftrain-BERT%2F" target="_blank" rel="noopener" class="share-btn-email" aria-label="envelope">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https%3A%2F%2Farmanasq.github.io%2Fnlp%2Ftrain-BERT%2F&amp;title=Training&#43;Your&#43;Own&#43;BERT&#43;Model&#43;from&#43;Scratch&#43;" target="_blank" rel="noopener" class="share-btn-linkedin" aria-label="linkedin-in">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=Training&#43;Your&#43;Own&#43;BERT&#43;Model&#43;from&#43;Scratch&#43;%20https%3A%2F%2Farmanasq.github.io%2Fnlp%2Ftrain-BERT%2F" target="_blank" rel="noopener" class="share-btn-whatsapp" aria-label="whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=https%3A%2F%2Farmanasq.github.io%2Fnlp%2Ftrain-BERT%2F&amp;title=Training&#43;Your&#43;Own&#43;BERT&#43;Model&#43;from&#43;Scratch&#43;" target="_blank" rel="noopener" class="share-btn-weibo" aria-label="weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+  
+  
+    
+  
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+      
+      <a href="https://armanasq.github.io/"><img class="avatar mr-3 avatar-circle" src="/authors/admin/avatar_hu423262b037e945bf3d00a3d75617f940_247637_270x270_fill_q75_lanczos_center.jpeg" alt="Arman Asgharpoor Golroudbari"></a>
+    
+
+    <div class="media-body">
+      <h5 class="card-title"><a href="https://armanasq.github.io/">Arman Asgharpoor Golroudbari</a></h5>
+      <h6 class="card-subtitle">Space-AI Researcher</h6>
+      <p class="card-text">My research interests revolve around planetary rovers and spacecraft vision-based navigation.</p>
+      <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="/#contact" >
+        <i class="fas fa-comment-alt"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+    <li>
+      <a href="mailto:a.asgharpoor1993@gmail.com" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://scholar.google.com/citations?user=IlAgF9UAAAAJ&amp;hl=en" target="_blank" rel="noopener">
+        <i class="ai ai-google-scholar"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/armanasq" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://linkedin.com/in/asgharpoor" target="_blank" rel="noopener">
+        <i class="fab fa-linkedin"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://orcid.org/my-orcid?orcid=0000-0001-6271-4533" target="_blank" rel="noopener">
+        <i class="ai ai-orcid"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://www.webofscience.com/wos/author/record/IAN-3152-2023" target="_blank" rel="noopener">
+        <i class="ai ai-publons"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://researchgate.net/profile/Arman_Asgharpoor" target="_blank" rel="noopener">
+        <i class="ai ai-researchgate"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="/uploads/cv.pdf" >
+        <i class="ai ai-cv"></i>
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+  <section id="comments">
+    
+  
+  <script src="https://giscus.app/client.js"
+          data-repo="Armanasq/Armanasq.github.io"
+          data-repo-id="R_kgDOJi13ZQ"
+          data-category="[ENTER CATEGORY NAME HERE]"
+          data-category-id="[ENTER CATEGORY ID HERE]"
+          data-mapping="pathname"
+          data-strict="0"
+          data-reactions-enabled="1"
+          data-emit-metadata="0"
+          data-input-position="top"
+          data-theme="preferred_color_scheme"
+          data-lang="en"
+          data-loading="lazy"
+          crossorigin="anonymous"
+          async>
+  </script>
+
+
+  </section>
+  
+
+
+
+
+
+
+
+
+
+
+  </div>
+</article>
+  </div>
+
+  <div class="page-footer">
+    
+    
+    <div class="container">
+      <footer class="site-footer">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+
+  
+  
+    
+  
+  
+    
+  
+
+  
+
+  
+  <p class="powered-by copyright-license-text">
+    © 2024 Me. This work is licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0" rel="noopener noreferrer" target="_blank">CC BY NC ND 4.0</a>
+  </p>
+  
+
+  <p class="powered-by footer-license-icons">
+    <a href="https://creativecommons.org/licenses/by-nc-nd/4.0" rel="noopener noreferrer" target="_blank" aria-label="Creative Commons">
+      <i class="fab fa-creative-commons fa-2x" aria-hidden="true"></i>
+      <i class="fab fa-creative-commons-by fa-2x" aria-hidden="true"></i>
+      
+        <i class="fab fa-creative-commons-nc fa-2x" aria-hidden="true"></i>
+      
+      
+        <i class="fab fa-creative-commons-nd fa-2x" aria-hidden="true"></i>
+      
+    </a>
+  </p>
+
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+      
+      
+      
+      
+      
+      
+      Published with <a href="https://wowchemy.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Wowchemy</a> — the free, <a href="https://github.com/wowchemy/wowchemy-hugo-themes" target="_blank" rel="noopener">open source</a> website builder that empowers creators.
+    
+  </p>
+</footer>
+
+    </div>
+    
+  </div>
+
+  
+
+
+<script src="/js/vendor-bundle.min.938a3a7554cd9f6602290411f64d2617.js"></script>
+
+
+
+
+  
+
+  
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script id="search-hit-fuse-template" type="text/x-template">
+    <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+    </div>
+  </script>
+  
+    <script src="https://cdn.jsdelivr.net/gh/krisk/Fuse@v3.2.1/dist/fuse.min.js" integrity="sha512-o38bmzBGX+hD3JHWUFCDA09btWaqrNmoJ3RXLlrysA7PP01Kgs4UlE4MhelE1v5dJR3+cxlR4qQlotsW7jKsnw==" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/gh/julmot/mark.js@8.11.1/dist/jquery.mark.min.js" integrity="sha512-mhbv5DqBMgrWL+32MmsDOt/OAvqr/cHimk6B8y/bx/xS88MVkYGPiVv2ixKVrkywF2qHplNRUvFsAHUdxZ3Krg==" crossorigin="anonymous"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script id="page-data" type="application/json">{"use_headroom":true}</script>
+
+
+  <script src="/js/wowchemy-headroom.db4755770454eb63685f8de785c0a172.js" type="module"></script>
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+<script src="/en/js/wowchemy.min.85070d5fe00d43eaedff44310b81dc2c.js"></script>
+
+
+
+
+
+
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+        <pre><code></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <script src="/js/wowchemy-publication.68f8d7090562ca65fc6d3cb3f8f2d2cb.js" type="module"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+      
+      <!DOCTYPE html>
+<html>
+<head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-55GQYC5GYC"></script>
+
+<style>
+  .myImg {
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .myImg:hover {
+    opacity: 0.7;
+    cursor: pointer;
+  }
+
+   
+  .modal-img {
+    display: none;  
+    position: fixed;  
+    z-index: 1;  
+    padding-top: 150px;  
+    left: 0;
+    top: 0px;
+    width: 100%;  
+    height: 100%;  
+    overflow: visible;  
+    background-color: rgb(0, 0, 0);  
+    background-color: rgba(0, 0, 0, 0.6);  
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+   
+  .modal-content {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 80%;
+    max-height: 80%;
+
+  }
+
+   
+  #caption {
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    padding: 10px 0;
+
+  }
+
+   
+  .modal-content,
+  #caption {
+    -webkit-animation-name: zoom;
+    -webkit-animation-duration: 0.6s;
+    animation-name: zoom;
+    animation-duration: 0.6s;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @-webkit-keyframes zoom {
+    from {
+      -webkit-transform: scale(0);
+    }
+    to {
+      -webkit-transform: scale(1);
+    }
+  }
+
+  @keyframes zoom {
+    from {
+      transform: scale(0);
+    }
+    to {
+      transform: scale(1);
+    }
+  }
+
+   
+  
+ .modal-close {
+    position: absolute;
+    top: -55px;
+    right: 0;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+  }
+
+  .modal-close:hover,
+  .modal-close:focus {
+    color: #bbb;
+    text-decoration: none;
+  }
+
+   
+  @media only screen and (max-width: 900px) {
+    .modal-content {
+      width: 90%;
+    }
+  }
+
+  .test:hover {
+    scale: 1.2;
+  }
+
+
+
+
+
+
+
+  .navbar-nav {
+    font-size:20px;
+    font-family: Merriweather,sans-serif;
+  }
+
+  .robotic-section-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .robotic-section {
+    flex-basis: calc(30.33% - 12px);
+    margin: 10px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    transition: box-shadow 0.3s ease-in-out;
+    overflow: hidden;
+  }
+  
+  .robotic-section:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .robotic-section-content {
+    text-align: center;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+  }
+  
+  .robotic-section-content .image-placeholder {
+    width: 300px;
+    height: 300px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f1f1f1;
+  }
+  
+  .robotic-section-content .image-placeholder img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+  
+  .robotic-section-content-h2 {
+    margin-top: 10px;
+    font-size: 1.rem;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .robotic-section-content-h2 :hover{
+    font-size: 10px
+  }
+  .robotic-section-content-h2 {
+    margin-top: 10px;
+    color: #777;
+    font-size: 1.2rem;
+  }
+  
+  .robotic-section-content .text-placeholder {
+    height: 80px;
+    background-color: #f1f1f1;
+  }
+  
+  .robotic-section-content a {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #FF4081;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: bold;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .robotic-section-content a:hover {
+    background-color: #E91E63;
+  }
+  
+   
+  @media (max-width: 768px) {
+    .robotic-section {
+      flex-basis: calc(50% - 40px);
+    }
+  }
+  
+   
+  @media (max-width: 480px) {
+    .robotic-section {
+      flex-basis: 100%;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div id="myModal" class="modal-img">
+  <div class="modal-content">
+    <span class="modal-close">&times;</span>
+    <img id="img01" style="margin-left: auto; margin-right: auto;">
+    <div id="caption"></div>
+  </div>
+</div>
+
+
+
+
+<script>
+    
+    var modal = document.getElementById("myModal");
+    
+    
+    var images = document.querySelectorAll("img.myImg");
+    
+    
+    var modalImg = document.getElementById("img01");
+    var captionText = document.getElementById("caption");
+    
+    
+    for (var i = 0; i < images.length; i++) {
+      
+      images[i].setAttribute("data-src", images[i].src);
+      
+      images[i].addEventListener("click", function() {
+        
+        modalImg.src = this.getAttribute("data-src");
+        captionText.innerHTML = this.alt;
+        
+        modal.style.display = "block";
+      });
+    }
+    
+    
+    var modalClose = document.querySelector(".modal-content .modal-close");
+    
+    
+    modalClose.onclick = function() {
+      modal.style.display = "none";
+    };
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    </script>
+    
+    </body>
+    </html>
+      
+    
+  
+
+
+
+
+
+
+</body>
+</html>

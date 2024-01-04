@@ -102,7 +102,17 @@ highlight_name: true
 ---
 ## Researcher | Space Enthusiast | Deep Learning
 
-I'm Arman Asgharpoor Golroudbari, a researcher at Deep Space Initiatives. I strive to applied machine learning through interdisciplinary research on flight dynamics, control theory, deep learning, and sensor fusion algorithms.
+
+Hello! I'm Arman, a dedicated deep learning researcher specializing in the application of machine learning to space exploration and robotics.
+
+## Robotics and Planetary Rovers
+
+My work in robotics is centered around the development and application of machine learning algorithms for planetary rovers and search and rescue robots. I'm particularly interested in the challenge of navigation under uncertainty. My research involves the use of sensor fusion algorithms, which combine data from multiple sensors to improve system performance. This interdisciplinary approach, which also incorporates elements of flight dynamics and control theory, aims to enhance the autonomy and efficiency of these robotic systems.
+
+## Astronomy and Astrophysics
+
+As an astronomy enthusiast, I am exploring the potential of deep learning in the field of cosmology and astrophysics. My current projects involve the use of machine learning models to generate realistic simulations of astrophysical phenomena. This includes the study of the early universe and the cosmic microwave background (CMB), where I am investigating the use of deep learning techniques for large-scale structure reconstruction from luminosity distance data. I am also delving into the mysteries of dark matter, with projects focused on deep learning-based dark matter map reconstructions.
+
 
 
 <span style="color:red;">**Research Collaborations:**
