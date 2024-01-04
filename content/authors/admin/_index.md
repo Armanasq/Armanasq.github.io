@@ -114,6 +114,7 @@ My work in robotics is centered around the development and application of machin
 As an astronomy enthusiast, I am exploring the potential of deep learning in the field of cosmology and astrophysics. My current projects involve the use of machine learning models to generate realistic simulations of astrophysical phenomena. This includes the study of the early universe and the cosmic microwave background (CMB), where I am investigating the use of deep learning techniques for large-scale structure reconstruction from luminosity distance data. I am also delving into the mysteries of dark matter, with projects focused on deep learning-based dark matter map reconstructions.
 
 
+Explore my past endeavors in greater detail by visiting [Experiences](/experiences).
 
 <span style="color:red;">**Research Collaborations:**
 </span>

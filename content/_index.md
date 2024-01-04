@@ -51,19 +51,21 @@ sections:
           date_end: ''
           description: |2-
 
-            * International Federation of Automatic Control (IFAC) World Congress 2023, Yokohama, Japan+
+            * International Federation of Automatic Control (IFAC) World Congress 2023, Yokohama, Japan
+            * American Control Conference (ACC) 2024, Toronto, ON, Canada
         - title: Review for Journals
           date_start: '2023-01-02'
           date_end: ''
           description: |2-
               Including
 
-            * IEEE Transactions on Instrumentation & Measurement, 20 Papers
+            * IEEE Transactions on Instrumentation & Measurement, 43 Papers
             * The Aeronautical Journal, 3 Papers
-            * Elsevier Aerospace Science and Technology, 6 Papers
-            * Space: Science & Technology, 2 Papers
-            * Elsevier Measurement, 1 Papers
-            * Springer Neural Computing and Applications , 1 Papers
+            * Elsevier Aerospace Science and Technology, 15 Papers
+            * Space: Science & Technology, 4 Papers
+            * Elsevier Measurement, 6 Papers
+            * IEEE Instrumentation & Measurement Magazine, 1 Paper
+            * IEEE Open Access Journal on Circuits and Systems, 1 Paper
               * Complete list on [www.webofscience.com/wos/author/record/AEM-0212-2022](https://www.webofscience.com/wos/author/record/AEM-0212-2022)
     design:
       columns: '2'
