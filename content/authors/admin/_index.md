@@ -110,7 +110,23 @@ My expertise spans across **enterprise AI solutions**, where I've implemented pr
 
 ## Research & Development
 
-My research interests center on **robot learning and autonomous navigation**, focusing on Visual-Inertial SLAM, multi-modal perception, and real-time state estimation. I develop end-to-end learning systems for real-time navigation in dynamic and uncertain settings, and explore the integration of large language models for interpretable navigation and mission planning. Recent work includes transformer-enhanced physics-informed neural networks (TE-PINN) achieving 36.8% error reduction in attitude estimation.
+My research interests center on **robot learning and autonomous navigation**, with a core focus on developing self-adaptive neural networks for robust autonomous systems:
+
+**Core Research Areas:**
+- **Visual-Inertial SLAM**: Multi-modal perception and real-time state estimation for navigation under uncertainty
+- **End-to-end Learning**: Real-time navigation in dynamic and uncertain environments
+- **Robust Sensor Fusion**: Adaptive decision-making in unstructured terrains
+- **Vision-Language Models**: Semantic scene understanding for autonomous systems
+- **Large Language Models**: Interpretable navigation and mission planning
+
+**Current Research Direction:**
+Developing self-adaptive neural networks combining:
+- Vision-language models for semantic scene understanding
+- Learning-based multi-sensor fusion for unstructured environments
+- Learning-based SLAM optimization with physics-informed approaches
+
+**Recent Work:**
+Transformer-Enhanced Physics-Informed Neural Networks (TE-PINN) achieving 36.8% error reduction in attitude estimation, submitted to ICRA 2025. This work integrates multi-head attention mechanisms with physics-based constraints (quaternion kinematics, rigid body dynamics) for robust real-time orientation estimation in high-noise, dynamic conditions.
 
 ## Core Competencies
 

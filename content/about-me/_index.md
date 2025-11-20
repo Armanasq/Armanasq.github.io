@@ -335,10 +335,30 @@ Full list available at [ORCID](https://orcid.org/0000-0001-6271-4533) and [Web o
 
 *Role: Mentor for AI and Space Technology*
 
-- Mentored 10+ professionals in computer vision and satellite data processing
-- Developed curriculum covering deep learning and space applications
-- Led workshops on AI applications in space technology
-- Created training materials for satellite image analysis
+**Mentorship & Guidance**:
+- Provided personalized mentorship to **10+ professionals** in computer vision and satellite data processing
+- Offered targeted guidance and sustained support to mentees, fostering future leaders in space technology
+- Conducted one-on-one sessions covering career development, research methodology, and technical skills
+
+**Curriculum Development**:
+- Designed comprehensive curriculum covering:
+  - Deep learning fundamentals and advanced architectures
+  - Computer vision for satellite imagery analysis
+  - AI applications in space exploration and robotics
+  - Practical implementation with PyTorch and TensorFlow
+- Created structured learning pathways for professionals at different skill levels
+
+**Workshops & Training**:
+- Led **multiple workshops** on AI applications in space technology
+- Topics covered: satellite image segmentation, object detection in orbital imagery, autonomous spacecraft navigation
+- Created extensive training materials including:
+  - Tutorial notebooks for satellite image analysis
+  - Documentation on implementing CV algorithms for space data
+  - Best practices for deploying ML models in space applications
+
+**Community Impact**:
+- Contributing to capacity building in the space technology sector
+- Fostering interdisciplinary collaboration between AI and space engineering communities
 
 ## World Astronomy Week (Iran)
 *Jan 2017 to Jan 2023*

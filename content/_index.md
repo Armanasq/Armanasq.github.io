@@ -81,21 +81,50 @@ sections:
   - block: markdown
     content:
       title: Teaching Experience
-      text: | 
-            | |
-            | ------------------------------- | -------------------------------- | ----------------------- |
-            | Teaching Assistant              | University of Tehran  </br> * Course: Fuzzy Logic (Graduate Level) </br> * Instructor: Dr. M.H. Sabour             | Fall 2022               |
-            | Instructor                      | Aviation Industry Training Center </br> * 11 Courses taught on Electronics, Navigation, Aviation (Undergraduate)  | Sep. 2019 - Sep. 2021  |
-            | Thesis Supervisor               | Aviation Industry Training Center </br> Supervised Theses </br> * Design and Implementation of a 3 Axis CNC Machine () </br> * Design and Implementation of Pulse Circuits Training Board () </br> * Design, Simulation, and Building of an Aircraft Fire Extinguishing System () </br> * Design and Implementation of Retractable Landing Gear () </br> * Design and Implementation of a CNC Hot Wire () |  </br>  </br> Spring 2021 - Fall 2021 </br> Fall 2020 - Fall 2021 </br> Spring 2020 - Fall 2020 </br> Fall 2019 - Spring 2020 </br> Fall 2019 - Spring 2020 |
+      text: |
+            ### Co-Instructor
+            **Tehran University of Medical Sciences** | Sep. 2022 - Present
+            * **Course**: Application of Technology in Research (Graduate Level)
+            * Designed and taught graduate-level courses in advanced search techniques
+            * Conducted office hours, fostering academic excellence and professional growth
+            * **Students**: 100+ graduate and undergraduate students (B.Sc., M.D., M.Sc., Ph.D.)
+
+            ### Teaching Assistant
+            **University of Tehran** | Sep. 2021 - Sep. 2022
+            * **Course**: Fuzzy Logic (Graduate Level)
+            * **Instructor**: Dr. M.H. Sabour
+            * Designed and supervised projects, enhancing programming skills for 15+ graduate students
+            * Enhanced academic and professional growth through focused office hours
+
+            ### Instructor
+            **Aviation Industry Training Center** | Sep. 2018 - Sep. 2021
+            * Instructed **11 courses** on Electronics, Navigation, and Aviation (Undergraduate)
+            * **Students**: 150+ undergraduate students
+            * Delivered high-caliber education, nurturing skilled aerospace professionals
+
+            ### Thesis Supervisor
+            **Aviation Industry Training Center & University of Tehran** | Sep. 2019 - Present
+
+            **Supervised 5 Undergraduate Theses**:
+            1. *Design and Implementation of a 3 Axis CNC Machine* (Spring 2021 - Fall 2021)
+            2. *Design and Implementation of Pulse Circuits Training Board* (Fall 2020 - Fall 2021)
+            3. *Design, Simulation, and Building of an Aircraft Fire Extinguishing System* (Spring 2020 - Fall 2020)
+            4. *Design and Implementation of Retractable Landing Gear* (Fall 2019 - Spring 2020)
+            5. *Design and Implementation of a CNC Hot Wire* (Fall 2019 - Spring 2020)
+
+            **Supervised 1 Master's Thesis**:
+            * *AI and Robotics Applications* (In Progress)
+
+            ### Research Supervision
+            **Students' Scientific Research Center** | May 2023 - Present
+            * Guiding **10+ students** in creating AI medical imaging tools for disease detection
+            * Leading team in **six systematic reviews** on AI-powered Medical Imaging Analysis
       filters:
         folders:
           - post
     design:
-      # Choose how many columns the section has. Valid values: '1' or '2'.
       columns: '2'
-      # Choose your content listing view - here we use the `showcase` view
       view: showcase
-      # For the Showcase view, do you want to flip alternate rows?
       flip_alt_rows: true
   - block: collection
     id: posts

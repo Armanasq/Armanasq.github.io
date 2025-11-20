@@ -6,23 +6,49 @@ redirect_from:
   - /resume
 ---
 
+## Professional Summary
+
+Machine Learning Engineer with 5+ years of experience in LLMs, transformer architectures, computer vision systems, and autonomous robotics. Published researcher with expertise in both academic and industry applications. Implemented production-ready RAG solutions reducing operational costs by 35% through PEFT/LoRA fine-tuning and quantization techniques. Built retrieval systems with 92% accuracy using vector embeddings and hybrid retrieval systems. Developed multimodal pipelines integrating vision models with transformers. Deployed end-to-end ML infrastructure across major cloud platforms with open source contributions to computer vision and ML frameworks.
+
+## Research Focus
+
+**Core:** Robot Learning & Autonomous Navigation
+- Visual-Inertial SLAM, Multi-Modal Perception, Real-Time State Estimation
+- End-to-end learning for real-time navigation in dynamic and uncertain settings
+- Robust sensor fusion for adaptive decision-making in unstructured terrains
+- Large Language Models for interpretable navigation and mission planning
+
+**Research Direction:** Developing self-adaptive neural networks for robust autonomous navigation:
+- Vision-language models for semantic scene understanding
+- Learning-based multi-sensor fusion for unstructured environments
+- Learning-based SLAM optimization
+
+---
 
 Education
 ======
-* M.Sc. in Space Engineering, University of Tehran, 2022 **(GPA:4.0/4.0)**
-  * School Ranking: 1st in Iranian Universities (U.S, News)
-  * Oxford Machine Learning Summer School (OxML 2022)
-  * Thesis: AI Application in Inertial Navigation
-    * Sensor fusion algorithms were combined with Deep Learning to improve inertial attitude estimation accuracy
-    * Ray and Sherpa were used for Hyperparameter Optimization (PBT, Grid & Random Search) in Python (Keras & Pytorch)
-    * End-to-End ANN Frameworks were developed for Inertial Odometry (6DoF & 9DoF)
-    * End-to-End ANN Frameworks were developed for Attitude Estimation (2DoF & 3DoF)
-* MBA in Healthcare, Academic Center for Education, Culture and Research, 2020 **(GPA:4.0/4.0)**
-  * Projects:
-    * Elderly tourism
-    * Application of AI in personalized medicine
-* B. Eng. in Avionics, Aviation Industry Training Center, 2019 **(GPA:3.8/4.0)**
-* A.E.T in Avionics, Civil Aviation Technology College, 2016
+* **M.Sc. in Space Engineering**, University of Tehran, Tehran, Iran - **Sep. 2019 - Sep. 2022** **(GPA: 4.00/4.00)**
+  * **School Ranking**: 1st in Iranian Universities (U.S. News)
+  * **Advisor**: Prof. M. H. Sabour
+  * **Thesis**: *End-to-End Deep Learning Framework for Real-Time Inertial Attitude Estimation*
+    * Developed generalizable end-to-end deep learning frameworks for real-time attitude estimation using 6DoF IMU
+    * Sensor fusion algorithms combined with Deep Learning to improve inertial attitude estimation accuracy by 40%
+    * Utilized Ray and Sherpa for Hyperparameter Optimization (PBT, Grid & Random Search) in Python (Keras & PyTorch)
+    * End-to-End ANN Frameworks developed for Inertial Odometry (6DoF & 9DoF)
+    * End-to-End ANN Frameworks developed for Attitude Estimation (2DoF & 3DoF)
+    * Published in Elsevier Measurement journal (Impact Factor: 5.2)
+  * **Relevant Coursework**: Machine Learning, Computer Vision, Sensor Fusion, Statistics
+
+* **MBA**, Academic Center for Education, Culture and Research, Tehran, Iran - **Apr. 2019 - Apr. 2020** **(GPA: 4.00/4.00)**
+  * **Project**: *AI-based Personalized Medicine*
+  * Additional Project: Elderly Tourism
+
+* **B.Eng. in Avionics**, University of Applied Science and Technology, Tehran, Iran - **Sep. 2016 - Jun. 2019** **(GPA: 3.80/4.00)**
+  * **Project**: *Development of GPS-aided Inertial Navigation System using Extended Kalman Filter*
+  * **Relevant Coursework**: Signal Processing, Control Systems, Embedded Systems, Linear Algebra
+
+* **Associate in Avionics**, Civil Aviation Technology College, Tehran, Iran - **Jan. 2013 - Sep. 2016**
+  * **Relevant Coursework**: Aviation Electronics, Navigation Systems, Aircraft Systems
 
 Professional Experience
 ======
