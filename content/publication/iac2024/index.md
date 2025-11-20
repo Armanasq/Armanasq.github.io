@@ -3,11 +3,14 @@ title: "The Future of In-Space Manufacturing: A Systematic Review"
 authors:
 - admin
 - et al.
-date: "2024-10-01T00:00:00Z"
+author_notes:
+- "Lead author"
+- "Co-authors"
+date: "2024-10-14T00:00:00Z"
 doi: ""
 
 # Schedule page publish date (NOT publication's date).
-publishDate: "2024-10-01T00:00:00Z"
+publishDate: "2024-10-14T00:00:00Z"
 
 # Publication type.
 # Legend: 0 = Uncategorized; 1 = Conference paper; 2 = Journal article;
@@ -16,21 +19,30 @@ publishDate: "2024-10-01T00:00:00Z"
 publication_types: ["1"]
 
 # Publication name and optional abbreviated publication name.
-publication: "75th International Astronautical Congress (IAC) 2024"
+publication: "75th International Astronautical Congress (IAC), Milan, Italy, 2024"
 publication_short: "IAC 2024"
 
 abstract: This systematic review examines the current state and future prospects of in-space manufacturing technologies. As humanity expands its presence beyond Earth, the ability to manufacture components and structures in space becomes increasingly critical for sustainable space exploration and settlement. This paper comprehensively analyzes recent advancements in additive manufacturing, materials processing, and robotic assembly systems designed for the space environment. We evaluate the technical challenges posed by microgravity, vacuum conditions, and radiation exposure, while identifying promising solutions and ongoing research initiatives. The review covers orbital manufacturing facilities, lunar in-situ resource utilization (ISRU), and asteroid mining technologies. We discuss the economic implications, potential applications for deep space missions, and the role of in-space manufacturing in establishing permanent human presence beyond Earth. Key findings highlight the transformative potential of space-based manufacturing for reducing launch costs, enabling large-scale space infrastructure, and supporting long-duration missions to Mars and beyond.
 
 # Summary. An optional shortened abstract.
-summary: Systematic review of in-space manufacturing technologies examining current capabilities, technical challenges, and future prospects for sustainable space exploration and settlement.
+summary: Systematic review examining in-space manufacturing technologies, covering additive manufacturing, materials processing, robotic assembly, and ISRU. Analyzes technical challenges (microgravity, vacuum, radiation) and economic implications for sustainable space exploration and settlement. Highlights transformative potential for reducing launch costs and enabling deep space missions.
 
 tags:
 - Space Manufacturing
 - In-Situ Resource Utilization
+- ISRU
 - Additive Manufacturing
+- 3D Printing
 - Space Exploration
 - Orbital Manufacturing
+- Asteroid Mining
+- Lunar Manufacturing
+- Mars Missions
+- Robotic Assembly
+- Microgravity
 - Systematic Review
+- Space Technology
+- Space Infrastructure
 featured: false
 
 url_pdf: ''

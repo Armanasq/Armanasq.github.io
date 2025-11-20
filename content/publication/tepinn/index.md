@@ -2,11 +2,13 @@
 title: "TE-PINN: Quaternion-Based Orientation Estimation using Transformer-Enhanced Physics-Informed Neural Networks"
 authors:
 - admin
-date: "2025-01-01T00:00:00Z"
+author_notes:
+- "Single author"
+date: "2025-05-19T00:00:00Z"
 doi: ""
 
 # Schedule page publish date (NOT publication's date).
-publishDate: "2024-09-01T00:00:00Z"
+publishDate: "2024-09-24T00:00:00Z"
 
 # Publication type.
 # Legend: 0 = Uncategorized; 1 = Conference paper; 2 = Journal article;
@@ -15,22 +17,29 @@ publishDate: "2024-09-01T00:00:00Z"
 publication_types: ["1"]
 
 # Publication name and optional abbreviated publication name.
-publication: "IEEE International Conference on Robotics and Automation (ICRA 2025)"
+publication: "2025 IEEE International Conference on Robotics and Automation (ICRA)"
 publication_short: "ICRA 2025"
 
 abstract: This paper introduces TE-PINN, a novel transformer-enhanced physics-informed neural network for quaternion-based orientation estimation from IMU data. The proposed framework combines multi-head attention mechanisms with physics-based constraints to achieve robust attitude estimation in dynamic conditions. By embedding quaternion kinematics and rigid body dynamics directly into the loss function, TE-PINN enforces rotational dynamics consistency while leveraging the transformer's ability to capture temporal dependencies in IMU measurements. The RK4 quaternion integration with uncertainty quantification further enhances estimation reliability. Experimental results demonstrate a 36.8% reduction in attitude estimation error compared to traditional methods, with superior robustness in high-noise environments. The physics-informed approach ensures physically consistent predictions while maintaining computational efficiency suitable for real-time applications.
 
 # Summary. An optional shortened abstract.
-summary: Transformer-enhanced physics-informed neural network achieving 36.8% error reduction in quaternion-based attitude estimation from IMU data. Combines multi-head attention with physics-based constraints for robust real-time orientation estimation.
+summary: Novel transformer-enhanced physics-informed neural network (TE-PINN) achieving 36.8% error reduction in quaternion-based attitude estimation from IMU data. Integrates multi-head attention mechanisms with physics-based constraints (quaternion kinematics, rigid body dynamics) for robust real-time orientation estimation in high-noise, dynamic conditions.
 
 tags:
 - Physics-Informed Neural Networks
-- Transformer
+- Transformer Architecture
+- Multi-Head Attention
 - Attitude Estimation
+- Orientation Estimation
 - IMU
+- Inertial Measurement Unit
 - Quaternion
 - Deep Learning
 - SLAM
+- Sensor Fusion
+- Real-Time Systems
+- Robotics
+- Autonomous Navigation
 featured: true
 
 url_pdf: 'https://arxiv.org/pdf/2409.16214'
