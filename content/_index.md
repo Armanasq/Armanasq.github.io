@@ -51,22 +51,31 @@ sections:
           date_end: ''
           description: |2-
 
+            * International Conference on Robotics and Automation (ICRA) 2024
+            * International Conference on Learning Representations (ICLR) 2024
+            * American Control Conference (ACC) 2023, 2024, Toronto, ON, Canada
             * International Federation of Automatic Control (IFAC) World Congress 2023, Yokohama, Japan
-            * American Control Conference (ACC) 2024, Toronto, ON, Canada
-        - title: Review for Journals
+        - title: Review for Journals (100+ Papers Reviewed)
           date_start: '2023-01-02'
           date_end: ''
           description: |2-
-              Including
+              **Outstanding Reviewer Award (2023)** - IEEE Transactions on Instrumentation & Measurement
 
+              Including:
+
+            * IEEE Robotics and Automation Letters
             * IEEE Transactions on Instrumentation & Measurement, 43 Papers
-            * The Aeronautical Journal, 3 Papers
+            * IEEE Sensors
+            * Wiley Journal of Field Robotics
+            * Elsevier Automatica
             * Elsevier Aerospace Science and Technology, 15 Papers
-            * Space: Science & Technology, 4 Papers
             * Elsevier Measurement, 6 Papers
+            * Springer Visual Computing for Industry, Biomedicine, and Art
+            * Space: Science & Technology, 4 Papers
+            * The Aeronautical Journal, 3 Papers
             * IEEE Instrumentation & Measurement Magazine, 1 Paper
             * IEEE Open Access Journal on Circuits and Systems, 1 Paper
-              * Complete list on [www.webofscience.com/wos/author/record/AEM-0212-2022](https://www.webofscience.com/wos/author/record/AEM-0212-2022)
+              * Complete list on [ORCID](https://orcid.org/0000-0001-6271-4533) and [Web of Science](https://www.webofscience.com/wos/author/record/IAN-3152-2023)
     design:
       columns: '2'
   - block: markdown
@@ -172,8 +181,8 @@ sections:
       text: |-
 
 # Contact (add or remove contact options as necessary)
-      email: a.asgharpoor1993@gmail.com
-      phone: +98 919 609 7597
+      email: A.Asgharpoor@ut.ac.ir
+      phone: +974 (550) 58203
       appointment_url: 'https://calendly.com/arman-asgharpoor/30min'
       address:
         street: Innovation Center, SSRC, Vesal st.

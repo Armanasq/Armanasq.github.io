@@ -24,27 +24,76 @@ Education
 * B. Eng. in Avionics, Aviation Industry Training Center, 2019 **(GPA:3.8/4.0)**
 * A.E.T in Avionics, Civil Aviation Technology College, 2016
 
-Work experience
+Professional Experience
 ======
-* Research Assistant, Aviation Industry Training Center - **Fall 2018 ~ Fall 2020**
-  * Supervised undergraduate students working on the research project by:
-    * Conducted literature reviews; collected, managed, and analyzed data
-    * Provided ready access to all experimental data for the faculty researcher and supervisor
-* Martial Arts Instructor, Iran Martial Arts Federation - **Mar. 2016 – Present**
-  * Black Belt Dan II
-  * Improve communication skills by teaching students from various backgrounds
-* Manager, Arman Imen Passargad - **Jan. 2013 – Present**
-  * Improve leadership and management skills by working with different people in harsh work environments
+* **Lead Machine Learning Engineer**, AI-Ark - **Dec. 2024 – Oct. 2025**
+  * Architected hybrid vector search system with Nomic-Embed-1.5B and Vespa/Elasticsearch
+  * Optimized ANN/KNN ranking profiles improving F1-score from 0.76 to 0.92
+  * Implemented 4-bit and 8-bit quantization using GGUF and AWQ techniques
+  * Led development of multi-turn RAG chatbot with persistent memory
+  * Led team of 6 engineers in financial behavioral analysis systems achieving 95.2% accuracy
 
-Skills
+* **Lead AI Engineer**, Fanaavaran Farayand Farda - **Jun. 2024 – Dec. 2024**
+  * Applied few-shot learning to train detection/segmentation model on 53 classes achieving 81% mAP
+  * Reduced model latency by 70% through INT8 quantization and TensorRT conversion
+  * Deployed models via TorchServe supporting 200+ concurrent requests
+  * Built document intelligence platform reducing processing time from 2 mins to 30 secs
+
+* **AI Researcher (Part-time)**, Fasta Robotics - **Nov. 2023 – Oct. 2025**
+  * Implemented ORB-SLAM3 visual-inertial mapping system on ROS2
+  * Developed VIO-LiDAR sensor fusion achieving 15cm localization accuracy
+  * Deployed YOLOv12 object detection achieving 95% pedestrian detection accuracy
+  * Designed end-to-end learning framework improving robustness by 30%
+
+* **Machine Learning Engineer**, Rajaei Cardiovascular Center - **May 2022 – Jun. 2024**
+  * Built search architecture achieving 92% precision across PubMed/Scopus databases
+  * Architected RAG system for 100K+ clinical documents
+  * Developed clinical decision framework with 87% diagnostic accuracy
+  * Built automated ICD-10 coding system with 91% accuracy
+  * Managed team of 5 ML engineers
+
+* **AI Research Scientist**, Farzan Research Institute - **Oct. 2021 – Jun. 2024**
+  * Fine-tuned Nemotron, AYA-101 and BERT models using LoRA
+  * Optimized training on A100/H100 GPUs using DeepSpeed ZeRO-3
+  * Engineered hybrid retrieval systems (BM25, FAISS, cross-encoders)
+  * Implemented QLoRA 4-bit quantization on A100 clusters
+
+* **Computer Vision Engineer & Freelancer** - **Apr. 2020 – Oct. 2021**
+  * Implemented LSTM image captioning achieving BLEU score of 0.32
+  * Built CNN-LSTM handwriting recognition with 5.2% CER
+  * Created Mask R-CNN segmentation achieving 43.5 mAP on COCO dataset
+  * Developed PyTorch training pipelines with distributed computing
+
+* **Martial Arts Instructor**, Iran Martial Arts Federation - **Mar. 2016 – Present**
+  * Black Belt Dan II
+  * Instructed 400+ students from diverse backgrounds
+
+Technical Expertise
 ======
-* AI
-  * Deep Learning (LSTM, CNN, TCN, etc.), PBT Hyperparameter Optimization
-  * Fuzzy Logic / Fuzzy Inference System
-* Robotics
-  * **Programming**: Python (Matplotlib, NumPy, Pandas, TensorFlow, Keras), MATLAB, Simulink, Arduino, C++, LaTeX
-  * **CAD-CAM**: CATIA, SolidWorks, Inventor, Proteus, Altium Designer, AutoCAD
-  * **CAE**: CST, ADS, ANSYS Workbench, Abaqus, COMSOL
+* **Model Architectures**
+  * Transformers, CNNs (YOLO, ResNet), RNNs (LSTM, GRU)
+* **LLMs & NLP**
+  * PEFT/LoRA fine-tuning, 4-bit & 8-bit quantization (GGUF, AWQ)
+  * Prompt engineering, RAG systems
+  * HuggingFace, Unsloth, AWS Bedrock, Azure AI
+* **Computer Vision**
+  * Object Detection, Segmentation
+  * Vision Language Modeling
+  * YOLO family, Mask R-CNN, Vision Transformers
+* **Autonomous Systems**
+  * ROS2, LiDAR-SLAM, ORB-SLAM3
+  * State Estimation, Multi-Sensor Fusion
+  * Visual-Inertial Odometry
+* **Data Infrastructure**
+  * Vector databases (FAISS, Qdrant, Vespa, Elasticsearch)
+  * BM25/TF-IDF indexing
+  * Hybrid retrieval systems
+* **ML Frameworks**
+  * PyTorch, TensorFlow, Keras
+  * Docker, FastAPI, TorchServe
+  * DeepSpeed, mixed precision training
+* **Programming**
+  * Python, C++, CUDA, Git, LaTeX
 
 Publications
 ======
@@ -71,25 +120,31 @@ Teaching
   
 Research Experience
 ======
-* Summer Project, University College London - **Jul.2022 – Present**
-  * Use Generative Adversarial Imitation Learning and Reinforcement Learning
-    * Created path planning of a ground robot via Python in the ROS environment.
-* Former of Fuzzy Logic Lab - **Nov. 2020**
-  * Universal Scientific Education & Research Network Interest Group
-    * Aimed to do research on Multi-Criteria Decision Making
-* ShadX Team Leader, AIAA Aircraft Design Competition - **Aug. 2020**
-  * As a Graduate Team Aircraft Design, designed a modern regional jet family
-* Referee of Research Council, Students’ Scientific Research Center - **Apr. 2019 – Present**
-  * Evaluated research proposals
-* CNC Milling Machine Design and Fabrication, Aviation Industry Training Center - **Jul. 2019 – Jan. 2020**
-  * Used embedded systems to control CNC
-  * Used SolidWorks and Inventor to design the structure
-* CanSat Competition Design and Fabrication, University of Tehran - **Sep. 2019 – Mar. 2020**
-  * Used Raspberry Pi for Computer Vision and Pattern Detection
-  * Sensor Fusion implemented for Navigation and State Estimation (KF Family)
-* Wireless Power Transmission (WPT) for Medical Purposes - **Sep. 2018 – Jul. 2019**
-  * Circuit Designer and Analyzer
-    * Used ANSYS, ADS, CST, and Altium Designer to design and analyze the circuit
+* **Physics-Informed AI Researcher**, Students' Scientific Research Center - **Jul. 2024 – Sep. 2024**
+  * Built TE-PINN: transformer-physics network for IMU orientation estimation
+  * Designed multi-head attention for IMU data, reduced error 36.8%
+  * Embedded quaternion kinematics and rigid body dynamics
+  * Research selected for ICRA 2025; code and datasets publicly available
+
+* **Research Participant**, MIT IAIFI AI+Physics Program - **May 2024 – Jun. 2024**
+  * Developed Vision Transformer-based tumor severity simulator
+  * Applied Sequential Neural Posterior Estimation (SNPE)
+  * Achieved 87% diagnostic accuracy on medical imaging datasets
+  * Presented at cross-institutional workshop (75+ participants from MIT, Harvard)
+
+* **Competition Winner**, Oxford Machine Learning Summer School - **May 2023 – Aug. 2023**
+  * Implemented transfer learning achieving 82% accuracy
+  * Ranked 1st among 120+ participants in international competition
+  * Developed ensemble approach combining EfficientNet and Vision Transformer models
+
+* **Graduate Researcher**, University of Tehran - **Sep. 2019 – Sep. 2022**
+  * Developed end-to-end learning models reducing attitude estimation error by 40%
+  * Evaluated on 7 datasets (100+ km IMU measurements)
+  * Published in Measurements journal (Elsevier, IF 5.2)
+  * Open-sourced implementation [+33 GitHub Stars]
+
+* **Referee of Research Council**, Students' Scientific Research Center - **Apr. 2019 – Present**
+  * Evaluated research proposals for medical science and healthcare solutions
 
 Lab Experience 
 ======
@@ -138,22 +193,27 @@ Leadership Experience
   * Sarai Ehsan Social Victims Center
   * Vardavard Welfare
 
-Certificates
+Certifications
 ======
-* USERN
+* **AI + Physics**, IAIFI + MIT - **Jul. 2024**
+* **MLx Representation Learning & Generative AI**, Oxford Machine Learning Summer School - **Jun. 2024**
+* **AI for Global Goals**, Oxford Machine Learning Summer School - **Jun. 2023**
+* **Deep Learning for Computer Vision**, University of Colorado Boulder (Coursera) - **Jun. 2023**
+* **AI Programming with Python**, Udacity - **Jan. 2024**
+* **State Estimation and Localization for Self-Driving Cars**, University of Toronto (Coursera) - **Feb. 2023**
+* **Spacecraft Dynamics and Control Specialization**, University of Colorado Boulder (Coursera) - **Aug. 2020**
+  * Kinematics: Describing the Motions of Spacecraft
+  * Spacecraft Dynamics Capstone: Mars Mission
+  * Control of Nonlinear Spacecraft Attitude Motion
+  * Kinetics: Studying Spacecraft Motion
+* **Neural Networks and Deep Learning**, DeepLearning.AI (Coursera) - **May 2023**
+* **MATLAB Onramp**, MathWorks
+* USERN:
   * Submission & Peer Reviewing
   * Data Analysis in SPSS
   * Systematic Review
   * Scientific Writing
   * Meta-analysis
-* University of Toronto (Coursera)
-  * State Estimation and Localization for Self-Driving Cars
-* MathWorks
-  * MATLAB Onramp
-* DeepLearning.AI (Coursera)
-  * Neural Networks and Deep Learning
-* National Society of Professional Engineers
-  * Bridging the Gap to Leadership
 
 Membership & Affiliations
 ======
@@ -168,11 +228,19 @@ Membership & Affiliations
 
 Awards & Honors
 ======
-* USERN Miniature Talk, Appreciated Presenter - **Aug. 2021**
-* National University Entrance Exam, Ranked top 10% in M.Sc. Aerospace Engineering - **2019**
-* University of Tehran, Dept. Aerospace, Ranked 1st in Class 2019
-* Iran Martial Arts Federation, National Competitions
+* **Outstanding Reviewer**, IEEE Transactions on Instrumentation & Measurement - **2023**
+* **AWS AI & ML Scholarship** (awarded to top 1% of applicants) - **2023**
+  * $4000 Valued, Endowed by Amazon and Udacity
+* **Ranked 1st in OxML Competition Track** (120+ international participants) - **2023**
+  * Achieved 82.3% accuracy in cancer cell detection
+* **Ranked top 10% in M.Sc. Aerospace Engineering** National University Entrance Exam - **2019**
+  * Among 5000+ participants
+* **Ranked 1st in Class 2019**, University of Tehran, College of Interdisciplinary Science and Technology - **2021**
+  * GPA: 4.0/4.0
+* **Iran Martial Arts Federation**, National Competitions
   * Gold Medalist - **2011, 2012, 2018, 2019**
   * Silver Medalist - **2015**
   * Bronze Medalist - **2016, 2019**
-* Nearu Martial Arts, Black Belt Dan II - **2015**
+* **Black Belt Dan II**, Nearu Martial Arts - **2015**
+  * Requiring a decade of dedicated training
+* **USERN Miniature Talk**, Appreciated Presenter - **Aug. 2021**
