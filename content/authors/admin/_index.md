@@ -14,36 +14,36 @@ status:
 superuser: true
 
 # Role/position/tagline
-role: Space-AI Researcher
+role: Machine Learning Engineer
 
 # Organizations/Affiliations to show in About widget
 organizations:
-  - name: University of Tehran
-    url: https://ut.ac.ir/en/
-  - name: Students’ Scientific Research Center
+  - name: AI-Ark
+    url: https://app.ai-ark.com/
+  - name: Fasta Robotics
+    url: #
+  - name: Students' Scientific Research Center
     url: https://etdc.tums.ac.ir/
-  - name: Universal Scientific Education and Research Network (USERN)
-    url: https://usern.tums.ac.ir/
 
 # Short bio (displayed in user profile at end of posts)
-bio: My research interests revolve around planetary rovers and spacecraft vision-based navigation.
+bio: Machine Learning Engineer with 5+ years of experience in LLMs, transformer architectures, computer vision systems, and autonomous robotics.
 
 # Interests to show in About widget
 interests:
-  - Deep Learning
-  - Vision-based Navigation
-  - Interstellar Autonomous Spacecrafts
+  - Robot Learning & Autonomous Navigation
+  - Large Language Models & RAG Systems
+  - Computer Vision & Deep Learning
 
 # Education to show in About widget
 education:
   courses:
-    - course: M.Sc. Space Engineering
+    - course: M.Sc. Space Engineering (GPA 4.00/4.00)
       institution: University of Tehran, Tehran, Iran
       year: 2022
-    - course: MBA
+    - course: MBA (GPA 4.00/4.00)
       institution: Academic Center for Education, Culture and Research, Tehran, Iran
       year: 2020
-    - course: B. Eng. Aircraft Avionics Technology
+    - course: B.Eng. Avionics (GPA 3.80/4.00)
       institution: University of Applied Science and Technology, Tehran, Iran
       year: 2019
     - course: Associate, Avionics
@@ -61,7 +61,7 @@ social:
     link: '/#contact'
   - icon: envelope
     icon_pack: fas
-    link: 'mailto:a.asgharpoor1993@gmail.com'
+    link: 'mailto:A.Asgharpoor@ut.ac.ir'
     label: "Drop me an email."
     display:
       header: true
@@ -95,49 +95,71 @@ social:
     link: uploads/cv.pdf
 
 # Enter email to display Gravatar (if Gravatar enabled in Config)
-email: 'a.asgharpoor1993@gmail.com'
+email: 'A.Asgharpoor@ut.ac.ir'
 
 # Highlight the author in author lists? (true/false)
 highlight_name: true
 ---
-## Researcher | Space Enthusiast | Deep Learning
+## Machine Learning Engineer | AI Researcher | Deep Learning Specialist
 
+Hello! I'm Arman, a Machine Learning Engineer with 5+ years of experience specializing in Large Language Models, transformer architectures, computer vision systems, and autonomous robotics. I focus on building production-ready AI solutions that bridge research and industry applications.
 
-Hello! I'm Arman, a dedicated deep learning researcher specializing in the application of machine learning to space exploration and robotics.
+## Professional Focus
 
-## Robotics and Planetary Rovers
+My expertise spans across **enterprise AI solutions**, where I've implemented production-ready RAG systems reducing operational costs by 35% through PEFT/LoRA fine-tuning and quantization techniques. I've built retrieval systems with 92% accuracy using vector embeddings and hybrid retrieval approaches, developed multimodal pipelines integrating vision models with transformers, and deployed end-to-end ML infrastructure across major cloud platforms.
 
-My work in robotics is centered around the development and application of machine learning algorithms for planetary rovers and search and rescue robots. I'm particularly interested in the challenge of navigation under uncertainty. My research involves the use of sensor fusion algorithms, which combine data from multiple sensors to improve system performance. This interdisciplinary approach, which also incorporates elements of flight dynamics and control theory, aims to enhance the autonomy and efficiency of these robotic systems.
+## Research & Development
 
-## Astronomy and Astrophysics
+My research interests center on **robot learning and autonomous navigation**, with a core focus on developing self-adaptive neural networks for robust autonomous systems:
 
-As an astronomy enthusiast, I am exploring the potential of deep learning in the field of cosmology and astrophysics. My current projects involve the use of machine learning models to generate realistic simulations of astrophysical phenomena. This includes the study of the early universe and the cosmic microwave background (CMB), where I am investigating the use of deep learning techniques for large-scale structure reconstruction from luminosity distance data. I am also delving into the mysteries of dark matter, with projects focused on deep learning-based dark matter map reconstructions.
+**Core Research Areas:**
+- **Visual-Inertial SLAM**: Multi-modal perception and real-time state estimation for navigation under uncertainty
+- **End-to-end Learning**: Real-time navigation in dynamic and uncertain environments
+- **Robust Sensor Fusion**: Adaptive decision-making in unstructured terrains
+- **Vision-Language Models**: Semantic scene understanding for autonomous systems
+- **Large Language Models**: Interpretable navigation and mission planning
 
+**Current Research Direction:**
+Developing self-adaptive neural networks combining:
+- Vision-language models for semantic scene understanding
+- Learning-based multi-sensor fusion for unstructured environments
+- Learning-based SLAM optimization with physics-informed approaches
 
-Explore my past endeavors in greater detail by visiting [Experiences](/experiences).
+**Recent Work:**
+Transformer-Enhanced Physics-Informed Neural Networks (TE-PINN) achieving 36.8% error reduction in attitude estimation, submitted to ICRA 2025. This work integrates multi-head attention mechanisms with physics-based constraints (quaternion kinematics, rigid body dynamics) for robust real-time orientation estimation in high-noise, dynamic conditions.
 
-<span style="color:red;">**Research Collaborations:**
-</span>
-*I am actively seeking opportunities for academic research collaborations, aiming to foster interdisciplinary synergies and engage in innovative knowledge exchange.* 🤝💡
+## Core Competencies
+
+**LLMs & NLP:** PEFT/LoRA fine-tuning, 4-bit/8-bit quantization (GGUF, AWQ), RAG systems, prompt engineering
+**Computer Vision:** Object detection, segmentation, vision-language modeling (YOLO, Mask R-CNN, Vision Transformers)
+**Autonomous Systems:** ROS2, ORB-SLAM3, LiDAR-SLAM, visual-inertial odometry, multi-sensor fusion
+**Data Infrastructure:** Vector databases (FAISS, Qdrant, Vespa), BM25/TF-IDF indexing, hybrid retrieval systems
+**ML Frameworks:** PyTorch, TensorFlow, HuggingFace, Docker, FastAPI, TorchServe, DeepSpeed
+
+Explore my professional experience and research projects in detail by visiting [Experiences](/experiences).
+
+<span style="color:red;">**Research Collaborations:**</span>
+*I am actively seeking opportunities for academic research collaborations in robot learning, vision-based navigation, and LLM applications for autonomous systems.* 🤝💡
 
 ---
 
-### Research 
-My passion for space technology has ignited collaborations with renowned institutions and projects, such as:
-- **Milky Way Program @ Deep Space Initiative**: Contributed to space transportation system research, addressing pressing space-related issues.
-- **Oxford Machine Learning Summer School**: Achieved top rank in the Health and Medicine OxML competition track, focusing on vision-based breast cancer detection.
-- **Fuzzy Logic Lab @ University of Tehran**: Developed deep neural networks for visual odometry, enhancing accuracy and performance.
-- **Space Lab @ University of Tehran**: Pioneered deep learning-based inertial odometry techniques, leveraging state-of-the-art datasets and optimization tools.
-- **Department of Aerospace Eng. @ University of Tehran**: Explored the intriguing world of Quantum Computing and its applications in space.
+### Selected Achievements
 
-### Experience Beyond Research
-I believe in sharing knowledge and experiences:
-- **Mentor @ Space Generation Advisory Council**: Providing personalized guidance and support to aspiring space enthusiasts.
-- **Martial Arts Instructor @ Iran Martial Arts Federation**: Cultivating communication skills through teaching diverse students.
-- **Manager @ Arman Imen Passargad**: Nurturing leadership and management skills in challenging work environments.
-- **Teaching Assistant @ University of Tehran**: Imparting practical programming skills to graduate-level students.
+- **Published Researcher**: Papers in Elsevier Measurement (IF 5.2), submitted to ICRA 2025, BMC Medical Education
+- **Competition Winner**: Ranked 1st in Oxford ML Summer School Health & Medicine track (120+ participants)
+- **MIT IAIFI Program**: Research participant in AI+Physics program focusing on simulation-based inference
+- **Production AI**: Deployed RAG systems processing 5M+ documents daily, achieving 92% retrieval accuracy
+- **Autonomous Robotics**: Implemented VIO-LiDAR fusion achieving 15cm localization accuracy in warehouse environments
+- **Academic Service**: Reviewed 100+ papers for IEEE, Elsevier journals; Outstanding Reviewer Award (2023)
 
-Feel free to reach out for inquiries or to explore exciting collaborations in the realm of space engineering. Let's embark on an extraordinary journey together.
+### Teaching & Mentoring
+
+- **Co-Instructor** @ Tehran University of Medical Sciences: Application of Technology in Research
+- **Teaching Assistant** @ University of Tehran: Fuzzy Logic (Graduate Level)
+- **Thesis Supervisor**: 5 undergraduate theses, 1 master's thesis in AI and robotics
+- **Mentor** @ Space Generation Advisory Council: Guiding professionals in computer vision and AI
+
+Feel free to reach out for research collaborations or to discuss AI/ML projects.
 
 
 
