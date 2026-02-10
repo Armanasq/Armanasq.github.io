@@ -27,7 +27,8 @@ marketing:
     twitter: 'wowchemy'
   analytics:
     google:
-      measurement_id: "G-4KTBJFHD8W"
+      google_analytics: "G-4KTBJFHD8W"
+    google_tag_manager: "G-4KTBJFHD8W"
   verification:
     google: 'Zv4l_ljWZhu4o0Z-kfZwQmuokpt40AvKXA78N8kynpc'
     baidu: ''
