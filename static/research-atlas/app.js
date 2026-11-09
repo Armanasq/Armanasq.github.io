@@ -55,7 +55,8 @@ const renderOverview = () => {
   const topicCounts = Object.entries(countBy(papers(), "topic")).sort((a,b)=>b[1]-a[1]);
   const yearCounts = Object.entries(countBy(papers(), "year")).sort((a,b)=>Number(a[0])-Number(b[0]));
   const outstanding = papers().filter(p=>p.reading_status === "text_complete_visual_pending").slice(0,6);
-  return head("Research operations / overview", "Research intelligence, connected.", "One evidence-first command surface across APEX-G literature analysis and RasaChatbot clinical evaluation. Published data are provenance-labeled; unpublished evaluation results are not inferred.") +
+  return head("Research atlas / overview", "The state of the research.", "A working view of the APEX-G evidence corpus and RasaChatbot evaluation. Figures come from the latest published source snapshot, not fixed dashboard constants.") +
+    '<div class="editorial-summary"><div><span class="editorial-label">RESEARCH NOTEBOOK / LIVING CORPUS</span><p class="editorial-intro">Follow the papers. Inspect the evidence. Track what remains unresolved.</p></div><div class="editorial-meta"><strong>'+num(papers().length)+'</strong><span>canonical research records</span><small>Last compiled '+esc(isoTime(state.snapshot.generated_at))+'</small></div></div>' +
     '<div class="stats">' + stat("Archived PDFs",s.pdfs_reported,"Repository integrity report") + stat("Read complete",statuses.read_complete ?? null,"Scientific review inventory") + stat("Visual verification pending",statuses.text_complete_visual_pending ?? null,"Not final scientific certification") + stat("Imported clinical runs",state.evalRuns.length,"Browser session only") + "</div>" +
     '<div class="section"><div class="two-col"><div class="panel">' + sec("Research coverage","Canonical, alias-reconciled bibliographic records") + bars(topicCounts.slice(0,9)) + '</div><div class="panel">' + sec("Publication years","Indexed bibliographic records") + bars(yearCounts,"teal") + '</div></div></div>' +
     '<div class="section">' + sec("Verification queue","Original-text review is not equivalent to native figure verification",'<button class="button secondary small" data-go="papers" data-status="missing">Open full queue →</button>') + '<div class="panel tight">' + paperTable(outstanding) + '</div></div>' +
@@ -195,8 +196,9 @@ const renderExperiments = () => {
 };
 const renderRepo = () => {
   const repos = state.snapshot.repositories || {};
-  return head("Operations / provenance & synchronization","Repository status & synchronization","Source branches remain authoritative. This public Pages site serves a validated snapshot mirrored from APEX-G main. The public copy may lag the source until an authorized cross-repository refresh runs; private repositories remain unchanged.",
+  return head("Operations / provenance & synchronization","Repository status & synchronization","Source branches remain authoritative. The public site checks for newly published snapshots each minute; private APEX-G changes become visible only after source compilation and authorized mirror publication.",
     link("https://github.com/Armanasq/APEX-G/actions","GitHub Actions","button outline"))+
+    '<div class="sync-ledger"><strong>Live synchronization status</strong><p id="sync-detail">Fetching published source version…</p><p class="fine">Polling is automatic while this tab is visible. This public mirror cannot securely read private repositories directly; source publishing depends on the configured GitHub Actions credential. Staleness is reported rather than silently treated as up to date.</p></div>' +
     '<div class="section">'+sec("Connected repositories","Commit history only where authenticated Actions snapshot access was available")+
     '<div class="three-col">'+Object.entries(repos).map(([name,r])=>'<div class="panel"><div class="repo-card"><div><div class="repo-title">'+esc(name)+'</div><div class="repo-url">main · '+esc(r.status)+'</div></div>'+badge(r.status)+'</div><p class="fine">'+esc(r.reason || "GitHub commit feed in build-time snapshot")+'</p>'+link(r.url,"Open repository")+(r.build_commit?'<p class="fine">Built from '+esc(r.build_commit.slice(0,12))+'</p>':"")+'</div>').join("")+'</div></div>'+
     '<div class="section"><div class="panel">'+sec("Main-branch commit timeline","Read-only repository events; publication may lag the live branch")+
@@ -295,22 +297,95 @@ const bind = () => {
   const clear=$("#clear-eval");if(clear)clear.addEventListener("click",()=>{state.evalRuns=[];state.selectedRun=null;render();notify("Evaluation data cleared from this browser session");});
   const backR=$("#back-runs");if(backR)backR.addEventListener("click",()=>{state.selectedRun=null;render();});
 };
+const REFRESH_INTERVAL_MS = 60_000;
+const MAX_ACCEPTABLE_AGE_MS = 6 * 60 * 60 * 1000;
+let lastVersion = null;
+let updateInFlight = false;
+let lastSuccessfulCheck = null;
+let lastRefreshError = null;
+const isoTime = value => {
+  const parsed = new Date(value || "");
+  return Number.isNaN(parsed.getTime()) ? "Unknown" : parsed.toLocaleString();
+};
+const snapshotIdentity = data => [
+  data?.generated_at || "",
+  data?.repositories?.["Armanasq/APEX-G"]?.build_commit || "",
+].join("|");
+const freshness = () => {
+  if (!state.snapshot) return;
+  const stamp = new Date(state.snapshot.generated_at).getTime();
+  const age = Number.isFinite(stamp) ? Date.now() - stamp : NaN;
+  const stale = !Number.isFinite(age) || age > MAX_ACCEPTABLE_AGE_MS;
+  const label = lastRefreshError ? "Source check failed" : stale ? "Snapshot may be stale" : "Snapshot current";
+  const status = document.querySelector("#sync-status");
+  if (status) {
+    status.textContent = label;
+    status.className = "sync-status " + (lastRefreshError ? "sync-error" : stale ? "sync-stale" : "sync-current");
+    status.title = "Snapshot built " + isoTime(state.snapshot.generated_at) + (lastSuccessfulCheck ? " · checked " + isoTime(lastSuccessfulCheck) : "");
+  }
+  const stampNode = document.querySelector("#snapshot-time");
+  if (stampNode) {
+    stampNode.textContent = "Source snapshot · " + isoTime(state.snapshot.generated_at);
+    stampNode.title = "Generated by APEX-G GitHub Actions. This does not guarantee that the public mirror is current with private main.";
+  }
+  const syncNote = document.querySelector("#sync-detail");
+  if (syncNote) syncNote.textContent = "Snapshot: " + isoTime(state.snapshot.generated_at) + " · Latest successful check: " + (lastSuccessfulCheck ? isoTime(lastSuccessfulCheck) : "Not yet checked") + (lastRefreshError ? " · " + lastRefreshError : "");
+};
+const loadVersion = async () => {
+  const response = await fetch("./data/version.json?nonce=" + Date.now(), {cache:"no-store"});
+  if (!response.ok) throw Error("Version feed HTTP " + response.status);
+  const version = await response.json();
+  if (version.schema_version !== "1.0.0" || !version.generated_at) throw Error("Invalid version metadata");
+  return version;
+};
+const checkForUpdates = async () => {
+  if (updateInFlight || document.visibilityState === "hidden") return;
+  updateInFlight = true;
+  try {
+    const version = await loadVersion();
+    lastSuccessfulCheck = new Date().toISOString();
+    lastRefreshError = null;
+    if (!state.snapshot || lastVersion !== version.generated_at || version.generated_at !== state.snapshot.generated_at) {
+      lastVersion = version.generated_at;
+      await loadSnapshot();
+    }
+  } catch (error) {
+    lastRefreshError = error.message || "Refresh failed";
+  } finally {
+    updateInFlight = false;
+    freshness();
+  }
+};
 const loadSnapshot = async () => {
   try {
     const response = await fetch("./data/snapshot.json?cache="+Date.now(),{cache:"no-store"});
     if(!response.ok)throw Error("Snapshot fetch failed: HTTP "+response.status);
     const data = await response.json();
     if(data.schema_version!=="1.0.0" || !Array.isArray(data.papers))throw Error("Incompatible snapshot schema");
-    state.snapshot=data;
-    $("#snapshot-time").textContent="Snapshot · "+new Date(data.generated_at).toLocaleString();
-    render();
+    const changed = snapshotIdentity(state.snapshot) !== snapshotIdentity(data);
+    state.snapshot = data;
+    lastVersion = data.generated_at;
+    lastSuccessfulCheck = new Date().toISOString();
+    lastRefreshError = null;
+    if (changed) render();
+    freshness();
   }catch(error) {
     if(!state.snapshot)$("#content").innerHTML='<div class="panel">'+empty("Source snapshot not yet generated","The source-controlled build must run scripts/build_snapshot.py to create data/snapshot.json before this app can display repository records.")+'</div>';
-    notify(error.message || "Snapshot unavailable");
+    lastRefreshError = error.message || "Snapshot unavailable";
+    freshness();
+    notify(lastRefreshError);
   }
 };
 document.querySelectorAll(".nav-item").forEach(b=>b.addEventListener("click",()=>go(b.dataset.page)));
-$("#refresh").addEventListener("click",loadSnapshot);
+$("#refresh").addEventListener("click", async () => {
+  await loadSnapshot();
+  checkForUpdates();
+});
+document.addEventListener("visibilitychange", () => {
+  if (document.visibilityState === "visible") checkForUpdates();
+});
+window.setInterval(checkForUpdates, REFRESH_INTERVAL_MS);
+window.setInterval(freshness, 30_000);
 const initialHash=location.hash.slice(1);
 if(["overview","papers","evidence","synthesis","clinical","experiments","repository"].includes(initialHash))state.page=initialHash;
-loadSnapshot();
+loadSnapshot().then(checkForUpdates);
