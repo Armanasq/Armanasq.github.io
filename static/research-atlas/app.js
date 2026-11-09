@@ -1,13 +1,8 @@
 "use strict";
-const projectScope = document.body.dataset.project === "rasa-chatbot" ? "rasa-chatbot" : "apex-g";
-const pageSets = {
-  "apex-g": ["overview","papers","evidence","synthesis","repository"],
-  "rasa-chatbot": ["clinical","experiments","repository"]
-};
-const allowedPages = new Set(pageSets[projectScope]);
-const defaultPage = projectScope === "apex-g" ? "overview" : "clinical";
+const allowedPages = new Set(["overview","papers","evidence","synthesis","repository"]);
+const defaultPage = "overview";
 const DATA_ROOT = "./";
-const state = { snapshot: null, page: defaultPage, paper: null, query: "", topic: "all", year: "all", status: "all", evidenceField: "all", evalRuns: [], selectedRun: null, scenarioFilter: "all", runImportLabel: null };
+const state = { snapshot: null, page: defaultPage, paper: null, query: "", topic: "all", year: "all", status: "all", evidenceField: "all" };
 const $ = (selector) => document.querySelector(selector);
 const esc = (value) => String(value === null || value === undefined ? "" : value).replace(/[&<>"']/g, (c) => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const fmt = (v) => v === null || v === undefined || v === "" ? "Unknown" : esc(v);
@@ -36,7 +31,6 @@ const htmlDownload = (filename, content, mime) => {
 };
 const csv = (rows, fields) => [fields.join(","), ...rows.map(row => fields.map(k => '"' + String(row[k] ?? "").replaceAll('"', '""') + '"').join(","))].join("\r\n");
 const notify = (message) => {const node = $("#toast"); node.textContent = message; node.classList.add("visible"); setTimeout(() => node.classList.remove("visible"), 3200);};
-const safeString = (v) => typeof v === "string" ? v : v == null ? null : String(v);
 const countBy = (rows, key) => rows.reduce((out, row) => { const name = row[key] || "Unclassified"; out[name] = (out[name] || 0) + 1; return out; }, {});
 const bars = (items, mode) => {const max = Math.max(1, ...items.map(item => item[1]));return items.map(([key, amount]) => '<div class="barrow"><span class="barlabel" title="' + esc(key) + '">' + esc(key.replaceAll("_", " ")) + '</span><span class="bartrack"><span class="barfill ' + (mode || "") + '" style="display:block;width:' + Math.max(0, Math.min(100, amount / max * 100)) + '%"></span></span><span class="barcount">' + num(amount) + '</span></div>').join("") || empty("No data", "No verified counts are available.");};
 const papers = () => state.snapshot?.papers || [];
@@ -165,238 +159,57 @@ const renderSynthesis = () => {
     '<div class="section"><div class="panel">' + sec("Missing-paper detection strategy","Two distinct failure modes are preserved") +
     '<div class="two-col"><div><h3>Acquisition gap</h3><p class="fine">A registered paper has no validated downloadable source, requires manual publisher access or has licensing restrictions. Do not treat a link-only source as a failed scientific review.</p><p>' + link("https://github.com/Armanasq/APEX-G/blob/main/literature_review/sources/manual_acquisition_required.csv","Manual queue") + link("https://github.com/Armanasq/APEX-G/blob/main/literature_review/sources/restricted_or_link_only.csv","License restrictions") + '</p></div><div><h3>Coverage gap</h3><p class="fine">A research construct, comparison, publication or negative-control family is absent from the review scope. Candidate detection depends on external bibliographic discovery and independent reconciliation.</p><p>' + link(assets.missing_literature,"Missing-literature audit") + link(assets.gaps,"Research gaps") + '</p></div></div></div></div>';
 };
-const evalNumeric = (v) => typeof v === "number" && Number.isFinite(v) ? v : null;
-const runMetrics = (runs) => {
-  const ms = runs.map(r=>evalNumeric(r.latency_ms)).filter(x=>x!==null);
-  const p50 = ms.length ? [...ms].sort((a,b)=>a-b)[Math.floor((ms.length-1)*.5)] : null;
-  const p95 = ms.length ? [...ms].sort((a,b)=>a-b)[Math.ceil((ms.length-1)*.95)] : null;
-  const tokens = runs.map(r=>evalNumeric(r.total_tokens)).filter(x=>x!==null);
-  const costs = runs.map(r=>evalNumeric(r.cost_usd)).filter(x=>x!==null);
-  const claims = runs.flatMap(r=>r.turns || []).flatMap(t=>t.claims || []);
-  const supported = claims.filter(c=>c.support_status === "supported").length;
-  return {p50,p95,tokens:tokens.length?tokens.reduce((a,b)=>a+b,0):null,cost:costs.length?costs.reduce((a,b)=>a+b,0):null,
-    claims:claims.length, supported, unsupported:claims.filter(c=>c.support_status==="unsupported").length,
-    contradicted:claims.filter(c=>c.support_status==="contradicted").length,
-    citation_validity:null};
-};
-const clinicalEmpty = () =>
-  '<div class="intake-surface">' +
-  '<div class="intake-copy"><span class="mini-label">LOCAL EVALUATION INPUT</span>' +
-  '<h2>Load a recorded evaluation.</h2>' +
-  '<p>Import de-identified JSON or JSONL traces to inspect routing, state transitions, evidence provenance, and claim-level review. No records are automatically inferred from the backend.</p>' +
-  '<div class="intake-controls"><label for="evaluation-file" class="button">Import evaluation file <span aria-hidden="true">↑</span></label>' +
-  '<input class="inputfile" id="evaluation-file" type="file" accept=".json,.jsonl,application/json">' +
-  '<button class="button outline" id="download-schema">Download schema template</button></div>' +
-  '<span class="intake-privacy">Files are parsed in this browser session. Nothing is uploaded.</span></div>' +
-  '<div class="intake-aside"><span class="intake-index">01 / INPUT</span>' +
-  '<div class="intake-line"></div><span class="intake-index">02 / AUDIT</span>' +
-  '<div class="intake-line"></div><span class="intake-index">03 / COMPARE</span></div></div>';
-const runTable = (runs) => '<div class="table-scroll"><table><thead><tr><th>Scenario / run</th><th>Variant</th><th>Outcome</th><th>Turns</th><th>Latency</th><th>Tokens</th><th>Cost (USD)</th></tr></thead><tbody>' + runs.map(r=>
-  '<tr class="selectable" data-run="' + esc(r.run_id) + '" role="button" tabindex="0" aria-label="Inspect evaluation run"><td class="title-cell">' + esc(r.scenario_id) + '<div class="fine">' + esc(r.run_id) + '</div></td><td>' + badge(r.variant) + '</td><td>' + badge(r.outcome || "not_recorded") + '</td><td>' + num(r.turns.length) + '</td><td>' + (r.latency_ms===null?"Unknown":num(r.latency_ms)+" ms") + '</td><td>' + num(r.total_tokens) + '</td><td>' + (r.cost_usd===null?"Unknown":r.cost_usd.toFixed(4)) + '</td></tr>').join("")+'</tbody></table></div>';
-const runDetail = (run) => {
-  const claims = run.turns.flatMap((t,i)=>(t.claims || []).map(c=>({...c,turn:i+1})));
-  return '<button class="button secondary small" id="back-runs">← All scenarios</button><div class="section"><div class="panel">' +
-    sec("Turn-by-turn clinical decision timeline",run.scenario_id+" / "+run.variant) +
-    '<div class="timeline">' + run.turns.map((t,i)=>'<div class="timeline-event"><strong>Turn '+(i+1)+' · '+esc(t.role || "unknown role")+'</strong><p>'+esc(t.message || "Message not recorded")+'</p><div class="pill-row">'+badge(t.workflow || "routing unknown")+badge(t.decision || "decision unknown")+badge(t.validation_status || "validation unknown")+'</div>' +
-    '<div class="detail-grid">' + entry("State before",t.state_before===null?null:JSON.stringify(t.state_before)) + entry("State delta",t.state_delta===null?null:JSON.stringify(t.state_delta)) + entry("Selected tool",t.tool) + entry("Retrieval backend",t.retrieval_backend) + entry("Clarification / referral",t.clarification_or_referral) + entry("Citation provenance",t.provenance?.map(p=>p.source_id || p.url || p.chunk_id).join(", ") || null) + '</div></div>').join("")+'</div></div></div>' +
-    '<div class="section"><div class="panel">' + sec("Claim-level support audit","Support classification must be supplied by an external grader or clinical reviewer") +
-    (claims.length ? '<div class="table-scroll"><table><thead><tr><th>Turn</th><th>Claim</th><th>Support</th><th>Evidence IDs</th><th>Review</th></tr></thead><tbody>'+claims.map(c=>'<tr><td>'+c.turn+'</td><td class="title-cell">'+esc(c.text || "Unknown claim")+'</td><td>'+badge(c.support_status)+'</td><td>'+esc((c.evidence_ids||[]).join(", ") || "Unknown")+'</td><td>'+badge(c.clinical_review_flag || "unreviewed")+'</td></tr>').join("")+'</tbody></table></div>' : empty("No claim audit attached","No claim-level support evidence was included in the imported run.")) +
-    '</div></div>' +
-    '<div class="section"><div class="panel">' + sec("Clinical reviewer flags & errors","Do not interpret an empty field as pass") +
-    '<div class="detail-grid">' + entry("Clinical review status",run.clinical_review_status) + entry("Validation errors",(run.validation_errors||[]).join("; ") || null) + entry("Contradictions",(run.contradictions||[]).join("; ") || null) + entry("Stress category",run.stress_category) + entry("Ablations",(run.ablations||[]).join(", ") || null) + entry("SQL-first retrieval observed",run.turns.some(t=>t.retrieval_backend==="sql_fts") ? "At least one SQL/FTS turn" : "Not confirmed") + '</div></div></div>';
-};
-const renderClinical = () => {
-  const runs = state.evalRuns.filter(r => state.scenarioFilter==="all" || r.variant===state.scenarioFilter);
-  const selected = state.evalRuns.find(r=>r.run_id===state.selectedRun);
-  const m = runMetrics(runs);
-  const heading = head("RasaChatbot / evaluation workspace","Multi-turn clinical evaluations",
-    "Inspect actual agent decisions, state transitions, SQL-first retrieval traces, supporting evidence and validation outcomes.",
-    '<div class="linklist">' + link("https://github.com/Armanasq/rasachatbot-backend","Backend source") +
-    link("https://github.com/Armanasq/rasachatbot-ui","Clinical frontend") + '</div>');
-  if (!state.evalRuns.length) {
-    return heading +
-      '<div class="intake-status"><span class="status-ring"></span><span>No evaluation data loaded</span><span>Ready for local import</span></div>' +
-      clinicalEmpty() +
-      '<div class="section">' + sec("Evaluation workflow","The page is populated only by imported, schema-valid observations") +
-      '<div class="workflow-grid">' +
-      '<div class="workflow-step"><span>01</span><h3>Record</h3><p>Export de-identified scenario runs from the evaluator.</p></div>' +
-      '<div class="workflow-step"><span>02</span><h3>Inspect</h3><p>Review turn-level decisions, source IDs, validation errors and clinical flags.</p></div>' +
-      '<div class="workflow-step"><span>03</span><h3>Compare</h3><p>Use matched scenarios to compare baseline, BACIE and COTAR runs.</p></div>' +
-      '</div></div>' +
-      '<div class="section research-footnote"><span>DATA BOUNDARY</span><p>A successful repository build does not provide clinical experiment results. Metrics remain unavailable until measured runs are imported and checked.</p></div>';
-  }
-  return heading +
-    '<div class="stats">' +
-      stat("Imported runs",runs.length,"Session-only records; selected variant scope") +
-      stat("Median latency · ms",m.p50,"Measured run-level values") +
-      stat("p95 latency · ms",m.p95,"Measured run-level values") +
-      stat("Unsupported claims",m.claims ? m.unsupported : null,"Only graded claims are counted") +
-    '</div>' +
-    '<div class="section"><div class="panel">' +
-      sec("Evaluation data","Import a replacement file or export current session") +
-      '<div class="import-toolbar"><label for="evaluation-file" class="button secondary">Replace evaluation file ↑</label>' +
-      '<input class="inputfile" id="evaluation-file" type="file" accept=".json,.jsonl,application/json">' +
-      '<button class="button outline small" id="download-schema">JSON template</button>' +
-      '<button class="button outline small" id="export-eval">Export loaded JSON</button>' +
-      '<button class="button outline small" id="clear-eval">Clear session</button></div>' +
-      '<p class="fine">Current session: '+num(state.evalRuns.length)+' imported runs. '+esc(state.runImportLabel||"Imported file")+'. Not uploaded to a server.</p></div></div>' +
-    '<div class="section">' + sec("Scenario inventory","Select a run to inspect the decision timeline and claim audit") +
-    '<div class="panel tight"><div class="toolbar">' +
-      select("scenario-filter",state.scenarioFilter,[["all","All variants"],...new Set(state.evalRuns.map(r=>r.variant))].map(x=>Array.isArray(x)?x:[x,x])) +
-      '<span class="hint">' + num(runs.length) + ' matching runs</span></div>' +
-      (runs.length ? runTable(runs) : empty("No runs match this variant","Change the variant filter to inspect the other imported runs.")) +
-      '</div></div>' +
-    (selected ? '<div class="section">'+runDetail(selected)+'</div>' : '') +
-    '<div class="section research-footnote"><span>SAFETY</span><p>Importing a run does not establish clinical validity. Unsupported claims, contradictory evidence and referral errors require qualified review.</p></div>';
-};
-const renderExperiments = () => {
-  if (!state.evalRuns.length) return head("RasaChatbot / experiments","Baselines, ablations & stress tests",
-    "Matched-run comparisons become available after observed evaluations are imported.") +
-    '<div class="experiment-empty"><span class="mini-label">EXPERIMENT LEDGER / EMPTY</span><h2>There are no measured variants to compare.</h2>' +
-    '<p>Import actual baseline, BACIE and COTAR runs with matching scenario identifiers and comparable evaluation conditions. This view does not create synthetic results.</p>' +
-    '<button class="button" data-go="clinical">Open scenario evaluation →</button></div>';
-  const variants = [...new Set(state.evalRuns.map(r=>r.variant))];
-  const grouped = variants.map(v=>({variant:v,runs:state.evalRuns.filter(r=>r.variant===v)}));
-  const metricRows = grouped.map(x=>({variant:x.variant,count:x.runs.length,...runMetrics(x.runs)}));
-  const stress = [...new Set(state.evalRuns.map(r=>r.stress_category).filter(Boolean))];
-  const abl = [...new Set(state.evalRuns.flatMap(r=>r.ablations))];
-  const groupTable = '<div class="table-scroll"><table><thead><tr><th>Variant</th><th>Runs</th><th>p50 latency (ms)</th><th>p95 latency (ms)</th><th>Tokens</th><th>Cost (USD)</th><th>Unsupported claims</th><th>Contradicted</th></tr></thead><tbody>' +
-    metricRows.map(r=>'<tr><td>'+badge(r.variant)+'</td><td>'+num(r.count)+'</td><td>'+num(r.p50)+'</td><td>'+num(r.p95)+'</td><td>'+num(r.tokens)+'</td><td>'+(r.cost===null?"Unknown":r.cost.toFixed(4))+'</td><td>'+num(r.claims?r.unsupported:null)+'</td><td>'+num(r.claims?r.contradicted:null)+'</td></tr>').join("")+'</tbody></table></div>';
-  return head("RasaChatbot / experimental comparisons","Baselines, ablations & stress tests","Variant comparisons are populated only from imported observations. A comparison must use matched scenario IDs, comparable protocols, and consistent denominators; no performance advantage is presumed.") +
-  '<div class="section">'+sec("Baseline vs BACIE / COTAR","Observed metrics only; matching scenario coverage must be checked before interpreting deltas")+
-  '<div class="panel tight">'+(metricRows.length?groupTable:empty("No evaluated variants","Import measured baseline, BACIE and COTAR runs with matching scenario IDs to populate this comparison."))+'</div></div>'+
-  '<div class="section"><div class="two-col"><div class="panel">'+sec("Ablation dimensions","Tags from imported runs")+(abl.length?bars(abl.map(a=>[a,state.evalRuns.filter(r=>r.ablations.includes(a)).length])):empty("No ablation observations","Model, state, routing, retrieval, judge, and context-budget interventions may be tracked using explicit ablation labels."))+'</div><div class="panel">'+sec("Stress-test coverage","Long context, multi-patient, contradictions, failure injection")+(stress.length?bars(stress.map(a=>[a,state.evalRuns.filter(r=>r.stress_category===a).length])):empty("No stress-test observations","Stress coverage remains unknown until named scenarios are executed and their results exported."))+'</div></div></div>'+
-  '<div class="section"><div class="panel">'+sec("Interpretation and provenance gates","Avoid misleading comparisons")+
-  '<div class="detail-grid">'+entry("Matched scenario IDs",metricRows.length>=2?"Requires pair-level verification":"Unknown")+
-  entry("Citation validity",state.evalRuns.length?"Requires claim/citation-level grader":"Unknown")+
-  entry("Clinical review flags",state.evalRuns.length?state.evalRuns.filter(r=>r.clinical_review_status!=="approved").length+" non-approved or unreviewed":"Unknown")+
-  entry("Decision-level validation",state.evalRuns.length?state.evalRuns.filter(r=>r.validation_errors.length>0).length+" runs report errors":"Unknown")+
-  '</div><p class="fine">Reported latency quantiles are across runs with observed timestamps. Token and dollar totals exclude missing observations. Such groups are not automatically comparable across protocols, contexts, judges or case distributions.</p></div></div>';
-};
 const renderRepo = () => {
-  const research = projectScope === "apex-g";
-  const all = state.snapshot.repositories || {};
-  const repos = Object.fromEntries(Object.entries(all).filter(([name]) =>
-    research ? name === "Armanasq/APEX-G" : name.startsWith("Armanasq/rasachatbot-")
-  ));
-  const commits = Object.entries(repos).flatMap(([name,r])=>(r.commits||[]).map(c=>({name,...c})))
-    .sort((a,b)=>(b.date||"").localeCompare(a.date||"")).slice(0,30);
-  return head(research?"APEX-G / repository":"RasaChatbot / repositories","Repository & synchronization",
-    research ? "APEX-G main controls the published bibliography and synthesis. Publication can lag source changes." :
-    "RasaChatbot backend and UI remain separate private codebases. Commit feeds require source-workflow authorization.",
-    research ? link("https://github.com/Armanasq/APEX-G/actions","Build history","button outline") :
-    link("https://github.com/Armanasq/rasachatbot-backend","Backend repository","button outline")) +
-    '<div class="sync-ledger"><strong>Published data status</strong><p id="sync-detail">Reading current snapshot…</p><p class="fine">The browser checks this public version feed every minute. It cannot read private repositories or clinical telemetry without an authenticated server-side integration.</p></div>' +
-    '<div class="section">' + sec("Source repositories","Commit history is shown only where the build had access") +
-    '<div class="three-col">' + Object.entries(repos).map(([name,r])=>'<div class="panel"><div class="repo-card"><div><div class="repo-title">'+esc(name)+'</div><div class="repo-url">'+esc(r.branch||"branch unknown")+' · '+esc(r.status||"unavailable")+'</div></div>'+badge(r.status)+'</div><p class="fine">'+esc(r.reason||"Snapshot commit feed")+'</p>'+link(r.url,"View repository")+(r.build_commit?'<p class="fine">Built from '+esc(r.build_commit.slice(0,12))+'</p>':"")+'</div>').join("") +
+  const name = "Armanasq/APEX-G";
+  const record = state.snapshot.repositories?.[name] || {};
+  const commits = Array.isArray(record.commits) ? record.commits.slice(0, 30) : [];
+  return head("APEX-G / repository","Repository & synchronization",
+    "APEX-G main is the only source of scientific records. Published snapshots may lag behind source commits.",
+    link("https://github.com/Armanasq/APEX-G/actions","Build history","button outline")) +
+    '<div class="sync-ledger"><strong>Published data status</strong><p id="sync-detail">Reading current snapshot…</p><p class="fine">The browser checks the public version feed every minute. It does not directly access the private source repository.</p></div>' +
+    '<div class="section">' + sec("Source repository","Only APEX-G commit data is displayed") +
+    '<div class="panel"><div class="repo-card"><div><div class="repo-title">'+esc(name)+'</div><div class="repo-url">'+esc(record.branch || "main")+' · '+esc(record.status || "unavailable")+'</div></div>'+badge(record.status)+'</div>'+
+    '<p class="fine">'+esc(record.reason || "Commit feed compiled from APEX-G main")+'</p>'+link(record.url || "https://github.com/Armanasq/APEX-G","View repository")+
+    (record.build_commit ? '<p class="fine">Built from '+esc(record.build_commit.slice(0,12))+'</p>' : "")+
     '</div></div>' +
-    '<div class="section"><div class="panel">' + sec("Commit history","Read-only events from accessible source branches") +
-    (commits.length ? '<div class="timeline">'+commits.map(c=>'<div class="timeline-event"><strong>'+esc(c.name)+'</strong> '+link(c.url,c.sha.slice(0,9),"")+'<p>'+esc(c.message)+' · '+esc(c.date||"date unknown")+'</p></div>').join("")+'</div>' :
+    '<div class="section"><div class="panel">' + sec("Commit history","Read-only commits from source main") +
+    (commits.length ? '<div class="timeline">'+commits.map(item=>'<div class="timeline-event"><strong>'+esc(name)+'</strong> '+link(item.url,item.sha.slice(0,9),"")+'<p>'+esc(item.message)+' · '+esc(item.date||"date unknown")+'</p></div>').join("")+'</div>' :
       empty("Commit feed unavailable","No authenticated commit history was included in the source snapshot.")) +
     '</div></div>' +
-    (research ?
-      '<div class="section"><div class="two-col"><div class="panel">' + sec("Data publication","From main to the public research view") +
-      '<div class="timeline"><div class="timeline-event"><strong>APEX-G main</strong><p>Bibliography, archive manifests, processing inventory, Markdown reviews and synthesis.</p></div><div class="timeline-event"><strong>Validate & compile</strong><p>Source files are reconciled into a sanitized, versioned JSON snapshot.</p></div><div class="timeline-event"><strong>Public mirror</strong><p>The authorized Pages workflow republishes the verified snapshot.</p></div></div></div>' +
-      '<div class="panel">'+sec("Canonical documents","Research source-of-truth files")+
-      '<div class="summary-links">' +
-      link("https://github.com/Armanasq/APEX-G/blob/main/README.md","Repository README","summary-link")+
-      link("https://github.com/Armanasq/APEX-G/blob/main/literature_review/README.md","Literature review","summary-link")+
-      link("https://github.com/Armanasq/APEX-G/blob/main/research-workspace/README.md","Workspace documentation","summary-link")+
-      link("https://github.com/Armanasq/APEX-G/actions/workflows/research-workspace-pages.yml","Build workflow","summary-link")+
-      '</div></div></div></div>' +
-      '<div class="section"><div class="panel">'+sec("Source lineage","Auditable publication inputs")+
-      '<div class="table-scroll"><table><thead><tr><th>Source path</th><th>Role</th><th>Open</th></tr></thead><tbody>'+
-      (state.snapshot.provenance||[]).map(x=>'<tr><td class="title-cell">'+esc(x.path)+'</td><td>'+esc(x.kind.replaceAll("_"," "))+'</td><td>'+link("https://github.com/Armanasq/APEX-G/blob/main/"+x.path,"View")+'</td></tr>').join("")+
-      '</tbody></table></div></div></div>'
-    :
-      '<div class="section"><div class="panel">' + sec("Clinical evaluation boundary","Local evaluation imports are not repository telemetry") +
-      '<p class="fine">RasaChatbot run traces are imported into this browser session only. Missing commit access and missing evaluation records are reported as unavailable; no backend measurement is inferred from the APEX-G literature snapshot.</p>' +
-      '<div class="linklist">' +
-      link("https://github.com/Armanasq/rasachatbot-backend","Backend source") +
-      link("https://github.com/Armanasq/rasachatbot-ui","Clinical UI source") +
-      '</div></div></div>'
-    );
-};
-const template = () => ({
-  schema_version:"1.0.0",
-  runs:[{
-    run_id:"replace-with-unique-run-id",scenario_id:"replace-with-scenario-id",variant:"baseline",
-    outcome:null,latency_ms:null,total_tokens:null,cost_usd:null,
-    clinical_review_status:"unreviewed",validation_errors:[],contradictions:[],stress_category:null,ablations:[],
-    turns:[{role:"patient",message:"De-identified evaluation text",workflow:null,decision:null,
-      tool:null,state_before:null,state_delta:null,clarification_or_referral:null,retrieval_backend:null,
-      provenance:[],claims:[],validation_status:null}]
-  }]
-});
-const allowedVariants = ["baseline","BACIE","COTAR"];
-const normalizeRun = (r,i) => {
-  if (!r || typeof r!=="object" || Array.isArray(r)) throw Error("Run "+(i+1)+" is not an object");
-  if (typeof r.run_id!=="string" || !r.run_id.trim() || typeof r.scenario_id!=="string" || !r.scenario_id.trim()) throw Error("Run "+(i+1)+" must include run_id and scenario_id");
-  if (typeof r.variant!=="string" || !r.variant.trim()) throw Error("Run "+(i+1)+" must include variant");
-  if (!Array.isArray(r.turns)) throw Error("Run "+(i+1)+" must include a turns array");
-  const optionalNum = (v,k) => {if(v===undefined||v===null)return null;if(typeof v!=="number"||!Number.isFinite(v)||v<0)throw Error("Invalid "+k+" in run "+(i+1));return v;};
-  const strArray = (v,key) => {if(v===null||v===undefined)return [];if(!Array.isArray(v)||!v.every(x=>typeof x==="string"))throw Error("Invalid "+key);return v;};
-  return {
-    run_id:r.run_id,scenario_id:r.scenario_id,variant:r.variant,outcome:safeString(r.outcome),
-    latency_ms:optionalNum(r.latency_ms,"latency_ms"),total_tokens:optionalNum(r.total_tokens,"total_tokens"),
-    cost_usd:optionalNum(r.cost_usd,"cost_usd"),clinical_review_status:safeString(r.clinical_review_status)||"unreviewed",
-    validation_errors:strArray(r.validation_errors,"validation_errors"),contradictions:strArray(r.contradictions,"contradictions"),
-    stress_category:safeString(r.stress_category),ablations:strArray(r.ablations,"ablations"),
-    turns:r.turns.map((t,j)=>{
-      if(!t||typeof t!=="object"||Array.isArray(t))throw Error("Invalid turn "+(j+1));
-      const claims = Array.isArray(t.claims)?t.claims:[];
-      const provenance = Array.isArray(t.provenance)?t.provenance:[];
-      return {role:safeString(t.role),message:safeString(t.message),workflow:safeString(t.workflow),decision:safeString(t.decision),
-        tool:safeString(t.tool),state_before:t.state_before??null,state_delta:t.state_delta??null,
-        clarification_or_referral:safeString(t.clarification_or_referral),retrieval_backend:safeString(t.retrieval_backend),
-        validation_status:safeString(t.validation_status),
-        provenance:provenance.filter(p=>p&&typeof p==="object").map(p=>({source_id:safeString(p.source_id),url:safeString(p.url),chunk_id:safeString(p.chunk_id)})),
-        claims:claims.filter(c=>c&&typeof c==="object").map(c=>({text:safeString(c.text),support_status:safeString(c.support_status)||"unreviewed",evidence_ids:strArray(c.evidence_ids,"evidence_ids"),clinical_review_flag:safeString(c.clinical_review_flag)}))};
-    }),
-  };
-};
-const importRuns = async file => {
-  if (!file) return;
-  if (file.size > 8*1024*1024) throw Error("Evaluation file too large (8 MiB limit)");
-  const text = await file.text();
-  const incoming = file.name.toLowerCase().endsWith(".jsonl") ? text.split(/\r?\n/).filter(Boolean).map((line,i)=>{try{return JSON.parse(line)}catch{throw Error("Invalid JSONL at line "+(i+1))}}) : JSON.parse(text);
-  const raw = Array.isArray(incoming)?incoming:Array.isArray(incoming.runs)?incoming.runs:[incoming];
-  if (raw.length>3000) throw Error("Import maximum is 3000 runs");
-  const normalized = raw.map(normalizeRun);
-  const ids = new Set();
-  for (const run of normalized) {if(ids.has(run.run_id))throw Error("Duplicate run_id: "+run.run_id);ids.add(run.run_id);}
-  state.evalRuns = normalized;
-  state.selectedRun = null;
-  state.scenarioFilter = "all";
-  state.runImportLabel = file.name;
-  notify("Imported "+normalized.length+" evaluation runs. Nothing uploaded.");
-  render();
+    '<div class="section"><div class="two-col"><div class="panel">' + sec("Data publication","From main to the research workspace") +
+    '<div class="timeline"><div class="timeline-event"><strong>APEX-G main</strong><p>Bibliography, archive manifests, individual paper reviews and synthesis.</p></div><div class="timeline-event"><strong>Validate & compile</strong><p>Conservative, source-attributed JSON snapshots are generated.</p></div><div class="timeline-event"><strong>Public mirror</strong><p>The authorized deployment publishes APEX-G records only.</p></div></div></div>' +
+    '<div class="panel">' + sec("Canonical research documents","Primary research source-of-truth records") +
+    '<div class="summary-links">' +
+    link("https://github.com/Armanasq/APEX-G/blob/main/README.md","Repository README","summary-link") +
+    link("https://github.com/Armanasq/APEX-G/blob/main/literature_review/papers/INDEX.md","Critical paper reviews","summary-link") +
+    link("https://github.com/Armanasq/APEX-G/blob/main/literature_review/manuscript/literature_review.md","Integrated manuscript review","summary-link") +
+    link("https://github.com/Armanasq/APEX-G/blob/main/research-workspace/README.md","Workspace documentation","summary-link") +
+    link("https://github.com/Armanasq/APEX-G/actions/workflows/research-workspace-pages.yml","Build workflow","summary-link") +
+    '</div></div></div></div>' +
+    '<div class="section"><div class="panel">' + sec("Source lineage","Auditable source files from the literature inventory") +
+    '<div class="table-scroll"><table><thead><tr><th>Source path</th><th>Role</th><th>Open</th></tr></thead><tbody>' +
+    (state.snapshot.provenance || []).map(item=>'<tr><td class="title-cell">'+esc(item.path)+'</td><td>'+esc(item.kind.replaceAll("_"," "))+'</td><td>'+link("https://github.com/Armanasq/APEX-G/blob/main/"+item.path,"View")+'</td></tr>').join("") +
+    '</tbody></table></div></div></div>';
 };
 const render = () => {
   if (!state.snapshot) return;
-  const labels = {overview:"Overview",papers:"Paper registry",evidence:"Evidence explorer",synthesis:"Synthesis & gaps",clinical:"Scenario evaluation",experiments:"Comparisons & stress",repository:"Repositories & sync"};
+  const labels = {overview:"Overview",papers:"Paper registry",evidence:"Evidence explorer",synthesis:"Synthesis & gaps",repository:"Repository & sync"};
   if (!allowedPages.has(state.page)) state.page = defaultPage;
   $("#breadcrumb").textContent = labels[state.page] || labels[defaultPage];
   document.querySelectorAll(".nav-item").forEach(node=>{const active=node.dataset.page===state.page;node.classList.toggle("active",active);if(active)node.setAttribute("aria-current","page");else node.removeAttribute("aria-current");});
-  const views = {overview:renderOverview,papers:state.paper?renderPaperDetail:renderPapers,evidence:renderEvidence,synthesis:renderSynthesis,clinical:renderClinical,experiments:renderExperiments,repository:renderRepo};
+  const views = {overview:renderOverview,papers:state.paper?renderPaperDetail:renderPapers,evidence:renderEvidence,synthesis:renderSynthesis,repository:renderRepo};
   $("#content").innerHTML = (views[state.page] || views[defaultPage])();
   bind();
 };
-const go = (page) => {if(!allowedPages.has(page))return;state.page=page;state.paper=null;state.selectedRun=null;history.replaceState(null,"","#"+page);render();$("#content").focus();window.scrollTo({top:0,behavior:"instant"});};
+const go = (page) => {if(!allowedPages.has(page))return;state.page=page;state.paper=null;history.replaceState(null,"","#"+page);render();$("#content").focus();window.scrollTo({top:0,behavior:"instant"});};
 const bind = () => {
   document.querySelectorAll("[data-paper]").forEach(tr=>{const goPaper=()=>{state.paper=tr.dataset.paper;state.page="papers";render();window.scrollTo({top:0,behavior:"instant"});};tr.addEventListener("click",goPaper);tr.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();goPaper();}});});
-  document.querySelectorAll("[data-run]").forEach(tr=>{const fn=()=>{state.selectedRun=tr.dataset.run;render();};tr.addEventListener("click",fn);tr.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();fn();}});});
   document.querySelectorAll("[data-go]").forEach(b=>b.addEventListener("click",()=>{go(b.dataset.go);if(b.dataset.status){state.status=b.dataset.status;render();}}));
   const input=$("#paper-search");if(input)input.addEventListener("input",()=>{const cursor=input.selectionStart;state.query=input.value;render();const next=$("#paper-search");if(next){next.focus();next.setSelectionRange(cursor,cursor);}});
-  [["topic-filter","topic"],["year-filter","year"],["status-filter","status"],["evidence-field","evidenceField"],["scenario-filter","scenarioFilter"]].forEach(([id,key])=>{const n=$("#"+id);if(n)n.addEventListener("change",()=>{state[key]=n.value;render();});});
+  [["topic-filter","topic"],["year-filter","year"],["status-filter","status"],["evidence-field","evidenceField"]].forEach(([id,key])=>{const n=$("#"+id);if(n)n.addEventListener("change",()=>{state[key]=n.value;render();});});
   const exportP=()=>htmlDownload("apex-g-filtered-papers.csv",csv(filteredPapers(),["id","title","year","topic","evidence_type","publication_doi","preprint_doi","reading_status","metadata_status","acquisition_status","review_url","publisher_url","pdf_url"]),"text/csv;charset=utf-8");
   ["export-papers","export-papers-top"].forEach(id=>{const n=$("#"+id);if(n)n.addEventListener("click",exportP);});
   const back=$("#back-papers");if(back)back.addEventListener("click",()=>{state.paper=null;render();});
-  const file=$("#evaluation-file");if(file)file.addEventListener("change",async e=>{try{await importRuns(e.target.files?.[0]);}catch(err){notify(err.message||"Import failed");}});
-  const schema=$("#download-schema");if(schema)schema.addEventListener("click",()=>htmlDownload("rasa-evaluation-template.json",JSON.stringify(template(),null,2),"application/json"));
-  const exportE=$("#export-eval");if(exportE)exportE.addEventListener("click",()=>htmlDownload("rasa-evaluations.json",JSON.stringify({schema_version:"1.0.0",runs:state.evalRuns},null,2),"application/json"));
-  const clear=$("#clear-eval");if(clear)clear.addEventListener("click",()=>{state.evalRuns=[];state.selectedRun=null;render();notify("Evaluation data cleared from this browser session");});
-  const backR=$("#back-runs");if(backR)backR.addEventListener("click",()=>{state.selectedRun=null;render();});
 };
 const REFRESH_INTERVAL_MS = 60_000;
 const MAX_ACCEPTABLE_AGE_MS = 6 * 60 * 60 * 1000;

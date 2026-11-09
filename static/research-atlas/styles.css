@@ -23,12 +23,6 @@
   --sans: Inter, "Segoe UI", Helvetica, Arial, sans-serif;
   font-family: var(--sans);
 }
-body[data-project="rasa-chatbot"] {
-  --accent: #3d627d;
-  --accent-strong: #284e69;
-  --accent-faint: #e8eff4;
-  --brand-dark: #20394c;
-}
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body { margin: 0; min-width: 320px; background: var(--bg); color: var(--ink); font: 14px/1.55 var(--sans); -webkit-font-smoothing: antialiased; }
@@ -60,7 +54,6 @@ h1, h2 { text-wrap: balance; }
 .nav-item { display: flex; align-items: center; gap: 12px; width: 100%; min-height: 44px; border: 0; border-radius: 4px; background: transparent; color: #526257; text-align: left; padding: 11px 12px; font-size: 13px; font-weight: 540; position: relative; }
 .nav-item:hover { background: #e8ece4; color: var(--ink); }
 .nav-item.active { background: #e0e9e0; color: var(--accent-strong); font-weight: 700; }
-body[data-project="rasa-chatbot"] .nav-item.active { background: #e3eaf1; }
 .nav-item.active::before { content: ""; position: absolute; left: 0; top: 9px; bottom: 9px; width: 2px; background: var(--accent); border-radius: 2px; }
 .nav-index { color: #576d60; font: 500 10px var(--mono); flex: 0 0 18px; }
 .nav-item.active .nav-index { color: var(--accent); }
@@ -84,7 +77,6 @@ body[data-project="rasa-chatbot"] .nav-item.active { background: #e3eaf1; }
 .button:hover { color: #fff; background: var(--accent); border-color: var(--accent); text-decoration: none; }
 .button.secondary { background: var(--accent-faint); border-color: var(--border-strong); color: var(--accent-strong); }
 .button.secondary:hover { background: #dce9de; }
-body[data-project="rasa-chatbot"] .button.secondary:hover { background: #d6e7f3; }
 .button.outline { background: transparent; border-color: var(--border-strong); color: var(--accent-strong); }
 .button.outline:hover { background: var(--accent-faint); }
 .button.small { min-height: 33px; padding: 7px 11px; font-size: 11px; }

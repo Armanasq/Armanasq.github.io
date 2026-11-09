@@ -1,41 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#f8f8f4">
-<meta name="description" content="Research Atlas — independent APEX-G and RasaChatbot workspaces.">
-<title>Research Atlas · Projects</title>
-<link rel="stylesheet" href="./landing.css">
-</head>
-<body>
-<a class="skip-link" href="#projects">Skip to projects</a>
-<div class="landing-shell">
-  <header class="landing-header">
-    <a class="landing-wordmark" href="./" aria-label="Research Atlas home"><span class="landing-mark" aria-hidden="true">RA</span><span>Research Atlas</span></a>
-    <span class="landing-edition">PROJECT INDEX / 02</span>
-  </header>
-  <main class="landing-content" id="projects">
-    <div class="landing-aside" aria-hidden="true"><span class="aside-label">INDEX · 01—02</span><div class="aside-rule"></div></div>
-    <div class="landing-index">
-      <h1 class="landing-title">Projects<span>.</span></h1>
-      <nav class="project-index" aria-label="Research projects">
-        <a class="project-entry" href="./apex-g/">
-          <span class="project-number" aria-hidden="true">01</span><span class="project-name">APEX-G</span>
-          <span class="project-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 19 19 5M8 5h11v11"/></svg></span>
-        </a>
-        <a class="project-entry" href="./rasa-chatbot/">
-          <span class="project-number" aria-hidden="true">02</span><span class="project-name">RasaChatbot</span>
-          <span class="project-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 19 19 5M8 5h11v11"/></svg></span>
-        </a>
-      </nav>
-    </div>
-  </main>
-</div>
-<script>
-const legacyRoutes={overview:"apex-g/#overview",papers:"apex-g/#papers",evidence:"apex-g/#evidence",synthesis:"apex-g/#synthesis",clinical:"rasa-chatbot/#clinical",experiments:"rasa-chatbot/#experiments",repository:"apex-g/#repository"};
-const requested=location.hash.slice(1);
-if(Object.prototype.hasOwnProperty.call(legacyRoutes,requested))location.replace("./"+legacyRoutes[requested]);
-</script>
-</body>
-</html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="APEX-G scientific papers, critical reviews and research synthesis.">
+<meta http-equiv="refresh" content="0;url=./apex-g/"><title>APEX-G · Research Workspace</title>
+</head><body><main><h1>APEX-G Research Workspace</h1><p><a href="./apex-g/">Open APEX-G</a></p></main>
+<script>const allowed=new Set(["overview","papers","evidence","synthesis","repository"]);const fragment=location.hash.slice(1);location.replace("./apex-g/"+(allowed.has(fragment)?"#"+fragment:""));</script>
+</body></html>
