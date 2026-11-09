@@ -1,0 +1,17 @@
+import fs from 'node:fs';
+import vm from 'node:vm';
+import assert from 'node:assert/strict';
+const source=fs.readFileSync('public/atlas/app.js','utf8').split('const importRuns =')[0];
+const api=vm.runInNewContext(source+';({normalizeRun,runMetrics,esc})');
+const base={run_id:'test',scenario_id:'test-scenario',variant:'baseline',turns:[]};
+assert.equal(api.normalizeRun(base,0).cost_usd,null);
+assert.equal(api.runMetrics([]).p50,null);
+assert.equal(api.runMetrics([{turns:[{claims:[{support_status:'unreviewed'}]}]}]).claims,0);
+assert.equal(api.runMetrics([{turns:[],total_tokens:0,cost_usd:0}]).tokens,0);
+assert.throws(()=>api.normalizeRun({...base,latency_ms:-1},0));
+assert.throws(()=>api.normalizeRun({...base,turns:[null]},0));
+assert.equal(api.esc('<script>'),'&lt;script&gt;');
+const snapshot=JSON.parse(fs.readFileSync('public/atlas/data/snapshot.json','utf8'));
+assert.equal(new Set(snapshot.papers.map(p=>p.id)).size,snapshot.papers.length);
+assert.equal(snapshot.summary.pdfs_in_inventory,snapshot.summary.pdfs_reported);
+console.log('8 evaluation and snapshot checks passed');

@@ -60,6 +60,37 @@ jobs:
             --gc \
             --minify \
             --baseURL "${{ steps.pages.outputs.base_url }}/"
+      - name: Verify Research Atlas project assets
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          root = Path("public/research-atlas")
+          required = ["index.html", "landing.css", "styles.css", "app.js", "data/snapshot.json", "data/version.json"]
+          for project in ("apex-g", "rasa-chatbot"):
+              required.extend([
+                  f"{project}/index.html", f"{project}/snapshot.json",
+                  f"{project}/version.json", f"{project}/boot.js",
+              ])
+          for rel in required:
+              p = root / rel
+              assert p.is_file() and p.stat().st_size, f"Missing published asset: {p}"
+          for project in ("apex-g", "rasa-chatbot"):
+              folder = root / project
+              data = json.loads((folder / "snapshot.json").read_text(encoding="utf-8"))
+              version = json.loads((folder / "version.json").read_text(encoding="utf-8"))
+              html = (folder / "index.html").read_text(encoding="utf-8")
+              boot = (folder / "boot.js").read_text(encoding="utf-8")
+              assert data["schema_version"] == "1.0.0"
+              assert data["generated_at"] == version["generated_at"]
+              assert f'data-project="{project}"' in html
+              assert 'src="./boot.js"' in html
+              assert 'src="../app.js"' in html
+              assert "window.__RESEARCH_ATLAS_BOOTSTRAP__" in boot
+              if project == "rasa-chatbot":
+                  assert not data["papers"] and not data["evaluation"]["runs"]
+          print("Verified published assets for both independent research project pages")
+          PY
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
