@@ -195,7 +195,7 @@ const renderExperiments = () => {
 };
 const renderRepo = () => {
   const repos = state.snapshot.repositories || {};
-  return head("Operations / provenance & synchronization","Repository status & synchronization","Source branches remain authoritative. This Pages frontend is rebuilt from the APEX-G main branch by GitHub Actions and does not attempt browser-side, unauthenticated writes to private repositories.",
+  return head("Operations / provenance & synchronization","Repository status & synchronization","Source branches remain authoritative. This public Pages site serves a validated snapshot mirrored from APEX-G main. The public copy may lag the source until an authorized cross-repository refresh runs; private repositories remain unchanged.",
     link("https://github.com/Armanasq/APEX-G/actions","GitHub Actions","button outline"))+
     '<div class="section">'+sec("Connected repositories","Commit history only where authenticated Actions snapshot access was available")+
     '<div class="three-col">'+Object.entries(repos).map(([name,r])=>'<div class="panel"><div class="repo-card"><div><div class="repo-title">'+esc(name)+'</div><div class="repo-url">main · '+esc(r.status)+'</div></div>'+badge(r.status)+'</div><p class="fine">'+esc(r.reason || "GitHub commit feed in build-time snapshot")+'</p>'+link(r.url,"Open repository")+(r.build_commit?'<p class="fine">Built from '+esc(r.build_commit.slice(0,12))+'</p>':"")+'</div>').join("")+'</div></div>'+
