@@ -21,10 +21,10 @@ a:focus-visible{outline:3px solid #8caf96;outline-offset:5px}
 .landing-header{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:108px;border-bottom:1px solid var(--border)}
 .landing-wordmark{display:flex;align-items:center;gap:15px;font-size:14px;font-weight:650;letter-spacing:-.3px}
 .landing-mark{width:37px;height:37px;display:grid;place-items:center;background:#213f2e;border-radius:3px;color:#fffefa;font:500 14px var(--serif);letter-spacing:-1px}
-.landing-edition{font:700 10px var(--mono);color:#87948b;letter-spacing:1.3px}
+.landing-edition{font:700 10px var(--mono);color:#546b5d;letter-spacing:1.3px}
 .landing-content{width:min(100%,1180px);flex:1;display:grid;grid-template-columns:190px minmax(0,1fr);gap:40px;align-content:center;margin:0 auto;padding:clamp(60px,8vw,120px) 0}
 .landing-aside{padding-top:15px}
-.aside-label{display:block;color:#829188;font:700 10px var(--mono);letter-spacing:1.2px}
+.aside-label{display:block;color:#526a5b;font:700 10px var(--mono);letter-spacing:1.2px}
 .aside-rule{height:94px;width:1px;margin:22px 0 0 5px;background:#cdd8cd}
 .landing-index{min-width:0}
 .landing-title{font:400 clamp(37px,4vw,54px)/1.17 var(--serif);letter-spacing:-1.8px;margin:0 0 43px;color:#26382d}
@@ -34,7 +34,7 @@ a:focus-visible{outline:3px solid #8caf96;outline-offset:5px}
 .project-entry::before{content:"";position:absolute;left:0;bottom:-1px;height:1px;width:0;background:var(--accent);transition:width .24s ease}
 .project-entry:hover{padding-left:13px;background:#f2f5ef;color:var(--accent)}
 .project-entry:hover::before{width:100%}
-.project-number{color:#89958b;font:600 12px var(--mono);align-self:center}
+.project-number{color:#546b5d;font:600 12px var(--mono);align-self:center}
 .project-name{font:400 clamp(45px,6.2vw,84px)/1.13 var(--serif);letter-spacing:-3.4px;white-space:nowrap}
 .project-arrow{width:49px;height:49px;display:grid;place-items:center;border:1px solid #ccd8ce;border-radius:50%;justify-self:end;color:#3b7151;transition:background .18s ease,transform .18s ease,color .18s ease}
 .project-arrow svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
