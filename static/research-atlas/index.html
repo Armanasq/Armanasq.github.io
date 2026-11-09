@@ -3,21 +3,54 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#f8f7f3">
-<meta name="description" content="Research Atlas project directory.">
-<title>Research Atlas</title>
+<meta name="theme-color" content="#f9f8f5">
+<meta name="description" content="Research Atlas: independent workspaces for APEX-G literature research and RasaChatbot clinical evaluation.">
+<title>Research Atlas — Projects</title>
 <link rel="stylesheet" href="./landing.css">
 </head>
 <body>
-<main class="directory-main">
-  <div class="directory-content">
-    <header class="directory-header"><span class="directory-mark" aria-hidden="true">RA</span><h1>Research Atlas</h1></header>
-    <nav class="project-list" aria-label="Projects">
-      <a class="project-link" href="./apex-g/"><span>APEX-G</span><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12h14m-7-7 7 7-7 7"/></svg></a>
-      <a class="project-link" href="./rasa-chatbot/"><span>RasaChatbot</span><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12h14m-7-7 7 7-7 7"/></svg></a>
-    </nav>
-  </div>
-</main>
+<a class="skip-link" href="#projects">Skip to projects</a>
+<div class="directory-shell">
+  <header class="directory-top">
+    <a class="directory-identity" href="./" aria-label="Research Atlas home"><span class="directory-monogram" aria-hidden="true">RA</span><span>Research Atlas</span></a>
+    <span class="directory-context">Research workspaces</span>
+  </header>
+  <main id="projects" class="directory-main">
+    <div class="directory-intro">
+      <p class="directory-overline">SELECT A WORKSPACE</p>
+      <h1>Research, in progress.</h1>
+      <p class="directory-description">Two independent research environments, each with its own evidence, tools and operational context.</p>
+    </div>
+    <div class="directory-index" aria-label="Project directory">
+      <section class="project" aria-labelledby="apex-title">
+        <div class="project-number" aria-hidden="true">01 / RESEARCH</div>
+        <div class="project-main">
+          <h2 id="apex-title"><a href="./apex-g/" class="project-title">APEX-G <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 12h16m-7-7 7 7-7 7"/></svg></a></h2>
+          <p class="project-description">Active problem-solving, persistent learning and transfer. Literature acquisition, evidence verification and research synthesis.</p>
+          <nav class="project-actions" aria-label="APEX-G tools">
+            <a href="./apex-g/#overview">Research overview</a>
+            <a href="./apex-g/#papers">Paper registry</a>
+            <a href="./apex-g/#evidence">Evidence explorer</a>
+            <a href="./apex-g/#synthesis">Synthesis</a>
+          </nav>
+        </div>
+      </section>
+      <section class="project" aria-labelledby="rasa-title">
+        <div class="project-number" aria-hidden="true">02 / EVALUATION</div>
+        <div class="project-main">
+          <h2 id="rasa-title"><a href="./rasa-chatbot/" class="project-title">RasaChatbot <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 12h16m-7-7 7 7-7 7"/></svg></a></h2>
+          <p class="project-description">Multi-turn clinical-agent evaluation, decision trace inspection, provenance and controlled experiments.</p>
+          <nav class="project-actions" aria-label="RasaChatbot tools">
+            <a href="./rasa-chatbot/#clinical">Scenario evaluation</a>
+            <a href="./rasa-chatbot/#experiments">Experiments &amp; stress</a>
+            <a href="./rasa-chatbot/#repository">Repository status</a>
+          </nav>
+        </div>
+      </section>
+    </div>
+  </main>
+  <footer class="directory-bottom"><span>APEX-G and RasaChatbot are maintained as separate projects.</span><span>Research Atlas</span></footer>
+</div>
 <script>
 const oldPages = {overview:"apex-g/#overview",papers:"apex-g/#papers",evidence:"apex-g/#evidence",synthesis:"apex-g/#synthesis",clinical:"rasa-chatbot/#clinical",experiments:"rasa-chatbot/#experiments",repository:"apex-g/#repository"};
 const oldPage = location.hash.slice(1);

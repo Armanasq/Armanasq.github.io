@@ -6,7 +6,7 @@ const pageSets = {
 };
 const allowedPages = new Set(pageSets[projectScope]);
 const defaultPage = projectScope === "apex-g" ? "overview" : "clinical";
-const DATA_ROOT = "../data/";
+const DATA_ROOT = "./";
 const state = { snapshot: null, page: defaultPage, paper: null, query: "", topic: "all", year: "all", status: "all", evidenceField: "all", evalRuns: [], selectedRun: null, scenarioFilter: "all", runImportLabel: null };
 const $ = (selector) => document.querySelector(selector);
 const esc = (value) => String(value === null || value === undefined ? "" : value).replace(/[&<>"']/g, (c) => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
@@ -395,7 +395,7 @@ const loadSnapshot = async () => {
     if (changed) render();
     freshness();
   }catch(error) {
-    if(!state.snapshot)$("#content").innerHTML='<div class="panel">'+empty("Source snapshot not yet generated","The source-controlled build must run scripts/build_snapshot.py to create data/snapshot.json before this app can display repository records.")+'</div>';
+    if (!state.snapshot) $("#content").innerHTML = '<div class="panel">' + empty("Published project data unavailable", "The project-local data endpoint could not be loaded. Check the deployed snapshot.json asset and GitHub Pages workflow.") + '</div>';
     lastRefreshError = error.message || "Snapshot unavailable";
     freshness();
     notify(lastRefreshError);
@@ -413,4 +413,13 @@ window.setInterval(checkForUpdates, REFRESH_INTERVAL_MS);
 window.setInterval(freshness, 30_000);
 const initialHash=location.hash.slice(1);
 if(allowedPages.has(initialHash))state.page=initialHash;
-loadSnapshot().then(checkForUpdates);
+const boot = window.__RESEARCH_ATLAS_BOOTSTRAP__;
+if (boot && boot.schema_version === "1.0.0" && Array.isArray(boot.papers)) {
+  state.snapshot = boot;
+  lastVersion = boot.generated_at;
+  render();
+  freshness();
+  checkForUpdates();
+} else {
+  loadSnapshot().then(checkForUpdates);
+}
