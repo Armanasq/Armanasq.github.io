@@ -58,18 +58,50 @@ const paperFilters = () => '<div class="toolbar"><label class="sr-only" for="pap
 const paperTable = (rows) => '<div class="table-scroll"><table><thead><tr><th>Paper / study</th><th>Year</th><th>Topic</th><th>Scientific review gate</th><th>Archive</th><th>Record</th></tr></thead><tbody>' +
   rows.slice(0,350).map(p => '<tr class="selectable" data-paper="' + esc(p.id) + '" tabindex="0" role="button" aria-label="Inspect ' + esc(p.title) + '"><td class="title-cell">' + esc(p.title) + '<div class="fine">' + esc(p.id) + '</div></td><td>' + fmt(p.year) + '</td><td class="muted">' + esc(p.topic_label) + '</td><td>' + badge(p.reading_status) + '</td><td>' + badge(p.full_text_path ? "archived" : p.acquisition_status) + '</td><td>' + (p.review_url ? '<span class="tag good">Markdown linked</span>' : badge("not recorded")) + "</td></tr>").join("") + "</tbody></table></div>";
 const renderOverview = () => {
-  const s = state.snapshot.summary || {};
-  const statuses = s.reading_statuses || {};
-  const topicCounts = Object.entries(countBy(papers(),"topic")).sort((a,b)=>b[1]-a[1]);
+  const summary = state.snapshot.summary || {};
+  const ledger = countBy(papers(), "reading_status");
+  const indexed = papers().length;
+  const completed = ledger.read_complete || 0;
+  const visual = ledger.text_complete_visual_pending || 0;
+  const notRecorded = ledger.not_recorded || 0;
+  const topicCounts = Object.entries(countBy(papers(),"topic_label")).sort((a,b)=>b[1]-a[1]);
   const yearCounts = Object.entries(countBy(papers(),"year")).sort((a,b)=>Number(a[0])-Number(b[0]));
-  const outstanding = papers().filter(p=>["text_complete_visual_pending","critical_screening"].includes(p.reading_status)).slice(0,8);
-  const linkedReviews = papers().filter(p=>Boolean(p.review_url)).length;
-  return head("APEX-G / overview","Research evidence at a glance","Bibliography, acquisition, scientific verification and synthesis from the current published APEX-G snapshot.") +
-    '<div class="editorial-summary"><div><span class="editorial-label">APEX-G / LIVING RESEARCH CORPUS</span><p class="editorial-intro">Follow the papers. Inspect the evidence. Track what remains unresolved.</p></div><div class="editorial-meta"><strong>'+num(papers().length)+'</strong><span>canonical research records</span><small>Compiled '+esc(isoTime(state.snapshot.generated_at))+'</small></div></div>' +
-    '<div class="stats">' + stat("Archived PDFs",s.pdfs_reported,"Source integrity report") + stat("Read complete",statuses.read_complete ?? null,"Scientific review inventory") + stat("Visual verification pending",statuses.text_complete_visual_pending ?? null,"Unverified original figures") + stat("Linked Markdown reviews",linkedReviews,"Recorded review files") + '</div>' +
-    '<div class="section"><div class="two-col"><div class="panel">' + sec("Research coverage","Alias-reconciled bibliographic records") + bars(topicCounts.slice(0,9)) + '</div><div class="panel">' + sec("Publication years","Indexed research records") + bars(yearCounts,"teal") + '</div></div></div>' +
-    '<div class="section">' + sec("Verification queue","Source reading and figure verification are separate gates",'<button class="button secondary small" data-go="papers" data-status="missing">Open attention queue →</button>') + '<div class="panel tight">' + (outstanding.length ? paperTable(outstanding) : empty("No queued studies","No studies currently match the outstanding review statuses.")) + '</div></div>' +
-    '<div class="section"><div class="note">This published view is derived from source-controlled research files. Archive integrity does not imply scientific verification, and missing assessment fields remain unknown.</div></div>';
+  const queue = papers().filter(p=>p.reading_status !== "read_complete").slice(0,7);
+  const reviews = papers().filter(p=>Boolean(p.review_url)).length;
+  const percent = value => indexed ? (value / indexed * 100).toFixed(3) : "0";
+  const overviewActions = '<button class="button outline" data-go="papers">Open paper registry <span aria-hidden="true">↗</span></button>';
+  return head("APEX-G / research record","Research evidence at a glance",
+    "Bibliographic coverage, manuscript verification, and the work still required to establish defensible scientific conclusions.", overviewActions) +
+    '<div class="editorial-summary">' +
+    '<div class="summary-main"><span class="editorial-label">CURRENT CORPUS · SOURCE CONTROLLED</span>' +
+    '<p class="editorial-intro">A working account of what is known, what is reviewed, and what remains unresolved.</p>' +
+    '<span class="summary-provenance">Source compiled ' + esc(isoTime(state.snapshot.generated_at)) + '</span></div>' +
+    '<div class="editorial-meta"><span class="meta-kicker">INDEXED STUDIES</span><strong>' + num(indexed) + '</strong><span>canonical records</span></div></div>' +
+    '<section class="review-ledger" aria-label="Scientific verification coverage">' +
+    '<div class="review-ledger-top"><div><span class="mini-label">VERIFICATION DISTRIBUTION</span><h2>Reading progress</h2></div>' +
+    '<span class="review-denominator">' + num(indexed) + ' indexed records</span></div>' +
+    '<div class="review-progress" role="img" aria-label="'+esc(num(completed)+' read complete, '+num(visual)+' awaiting figure verification, '+num(notRecorded)+' not recorded')+'">' +
+    '<span class="segment-complete" style="width:'+percent(completed)+'%"></span>' +
+    '<span class="segment-visual" style="width:'+percent(visual)+'%"></span>' +
+    '<span class="segment-unrecorded" style="width:'+percent(Math.max(0,indexed-completed-visual))+'%"></span></div>' +
+    '<div class="review-legend"><div><i class="legend-dot complete"></i><span>Read complete</span><strong>'+num(completed)+'</strong></div>' +
+    '<div><i class="legend-dot visual"></i><span>Visual checks pending</span><strong>'+num(visual)+'</strong></div>' +
+    '<div><i class="legend-dot unrecorded"></i><span>Other / not recorded</span><strong>'+num(Math.max(0,indexed-completed-visual))+'</strong></div></div></section>' +
+    '<div class="stats">' +
+      stat("Archived source PDFs",summary.pdfs_reported,"Reported in integrity audit") +
+      stat("Linked reviews",reviews,"Recorded Markdown analyses") +
+      stat("Acquisition exceptions",state.snapshot.acquisition_queue?.length ?? null,"Recorded manual queue") +
+      stat("Unresolved review states",Math.max(0,indexed-completed),"Not equivalent to missing PDFs") +
+    '</div>' +
+    '<div class="section"><div class="two-col"><div class="panel">' +
+    sec("Research domains","Distribution of indexed studies") + bars(topicCounts.slice(0,9)) +
+    '</div><div class="panel">' + sec("Publication timeline","Indexed publication years") +
+    bars(yearCounts,"teal") + '</div></div></div>' +
+    '<div class="section">' + sec("Next to verify","Records that have not passed the complete scientific reading gate",
+      '<button class="button secondary small" data-go="papers" data-status="missing">Inspect verification queue →</button>') +
+    '<div class="panel tight">' + (queue.length ? paperTable(queue) :
+      empty("No pending records","All indexed records currently pass the recorded reading gate.")) + '</div></div>' +
+    '<div class="section research-footnote"><span>PROVENANCE NOTE</span><p>Recorded source integrity is not independent manuscript verification. Reading and figure statuses follow the author-maintained APEX-G inventory.</p></div>';
 };
 const renderPapers = () => {
   const rows = filteredPapers();
@@ -147,7 +179,18 @@ const runMetrics = (runs) => {
     contradicted:claims.filter(c=>c.support_status==="contradicted").length,
     citation_validity:null};
 };
-const clinicalEmpty = () => '<div class="dropzone"><strong>No verified RasaChatbot evaluations imported</strong><p>Import de-identified JSON or JSONL evaluation runs matching the documented schema. The browser does not upload or store imported clinical records. Repository code and evaluation harnesses are linked, but do not constitute completed experimental measurements.</p><label for="evaluation-file" class="button">Import evaluation JSON / JSONL</label><input class="inputfile" id="evaluation-file" type="file" accept=".json,.jsonl,application/json"></div>';
+const clinicalEmpty = () =>
+  '<div class="intake-surface">' +
+  '<div class="intake-copy"><span class="mini-label">LOCAL EVALUATION INPUT</span>' +
+  '<h2>Load a recorded evaluation.</h2>' +
+  '<p>Import de-identified JSON or JSONL traces to inspect routing, state transitions, evidence provenance, and claim-level review. No records are automatically inferred from the backend.</p>' +
+  '<div class="intake-controls"><label for="evaluation-file" class="button">Import evaluation file <span aria-hidden="true">↑</span></label>' +
+  '<input class="inputfile" id="evaluation-file" type="file" accept=".json,.jsonl,application/json">' +
+  '<button class="button outline" id="download-schema">Download schema template</button></div>' +
+  '<span class="intake-privacy">Files are parsed in this browser session. Nothing is uploaded.</span></div>' +
+  '<div class="intake-aside"><span class="intake-index">01 / INPUT</span>' +
+  '<div class="intake-line"></div><span class="intake-index">02 / AUDIT</span>' +
+  '<div class="intake-line"></div><span class="intake-index">03 / COMPARE</span></div></div>';
 const runTable = (runs) => '<div class="table-scroll"><table><thead><tr><th>Scenario / run</th><th>Variant</th><th>Outcome</th><th>Turns</th><th>Latency</th><th>Tokens</th><th>Cost (USD)</th></tr></thead><tbody>' + runs.map(r=>
   '<tr class="selectable" data-run="' + esc(r.run_id) + '" role="button" tabindex="0" aria-label="Inspect evaluation run"><td class="title-cell">' + esc(r.scenario_id) + '<div class="fine">' + esc(r.run_id) + '</div></td><td>' + badge(r.variant) + '</td><td>' + badge(r.outcome || "not_recorded") + '</td><td>' + num(r.turns.length) + '</td><td>' + (r.latency_ms===null?"Unknown":num(r.latency_ms)+" ms") + '</td><td>' + num(r.total_tokens) + '</td><td>' + (r.cost_usd===null?"Unknown":r.cost_usd.toFixed(4)) + '</td></tr>').join("")+'</tbody></table></div>';
 const runDetail = (run) => {
@@ -163,22 +206,55 @@ const runDetail = (run) => {
     '<div class="detail-grid">' + entry("Clinical review status",run.clinical_review_status) + entry("Validation errors",(run.validation_errors||[]).join("; ") || null) + entry("Contradictions",(run.contradictions||[]).join("; ") || null) + entry("Stress category",run.stress_category) + entry("Ablations",(run.ablations||[]).join(", ") || null) + entry("SQL-first retrieval observed",run.turns.some(t=>t.retrieval_backend==="sql_fts") ? "At least one SQL/FTS turn" : "Not confirmed") + '</div></div></div>';
 };
 const renderClinical = () => {
-  const runs = state.evalRuns.filter(r=>state.scenarioFilter==="all" || r.variant===state.scenarioFilter);
-  const m = runMetrics(runs);
+  const runs = state.evalRuns.filter(r => state.scenarioFilter==="all" || r.variant===state.scenarioFilter);
   const selected = state.evalRuns.find(r=>r.run_id===state.selectedRun);
-  return head("RasaChatbot / clinical evaluation","Multi-turn clinical evaluations","Separate from the production chat UI. Import de-identified, real evaluation traces for decision routing, clarification/referral, state changes, SQL-first evidence retrieval, provenance and claim support.",
-    '<div class="linklist">' + link("https://github.com/Armanasq/rasachatbot-backend","Backend") + link("https://github.com/Armanasq/rasachatbot-ui","Existing UI") + '</div>') +
-    '<div class="stats">' + stat("Evaluation runs",runs.length,"Verified imported records only") + stat("p50 latency (ms)",m.p50,"Run-level metric; no interpolation") + stat("p95 latency (ms)",m.p95,"Sample quantile; only recorded values") + stat("Unsupported claims",m.claims ? m.unsupported : null,"Only claims with grading records") + '</div>' +
-    '<div class="section"><div class="panel">' + sec("Evaluation imports","Schema-validated, in-memory only") + clinicalEmpty() +
-    '<div class="pill-row"><button class="button outline small" id="download-schema">Download JSON template</button><button class="button outline small" id="export-eval">Export loaded JSON</button><button class="button outline small" id="clear-eval"'+(state.evalRuns.length?"":" disabled")+'>Clear imported runs</button></div></div></div>' +
-    '<div class="section">' + sec("Scenario inventory","Select a run for the turn timeline and claim-by-claim audit") +
-    '<div class="panel tight"><div class="toolbar">' + select("scenario-filter",state.scenarioFilter,[["all","All variants"],...new Set(state.evalRuns.map(r=>r.variant))].map(x=>Array.isArray(x)?x:[x,x])) +
-    '<span class="hint">'+num(runs.length)+' imported runs</span></div>' +
-    (runs.length ? runTable(runs) : empty("No observed runs","The production backend may have test fixtures and logs, but no validated telemetry export has been imported into this page.")) + '</div></div>' +
+  const m = runMetrics(runs);
+  const heading = head("RasaChatbot / evaluation workspace","Multi-turn clinical evaluations",
+    "Inspect actual agent decisions, state transitions, SQL-first retrieval traces, supporting evidence and validation outcomes.",
+    '<div class="linklist">' + link("https://github.com/Armanasq/rasachatbot-backend","Backend source") +
+    link("https://github.com/Armanasq/rasachatbot-ui","Clinical frontend") + '</div>');
+  if (!state.evalRuns.length) {
+    return heading +
+      '<div class="intake-status"><span class="status-ring"></span><span>No evaluation data loaded</span><span>Ready for local import</span></div>' +
+      clinicalEmpty() +
+      '<div class="section">' + sec("Evaluation workflow","The page is populated only by imported, schema-valid observations") +
+      '<div class="workflow-grid">' +
+      '<div class="workflow-step"><span>01</span><h3>Record</h3><p>Export de-identified scenario runs from the evaluator.</p></div>' +
+      '<div class="workflow-step"><span>02</span><h3>Inspect</h3><p>Review turn-level decisions, source IDs, validation errors and clinical flags.</p></div>' +
+      '<div class="workflow-step"><span>03</span><h3>Compare</h3><p>Use matched scenarios to compare baseline, BACIE and COTAR runs.</p></div>' +
+      '</div></div>' +
+      '<div class="section research-footnote"><span>DATA BOUNDARY</span><p>A successful repository build does not provide clinical experiment results. Metrics remain unavailable until measured runs are imported and checked.</p></div>';
+  }
+  return heading +
+    '<div class="stats">' +
+      stat("Imported runs",runs.length,"Session-only records; selected variant scope") +
+      stat("Median latency · ms",m.p50,"Measured run-level values") +
+      stat("p95 latency · ms",m.p95,"Measured run-level values") +
+      stat("Unsupported claims",m.claims ? m.unsupported : null,"Only graded claims are counted") +
+    '</div>' +
+    '<div class="section"><div class="panel">' +
+      sec("Evaluation data","Import a replacement file or export current session") +
+      '<div class="import-toolbar"><label for="evaluation-file" class="button secondary">Replace evaluation file ↑</label>' +
+      '<input class="inputfile" id="evaluation-file" type="file" accept=".json,.jsonl,application/json">' +
+      '<button class="button outline small" id="download-schema">JSON template</button>' +
+      '<button class="button outline small" id="export-eval">Export loaded JSON</button>' +
+      '<button class="button outline small" id="clear-eval">Clear session</button></div>' +
+      '<p class="fine">Current session: '+num(state.evalRuns.length)+' imported runs. '+esc(state.runImportLabel||"Imported file")+'. Not uploaded to a server.</p></div></div>' +
+    '<div class="section">' + sec("Scenario inventory","Select a run to inspect the decision timeline and claim audit") +
+    '<div class="panel tight"><div class="toolbar">' +
+      select("scenario-filter",state.scenarioFilter,[["all","All variants"],...new Set(state.evalRuns.map(r=>r.variant))].map(x=>Array.isArray(x)?x:[x,x])) +
+      '<span class="hint">' + num(runs.length) + ' matching runs</span></div>' +
+      (runs.length ? runTable(runs) : empty("No runs match this variant","Change the variant filter to inspect the other imported runs.")) +
+      '</div></div>' +
     (selected ? '<div class="section">'+runDetail(selected)+'</div>' : '') +
-    '<div class="section"><div class="note warn-note">Clinical safety gate: importing a run is not clinical validation. Unsupported claims, contradictory evidence, referral/triage errors and unresolved safety flags require qualified human review. Never import protected patient information into a public web application.</div></div>';
+    '<div class="section research-footnote"><span>SAFETY</span><p>Importing a run does not establish clinical validity. Unsupported claims, contradictory evidence and referral errors require qualified review.</p></div>';
 };
 const renderExperiments = () => {
+  if (!state.evalRuns.length) return head("RasaChatbot / experiments","Baselines, ablations & stress tests",
+    "Matched-run comparisons become available after observed evaluations are imported.") +
+    '<div class="experiment-empty"><span class="mini-label">EXPERIMENT LEDGER / EMPTY</span><h2>There are no measured variants to compare.</h2>' +
+    '<p>Import actual baseline, BACIE and COTAR runs with matching scenario identifiers and comparable evaluation conditions. This view does not create synthetic results.</p>' +
+    '<button class="button" data-go="clinical">Open scenario evaluation →</button></div>';
   const variants = [...new Set(state.evalRuns.map(r=>r.variant))];
   const grouped = variants.map(v=>({variant:v,runs:state.evalRuns.filter(r=>r.variant===v)}));
   const metricRows = grouped.map(x=>({variant:x.variant,count:x.runs.length,...runMetrics(x.runs)}));
@@ -341,7 +417,7 @@ const freshness = () => {
   const stamp = new Date(state.snapshot.generated_at).getTime();
   const age = Number.isFinite(stamp) ? Date.now() - stamp : NaN;
   const stale = !Number.isFinite(age) || age > MAX_ACCEPTABLE_AGE_MS;
-  const label = lastRefreshError ? "Source check failed" : stale ? "Snapshot may be stale" : "Snapshot current";
+  const label = lastRefreshError ? "Refresh unavailable" : stale ? "Published data is older" : "Published snapshot loaded";
   const status = document.querySelector("#sync-status");
   if (status) {
     status.textContent = label;

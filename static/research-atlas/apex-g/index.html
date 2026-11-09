@@ -3,32 +3,46 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#f8f7f3">
-<meta name="description" content="APEX-G literature evidence, verification and scholarly synthesis.">
+<meta name="theme-color" content="#f6f6f2">
+<meta name="description" content="APEX-G research corpus, primary-paper evidence and synthesis.">
 <title>APEX-G · Research Atlas</title>
 <link rel="stylesheet" href="../styles.css">
 </head>
 <body data-project="apex-g">
+<a class="skip-link" href="#content">Skip to project content</a>
 <div class="shell">
   <aside class="sidebar" aria-label="APEX-G navigation">
-    <div class="brand"><span class="brand-mark" aria-hidden="true">RA</span><div><strong>APEX-G</strong><small>Literature & synthesis</small></div></div>
-    <div class="nav-caption">PROJECT</div>
-    <nav id="nav" aria-label="APEX-G sections">
-      <button type="button" data-page="overview" class="nav-item active"><span aria-hidden="true">◫</span> Overview</button>
-      <button type="button" data-page="papers" class="nav-item"><span aria-hidden="true">▤</span> Paper registry</button>
-      <button type="button" data-page="evidence" class="nav-item"><span aria-hidden="true">◇</span> Evidence explorer</button>
-      <button type="button" data-page="synthesis" class="nav-item"><span aria-hidden="true">≋</span> Synthesis & gaps</button>
-      <button type="button" data-page="repository" class="nav-item"><span aria-hidden="true">⑂</span> Repository & sync</button>
+    <a href="../" class="rail-back"><span class="rail-back-glyph" aria-hidden="true">↖</span> All projects</a>
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">AG</span>
+      <div class="brand-copy"><span class="brand-edition">01 / RESEARCH</span><strong>APEX-G</strong><small>Research literature</small></div>
+    </div>
+    <div class="nav-caption">WORKSPACE</div>
+    <nav id="nav" class="project-nav" aria-label="APEX-G sections">
+      <button type="button" data-page="overview" class="nav-item active"><span class="nav-index" aria-hidden="true">01</span><span class="nav-text">Overview</span><span class="nav-caret" aria-hidden="true">›</span></button>
+      <button type="button" data-page="papers" class="nav-item"><span class="nav-index" aria-hidden="true">02</span><span class="nav-text">Paper registry</span><span class="nav-caret" aria-hidden="true">›</span></button>
+      <button type="button" data-page="evidence" class="nav-item"><span class="nav-index" aria-hidden="true">03</span><span class="nav-text">Evidence explorer</span><span class="nav-caret" aria-hidden="true">›</span></button>
+      <button type="button" data-page="synthesis" class="nav-item"><span class="nav-index" aria-hidden="true">04</span><span class="nav-text">Synthesis & gaps</span><span class="nav-caret" aria-hidden="true">›</span></button>
+      <button type="button" data-page="repository" class="nav-item"><span class="nav-index" aria-hidden="true">05</span><span class="nav-text">Repository & sync</span><span class="nav-caret" aria-hidden="true">›</span></button>
     </nav>
-    <div class="sidebar-bottom"><span class="status-dot"></span> Published research evidence<br><small>Repository-backed; provenance retained.</small></div>
+    <div class="sidebar-bottom">
+      <div class="rail-meta-label">SOURCE OF TRUTH</div>
+      <a href="https://github.com/Armanasq/APEX-G" target="_blank" rel="noopener noreferrer">APEX-G / main ↗</a>
+      <small><span class="status-dot"></span>Source-controlled scientific evidence</small>
+    </div>
   </aside>
   <div class="main">
     <header class="topbar">
-      <div class="crumb"><a href="../" class="project-home">All projects</a> / <span>APEX-G</span> / <span id="breadcrumb">Overview</span></div>
-      <div class="top-actions"><span id="sync-status" class="sync-status sync-stale" role="status">Checking published data</span><span class="small-badge" id="snapshot-time">Snapshot unavailable</span><button id="refresh" class="button secondary" type="button">Refresh now</button><a class="button outline" href="https://github.com/Armanasq/APEX-G" target="_blank" rel="noopener noreferrer">Source repository ↗</a></div>
+      <div class="crumb"><a href="../" class="project-home">Research Atlas</a><span class="crumb-sep">/</span><span>APEX-G</span><span class="crumb-sep">/</span><strong id="breadcrumb">Overview</strong></div>
+      <div class="top-actions">
+        <span id="sync-status" role="status" class="sync-status sync-stale">Checking published data</span>
+        <button type="button" id="refresh" class="button secondary">Refresh ↻</button>
+        <a class="button outline top-source" href="https://github.com/Armanasq/APEX-G" target="_blank" rel="noopener noreferrer">Source ↗</a>
+      </div>
     </header>
-    <main id="content" tabindex="-1"><div class="loading"><div class="loader"></div><p>Loading project data…</p></div></main>
-    <footer class="footer"><span>Review states reflect repository records, not independent scientific validation.</span><a href="../">All projects</a></footer>
+    <div class="topbar-sub"><span class="publication-note">RESEARCH ATLAS &nbsp;/&nbsp; 01 / RESEARCH</span><span id="snapshot-time" class="small-badge">Loading version…</span></div>
+    <main id="content" tabindex="-1"><div class="loading"><div class="loader" aria-hidden="true"></div>Reading project records…</div></main>
+    <footer class="footer"><span>Scientific review statuses follow APEX-G source records.</span><a href="../">Project index ↗</a></footer>
   </div>
 </div>
 <div id="toast" class="toast" role="status" aria-live="polite"></div>
