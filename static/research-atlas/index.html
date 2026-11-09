@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#101a29">
+<meta name="description" content="Research operations workspace: APEX-G literature evidence and RasaChatbot evaluation.">
+<title>Research Atlas · APEX-G / RasaChatbot</title>
+<link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+<div class="shell">
+  <aside class="sidebar" aria-label="Workspace navigation">
+    <div class="brand"><span class="brand-mark" aria-hidden="true">◈</span><div><strong>Research Atlas</strong><small>APEX-G · RasaChatbot</small></div></div>
+    <div class="nav-caption">WORKSPACE</div>
+    <nav id="nav">
+      <button type="button" data-page="overview" class="nav-item active"><span>◫</span> Overview</button>
+      <button type="button" data-page="papers" class="nav-item"><span>▤</span> Paper registry</button>
+      <button type="button" data-page="evidence" class="nav-item"><span>◇</span> Evidence explorer</button>
+      <button type="button" data-page="synthesis" class="nav-item"><span>≋</span> Synthesis & gaps</button>
+      <div class="nav-caption second">CLINICAL EVALUATION</div>
+      <button type="button" data-page="clinical" class="nav-item"><span>▦</span> Scenario evaluation</button>
+      <button type="button" data-page="experiments" class="nav-item"><span>⌁</span> Comparisons & stress</button>
+      <div class="nav-caption second">OPERATIONS</div>
+      <button type="button" data-page="repository" class="nav-item"><span>⑂</span> Repositories & sync</button>
+    </nav>
+    <div class="sidebar-bottom"><span class="status-dot"></span> Read-only source snapshots<br><small>Evaluation imports stay in browser memory.</small></div>
+  </aside>
+  <div class="main">
+    <header class="topbar"><div class="crumb"><span>WORKSPACE</span> / <span id="breadcrumb">Overview</span></div><div class="top-actions"><span class="small-badge" id="snapshot-time">Snapshot unavailable</span><button id="refresh" class="button secondary">↻ Refresh snapshot</button><a class="button outline" href="https://github.com/Armanasq/APEX-G" target="_blank" rel="noopener noreferrer">View APEX-G ↗</a></div></header>
+    <main id="content" tabindex="-1"><div class="loading"><div class="loader"></div><p>Loading verified repository snapshot…</p></div></main>
+    <footer class="footer"><span>Evidence is source-attributed, not independently replicated. Unknown fields remain unknown.</span><span>GitHub Pages · Static / no clinical data backend</span></footer>
+  </div>
+</div>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<script defer src="./app.js"></script>
+</body>
+</html>
