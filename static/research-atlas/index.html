@@ -4,35 +4,24 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#f8f7f3">
-<meta name="description" content="Research operations workspace: APEX-G literature evidence and RasaChatbot evaluation.">
-<title>Research Atlas · APEX-G / RasaChatbot</title>
-<link rel="stylesheet" href="./styles.css">
+<meta name="description" content="Research Atlas project directory.">
+<title>Research Atlas</title>
+<link rel="stylesheet" href="./landing.css">
 </head>
 <body>
-<div class="shell">
-  <aside class="sidebar" aria-label="Workspace navigation">
-    <div class="brand"><span class="brand-mark" aria-hidden="true">RA</span><div><strong>Research Atlas</strong><small>APEX-G / RasaChatbot</small></div></div>
-    <div class="nav-caption">RESEARCH</div>
-    <nav id="nav">
-      <button type="button" data-page="overview" class="nav-item active"><span>◫</span> Overview</button>
-      <button type="button" data-page="papers" class="nav-item"><span>▤</span> Paper registry</button>
-      <button type="button" data-page="evidence" class="nav-item"><span>◇</span> Evidence explorer</button>
-      <button type="button" data-page="synthesis" class="nav-item"><span>≋</span> Synthesis & gaps</button>
-      <div class="nav-caption second">CLINICAL EVALUATION</div>
-      <button type="button" data-page="clinical" class="nav-item"><span>▦</span> Scenario evaluation</button>
-      <button type="button" data-page="experiments" class="nav-item"><span>⌁</span> Comparisons & stress</button>
-      <div class="nav-caption second">OPERATIONS</div>
-      <button type="button" data-page="repository" class="nav-item"><span>⑂</span> Repositories & sync</button>
+<main class="directory-main">
+  <div class="directory-content">
+    <header class="directory-header"><span class="directory-mark" aria-hidden="true">RA</span><h1>Research Atlas</h1></header>
+    <nav class="project-list" aria-label="Projects">
+      <a class="project-link" href="./apex-g/"><span>APEX-G</span><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12h14m-7-7 7 7-7 7"/></svg></a>
+      <a class="project-link" href="./rasa-chatbot/"><span>RasaChatbot</span><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12h14m-7-7 7 7-7 7"/></svg></a>
     </nav>
-    <div class="sidebar-bottom"><span class="status-dot"></span> Source-backed research<br><small>Clinical imports remain in browser memory.</small></div>
-  </aside>
-  <div class="main">
-    <header class="topbar"><div class="crumb"><span>WORKSPACE</span> / <span id="breadcrumb">Overview</span></div><div class="top-actions"><span id="sync-status" class="sync-status sync-stale" role="status">Checking source</span><span class="small-badge" id="snapshot-time">Snapshot unavailable</span><button id="refresh" class="button secondary" type="button">Refresh now</button><a class="button outline" href="https://github.com/Armanasq/APEX-G" target="_blank" rel="noopener noreferrer">View APEX-G ↗</a></div></header>
-    <main id="content" tabindex="-1"><div class="loading"><div class="loader"></div><p>Loading verified repository snapshot…</p></div></main>
-    <footer class="footer"><span>Scientific status follows source records. Missing evidence remains unknown.</span><span>GitHub Pages · Public snapshot, private clinical evaluation data excluded</span></footer>
   </div>
-</div>
-<div id="toast" class="toast" role="status" aria-live="polite"></div>
-<script defer src="./app.js"></script>
+</main>
+<script>
+const oldPages = {overview:"apex-g/#overview",papers:"apex-g/#papers",evidence:"apex-g/#evidence",synthesis:"apex-g/#synthesis",clinical:"rasa-chatbot/#clinical",experiments:"rasa-chatbot/#experiments",repository:"apex-g/#repository"};
+const oldPage = location.hash.slice(1);
+if (Object.prototype.hasOwnProperty.call(oldPages,oldPage)) location.replace("./"+oldPages[oldPage]);
+</script>
 </body>
 </html>

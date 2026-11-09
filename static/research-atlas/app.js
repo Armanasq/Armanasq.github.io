@@ -1,5 +1,13 @@
 "use strict";
-const state = { snapshot: null, page: "overview", paper: null, query: "", topic: "all", year: "all", status: "all", evidenceField: "all", evalRuns: [], selectedRun: null, scenarioFilter: "all", runImportLabel: null };
+const projectScope = document.body.dataset.project === "rasa-chatbot" ? "rasa-chatbot" : "apex-g";
+const pageSets = {
+  "apex-g": ["overview","papers","evidence","synthesis","repository"],
+  "rasa-chatbot": ["clinical","experiments","repository"]
+};
+const allowedPages = new Set(pageSets[projectScope]);
+const defaultPage = projectScope === "apex-g" ? "overview" : "clinical";
+const DATA_ROOT = "../data/";
+const state = { snapshot: null, page: defaultPage, paper: null, query: "", topic: "all", year: "all", status: "all", evidenceField: "all", evalRuns: [], selectedRun: null, scenarioFilter: "all", runImportLabel: null };
 const $ = (selector) => document.querySelector(selector);
 const esc = (value) => String(value === null || value === undefined ? "" : value).replace(/[&<>"']/g, (c) => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const fmt = (v) => v === null || v === undefined || v === "" ? "Unknown" : esc(v);
@@ -50,24 +58,19 @@ const paperFilters = () => '<div class="toolbar"><label class="sr-only" for="pap
 const paperTable = (rows) => '<div class="table-scroll"><table><thead><tr><th>Paper / study</th><th>Year</th><th>Topic</th><th>Scientific review gate</th><th>Archive</th><th>Record</th></tr></thead><tbody>' +
   rows.slice(0,350).map(p => '<tr class="selectable" data-paper="' + esc(p.id) + '" tabindex="0" role="button" aria-label="Inspect ' + esc(p.title) + '"><td class="title-cell">' + esc(p.title) + '<div class="fine">' + esc(p.id) + '</div></td><td>' + fmt(p.year) + '</td><td class="muted">' + esc(p.topic_label) + '</td><td>' + badge(p.reading_status) + '</td><td>' + badge(p.full_text_path ? "archived" : p.acquisition_status) + '</td><td>' + (p.review_url ? '<span class="tag good">Markdown linked</span>' : badge("not recorded")) + "</td></tr>").join("") + "</tbody></table></div>";
 const renderOverview = () => {
-  const s = state.snapshot.summary;
+  const s = state.snapshot.summary || {};
   const statuses = s.reading_statuses || {};
-  const topicCounts = Object.entries(countBy(papers(), "topic")).sort((a,b)=>b[1]-a[1]);
-  const yearCounts = Object.entries(countBy(papers(), "year")).sort((a,b)=>Number(a[0])-Number(b[0]));
-  const outstanding = papers().filter(p=>p.reading_status === "text_complete_visual_pending").slice(0,6);
-  return head("Research atlas / overview", "The state of the research.", "A working view of the APEX-G evidence corpus and RasaChatbot evaluation. Figures come from the latest published source snapshot, not fixed dashboard constants.") +
-    '<div class="editorial-summary"><div><span class="editorial-label">RESEARCH NOTEBOOK / LIVING CORPUS</span><p class="editorial-intro">Follow the papers. Inspect the evidence. Track what remains unresolved.</p></div><div class="editorial-meta"><strong>'+num(papers().length)+'</strong><span>canonical research records</span><small>Last compiled '+esc(isoTime(state.snapshot.generated_at))+'</small></div></div>' +
-    '<div class="stats">' + stat("Archived PDFs",s.pdfs_reported,"Repository integrity report") + stat("Read complete",statuses.read_complete ?? null,"Scientific review inventory") + stat("Visual verification pending",statuses.text_complete_visual_pending ?? null,"Not final scientific certification") + stat("Imported clinical runs",state.evalRuns.length,"Browser session only") + "</div>" +
-    '<div class="section"><div class="two-col"><div class="panel">' + sec("Research coverage","Canonical, alias-reconciled bibliographic records") + bars(topicCounts.slice(0,9)) + '</div><div class="panel">' + sec("Publication years","Indexed bibliographic records") + bars(yearCounts,"teal") + '</div></div></div>' +
-    '<div class="section">' + sec("Verification queue","Original-text review is not equivalent to native figure verification",'<button class="button secondary small" data-go="papers" data-status="missing">Open full queue →</button>') + '<div class="panel tight">' + paperTable(outstanding) + '</div></div>' +
-    '<div class="section">' + sec("Connected projects","Separate codebases; common observability layer") + '<div class="three-col">' +
-    projectCard("APEX-G","Primary research corpus, manifests, reviews, synthesis","https://github.com/Armanasq/APEX-G") +
-    projectCard("RasaChatbot backend","Python orchestration, clinical decisions, retrieval, SSE","https://github.com/Armanasq/rasachatbot-backend") +
-    projectCard("RasaChatbot UI","Existing production frontend; remains unchanged","https://github.com/Armanasq/rasachatbot-ui") +
-    '</div></div>' +
-    '<div class="section"><div class="note warn-note">Publication safety: this static site contains only the generated bibliographic snapshot and short, source-authored research excerpts. Private repository access and clinical evaluation records are not granted through GitHub Pages. All absent measurements are shown as unavailable.</div></div>';
+  const topicCounts = Object.entries(countBy(papers(),"topic")).sort((a,b)=>b[1]-a[1]);
+  const yearCounts = Object.entries(countBy(papers(),"year")).sort((a,b)=>Number(a[0])-Number(b[0]));
+  const outstanding = papers().filter(p=>["text_complete_visual_pending","critical_screening"].includes(p.reading_status)).slice(0,8);
+  const linkedReviews = papers().filter(p=>Boolean(p.review_url)).length;
+  return head("APEX-G / overview","Research evidence at a glance","Bibliography, acquisition, scientific verification and synthesis from the current published APEX-G snapshot.") +
+    '<div class="editorial-summary"><div><span class="editorial-label">APEX-G / LIVING RESEARCH CORPUS</span><p class="editorial-intro">Follow the papers. Inspect the evidence. Track what remains unresolved.</p></div><div class="editorial-meta"><strong>'+num(papers().length)+'</strong><span>canonical research records</span><small>Compiled '+esc(isoTime(state.snapshot.generated_at))+'</small></div></div>' +
+    '<div class="stats">' + stat("Archived PDFs",s.pdfs_reported,"Source integrity report") + stat("Read complete",statuses.read_complete ?? null,"Scientific review inventory") + stat("Visual verification pending",statuses.text_complete_visual_pending ?? null,"Unverified original figures") + stat("Linked Markdown reviews",linkedReviews,"Recorded review files") + '</div>' +
+    '<div class="section"><div class="two-col"><div class="panel">' + sec("Research coverage","Alias-reconciled bibliographic records") + bars(topicCounts.slice(0,9)) + '</div><div class="panel">' + sec("Publication years","Indexed research records") + bars(yearCounts,"teal") + '</div></div></div>' +
+    '<div class="section">' + sec("Verification queue","Source reading and figure verification are separate gates",'<button class="button secondary small" data-go="papers" data-status="missing">Open attention queue →</button>') + '<div class="panel tight">' + (outstanding.length ? paperTable(outstanding) : empty("No queued studies","No studies currently match the outstanding review statuses.")) + '</div></div>' +
+    '<div class="section"><div class="note">This published view is derived from source-controlled research files. Archive integrity does not imply scientific verification, and missing assessment fields remain unknown.</div></div>';
 };
-const projectCard = (name,description,url) => '<div class="panel"><h3>' + esc(name) + '</h3><p class="muted" style="min-height:43px;font-size:12px;line-height:1.6">' + esc(description) + '</p>' + link(url,"Open repository") + "</div>";
 const renderPapers = () => {
   const rows = filteredPapers();
   return head("APEX-G / acquisition registry","Paper acquisition & verification","Canonical study identities are reconciled against source ID aliases, source manifests and the scientific reading inventory. Select a row to inspect provenance and the existing Markdown review.",
@@ -120,7 +123,7 @@ const renderSynthesis = () => {
     per_paper_audit:"Per-paper verification ledger",
   };
   return head("APEX-G / scholarly synthesis","Research synthesis & open questions","Trace arguments from research questions through study-level evidence to cross-paper comparisons and the working review. Existing synthesis files remain the canonical editable artifacts.") +
-    '<div class="panel"><div class="eyebrow">Controlling research question</div><h2 style="font-size:19px;line-height:1.5;font-weight:670;max-width:950px">' + esc(state.snapshot.research_question) + '</h2><div class="note warn-note">The central claim of broadly transferable, persistent latent intelligence growth remains an open empirical question. Benchmark improvement alone is not causal evidence of general intelligence.</div></div>' +
+    '<div class="panel"><div class="eyebrow">Controlling research question</div><h2 style="font-size:19px;line-height:1.5;font-weight:670;max-width:950px">' + fmt(state.snapshot.research_question) + '</h2><div class="note warn-note">The central claim of broadly transferable, persistent latent intelligence growth remains an open empirical question. Benchmark improvement alone is not causal evidence of general intelligence.</div></div>' +
     '<div class="section">' + sec("Evidence-to-synthesis graph","Source files form the audit trail; selection opens upstream records") +
     '<div class="three-col"><div class="panel"><div class="eyebrow">01 · INPUT</div><h3>Primary literature</h3><p class="fine">' + num(papers().length) + ' canonical records · ' + num(papers().filter(p=>p.review_url).length) + ' linked reviews</p><button class="button secondary small" data-go="papers">Inspect paper registry</button></div>' +
     '<div class="panel"><div class="eyebrow">02 · EVIDENCE</div><h3>Methods, claims & counterevidence</h3><p class="fine">Source-linked excerpts, outstanding figure review, competing explanations and limitations.</p><button class="button secondary small" data-go="evidence">Inspect evidence</button></div>' +
@@ -195,27 +198,48 @@ const renderExperiments = () => {
   '</div><p class="fine">Reported latency quantiles are across runs with observed timestamps. Token and dollar totals exclude missing observations. Such groups are not automatically comparable across protocols, contexts, judges or case distributions.</p></div></div>';
 };
 const renderRepo = () => {
-  const repos = state.snapshot.repositories || {};
-  return head("Operations / provenance & synchronization","Repository status & synchronization","Source branches remain authoritative. The public site checks for newly published snapshots each minute; private APEX-G changes become visible only after source compilation and authorized mirror publication.",
-    link("https://github.com/Armanasq/APEX-G/actions","GitHub Actions","button outline"))+
-    '<div class="sync-ledger"><strong>Live synchronization status</strong><p id="sync-detail">Fetching published source version…</p><p class="fine">Polling is automatic while this tab is visible. This public mirror cannot securely read private repositories directly; source publishing depends on the configured GitHub Actions credential. Staleness is reported rather than silently treated as up to date.</p></div>' +
-    '<div class="section">'+sec("Connected repositories","Commit history only where authenticated Actions snapshot access was available")+
-    '<div class="three-col">'+Object.entries(repos).map(([name,r])=>'<div class="panel"><div class="repo-card"><div><div class="repo-title">'+esc(name)+'</div><div class="repo-url">main · '+esc(r.status)+'</div></div>'+badge(r.status)+'</div><p class="fine">'+esc(r.reason || "GitHub commit feed in build-time snapshot")+'</p>'+link(r.url,"Open repository")+(r.build_commit?'<p class="fine">Built from '+esc(r.build_commit.slice(0,12))+'</p>':"")+'</div>').join("")+'</div></div>'+
-    '<div class="section"><div class="panel">'+sec("Main-branch commit timeline","Read-only repository events; publication may lag the live branch")+
-    (Object.entries(repos).some(([name,r])=>r.commits?.length)?'<div class="timeline">'+Object.entries(repos).flatMap(([name,r])=>(r.commits||[]).map(c=>({name,...c}))).sort((a,b)=>(b.date||"").localeCompare(a.date||"")).slice(0,30).map(c=>'<div class="timeline-event"><strong>'+esc(c.name)+'</strong> '+link(c.url,c.sha.slice(0,9),"")+'<p>'+esc(c.message)+' · '+esc(c.date||"date unknown")+'</p></div>').join("")+'</div>':empty("Commit metadata unavailable","The build needs read access to each private repository. Missing history is an authentication or permission limitation, not proof of repository inactivity."))+
-    '</div></div>'+
-    '<div class="section"><div class="two-col"><div class="panel">'+sec("Synchronization semantics","Unidirectional, source-controlled publication")+
-    '<div class="timeline"><div class="timeline-event"><strong>APEX-G main</strong><p>Authoritative CSV manifests, processing inventory, Markdown records and synthesis.</p></div><div class="timeline-event"><strong>Validate & compile</strong><p>Python reconciles aliases and source counts, creates a sanitized JSON snapshot and fails on inconsistent archive totals.</p></div><div class="timeline-event"><strong>GitHub Pages</strong><p>Read-only static app with local evaluation imports and no secret-bearing client requests.</p></div></div></div>'+
-    '<div class="panel">'+sec("README & workflow entry points","Keep the research corpus and app separable")+
-    '<div class="summary-links">'+link("https://github.com/Armanasq/APEX-G/blob/main/README.md","APEX-G README","summary-link")+
-    link("https://github.com/Armanasq/APEX-G/blob/main/literature_review/README.md","Literature README","summary-link")+
-    link("https://github.com/Armanasq/APEX-G/blob/main/research-workspace/README.md","Workspace README","summary-link")+
-    link("https://github.com/Armanasq/APEX-G/actions/workflows/research-workspace-pages.yml","Pages build workflow","summary-link")+
-    link("https://github.com/Armanasq/rasachatbot-backend","Rasa backend","summary-link")+
-    link("https://github.com/Armanasq/rasachatbot-ui","Rasa frontend","summary-link")+'</div></div></div></div>'+
-    '<div class="section"><div class="panel">'+sec("Source lineage","Build-time auditable provenance")+
-    '<div class="table-scroll"><table><thead><tr><th>Source path</th><th>Role</th><th>Open</th></tr></thead><tbody>'+
-    state.snapshot.provenance.map(x=>'<tr><td class="title-cell">'+esc(x.path)+'</td><td>'+esc(x.kind.replaceAll("_"," "))+'</td><td>'+link("https://github.com/Armanasq/APEX-G/blob/main/"+x.path,"View")+'</td></tr>').join("")+'</tbody></table></div></div></div>';
+  const research = projectScope === "apex-g";
+  const all = state.snapshot.repositories || {};
+  const repos = Object.fromEntries(Object.entries(all).filter(([name]) =>
+    research ? name === "Armanasq/APEX-G" : name.startsWith("Armanasq/rasachatbot-")
+  ));
+  const commits = Object.entries(repos).flatMap(([name,r])=>(r.commits||[]).map(c=>({name,...c})))
+    .sort((a,b)=>(b.date||"").localeCompare(a.date||"")).slice(0,30);
+  return head(research?"APEX-G / repository":"RasaChatbot / repositories","Repository & synchronization",
+    research ? "APEX-G main controls the published bibliography and synthesis. Publication can lag source changes." :
+    "RasaChatbot backend and UI remain separate private codebases. Commit feeds require source-workflow authorization.",
+    research ? link("https://github.com/Armanasq/APEX-G/actions","Build history","button outline") :
+    link("https://github.com/Armanasq/rasachatbot-backend","Backend repository","button outline")) +
+    '<div class="sync-ledger"><strong>Published data status</strong><p id="sync-detail">Reading current snapshot…</p><p class="fine">The browser checks this public version feed every minute. It cannot read private repositories or clinical telemetry without an authenticated server-side integration.</p></div>' +
+    '<div class="section">' + sec("Source repositories","Commit history is shown only where the build had access") +
+    '<div class="three-col">' + Object.entries(repos).map(([name,r])=>'<div class="panel"><div class="repo-card"><div><div class="repo-title">'+esc(name)+'</div><div class="repo-url">'+esc(r.branch||"branch unknown")+' · '+esc(r.status||"unavailable")+'</div></div>'+badge(r.status)+'</div><p class="fine">'+esc(r.reason||"Snapshot commit feed")+'</p>'+link(r.url,"View repository")+(r.build_commit?'<p class="fine">Built from '+esc(r.build_commit.slice(0,12))+'</p>':"")+'</div>').join("") +
+    '</div></div>' +
+    '<div class="section"><div class="panel">' + sec("Commit history","Read-only events from accessible source branches") +
+    (commits.length ? '<div class="timeline">'+commits.map(c=>'<div class="timeline-event"><strong>'+esc(c.name)+'</strong> '+link(c.url,c.sha.slice(0,9),"")+'<p>'+esc(c.message)+' · '+esc(c.date||"date unknown")+'</p></div>').join("")+'</div>' :
+      empty("Commit feed unavailable","No authenticated commit history was included in the source snapshot.")) +
+    '</div></div>' +
+    (research ?
+      '<div class="section"><div class="two-col"><div class="panel">' + sec("Data publication","From main to the public research view") +
+      '<div class="timeline"><div class="timeline-event"><strong>APEX-G main</strong><p>Bibliography, archive manifests, processing inventory, Markdown reviews and synthesis.</p></div><div class="timeline-event"><strong>Validate & compile</strong><p>Source files are reconciled into a sanitized, versioned JSON snapshot.</p></div><div class="timeline-event"><strong>Public mirror</strong><p>The authorized Pages workflow republishes the verified snapshot.</p></div></div></div>' +
+      '<div class="panel">'+sec("Canonical documents","Research source-of-truth files")+
+      '<div class="summary-links">' +
+      link("https://github.com/Armanasq/APEX-G/blob/main/README.md","Repository README","summary-link")+
+      link("https://github.com/Armanasq/APEX-G/blob/main/literature_review/README.md","Literature review","summary-link")+
+      link("https://github.com/Armanasq/APEX-G/blob/main/research-workspace/README.md","Workspace documentation","summary-link")+
+      link("https://github.com/Armanasq/APEX-G/actions/workflows/research-workspace-pages.yml","Build workflow","summary-link")+
+      '</div></div></div></div>' +
+      '<div class="section"><div class="panel">'+sec("Source lineage","Auditable publication inputs")+
+      '<div class="table-scroll"><table><thead><tr><th>Source path</th><th>Role</th><th>Open</th></tr></thead><tbody>'+
+      (state.snapshot.provenance||[]).map(x=>'<tr><td class="title-cell">'+esc(x.path)+'</td><td>'+esc(x.kind.replaceAll("_"," "))+'</td><td>'+link("https://github.com/Armanasq/APEX-G/blob/main/"+x.path,"View")+'</td></tr>').join("")+
+      '</tbody></table></div></div></div>'
+    :
+      '<div class="section"><div class="panel">' + sec("Clinical evaluation boundary","Local evaluation imports are not repository telemetry") +
+      '<p class="fine">RasaChatbot run traces are imported into this browser session only. Missing commit access and missing evaluation records are reported as unavailable; no backend measurement is inferred from the APEX-G literature snapshot.</p>' +
+      '<div class="linklist">' +
+      link("https://github.com/Armanasq/rasachatbot-backend","Backend source") +
+      link("https://github.com/Armanasq/rasachatbot-ui","Clinical UI source") +
+      '</div></div></div>'
+    );
 };
 const template = () => ({
   schema_version:"1.0.0",
@@ -275,13 +299,14 @@ const importRuns = async file => {
 const render = () => {
   if (!state.snapshot) return;
   const labels = {overview:"Overview",papers:"Paper registry",evidence:"Evidence explorer",synthesis:"Synthesis & gaps",clinical:"Scenario evaluation",experiments:"Comparisons & stress",repository:"Repositories & sync"};
-  $("#breadcrumb").textContent = labels[state.page] || "Overview";
-  document.querySelectorAll(".nav-item").forEach(node=>node.classList.toggle("active",node.dataset.page===state.page));
+  if (!allowedPages.has(state.page)) state.page = defaultPage;
+  $("#breadcrumb").textContent = labels[state.page] || labels[defaultPage];
+  document.querySelectorAll(".nav-item").forEach(node=>{const active=node.dataset.page===state.page;node.classList.toggle("active",active);if(active)node.setAttribute("aria-current","page");else node.removeAttribute("aria-current");});
   const views = {overview:renderOverview,papers:state.paper?renderPaperDetail:renderPapers,evidence:renderEvidence,synthesis:renderSynthesis,clinical:renderClinical,experiments:renderExperiments,repository:renderRepo};
-  $("#content").innerHTML = (views[state.page] || renderOverview)();
+  $("#content").innerHTML = (views[state.page] || views[defaultPage])();
   bind();
 };
-const go = (page) => {state.page=page;state.paper=null;state.selectedRun=null;history.replaceState(null,"","#"+page);render();$("#content").focus();window.scrollTo({top:0,behavior:"instant"});};
+const go = (page) => {if(!allowedPages.has(page))return;state.page=page;state.paper=null;state.selectedRun=null;history.replaceState(null,"","#"+page);render();$("#content").focus();window.scrollTo({top:0,behavior:"instant"});};
 const bind = () => {
   document.querySelectorAll("[data-paper]").forEach(tr=>{const goPaper=()=>{state.paper=tr.dataset.paper;state.page="papers";render();window.scrollTo({top:0,behavior:"instant"});};tr.addEventListener("click",goPaper);tr.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();goPaper();}});});
   document.querySelectorAll("[data-run]").forEach(tr=>{const fn=()=>{state.selectedRun=tr.dataset.run;render();};tr.addEventListener("click",fn);tr.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();fn();}});});
@@ -332,7 +357,7 @@ const freshness = () => {
   if (syncNote) syncNote.textContent = "Snapshot: " + isoTime(state.snapshot.generated_at) + " · Latest successful check: " + (lastSuccessfulCheck ? isoTime(lastSuccessfulCheck) : "Not yet checked") + (lastRefreshError ? " · " + lastRefreshError : "");
 };
 const loadVersion = async () => {
-  const response = await fetch("./data/version.json?nonce=" + Date.now(), {cache:"no-store"});
+  const response = await fetch(DATA_ROOT+"version.json?nonce=" + Date.now(), {cache:"no-store"});
   if (!response.ok) throw Error("Version feed HTTP " + response.status);
   const version = await response.json();
   if (version.schema_version !== "1.0.0" || !version.generated_at) throw Error("Invalid version metadata");
@@ -358,7 +383,7 @@ const checkForUpdates = async () => {
 };
 const loadSnapshot = async () => {
   try {
-    const response = await fetch("./data/snapshot.json?cache="+Date.now(),{cache:"no-store"});
+    const response = await fetch(DATA_ROOT+"snapshot.json?cache="+Date.now(),{cache:"no-store"});
     if(!response.ok)throw Error("Snapshot fetch failed: HTTP "+response.status);
     const data = await response.json();
     if(data.schema_version!=="1.0.0" || !Array.isArray(data.papers))throw Error("Incompatible snapshot schema");
@@ -387,5 +412,5 @@ document.addEventListener("visibilitychange", () => {
 window.setInterval(checkForUpdates, REFRESH_INTERVAL_MS);
 window.setInterval(freshness, 30_000);
 const initialHash=location.hash.slice(1);
-if(["overview","papers","evidence","synthesis","clinical","experiments","repository"].includes(initialHash))state.page=initialHash;
+if(allowedPages.has(initialHash))state.page=initialHash;
 loadSnapshot().then(checkForUpdates);

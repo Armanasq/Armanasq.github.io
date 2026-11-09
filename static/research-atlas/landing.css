@@ -1,0 +1,17 @@
+:root{color-scheme:light;--paper:#f8f7f3;--ink:#25382c;--muted:#728176;--line:#d9dfd6;--accent:#2d5740}
+*{box-sizing:border-box}
+html{min-height:100%}
+body{min-height:100vh;margin:0;background:var(--paper);color:var(--ink);font-family:"Helvetica Neue",Arial,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.directory-main{min-height:100svh;display:grid;place-items:center;padding:clamp(24px,6vw,72px)}
+.directory-content{width:min(100%,760px)}
+.directory-header{display:flex;align-items:center;gap:14px;margin:0 0 clamp(35px,7vw,65px)}
+.directory-mark{display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:#2b4d3a;color:#fffefa;font:600 12px Georgia,"Times New Roman",serif;letter-spacing:-.6px;flex-shrink:0}
+.directory-header h1{margin:0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(19px,2.5vw,24px);font-weight:500;letter-spacing:-.6px}
+.project-list{border-top:1px solid var(--line)}
+.project-link{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:clamp(24px,5vw,39px) 2px;color:var(--ink);border-bottom:1px solid var(--line);font:400 clamp(32px,5.8vw,55px)/1.12 Georgia,"Times New Roman",serif;letter-spacing:-1.8px;text-decoration:none;transition:color .17s ease,padding .17s ease}
+.project-link svg{width:29px;height:29px;flex-shrink:0;color:#698577;transition:transform .17s ease}
+.project-link:hover{color:var(--accent);padding-left:11px}
+.project-link:hover svg{transform:translateX(5px);color:var(--accent)}
+.project-link:focus-visible{outline:3px solid #8eb49b;outline-offset:5px;border-radius:2px}
+@media(max-width:600px){.directory-main{align-items:center}.directory-header{margin-bottom:37px}.project-link{padding:25px 0;font-size:34px;letter-spacing:-1px}.project-link svg{width:24px;height:24px}}
+@media(prefers-reduced-motion:reduce){.project-link,.project-link svg{transition:none}}
